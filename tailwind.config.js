@@ -1,20 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{ts.tsx}"],
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
   mode: "jilt",
   theme: {
     extend: {
       colors: {
-        primary: "#FFFFFF"
-      }
+        primary: "#FFFFFF",
+        secondary: '#D24836',
+      },
     }, 
-
     boxShadow: {
 
     },
     screens: {},
-    backgroundColor: {
-      hero: "linear-gradient(180deg, #FF0000 0%, rgba(0, 0, 0, 0.89) 100%)"
+    backgroundImage: {
+      "hero":"url('/src/assets/img/believers.jpg')",
     }
   },
   plugins: [],
