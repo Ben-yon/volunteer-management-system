@@ -14,7 +14,7 @@ export default {
     },
     screens: {},
     backgroundImage: {
-      "hero":"url('/src/assets/img/believers.jpg')",
+      "hero":"url('/src/assets/img/MLCS-10.jpg')",
     }
   },
   plugins: [],
