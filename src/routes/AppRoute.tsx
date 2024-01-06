@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import { UserRegistration } from "../components/UserRegistration";
 import { ViewUserDetail  } from "../components/ViewUserDetail";
+import { SuccessfulRegistration } from "../components/SuccessRegistration";
 
 
 export const AppRoutes = () => {
@@ -14,6 +15,10 @@ export const AppRoutes = () => {
             <Route
                 path="view-user-details"
                 element={<ViewUserDetail/>}
+            />
+            <Route
+                path="successful-registration"
+                element={<SuccessfulRegistration/>}
             />
         </Routes>
     )
