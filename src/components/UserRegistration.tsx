@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 
 export const UserRegistration = () => {
-    const imageUploader = useRef<HTMLImageElement>(null);
-    const uploadedImageRef = useRef<HTMLImageElement>(null);
+    const imageUploader = useRef<HTMLInputElement>(null);
+    const uploadedImageRef = useRef<HTMLImageElement | null>(null);
     const [ imageState, setImageState ] = useState<ImageUploadStore>({
         file: null,
-        previewSrc: null,
+        previewSrc: undefined,
     });
+
 
     const navigate = useNavigate();
 
@@ -40,15 +41,19 @@ export const UserRegistration = () => {
     }
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        const [ file ] = e.target.files;
-    
+        
+        const file  = e.target.files?.[0];
+        
+
         if( file ){
             const reader = new FileReader();
     
             if (uploadedImageRef.current) {
                 setImageState({...imageState, file})
             }
+            /// <reference lib="DOM" />
             reader.onload = (e: React.ProgressEvent<FileReader>) => {
+                if (!uploadedImageRef.current) return
                 uploadedImageRef.current.src = e.target.result as string;
                 setImageState({ ...imageState, previewSrc: e.target.result as string })
             };
@@ -58,9 +63,10 @@ export const UserRegistration = () => {
     }
 
     const handleInValidFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return;
         if (!e.target.files[0].type.match(/^image\//)) {
-            alert('Only image file are accepted!');
-            setImageState({ ...imageState, file: null, previewSrc: null })
+            alert('Only image files are accepted!');
+            setImageState({ ...imageState, file: null, previewSrc: undefined })
         }
     }
 
@@ -90,7 +96,7 @@ export const UserRegistration = () => {
                             ref={imageUploader}
                             style={{ display: "none"}}
                             />
-                            <div onClick={() => imageUploader.current.click()}>
+                            <div onClick={() => {if(!imageUploader.current) return; imageUploader.current.click()}}>
                                 <img src="/src/assets/icons/avatar-icon.png" alt="default" className={`${styles.imageUploader} absolute `}/>
                                 <img 
                                 ref={uploadedImageRef}
