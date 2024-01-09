@@ -52,10 +52,10 @@ export const UserRegistration = () => {
                 setImageState({...imageState, file})
             }
             /// <reference lib="DOM" />
-            reader.onload = (e: React.ProgressEvent<FileReader>) => {
+            reader.onload = (e: ProgressEvent<FileReader>) => {
                 if (!uploadedImageRef.current) return
-                uploadedImageRef.current.src = e.target.result as string;
-                setImageState({ ...imageState, previewSrc: e.target.result as string })
+                uploadedImageRef.current.src = e.target?.result as string;
+                setImageState({ ...imageState, previewSrc: e.target?.result as string })
             };
             reader.readAsDataURL(file);
             
