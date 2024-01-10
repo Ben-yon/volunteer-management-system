@@ -9,6 +9,7 @@ export interface FormDataInterface{
     city: string;
     province: string;
     postalCode: string;
-    country: string;
+    occupation: string;
     skills: string;
+    interest: string;
 }

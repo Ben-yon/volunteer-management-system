@@ -28,6 +28,28 @@
     background: #0A1024;
 }
 
+.dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+  }
+
+  .dot-button {
+    margin: 0 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+  }
+  .dot-button.active{
+   background-color: #ec5959;
+  }
+
 input{
     background: none;
 }

@@ -3,6 +3,7 @@ import { styles } from "../styles"
 import { ImageUploadStore } from "../interfaces/ImageUploadInterface";
 import { FormDataInterface } from "../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
+import { ImageSlideshow } from "../widgets/ImageSlideshow";
 
 
 export const UserRegistration = () => {
@@ -26,8 +27,9 @@ export const UserRegistration = () => {
         city: '',
         province: '',
         postalCode: '',
-        country: '',
-        skills: ''
+        occupation: '',
+        skills: '',
+        interest: ''
     })
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +53,6 @@ export const UserRegistration = () => {
             if (uploadedImageRef.current) {
                 setImageState({...imageState, file})
             }
-            /// <reference lib="DOM" />
             reader.onload = (e: ProgressEvent<FileReader>) => {
                 if (!uploadedImageRef.current) return
                 uploadedImageRef.current.src = e.target?.result as string;
@@ -78,7 +79,7 @@ export const UserRegistration = () => {
         </div>
             <div className="absolute ml-16 mt-[40px] flex justify-center">
                 <div className="ml-[192px]">
-                    <img src="/src/assets/img/MLCS-61.jpg" alt="" className="clip-img h-[819px] w-[449px] border rounded-[50px] border-solid"/>
+                    <ImageSlideshow images={['/src/assets/img/MLCS-10.jpg', '/src/assets/img/MLCS-80.jpg','/src/assets/img/MLCS-76.jpg']} />
                 </div>
                 <div className="ml-36 flex-1">
                     <strong className="text-7xl text-primary mt-15">Register</strong>
@@ -97,7 +98,7 @@ export const UserRegistration = () => {
                             style={{ display: "none"}}
                             />
                             <div onClick={() => {if(!imageUploader.current) return; imageUploader.current.click()}}>
-                                <img src="/src/assets/icons/avatar-icon.png" alt="default" className={`${styles.imageUploader} absolute `}/>
+                                <img src="/src/assets/icons/avatar-icon.png" className={`${styles.imageUploader} absolute `}/>
                                 <img 
                                 ref={uploadedImageRef}
                                 src={imageState.previewSrc}
@@ -188,19 +189,30 @@ export const UserRegistration = () => {
                             <input 
                                 type="text" 
                                 className="w-[420px] h-[54px] border rounded-[15px] mt-[15px] text-xl text-white placeholder-gray-300 p-3 leading-6"
-                                placeholder="Country"
-                                name="country"
-                                value={formData.country}
+                                placeholder="Occupation"
+                                name="occupation"
+                                value={formData.occupation}
                                 onChange={handleChange}
                             />
                         </div>
-                        <input type="text" 
-                                className="w-[716px] h-[54px] rounded-[15px] mt-[15px] text-xl border text-white placeholder-gray-300 leading-6 p-3"
-                                placeholder="Skills"
-                            name="skills"
-                            value={formData.skills}
-                            onChange={handleChange} 
-                        />
+                        <div className="flex">
+                            <input 
+                                type="text" 
+                                className="w-[282px] h-[54px] border rounded-[15px] mt-[15px] mr-[20px] text-xl text-white placeholder-gray-300 p-3 leading-6"
+                                placeholder="ZIP / Postal Code"
+                                name="postalCode"
+                                value={formData.skills}
+                                onChange={handleChange}
+                            />
+                            <input 
+                                type="text" 
+                                className="w-[420px] h-[54px] border rounded-[15px] mt-[15px] text-xl text-white placeholder-gray-300 p-3 leading-6"
+                                placeholder="Interests"
+                                name="country"
+                                value={formData.interest}
+                                onChange={handleChange}
+                            />
+                        </div>
                     </div>
                     <button className="bg-primary px-3 py-2 rounded-[15px] border text-xl text-secondary mt-[30px] leading-6 font-bold">Next</button>
                 </form>

@@ -7,10 +7,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="red-gradient bg-no-repeat bg-cover w-[100%] h-[1117px]">
-        <AppRoutes/>
-      </div>
-      
+        <AppRoutes/>      
     </BrowserRouter>
   )
 }
