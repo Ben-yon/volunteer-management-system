@@ -2,6 +2,8 @@
 
 export const AdminSignIn = () => {
     return (
-        <div></div>
+        <div>
+            <p>Sign In </p>
+        </div>
     )
 }
