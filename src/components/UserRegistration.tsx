@@ -201,8 +201,8 @@ export const UserRegistration = () => {
                             <input 
                                 type="text" 
                                 className="w-[282px] h-[54px] border rounded-[15px] mt-[15px] mr-[20px] text-xl text-white placeholder-gray-300 p-3 leading-6"
-                                placeholder="ZIP / Postal Code"
-                                name="postalCode"
+                                placeholder="Skills"
+                                name="skills"
                                 value={formData.skills}
                                 onChange={handleChange}
                             />
@@ -210,7 +210,7 @@ export const UserRegistration = () => {
                                 type="text" 
                                 className="w-[420px] h-[54px] border rounded-[15px] mt-[15px] text-xl text-white placeholder-gray-300 p-3 leading-6"
                                 placeholder="Interests"
-                                name="country"
+                                name="interest"
                                 value={formData.interest}
                                 onChange={handleChange}
                             />
