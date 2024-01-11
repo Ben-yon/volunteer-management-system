@@ -17,7 +17,7 @@ export const AdminConfirmPasswordChange = () => {
           />
           <span className="text-4xl font-bold">Password <br /> Changed!</span>
           <p className="text-xl">Your password have been changed successfully.</p>
-          <button className="bg-last w-[276px] h-[76px] rounded-[24px] text-primary mt-4">Return to MCSS</button>
+          <button className="bg-secondary w-[276px] h-[76px] rounded-[24px] text-primary mt-4">Return to MCSS</button>
         </div>
       </div>
     </div>
