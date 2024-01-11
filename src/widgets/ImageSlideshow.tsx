@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { ImageSlideshowProps } from "../interfaces/ImageSlideshowProps"
 
-export const ImageSlideshow = ( { images, interval = 3000 }: ImageSlideshowProps) => {
+export const ImageSlideshow = ( { images, interval = 1000 }: ImageSlideshowProps) => {
     const [ currentImageIndex, setCurrentImageIndex ] = useState(0);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export const ImageSlideshow = ( { images, interval = 3000 }: ImageSlideshowProps
               className={`${index === currentImageIndex ? 'active' : ''} dot-button`}
               onClick={() => handleDotClick(index)}
             >
-              •
+              
             </button>
           ))}
         </div>

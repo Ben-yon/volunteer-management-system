@@ -8,7 +8,7 @@ export const AdminRegistration = () => {
           className="absolute top-10 left-2 h-[90px] w-[220px]"
         />
         <div className="flex flex-col justify-center items-center">
-          <h2 className="relative -left-36 top-52 font-bold text-4xl ">
+          <h2 className="relative -left-40 top-52 font-bold text-4xl ">
             Create your <br /> account
           </h2>
           <form className="flex flex-col">
