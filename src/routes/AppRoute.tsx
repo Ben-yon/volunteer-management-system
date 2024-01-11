@@ -8,6 +8,8 @@ import i18next from "i18next";
 import { AdminLandingPage } from "../components/admin/AdminLandingPage";
 import { AdminSignIn } from "../components/admin/AdminSignIn";
 import { AdminRegistration } from "../components/admin/AdminRegistration";
+import { AdminRegistrationConfirmation } from "../components/admin/AdminAccountConfirmation";
+import { AdminPasswordReset } from "../components/admin/AdminPasswordReset";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -38,6 +40,14 @@ export const AppRoutes = () => {
             <Route
                 path="admin/sign-up"
                 element={<AdminRegistration/>}
+            />
+            <Route
+                path="admin/admin-register-confirm"
+                element={<AdminRegistrationConfirmation/>}
+            />
+            <Route
+                path="admin/admin-password-reset"
+                element={<AdminPasswordReset/>}
             />
         </Routes>
         </I18nextProvider>
