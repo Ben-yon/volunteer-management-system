@@ -10,6 +10,7 @@ import { AdminSignIn } from "../components/admin/AdminSignIn";
 import { AdminRegistration } from "../components/admin/AdminRegistration";
 import { AdminRegistrationConfirmation } from "../components/admin/AdminAccountConfirmation";
 import { AdminPasswordReset } from "../components/admin/AdminPasswordReset";
+import { AdminCheckEmail } from "../components/admin/AdminCheckEmail";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -30,24 +31,28 @@ export const AppRoutes = () => {
                 element={<SuccessfulRegistration/>}
             />
             <Route
-                path="admin"
+                path="/admin"
                 element={<AdminLandingPage/>}
             />
             <Route
-                path="admin/sign-in"
+                path="/admin/sign-in"
                 element={<AdminSignIn/>}
             />
             <Route
-                path="admin/sign-up"
+                path="/admin/sign-up"
                 element={<AdminRegistration/>}
             />
             <Route
-                path="admin/register-confirm"
+                path="/admin/register-confirm"
                 element={<AdminRegistrationConfirmation/>}
             />
             <Route
-                path="admin/password-reset"
+                path="/admin/password-reset"
                 element={<AdminPasswordReset/>}
+            />
+            <Route
+                path="/admin/password-reset/check-email"
+                element={<AdminCheckEmail/>}
             />
         </Routes>
         </I18nextProvider>

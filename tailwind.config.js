@@ -15,10 +15,10 @@ export default {
     },
     screens: {},
     backgroundImage: {
-      "hero":"url('/src/assets/img/MLCS-10.jpg')",
+      "hero":"url('/src/assets/img/slide3.jpg')",
       "details":"url('/src/assets/img/MLCS-135.jpg')",
       "success":"url('/src/assets/img/MLCS-30.jpg')",
-      "admin": "url('/src/assets/img/MLCS-10.jpg')"
+      "admin": "url('/src/assets/img/slide1.jpg')"
     }
   },
   plugins: [],

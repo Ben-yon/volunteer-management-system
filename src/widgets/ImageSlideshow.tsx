@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { ImageSlideshowProps } from "../interfaces/ImageSlideshowProps"
 
-export const ImageSlideshow = ( { images, interval = 1000 }: ImageSlideshowProps) => {
+export const ImageSlideshow = ( { images, interval = 5000 }: ImageSlideshowProps) => {
     const [ currentImageIndex, setCurrentImageIndex ] = useState(0);
 
     useEffect(() => {
         const intervalId  = setInterval(() => {
-            setCurrentImageIndex((currentImageIndex + 1) % images.length);
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1 ) % images.length);
         }, interval);
         return () => clearInterval(intervalId);
     }, [images, interval])

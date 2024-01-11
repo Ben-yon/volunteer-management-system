@@ -78,9 +78,9 @@ export const UserRegistration = () => {
         <div>
             <img src={`${media.whiteLogo}`} alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
         </div>
-            <div className="absolute ml-16 mt-[40px] flex justify-center">
+            <div className="absolute ml-16 mt-[40px] flex justify-center items-center">
                 <div className="ml-[192px]">
-                    <ImageSlideshow images={['/src/assets/img/MLCS-10.jpg', '/src/assets/img/MLCS-80.jpg','/src/assets/img/MLCS-76.jpg']} />
+                    <ImageSlideshow images={[`${media.slide1}`, `${media.slide2}`, `${media.slide3}`]}/>
                 </div>
                 <div className="ml-36 flex-1">
                     <strong className="text-7xl text-primary mt-15">Register</strong>
@@ -99,7 +99,7 @@ export const UserRegistration = () => {
                             style={{ display: "none"}}
                             />
                             <div onClick={() => {if(!imageUploader.current) return; imageUploader.current.click()}}>
-                                <img src="/src/assets/icons/avatar-icon.png" className={`${styles.imageUploader} absolute `}/>
+                                <img src={`${media.upload}`} className={`${styles.imageUploader} absolute `}/>
                                 <img 
                                 ref={uploadedImageRef}
                                 src={imageState.previewSrc}
