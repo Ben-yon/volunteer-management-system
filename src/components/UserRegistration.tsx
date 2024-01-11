@@ -129,22 +129,21 @@ export const UserRegistration = () => {
                     </div>
                     <div className="flex flex-col">
                         <div className="flex">
-
-                        <input type="text"
-                            name="date"
-                            value={formData.date}
-                            onChange={handleChange}
-                            className="w-[181px] h-[54px] border rounded-[15px] text-xl mt-56 text-white placeholder-gray-300 p-2 mr-[24px]"
-                            placeholder="DD/MM/YYYY"
-                        />
-                        <input 
-                            type="text" 
-                            name="daysOfMonth"
-                            value={formData.daysOfMonth}
-                            onChange={handleChange}
-                            className="w-[253px] h-[54px] border rounded-[15px] text-xl mt-56 text-white placeholder-gray-300 p-3 leading-6"
-                            placeholder="Days per month"
-                        />
+                            <input type="text"
+                                name="date"
+                                value={formData.date}
+                                onChange={handleChange}
+                                className="w-[181px] h-[54px] border rounded-[15px] text-xl mt-48 text-white placeholder-gray-300 p-2 mr-[24px]"
+                                placeholder="DD/MM/YYYY"
+                            />
+                            <input 
+                                type="text" 
+                                name="daysOfMonth"
+                                value={formData.daysOfMonth}
+                                onChange={handleChange}
+                                className="w-[253px] h-[54px] border rounded-[15px] text-xl mt-48 text-white placeholder-gray-300 p-3 leading-6"
+                                placeholder="Days per month"
+                            />
                         </div>
 
                         <input type="text" 
