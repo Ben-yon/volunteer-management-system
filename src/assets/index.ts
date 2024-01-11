@@ -5,6 +5,7 @@ import whiteLogo from './img/whiteLogo.png';
 import envelope from './icons/envelope.svg'
 import addPassword from './icons/addPassword.svg'
 import upload from './icons/upload.svg'
+import lessThan from './icons/lessThan.svg'
 
 import slide1 from './img/slide1.jpg';
 import slide2 from './img/slide2.jpg';
@@ -17,6 +18,7 @@ export const media = {
     redLogo,
     whiteLogo,
     envelope,
+    lessThan,
     upload,
     addPassword,
     slide1,

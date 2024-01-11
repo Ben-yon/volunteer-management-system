@@ -78,8 +78,9 @@ export const UserRegistration = () => {
         <div>
             <img src={`${media.whiteLogo}`} alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
         </div>
-            <div className="absolute ml-16 mt-[40px] flex justify-center items-center">
-                <div className="ml-[192px]">
+        <div className="relative flex items-center justify-center top-[500px]">
+            <div className="absolute m-auto flex space-x-16">
+                <div className="">
                     <ImageSlideshow images={[`${media.slide1}`, `${media.slide2}`, `${media.slide3}`]}/>
                 </div>
                 <div className="ml-36 flex-1">
@@ -219,6 +220,7 @@ export const UserRegistration = () => {
                 </form>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     )

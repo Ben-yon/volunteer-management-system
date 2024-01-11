@@ -8,7 +8,7 @@ export const SuccessfulRegistration = () =>{
                     <img src={`${media.whiteLogo}`} alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
                 </div>
 
-                <div className="absolute flex flex-col items-center top-28 w-[593px] h-[656.7px] white-gradient rounded-[67.49px] opacity-100 mr-[542px] ml-[542px] mb-[182px]">
+                <div className="relative flex flex-col items-center top-28 w-[593px] h-[656.7px] white-gradient rounded-[67.49px] opacity-100 m-auto">
                     <h2 className="text-primary text-4xl font-bold mt-28">Great!</h2>
                     <p className="text-center text-primary mt-[21.52px] text-xm">You have successfully Registered. <br />
                         You will receive a Confirmation <br />
