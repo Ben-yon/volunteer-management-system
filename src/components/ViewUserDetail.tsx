@@ -1,6 +1,7 @@
 //import React from "react";
 import { useLocation, useNavigate, } from "react-router-dom";
 import { styles } from "../styles";
+import { media } from "../assets";
 
 
 export const ViewUserDetail = () => {
@@ -17,7 +18,7 @@ export const ViewUserDetail = () => {
         <div className="relative bg-details bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[1117px]">
             <div className="red-gradient bg-no-repeat bg-cover w-[100%] h-[1117px]">
                 <div>
-                    <img src="/src/assets/img/White 1.png" alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
+                    <img src={`${media.whiteLogo}`} alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
                 </div>
 
                 <div className="absolute flex flex-col items-center top-28 w-[680px] h-[752.56px] white-gradient rounded-[67.49px] opacity-100 mr-[542px] ml-[542px] mb-[182px]">

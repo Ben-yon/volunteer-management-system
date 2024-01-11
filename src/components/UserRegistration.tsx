@@ -4,6 +4,7 @@ import { ImageUploadStore } from "../interfaces/ImageUploadInterface";
 import { FormDataInterface } from "../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
+import { media } from '../assets';
 
 
 export const UserRegistration = () => {
@@ -75,7 +76,7 @@ export const UserRegistration = () => {
     <div className="relative bg-hero bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[1117px]">
       <div className="red-gradient bg-no-repeat bg-cover w-[100%] h-[1117px]">
         <div>
-            <img src="/src/assets/img/White 1.png" alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
+            <img src={`${media.whiteLogo}`} alt="LOGO" className='absolute w-[221px] h-[90px] bottom-[39px] right-[35px]'/>
         </div>
             <div className="absolute ml-16 mt-[40px] flex justify-center">
                 <div className="ml-[192px]">

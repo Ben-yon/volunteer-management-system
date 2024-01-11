@@ -30,7 +30,7 @@ export const AppRoutes = () => {
                 element={<SuccessfulRegistration/>}
             />
             <Route
-                path="admin/"
+                path="admin"
                 element={<AdminLandingPage/>}
             />
             <Route
@@ -42,11 +42,11 @@ export const AppRoutes = () => {
                 element={<AdminRegistration/>}
             />
             <Route
-                path="admin/admin-register-confirm"
+                path="admin/register-confirm"
                 element={<AdminRegistrationConfirmation/>}
             />
             <Route
-                path="admin/admin-password-reset"
+                path="admin/password-reset"
                 element={<AdminPasswordReset/>}
             />
         </Routes>
