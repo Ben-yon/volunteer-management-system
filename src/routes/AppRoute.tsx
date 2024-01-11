@@ -11,6 +11,8 @@ import { AdminRegistration } from "../components/admin/AdminRegistration";
 import { AdminRegistrationConfirmation } from "../components/admin/AdminAccountConfirmation";
 import { AdminPasswordReset } from "../components/admin/AdminPasswordReset";
 import { AdminCheckEmail } from "../components/admin/AdminCheckEmail";
+import { AdminCreateNewPassword } from "../components/admin/AdminCreateNewPassword";
+import { AdminConfirmPasswordChange } from "../components/admin/AdminConfirmPasswordChange";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -53,6 +55,14 @@ export const AppRoutes = () => {
             <Route
                 path="/admin/password-reset/check-email"
                 element={<AdminCheckEmail/>}
+            />
+            <Route
+                path="/admin/password-reset/new-password"
+                element={<AdminCreateNewPassword/>}
+            />
+            <Route
+                path="/admin/password-reset/confirm-password-change"
+                element={<AdminConfirmPasswordChange/>}
             />
         </Routes>
         </I18nextProvider>
