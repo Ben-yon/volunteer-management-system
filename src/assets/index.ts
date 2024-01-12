@@ -7,8 +7,8 @@ import addPassword from './icons/addPassword.svg';
 import upload from './icons/upload.svg';
 import passwordChanged from './icons/passwordChanged.svg'
 
-import slide1 from './img/slide1.jpg';
-import slide2 from './img/slide2.jpg';
+import slide1 from './img/slide1.png';
+import slide2 from './img/slide2.png';
 import slide3 from './img/slide3.jpg';
 
 

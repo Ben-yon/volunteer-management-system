@@ -17,7 +17,7 @@ export const ImageSlideshow = ( { images, interval = 5000 }: ImageSlideshowProps
 
     return (
         <div className="image-slideshow relative">
-        <img src={images[currentImageIndex]} alt="" className="clip-img h-[819px] w-[449px] border rounded-[50px] border-solid" />
+        <img src={images[currentImageIndex]} alt="" className="clip-img h-[819px] sm:w-[780px] sm:h-[512px] sm:rounded-none w-[449px] border rounded-[50px] border-solid" />
   
         <div className="dots">
           {images.map((_, index) => (
