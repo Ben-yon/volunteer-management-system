@@ -71,13 +71,13 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] sm:w-[654px] sm:overflow-none">
-      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100%] sm:relative">
+    <div className="lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] sm:w-[654px] sm:overflow-none xsm:h-[100%]">
+      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100%] sm:relative xsm:h-[100%] xsm:relative">
         <div className="">
           <img
             src={`${media.whiteLogo}`}
             alt="LOGO"
-            className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:-bottom-80 xsm:right-[31px]"
+            className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
         <div className="lg:relative lg:flex lg:items-center lg:justify-center lg:p-12">
@@ -91,7 +91,7 @@ export const UserRegistration = () => {
                 ]}
               />
             </div>
-            <div className="lg:ml-36 lg:flex-1 sm:p-10 xsm:p-8 xsm:items-center ">
+            <div className="lg:ml-36 lg:flex-1 sm:p-10 xsm:p-8 xsm:items-center">
               <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl">
                 Register
               </strong>
@@ -163,7 +163,7 @@ export const UserRegistration = () => {
                       name="daysOfMonth"
                       value={formData.daysOfMonth}
                       onChange={handleChange}
-                      className="lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-44 text-white placeholder-gray-300 p-3 leading-6 sm:w-[148.05px] sm:h-[37.5px] sm:text-xs sm:rounded-[10.42px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:mt-36"
+                      className="lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-48 text-white placeholder-gray-300 p-3 leading-6 sm:w-[148.05px] sm:h-[37.5px] sm:text-xs sm:rounded-[10.42px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:mt-36"
                       placeholder="Days per month"
                     />
                   </div>
