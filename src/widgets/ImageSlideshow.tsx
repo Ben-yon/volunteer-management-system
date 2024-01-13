@@ -16,20 +16,19 @@ export const ImageSlideshow = ( { images, interval = 5000 }: ImageSlideshowProps
     };
 
     return (
-        <div className="image-slideshow relative">
-        <img src={images[currentImageIndex]} alt="" className="clip-img h-[819px] w-[449px] border rounded-[50px] border-solid" />
-  
-        <div className="dots">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              className={`${index === currentImageIndex ? 'active' : ''} dot-button`}
-              onClick={() => handleDotClick(index)}
-            >
-              
-            </button>
-          ))}
-        </div>
+        <div className="image-slideshow lg:relative">
+          <img src={images[currentImageIndex]} alt="" className="lg:h-[800px] lg:w-[449px] lg:rounded-[50px] sm:w-[780px] sm:h-[500px] sm:rounded-none sm:object-cover sm:object-top" />
+    
+          <div className="dots sm:relative sm:bottom-6 lg:relative lg:bottom-10">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                className={`${index === currentImageIndex ? 'active' : ''} dot-button`}
+                onClick={() => handleDotClick(index)}
+              >
+              </button>
+            ))}
+          </div>
       </div>
     )
 

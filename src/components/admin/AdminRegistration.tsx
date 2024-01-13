@@ -2,21 +2,21 @@ import { media } from "../../assets";
 
 export const AdminRegistration = () => {
   return (
-    <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[1117px]">
-      <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100%] h-[1117px]">
+    <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] sm:w-[758px] md:w-[100%] h-[1170px] sm:h-[auto]">
+      <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100%] md:w-[100%] h-[1170px] sm:w-[758px] md:h-[100%]">
         <img
           src={`${media.redLogo}`}
           alt=""
-          className="absolute top-10 left-2 h-[90px] w-[220px]"
+          className="absolute top-10 left-2 h-[90px] w-[220px] sm:w-[136px] sm:h-[56px]"
         />
-        <div className="flex flex-col justify-center items-center">
-          <h2 className="relative -left-40 top-52 font-bold text-4xl ">
+        <div className="flex flex-col justify-left items-center">
+          <h2 className="relative -left-40 top-52 font-bold text-4xl sm:w-[231px] sm:h-[94px] sm:left-60 sm:text-7xl">
             Create your <br /> account
           </h2>
           <form className="flex flex-col">
             <input
               type="text"
-              className="relative top-60 border w-[546px] h-[69px] rounded-[22px] bg-gray-100 leading-6 text-black text-2xl px-4"
+              className="relative top-60 border w-[546px] h-[69px] rounded-[22px] bg-gray-100 leading-6 text-black text-2xl px-4 sm:w-[437.39px] sm:h-[55px]"
               placeholder="First Name"
             />
             <input

@@ -4,6 +4,12 @@ export default {
   mode: "jilt",
   theme: {
     extend: {
+      screens: {
+        'lg': '1024px',
+        'sm': '640px',
+        'md': '768px',
+        'xl': '1280px',
+      },
       colors: {
         primary: "#FFFFFF",
         secondary: '#D24836',
