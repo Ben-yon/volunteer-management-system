@@ -151,11 +151,11 @@ export const UserRegistration = () => {
                 <div className="flex flex-col">
                   <div className="flex">
                     <input
-                      type="text"
+                      type="date"
                       name="date"
                       value={formData.date}
                       onChange={handleChange}
-                      className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl mt-48 text-white placeholder-gray-300 p-2 mr-[24px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs"
+                      className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl mt-48 text-white uppercase placeholder-gray-300 p-2 mr-[24px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs"
                       placeholder="DD/MM/YYYY"
                     />
                     <input
