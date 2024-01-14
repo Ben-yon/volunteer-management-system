@@ -163,7 +163,7 @@ export const UserRegistration = () => {
                       name="daysOfMonth"
                       value={formData.daysOfMonth}
                       onChange={handleChange}
-                      className="lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-48 text-white placeholder-gray-300 p-3 leading-6 sm:w-[148.05px] sm:h-[37.5px] sm:text-xs sm:rounded-[10.42px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:mt-36"
+                      className="lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-44 text-white placeholder-gray-300 p-3 leading-6 sm:w-[148.05px] sm:h-[37.5px] sm:text-xs sm:rounded-[10.42px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:mt-36"
                       placeholder="Days per month"
                     />
                   </div>
