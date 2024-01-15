@@ -71,7 +71,7 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] sm:w-[654px] sm:overflow-none xsm:h-[100%]">
+    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] md:w-[100vw] md:h-[100%]  sm:w-[654px] sm:overflow-none xsm:h-[100%]">
       <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100%] lg:h-[100%] sm:relative xsm:h-[100%] xsm:relative">
         <div className="">
           <img
@@ -91,7 +91,7 @@ export const UserRegistration = () => {
                 ]}
               />
             </div>
-            <div className="lg:ml-36 lg:flex-1 sm:p-10 xsm:p-8 xsm:items-center xsm:ml-[16px]">
+            <div className="flex-1 lg:flex-1 sm:p-10 sm:ml-[26px] xsm:p-8 xsm:items-center">
               <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl">
                 Register
               </strong>

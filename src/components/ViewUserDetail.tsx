@@ -15,7 +15,7 @@ export const ViewUserDetail = () => {
     }
 
     return (
-        <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] sm:w-[654px] sm:overflow-none ">
+        <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[654px] sm:overflow-none ">
             <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100vh] sm:relative xsm:h-[100vh]">
                 <div>
                     <img src={`${media.whiteLogo}`} alt="LOGO" className='lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]'/>
@@ -39,7 +39,7 @@ export const ViewUserDetail = () => {
                         <p className="text-primary text-center text-2xl xsm:text-xl">{ formData?.country }</p>
                         <p className="text-primary text-center text-2xl font-bold xsm:text-xl">{ formData?.skills }</p>
                     </div>
-                    <button className="register-form-submit text-primary font-bold mt-[28.7px] text-center rounded-[12.7px] leading-5 py-3 px-6 xsm:rounded-[6px] xsm:w-[62.04px] xsm:text-xs xsm:px-2 xsm:py-2"
+                    <button className="register-form-submit lg:text-primary lg:h-14 lg:w-32 lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:py-5 lg:text-xl lg:px-8 xsm:rounded-[6px] xsm:w-[62.04px] xsm:text-xs xsm:px-2 xsm:py-2 xsm:text-primary xsm:font-bold xsm:mt-[18.5px]"
                         onClick={handleSubmit}
                     >
                         Submit
