@@ -1,4 +1,5 @@
 import { media } from "../assets";
+import gsap from "gsap";
 
 export const SuccessfulRegistration = () => {
   return (

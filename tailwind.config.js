@@ -20,7 +20,6 @@ export default {
     boxShadow: {
 
     },
-    screens: {},
     backgroundImage: {
       "hero":"url('/src/assets/img/slide3.jpg')",
       "details":"url('/src/assets/img/MLCS-135.jpg')",
