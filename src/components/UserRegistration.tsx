@@ -71,8 +71,8 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] sm:w-[654px] sm:overflow-none xsm:h-[100%]">
-      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100%] sm:relative xsm:h-[100%] xsm:relative">
+    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] md:w-[100vw] md:h-[100%]  sm:w-[654px] sm:overflow-none xsm:h-[100%]">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100%] lg:h-[100%] sm:relative xsm:h-[100%] xsm:relative">
         <div className="">
           <img
             src={`${media.whiteLogo}`}
@@ -91,11 +91,11 @@ export const UserRegistration = () => {
                 ]}
               />
             </div>
-            <div className="lg:ml-36 lg:flex-1 sm:p-10 xsm:p-8 xsm:items-center">
+            <div className="flex-1 lg:flex-1 sm:p-10 sm:ml-[26px] xsm:p-8 xsm:items-center">
               <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl">
                 Register
               </strong>
-              <p className="text-primary mt-2 mb-2 lg:text-xl sm:text-xs">
+              <p className="text-primary mt-2 lg:text-xl sm:text-xs">
                 Fill out this form to become a Volunteer
               </p>
               <form onSubmit={handleSubmit}>
@@ -187,7 +187,7 @@ export const UserRegistration = () => {
                   <div className="flex">
                     <input
                       type="text"
-                      className="lg:w-[282px] lg:h-[54px]  focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
+                      className="lg:w-[282px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
                       placeholder="City"
                       name="city"
                       value={formData.city}
@@ -195,7 +195,7 @@ export const UserRegistration = () => {
                     />
                     <input
                       type="text"
-                      className="lg:w-[420px] lg:h-[54px] lg:border lg:rounded-[15px] border focus:outline-none mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[157.73px]"
+                      className="lg:w-[412px] lg:h-[54px] lg:border lg:rounded-[15px] border focus:outline-none mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[157.73px]"
                       placeholder="State/Province/Region"
                       name="province"
                       value={formData.province}
@@ -213,7 +213,7 @@ export const UserRegistration = () => {
                     />
                     <input
                       type="text"
-                      className="lg:w-[420px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading- sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[159.73px]"
+                      className="lg:w-[412px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading- sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[159.73px]"
                       placeholder="Occupation"
                       name="occupation"
                       value={formData.occupation}
@@ -231,7 +231,7 @@ export const UserRegistration = () => {
                     />
                     <input
                       type="text"
-                      className="lg:w-[420px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[259.73px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
+                      className="lg:w-[412px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[259.73px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
                       placeholder="Interests"
                       name="interest"
                       value={formData.interest}
