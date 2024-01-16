@@ -5,6 +5,8 @@ import { FormDataInterface } from "../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
+import { db } from "../utils/db";
+
 
 export const UserRegistration = () => {
   const imageUploader = useRef<HTMLInputElement>(null);
@@ -13,6 +15,26 @@ export const UserRegistration = () => {
     file: null,
     previewSrc: undefined,
   });
+
+  const storeUserDetails = () =>{
+    const details = db.userDetails.add({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      date: formData.date,
+      daysOfMonth: formData.daysOfMonth,
+      address: formData.address,
+      streetAddress: formData.streetAddress,
+      city: formData.city,
+      province: formData.province,
+      postalCode: formData.postalCode,
+      occupation: formData.occupation,
+      skills: formData.skills,
+      interest: formData.interest
+    });
+    return details
+  }
+  
+
 
   const navigate = useNavigate();
 
@@ -35,9 +57,10 @@ export const UserRegistration = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit =  (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(formData);
+    storeUserDetails();
     navigate("/view-user-details", { state: { formData, imageState } });
   };
 
@@ -71,8 +94,8 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100%] md:w-[100vw] md:h-[100%]  sm:w-[654px] sm:overflow-none xsm:h-[100%]">
-      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100%] lg:h-[100%] sm:relative xsm:h-[100%] xsm:relative">
+    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100vw] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[654px] sm:h-[100vh] sm:overflow-none xsm:h-[100vh ]">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100vw] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:relative xsm:h-[100%] xsm:relative">
         <div className="">
           <img
             src={`${media.whiteLogo}`}
@@ -91,8 +114,8 @@ export const UserRegistration = () => {
                 ]}
               />
             </div>
-            <div className="flex-1 lg:flex-1 sm:p-10 sm:ml-[26px] xsm:p-8 xsm:items-center">
-              <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl">
+            <div className="flex-1 lg:flex-1 md:ml-[114px] sm:p-10 sm:ml-[43px] xsm:p-8 xsm:items-center">
+              <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl md:text-primary md: ">
                 Register
               </strong>
               <p className="text-primary mt-2 lg:text-xl sm:text-xs">
