@@ -94,8 +94,8 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100vw] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[654px] sm:h-[100vh] sm:overflow-none xsm:h-[100vh ]">
-      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100vw] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:relative xsm:h-[100%] xsm:relative">
+    <div className="relative filter w-[100vw] h-[100vh] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100vw] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[654px] sm:h-[100vh] sm:overflow-none xsm:h-[100vh] m-auto">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100%] lg:h-[100%] md:w-[100vw] md:h-[100vh] sm:relative xsm:h-[100%] xsm:relative">
         <div className="">
           <img
             src={`${media.whiteLogo}`}
@@ -103,8 +103,8 @@ export const UserRegistration = () => {
             className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="lg:relative lg:flex lg:items-center lg:justify-center lg:p-12">
-          <div className="lg:relative lg:m-auto lg:flex lg:flex-row lg:space-x-16 sm:flex-col sm:space-y-1">
+        <div className="lg:relative lg:flex lg:items-center m-auto lg:justify-center lg:p-12">
+          <div className="lg:relative lm-auto lg:flex lg:flex-row lg:space-x-16 sm:flex-col sm:space-y-1">
             <div className="sm:abolute sm:top-0 lg:flex">
               <ImageSlideshow
                 images={[
