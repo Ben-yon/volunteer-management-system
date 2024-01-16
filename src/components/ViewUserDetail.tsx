@@ -21,7 +21,7 @@ export const ViewUserDetail = () => {
                     <img src={`${media.whiteLogo}`} alt="LOGO" className='lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]'/>
                 </div>
 
-                <div className="lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 lg:w-[580px] lg:h-[552.56px] white-gradient rounded-[67.49px] opacity-100 m-auto xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
+                <div className="lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 top-[182px] lg:w-[580px] lg:h-[552.56px] white-gradient rounded-[67.49px] opacity-100 m-auto md:w-[476px] md:h-[527.25px] md:top-[270px] xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
                     <div className="lg:mt-[65.54px] items-center">
                         <p className="text-white text-center text-3xl font-bold xsm:text-xl xsm:mt-9">Review Your <br/> Information</p>
                         <p className="text-white text-center text-xs font-normal">Please take a moment to review <br/> the information you've entered</p>

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 const languageOptions: LanguageOption[] = [
     { value: 'en', label: 'English'},
-    { value: 'fr', label: 'Francais'},
+    { value: 'fr', label: 'French'},
     { value: 'de', label: 'Deutsch'}
 ];
 
@@ -22,10 +22,10 @@ export const LanguageSelect = ( { onLanguageChange }: LanguageSelectProps ) => {
     };
 
     return (
-        <select value={selectedLanguage} onChange={handleLanguageChange}>
+        <select value={selectedLanguage} onChange={handleLanguageChange} className="w-[70px] bg-transparent text-primary">
             { languageOptions.map((option) => (
                 <option key={option.value} value={option.value}>
-                    {t(option.value)}
+                    {t(option.label)}
                 </option>
             ))}
         </select>
