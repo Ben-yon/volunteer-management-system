@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { AppRoutes } from './routes/AppRoute';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import i18next from 'i18next';
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useState } from 'react';
 import { LanguageSelect } from './components/LanguageSelect';
 //import { styles } from './styles';
 
