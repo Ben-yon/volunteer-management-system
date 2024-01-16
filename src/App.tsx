@@ -45,7 +45,7 @@ function App() {
   return (
     <BrowserRouter>
       <I18nextProvider i18n={i18next}>
-          <div className='absolute top-48 right-24 z-1'>
+          <div className='fixed top-[25px] right-[123px] flex items-center z-10'>
             <LanguageSelect onLanguageChange={setLanguage}/>
           </div>
         <AppRoutes/>      
