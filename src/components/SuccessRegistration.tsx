@@ -34,7 +34,7 @@ export const SuccessfulRegistration = () => {
           <h2 className="lg:text-primary lg:text-4xl font-bold lg:mt-28 xsm:text-xl xsm:font-extrabold xsm:mt-6 xsm:text-primary">
             Great!
           </h2>
-          <p className="lg:text-center lg:text-primary lg:mt-[21.52px] lg:text-xm xsm:text-xs xsm:mt-[10.63px] xsm:text-primary xsm:text-center">
+          <p className="lg:text-center lg:text-primary lg:text-xm xsm:text-xs xsm:mt-[10.63px] xsm:text-primary xsm:text-center">
             You have successfully Registered. <br />
             You will receive a Confirmation <br />
             Email from MCSS
