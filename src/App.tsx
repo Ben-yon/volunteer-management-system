@@ -1,56 +1,28 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import { AppRoutes } from './routes/AppRoute';
-import { I18nextProvider, initReactI18next } from 'react-i18next';
-import i18next from 'i18next';
-import { useEffect, useState } from 'react';
+import { LanguageProvider } from './components/LanguageProvider';
 import { LanguageSelect } from './components/LanguageSelect';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './utils/i18n';
+
 //import { styles } from './styles';
-
-i18next
-    .use(initReactI18next)
-    .init({
-        resources: {
-            en: {
-                translation: {
-
-                },
-            },
-            fr: {
-                translation: {
-
-                },
-            },
-            de: {
-                translation: {
-
-                },
-            },
-        },
-        lng: 'en', // default language
-        fallbackLng: 'en',
-        interpolation: {
-            escapeValue: false
-        }
-    })
 
 function App() {
   // const { t } = useTransition();
-  const [ language, setLanguage ] = useState(i18next.language);
 
-  useEffect(() => {
-    i18next.changeLanguage(language);
-  }, [language]);
 
   return (
-    <BrowserRouter>
-      <I18nextProvider i18n={i18next}>
-          <div className='fixed top-[25px] right-[123px] flex items-center z-10'>
-            <LanguageSelect onLanguageChange={setLanguage}/>
-          </div>
-        <AppRoutes/>      
+    <LanguageProvider>
+      <I18nextProvider i18n={i18n}>   
+        <BrowserRouter>
+              <div className='absolute top-8 right-16 z-10'>
+                <LanguageSelect />
+              </div>
+              <AppRoutes/>      
+        </BrowserRouter>
       </I18nextProvider>
-    </BrowserRouter>
+    </LanguageProvider>
   )
 }
 

@@ -94,8 +94,8 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="relative filter w-[100vw] h-[100%] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
-      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100%]">
+    <div className="relative filter w-[100vw] h-[100%] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 md:w-[100vw] md:h-[100%] sm:overflow-none">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100%] lg:h-[100%] md:w-[100vw] md:h-[100vh] sm:relative xsm:h-[100%] xsm:relative">
         <div className="">
           <img
             src={`${media.whiteLogo}`}
