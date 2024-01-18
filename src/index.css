@@ -63,3 +63,6 @@ input{
     object-fit: cover;
     object-position: 25% 50%;
 }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: bg-primary;
+  }
