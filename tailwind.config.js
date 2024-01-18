@@ -24,7 +24,7 @@ export default {
       "hero":"url('/src/assets/img/slide3.jpg')",
       "details":"url('/src/assets/img/MLCS-135.jpg')",
       "success":"url('/src/assets/img/MLCS-30.jpg')",
-      "admin": "url('/src/assets/img/slide1.jpg')"
+      "admin": "url('/src/assets/img/slide1.png')"
     }
   },
   plugins: [],

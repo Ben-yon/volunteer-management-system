@@ -30,7 +30,7 @@ export const AppRoutes = () => {
                 element={<SuccessfulRegistration/>}
             />
             <Route
-                path="/admin"
+                path="admin"
                 element={<AdminLandingPage/>}
             />
             <Route
