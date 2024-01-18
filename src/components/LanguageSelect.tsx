@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { LanguageOption } from "../interfaces/LanguageOptionsInterface";
-import { LanguageSelectProps } from "../interfaces/LanguageSelectProps";
 import { useLanguage } from "../contexts/LanguageContext";
 import React, { useState } from "react";
 
