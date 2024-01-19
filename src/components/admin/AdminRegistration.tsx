@@ -2,14 +2,14 @@ import { media } from "../../assets";
 
 export const AdminRegistration = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
-      <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100%] md:w-[100%] h-[100%]">
+    <div className="bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100vw] h-[100vh] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
+      <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
         <img
           src={`${media.redLogo}`}
           alt=""
           className="absolute top-[29px] lg:absolute lg:top-[29px] left-[27px] lg:h-[90px] lg:w-[220px] md:w-[90px] md:h-[37px] md:absolute md:top-[11px] sm:w-[90px] sm:h-[37px] xsm:w-[90px] xsm:h-[37px] xsm:absolute xsm:top-[11px]"
         />
-        <div className="flex flex-col relative top-[235px] justify-center items-center xsm:p-10">
+        <div className="flex flex-col relative top-[235px] lg:top-[235px] justify-center items-center xsm:p-10 xsm:relative xsm:top-[190px]">
           <form className="flex flex-col justify-center items-start">
             <h2 className="lg:font-bold lg:text-4xl md:w-[231px] md:h-[94px] md:left-60 md:text-3xl md:font-bold sm:w-[231px] sm:h-[94px] sm:left-60 sm:text-3xl sm:font-bold xsm:h-[52px] xsm:w-[129px] xsm:font-bold">
               Create your <br /> account
@@ -55,4 +55,4 @@ export const AdminRegistration = () => {
       </div>
     </div>
   );
-};
+}
