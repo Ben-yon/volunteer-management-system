@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { media } from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 export const AdminPasswordReset = () => {
+  const navigate = useNavigate();
 
-  const [ formData, setFormData  ] = useState();
+  const [formData, setFormData] = useState();
+
+  const resetPassword = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate("/admin/password-reset/check-email");
+  };
 
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
@@ -14,7 +21,7 @@ export const AdminPasswordReset = () => {
           className="absolute top-[37px] left-[73px] h-[90px] w-[220px] lg:h-[90px] lg:w-[220px] md:w-[138px] md:h-[56px] md:top-[29px] md:left-[27px] sm:w-[138px] sm:h-[56px] sm:top-[29px] sm:left-[27px] xsm:w-[90px] xsm:h-[37px] xsm:top-[11px] xsm:left-[7px]"
         />
         <div className="flex flex-col justify-center items-center min-h-screen">
-          <form className="flex flex-col">
+          <form className="flex flex-col" onSubmit={resetPassword}>
             <h2 className="flex flex-col items-start text-[51.96px] leading-[62.8px] font-semibold lg:text-[51.96px] lg:leading-[62.8px] md:text-[40.6px] md:leading-[49.13px] sm:text-[40.6px] sm:leading-[49.13px] xsm:text-[22.53px] xsm:leading-[27.27px]">
               Enter your Email
             </h2>
