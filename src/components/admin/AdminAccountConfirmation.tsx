@@ -13,7 +13,7 @@ export const AdminRegistrationConfirmation = () => {
 
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
-      <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100%] h-[100vh]">
+      <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
         <img
           src={`${media.redLogo}`}
           alt=""

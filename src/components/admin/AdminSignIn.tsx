@@ -4,7 +4,7 @@ import  { media }  from "../../assets"
 export const AdminSignIn = () => {
     return (
       <div className="flex justify-center items-center min-h-screen bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
-        <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100%] md:w-[100%] h-[100%]">
+        <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] md:w-[100%] h-[100%]">
           <img
             src={`${media.redLogo}`}
             alt=""
