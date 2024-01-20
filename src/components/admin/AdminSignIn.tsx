@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import  { media }  from "../../assets"
 
 export const AdminSignIn = () => {
@@ -31,7 +32,7 @@ export const AdminSignIn = () => {
               <button className=" bg-tertiary text-white px-1 py-3 rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px] xsm:py-2">
                 Sign In
               </button>
-              <p className="text-[19.15px] leading-[23.17px] lg:text-[19.15px] lg:leading-[23.17px] mt-[21.7px] lg:mt-[21.7px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] xsm:mt-[11.43px] xsm:text-[7.11px] xsm:leading-[8.6px]">Dont' have an account? <a href="#"><b>Sign Up</b></a></p>
+              <p className="text-[19.15px] leading-[23.17px] lg:text-[19.15px] lg:leading-[23.17px] mt-[21.7px] lg:mt-[21.7px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] xsm:mt-[11.43px] xsm:text-[7.11px] xsm:leading-[8.6px]">Dont' have an account? <Link to="/admin/sign-up"><b>Sign Up</b></Link></p>
             </form>
           </div>
         </div>

@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { media } from "../../assets";
+import { Link, useNavigate } from "react-router-dom";
 
 export const AdminRegistration = () => {
+  const [formData, setFormDate] = useState();
 
-  const [ formData, setFormDate ] = useState()
+  const navigate = useNavigate()
 
+  const signUp = () => {
+    navigate('/admin/register-confirm')
+  }
 
   return (
     <div className="bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100vw] h-[100vh] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
@@ -46,18 +51,20 @@ export const AdminRegistration = () => {
                 <b>MCSS Terms</b> and <b>Privacy Policy</b>
               </a>
             </p>
-            <button className="bg-tertiary text-white px-1 py-3 rounded-[21.41px] w-[182px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[182px] lg:mt-[21.67px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-xs xsm:px-2 xsm:py-2 font-bold text-xl">
+            <button 
+              onClick={signUp }
+              className="bg-tertiary text-white px-1 py-3 rounded-[21.41px] w-[182px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[182px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-xs xsm:px-2 xsm:py-2 xsm:text-[10.52px] xsm:leading-[12.73px] font-bold text-[23.55px]">
               Sign Up
             </button>
             <p className="mt-[21.67px] text-xs">
               Already have an account?{" "}
-              <a href="#">
+              <Link to="/admin/sign-in">
                 <b>Sign In</b>
-              </a>{" "}
+              </Link>{" "}
             </p>
           </form>
         </div>
       </div>
     </div>
   );
-}
+};
