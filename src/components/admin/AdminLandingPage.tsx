@@ -28,12 +28,12 @@ export const AdminLandingPage = () => {
             Admin
           </p>
           <div className="">
-            <button className="relative px-[40.31px] py-[20.46px] bg-black text-white rounded-[23.85px] font-bold leading-6 mr-[42.37px]"
+            <button className="w-[166.94px] h-[71.55px] text-[22.66px] leading-[27.42px] bg-black text-white rounded-[23.85px] font-bold mr-[42.37px] lg:w-[166.94px] lg:h-[71.55px] lg:text-[22.66px] lg:leading-[27.42px]"
                     onClick={handleSignIn}
             >
               Sign In
             </button>
-            <button className="relative px-[40.31px] py-[20.46px] bg-black text-white rounded-[23.85px] font-bold leading-6"
+            <button className="w-[224.17px] h-[71.55px] text-[22.66px] leading-[27.42px] bg-black text-white rounded-[23.85px] font-bold"
                 onClick={handleSignUp}
             >
               Sign Up

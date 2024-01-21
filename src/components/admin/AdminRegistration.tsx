@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { media } from "../../assets";
 import { Link, useNavigate } from "react-router-dom";
 
 export const AdminRegistration = () => {
-  const [formData, setFormDate] = useState();
 
   const navigate = useNavigate()
 
