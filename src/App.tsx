@@ -9,8 +9,6 @@ import i18n from './utils/i18n';
 //import { styles } from './styles';
 
 function App() {
-  // const { t } = useTransition();
-
 
   return (
     <LanguageProvider>

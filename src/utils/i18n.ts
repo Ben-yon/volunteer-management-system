@@ -1,7 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import enTranslation from "./languages/en.json";
-import frTranslation from "./languages/fr.json"
+import enTranslation from "./locales/en.json";
+import frTranslation from "./locales/fr.json";
+import Backend from 'i18next-http-backend';
+import { availableLanguages } from "./constants";
 
 
 export const resources = {
@@ -18,18 +20,20 @@ export const resources = {
     },
 }
 
-
-
-
 i18n
+    .use(Backend)
     .use(initReactI18next)
     .init({
-        resources: resources,
+        // resources: resources,
         lng: 'en', // default language
         fallbackLng: 'en',
+        supportedLngs:availableLanguages,
+        backend: {
+            loadPath:'/src/utils/locales/{{lng}}.json'
+        },
         interpolation: {
             escapeValue: false
         }
     })
 
-    export default i18n
+    export default i18n;    

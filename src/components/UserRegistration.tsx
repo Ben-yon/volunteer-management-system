@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
 import { db } from "../utils/db";
-
+import { useTranslation } from "react-i18next";
 
 export const UserRegistration = () => {
   const imageUploader = useRef<HTMLInputElement>(null);
@@ -34,7 +34,7 @@ export const UserRegistration = () => {
     return details
   }
   
-
+  const { t } = useTranslation()
 
   const navigate = useNavigate();
 
@@ -116,10 +116,10 @@ export const UserRegistration = () => {
             </div>
             <div className="flex-1 lg:flex-1 md:ml-[114px] sm:p-10 sm:ml-[43px] xsm:p-8 xsm:items-center">
               <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl md:text-primary md: ">
-                Register
+                {t('Register')}
               </strong>
               <p className="text-primary mt-2 lg:text-xl sm:text-xs">
-                Fill out this form to become a Volunteer
+                {t('Fill out this form to become a Volunteer')}
               </p>
               <form onSubmit={handleSubmit}>
                 <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-0">
@@ -159,7 +159,7 @@ export const UserRegistration = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       className="lg:w-[295px] focus:outline-none lg:h-[54px] border lg:rounded-[15px] lg:text-2xl text-white placeholder-gray-300 p-3 sm:w-[204.84px] sm:h-[37.5px] sm:rounded-[10px] sm:text-xs xsm:h-[35.5px] xsm:w-[200.84px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder="First Name"
+                      placeholder={t("First Name")}
                     />
                     <input
                       type="text"
@@ -167,7 +167,7 @@ export const UserRegistration = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       className="lg:w-[295px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] mt-[15px] lg:text-2xl text-white placeholder-gray-300 p-3 sm:w-[204.84px] sm:h-[37.5px] sm:rounded-[10px] sm:text-xs sm:mt-[10.42px] xsm:h-[35.5px] xsm:w-[200.84px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder="Last Name"
+                      placeholder={t("Last Name")}
                     />
                   </div>
                 </div>
@@ -187,14 +187,14 @@ export const UserRegistration = () => {
                       value={formData.daysOfMonth}
                       onChange={handleChange}
                       className="lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-44 text-white placeholder-gray-300 p-3 leading-6 sm:w-[148.05px] sm:h-[37.5px] sm:text-xs sm:rounded-[10.42px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:mt-36"
-                      placeholder="Days per month"
+                      placeholder={t("Days per month")}
                     />
                   </div>
 
                   <input
                     type="text"
                     className="lg:w-[716px] focus:outline-none lg:h-[54px] rounded-[15px] mt-[15px] lg:text-xl border text-white placeholder-gray-300 leading-6 p-3 sm:w-[514.27px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[314.27px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                    placeholder="Address"
+                    placeholder={t("Address")}
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
@@ -202,7 +202,7 @@ export const UserRegistration = () => {
                   <input
                     type="text"
                     className="lg:w-[716px] focus:outline-none lg:h-[54px] rounded-[15px] mt-[15px] lg:text-xl border text-white placeholder-gray-300 leading-6 p-3 sm:w-[514.27px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[314.27px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                    placeholder="Street Address"
+                    placeholder={t("Street Address")}
                     name="streetAddress"
                     value={formData.streetAddress}
                     onChange={handleChange}
@@ -211,7 +211,7 @@ export const UserRegistration = () => {
                     <input
                       type="text"
                       className="lg:w-[282px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder="City"
+                      placeholder={t("City")}
                       name="city"
                       value={formData.city}
                       onChange={handleChange}
@@ -237,7 +237,7 @@ export const UserRegistration = () => {
                     <input
                       type="text"
                       className="lg:w-[412px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading- sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[159.73px]"
-                      placeholder="Occupation"
+                      placeholder={t("Occupation")}
                       name="occupation"
                       value={formData.occupation}
                       onChange={handleChange}
@@ -247,7 +247,7 @@ export const UserRegistration = () => {
                     <input
                       type="text"
                       className="lg:w-[282px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[37.23px] xsm:rounded-[10.42px] xsm:text-xs"
-                      placeholder="Skills"
+                      placeholder={t("Skills")}
                       name="skills"
                       value={formData.skills}
                       onChange={handleChange}
@@ -255,7 +255,7 @@ export const UserRegistration = () => {
                     <input
                       type="text"
                       className="lg:w-[412px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[259.73px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder="Interests"
+                      placeholder={t("Interests")}
                       name="interest"
                       value={formData.interest}
                       onChange={handleChange}

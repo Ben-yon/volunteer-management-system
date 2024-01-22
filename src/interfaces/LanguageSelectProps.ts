@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 export interface LanguageSelectProps {
     language: string;
-    onLanguageChange: (value: string) => void
+    onLanguageChange: (lang: string) => void
 }
 
 

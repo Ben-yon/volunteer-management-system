@@ -1,8 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { LanguageOption } from "../interfaces/LanguageOptionsInterface";
-// import { LanguageSelectProps } from "../interfaces/LanguageSelectProps";
 import { useLanguage } from "../contexts/LanguageContext";
-import React, { useState } from "react";
 
 const languageOptions: LanguageOption[] = [
   { value: "en", label: "English" },
@@ -12,24 +10,19 @@ const languageOptions: LanguageOption[] = [
 
 export const LanguageSelect = () => {
   const { t } = useTranslation();
-
   const { language, onLanguageChange } = useLanguage();
-
-  const [selectedLanguage, setSelectedLanguage] = useState<string>();
 
   const handleLanguageChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const selectedValue = event.target.value;
-    setSelectedLanguage(selectedValue);
     onLanguageChange(selectedValue);
   };
 
   return (
     <div>
-      <label htmlFor="">{t(language)}</label>
       <select
-        value={selectedLanguage}
+        value={language}
         onChange={handleLanguageChange}
         className="w-[80px] focus:outline-none bg-transparent text-primary"
       >
