@@ -65,4 +65,9 @@ input{
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: bg-primary;
-  }
+}
+
+@font-face {
+    font-family: 'Leelawadee';
+    src: url('/src/assets//fonts/Leelawadee.ttf');
+}

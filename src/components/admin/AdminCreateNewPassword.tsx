@@ -1,6 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
+import { FormEvent } from "react";
 
 export const AdminCreateNewPassword = () => {
+
+  const navigate = useNavigate()
+
+  const setNewPassword = (event:FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    navigate('/admin/password-reset/confirm-password-change')
+  }
+
+
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
@@ -23,7 +34,7 @@ export const AdminCreateNewPassword = () => {
               Your new password must be different from <br />
               previous used passwords.
             </p>
-            <form action="" className="flex flex-col mt-4">
+            <form onSubmit={setNewPassword} className="flex flex-col mt-4">
               <input
                 type="text"
                 name=""
