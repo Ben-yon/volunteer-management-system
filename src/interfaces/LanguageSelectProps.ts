@@ -1,3 +1,11 @@
+import { ReactNode } from "react";
+
 export interface LanguageSelectProps {
-    onLanguageChange: (value: string) => void
+    language: string;
+    onLanguageChange: (lang: string) => void
+}
+
+
+export interface LanguageChildren {
+    children: ReactNode
 }
