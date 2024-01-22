@@ -16,6 +16,10 @@ export default {
         secondary: '#D24836',
         tertiary: '#FF1D1D',
       },
+      fontFamily: {
+        // sans: ['Lelawadee'],
+        leelawadee: ['Leelawadee', 'sans-serif']
+      }
     }, 
     boxShadow: {
 

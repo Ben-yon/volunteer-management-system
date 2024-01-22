@@ -15,23 +15,23 @@ export const AdminSignIn = () => {
             <h2 className="text-[49.44px] leading-[60.53px] font-bold lg:text-[49.44px] lg:leading-[60.53px] md:text-[37.2px] md:leading-[45.03px] sm:text-[37.2px] sm:leading-[45.03px] xsm:text-[21.33px] xsm:leading-[25.81px]">
               Welcome back <br /> to MCSS Admin
             </h2>
-            <p className="text-black text-[25.53px] lg:text-[25.53px] lg:mt-[10.6px] md:text-[16.5px] md:leading-[20.01px] md:mt-[7.56px] sm:mt-[7.56px] leading-6 xsm:text-[9.48px] xsm:leading-[11.47px]">
+            <p className="text-black text-[25.53px] lg:text-[25.53px] lg:mt-[10.6px] md:text-[16.5px] md:leading-[20.01px] md:mt-[7.56px] sm:mt-[7.56px] leading-6 xsm:text-[9.48px] xsm:leading-[11.47px] xsm:mt-[3.93px]">
               Sign in to your account below
             </p>
             <input
               type="email"
-              className="border focus:outline-none w-[545.86px] h-[68.5px] mt-[35.38px] lg:w-[545.86px] lg:h-[68.5px] lg:rounded-[21.41px] rounded-[21.41px] bg-gray-100 leading-6 text-black text-2xl px-4 md:w-[437.39px] md:h-[54.88px] md:rounded-[17.15px] md:text-xl sm:w-[437.39px] sm:h-[54.88px] sm:rounded-[17.15px] sm:text-xl xsm:w-[243.77px] xsm:h-[30.59px] xsm:rounded-[9.5px] xsm:text-xs xsm:mt-[13.65px}"
+              className="border focus:outline-none rounded-[21.41px] bg-gray-100 leading-[33.99px] w-[651px] h-[81.69px] mt-[35.38px] pl-[37.02px] text-[28.08px] lg:w-[651px] lg:h-[81.69px] lg:rounded-[21.41px] lg:text-[28.08px] lg:leading-[33.99px] lg:mt-[35.38px] md:w-[421.65px] md:h-[52.91px] md:rounded-[16.54px] md:text-[18.19px] md:leading-[22.01px] md:pl-[23.98px] md:mt-[22.99px] sm:w-[421.65px] sm:h-[52.91px] sm:rounded-[16.54px] sm:text-[18.19px] sm:leading-[22.01px] sm:pl-[23.91px] xsm:w-[241.73px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.62px] xsm:pl-[13.75px] xsm:mt-[13.65px]"
               placeholder="Email"
             />
             <input
               type="password"
-              className="border focus:outline-none w-[545.86px] h-[68.5px] mt-[21.7px] lg:w-[545.86px] lg:h-[68.5px] lg:rounded-[21.41px] rounded-[21.41px] bg-gray-100 text-black text-[28.08px] leading-[33.99px] px-4 md:w-[437.39px] md:h-[54.88px] md:rounded-[17.15px] md:text-xl sm:w-[437.39px] sm:h-[54.88px] sm:rounded-[17.15px] sm:text-xl xsm:w-[243.77px] xsm:h-[30.59px] xsm:rounded-[9.5px] xsm:text-xs xsm:mt-[8.06px]"
+              className="border focus:outline-none w-[651px] h-[81.69px] mt-[21.7px] text-[28.08px] leading-[33.99px] rounded-[21.41px] pl-[37.02px] lg:w-[651px] lg:h-[81.69px] lg:rounded-[21.41px] lg:text-[28.08px] lg:leading-[33.99px] bg-gray-100 text-black md:w-[421.65px] md:h-[52.91px] md:rounded-[16.54px] md:text-[18.91px] md:leading-[22.01px] md:pl-[23.98px] md:mt-[21.7px] sm:w-[421.65px] sm:h-[52.91px] sm:rounded-[16.54px] sm:text-[18.19px] sm:leading-[22.01px] sm:pl-[23.91px] xsm:w-[241.77px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.62px] xsm:pl-[13.75px] xsm:mt-[8.06px]"
               placeholder="Password"
             />
-            <span className="mt-[21.7px] lg:mt-[21.7px] lg:text-[19.15px] lg:leading-[23.17px] md:text-[12.4px] md:leading-[15.01px] sm:text-[12.4] sm:leading-[15.01px] xsm:text-[7.11px] xsm:leading-[8.6px] xsm:mt-[8.06px]">
+            <span className="mt-[21.7px] lg:mt-[21.7px] lg:text-[19.15px] lg:leading-[23.17px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] sm:text-[12.4] sm:leading-[15.01px] sm:mt-[14.06px] xsm:text-[7.11px] xsm:leading-[8.6px] xsm:mt-[8.06px]">
               <Link to='/admin/password-reset/'>Forgot Password?</Link> 
             </span>
-            <button className=" bg-tertiary text-white px-1 py-3 rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px] xsm:py-2">
+            <button className=" bg-tertiary text-white rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px]">
               Sign In
             </button>
             <p className="text-[19.15px] leading-[23.17px] lg:text-[19.15px] lg:leading-[23.17px] mt-[21.7px] lg:mt-[21.7px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] xsm:mt-[11.43px] xsm:text-[7.11px] xsm:leading-[8.6px]">
