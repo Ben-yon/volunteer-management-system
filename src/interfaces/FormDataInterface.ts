@@ -3,7 +3,7 @@ export interface FormDataInterface{
     firstName: string;
     lastName: string;
     date: string;
-    daysOfMonth: string;
+    daysPerWeek: string;
     address: string;
     streetAddress: string;
     city: string;
