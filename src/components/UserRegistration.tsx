@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
 import { db } from "../utils/db";
-import { useTranslation } from "react-i18next";
+
 
 export const UserRegistration = () => {
   const imageUploader = useRef<HTMLInputElement>(null);
@@ -16,12 +16,12 @@ export const UserRegistration = () => {
     previewSrc: undefined,
   });
 
-  const storeUserDetails = () =>{
+  const storeUserDetails = () => {
     const details = db.userDetails.add({
       firstName: formData.firstName,
       lastName: formData.lastName,
       date: formData.date,
-      daysOfMonth: formData.daysOfMonth,
+      daysPerWeek: formData.daysPerWeek,
       address: formData.address,
       streetAddress: formData.streetAddress,
       city: formData.city,
@@ -29,12 +29,10 @@ export const UserRegistration = () => {
       postalCode: formData.postalCode,
       occupation: formData.occupation,
       skills: formData.skills,
-      interest: formData.interest
+      interest: formData.interest,
     });
-    return details
-  }
-  
-  const { t } = useTranslation()
+    return details;
+  };
 
   const navigate = useNavigate();
 
@@ -42,7 +40,7 @@ export const UserRegistration = () => {
     firstName: "",
     lastName: "",
     date: "",
-    daysOfMonth: "",
+    daysPerWeek: "",
     address: "",
     streetAddress: "",
     city: "",
@@ -57,7 +55,7 @@ export const UserRegistration = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit =  (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(formData);
     storeUserDetails();
@@ -94,178 +92,175 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="relative filter w-[100vw] h-[100%] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 md:w-[100vw] md:h-[100%] sm:overflow-none">
-      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100%] lg:h-[100%] md:w-[100vw] md:h-[100vh] sm:relative xsm:h-[100%] xsm:relative">
+    <div className="relative filter w-[100vw] h-[100%] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100%]">
         <div className="">
           <img
             src={`${media.whiteLogo}`}
             alt="LOGO"
-            className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
+            className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[30px] lg:right-[35px] md:absolute md:w-[133px] md:h-[55px] md:bottom-[32px] md:right-[31px]  sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="lg:relative flex items-center justify-center min-h-screen lg:flex lg:items-center m-auto lg:justify-center lg:p-12">
-          <div className="lg:relative lm-auto lg:flex lg:flex-row lg:space-x-16 sm:flex-col sm:space-y-1">
-            <div className="sm:abolute sm:top-0 lg:flex">
+        <div className="flex items-center justify-center min-h-screen lg:flex lg:items-center m-auto lg:justify-center">
+          <div className="lg:flex lg:left-92 lg:justify-center lg:items-center md:block md:w-[100vw] md:top-0 sm:block sm:w-[100vw] sm:top-0">
+            <div className="lg:flex sm:block md:block xsm:hidden">
               <ImageSlideshow
-                images={[
-                  `${media.slide1}`,
-                  `${media.slide2}`,
-                  `${media.slide3}`,
-                ]}
+                images={[`${media.slide1}`, `${media.slide2}`, `${media.slide3}`]}
               />
             </div>
-            <div className="flex-1 lg:flex-1 md:ml-[114px] sm:p-10 sm:ml-[43px] xsm:p-8 xsm:items-center">
-              <strong className="lg:text-5xl text-primary mt-15 sm:text-4xl xsm:text-3xl md:text-primary md: ">
-                {t('Register')}
+            <div className="flex items-center justify-center lg:flex md:flex sm:p-10 sm:ml-[43px] xsm:p-8 xsm:items-center">
+            <form onSubmit={handleSubmit}>
+              <strong className="text-primary mt-15 text-[50px] leading-[60.51px] lg:text-[50px] lg:leading-[60.51px] md:text-[34.63px] md:leading-[41.91px] sm:text-[34.63px] sm:leading-[41.91px] xsm:text-[20.48px] xsm:leading-[23.57px]">
+                Register
               </strong>
-              <p className="text-primary mt-2 lg:text-xl sm:text-xs">
-                {t('Fill out this form to become a Volunteer')}
+              <p className="text-primary text-[19px] leading-[22.99px] lg:text-[19px] lg:leading-[22.99px] md:text-[12.99px] md:leading-[15.72px] md:mt-[1.29px] sm:text-[12.99px] sm:leading-[15.72px] sm:mt-[1.29px] xsm:text-[12.3px]">
+                Fill out this form to become a Volunteer
               </p>
-              <form onSubmit={handleSubmit}>
-                <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-0">
-                  <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        handleImageUpload(e);
-                        handleInValidFile(e);
-                      }}
-                      ref={imageUploader}
-                      style={{ display: "none" }}
+              <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-0">
+                <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      handleImageUpload(e);
+                      handleInValidFile(e);
+                    }}
+                    ref={imageUploader}
+                    style={{ display: "none" }}
+                  />
+                  <div
+                    onClick={() => {
+                      if (!imageUploader.current) return;
+                      imageUploader.current.click();
+                    }}
+                  >
+                    <img
+                      src={`${media.upload}`}
+                      className={`${styles.imageUploader} absolute md:w-[80.52px] md:h-[80.52px] sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
                     />
-                    <div
-                      onClick={() => {
-                        if (!imageUploader.current) return;
-                        imageUploader.current.click();
-                      }}
-                    >
-                      <img
-                        src={`${media.upload}`}
-                        className={`${styles.imageUploader} absolute sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
-                      />
-                      <img
-                        ref={uploadedImageRef}
-                        src={imageState.previewSrc}
-                        // alt="Upload Image"
-                        className={`${styles.imageUploader} absolute sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
-                      />
-                    </div>
-                  </div>
-                  <div className="lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="lg:w-[295px] focus:outline-none lg:h-[54px] border lg:rounded-[15px] lg:text-2xl text-white placeholder-gray-300 p-3 sm:w-[204.84px] sm:h-[37.5px] sm:rounded-[10px] sm:text-xs xsm:h-[35.5px] xsm:w-[200.84px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder={t("First Name")}
-                    />
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="lg:w-[295px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] mt-[15px] lg:text-2xl text-white placeholder-gray-300 p-3 sm:w-[204.84px] sm:h-[37.5px] sm:rounded-[10px] sm:text-xs sm:mt-[10.42px] xsm:h-[35.5px] xsm:w-[200.84px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder={t("Last Name")}
+                    <img
+                      ref={uploadedImageRef}
+                      src={imageState.previewSrc}
+                      // alt="Upload Image"
+                      className={`${styles.imageUploader} absolute md:w-[80.52px] md:h-[80.52px] sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
                     />
                   </div>
                 </div>
-                <div className="flex flex-col">
-                  <div className="flex">
-                    <input
-                      type="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-44 text-white uppercase placeholder-gray-300 p-2 mr-[24px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:mt-32 xsm:w-[141.12px] xsm:h-[36.23px] xsm:rounded-[8px] xsm:text-xs xsm:mt-36"
-                      placeholder="DD/MM/YYYY"
-                    />
-                    <input
-                      type="text"
-                      name="daysOfMonth"
-                      value={formData.daysOfMonth}
-                      onChange={handleChange}
-                      className="lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-xl lg:mt-44 text-white placeholder-gray-300 p-3 leading-6 sm:w-[148.05px] sm:h-[37.5px] sm:text-xs sm:rounded-[10.42px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:mt-36"
-                      placeholder={t("Days per month")}
-                    />
-                  </div>
+                <div className="lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    className="lg:w-[295px] focus:outline-none lg:h-[54px] border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] text-white placeholder-gray-300 md:w-[204.84px] md:h-[37.5px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[204.84px] sm:h-[37.5px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] xsm:h-[35.5px] xsm:w-[200.84px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                    placeholder="First Name"
+                  />
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    className="lg:w-[295px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] mt-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] text-white placeholder-gray-300 md:w-[204.84px] md:h-[37.5px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[204.84px] sm:h-[37.5px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:mt-[10.42px] xsm:h-[35.5px] xsm:w-[200.84px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                    placeholder="Last Name"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="flex">
+                  <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[18px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-44 text-white uppercase placeholder-gray-300 pr-2 mr-[24px] md:w-[141.12px] md:h-[37.23px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:mt-32 xsm:w-[141.12px] xsm:h-[36.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-36"
+                    placeholder="DD/MM/YYYY"
+                  />
+                  <input
+                    type="text"
+                    name="daysPerWeek"
+                    value={formData.daysPerWeek}
+                    onChange={handleChange}
+                    className="text-white placeholder-gray-300 leading-[24.2px] lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-44 md:w-[148.05px] md:h-[37.5px] md:text-[13.89px] md:leading-[16.81px] md:rounded-[10.42px] md:pl-[11.11px] sm:w-[148.05px] sm:h-[37.5px] sm:text-[13.89px] sm:leading-[16.81px] sm:rounded-[10.42px] sm:pl-[11.11px] sm:mt-32 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-36"
+                    placeholder="Days per week"
+                  />
+                </div>
 
+                <input
+                  type="text"
+                  className="border text-white placeholder-gray-300 text-[20px] leading-[24.2px] focus:outline-none lg:w-[716px] lg:h-[54px] lg:rounded-[15px] mt-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] md:w-[514.27px] md:h-[37.23px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[514.27px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] xsm:w-[314.27px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                  placeholder="Address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  className="border text-white placeholder-gray-300  focus:outline-none rounded-[15px] mt-[15px] text-[20px] leading-[24.2px] lg:w-[716px] lg:h-[54px] lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] md:w-[514.27px] md:h-[37.23px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[514.27px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] xsm:w-[314.27px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                  placeholder="Street Address"
+                  name="streetAddress"
+                  value={formData.streetAddress}
+                  onChange={handleChange}
+                />
+                <div className="flex">
                   <input
                     type="text"
-                    className="lg:w-[716px] focus:outline-none lg:h-[54px] rounded-[15px] mt-[15px] lg:text-xl border text-white placeholder-gray-300 leading-6 p-3 sm:w-[514.27px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[314.27px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                    placeholder={t("Address")}
-                    name="address"
-                    value={formData.address}
+                    className="text-white placeholder-gray-300 focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] text-[20px] leading-[24.2px] lg:w-[282px] lg:h-[54px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] md:w-[243.28px] md:h-[37.23px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                    placeholder="City"
+                    name="city"
+                    value={formData.city}
                     onChange={handleChange}
                   />
                   <input
                     type="text"
-                    className="lg:w-[716px] focus:outline-none lg:h-[54px] rounded-[15px] mt-[15px] lg:text-xl border text-white placeholder-gray-300 leading-6 p-3 sm:w-[514.27px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[314.27px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                    placeholder={t("Street Address")}
-                    name="streetAddress"
-                    value={formData.streetAddress}
+                    className="text-white placeholder-gray-300 border focus:outline-none text-[20px] leading-[24.2px] mt-[15px] lg:w-[412px] lg:h-[54px] lg:border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[259.73px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:w-[157.73px]"
+                    placeholder="State/Province/Region"
+                    name="province"
+                    value={formData.province}
                     onChange={handleChange}
                   />
-                  <div className="flex">
-                    <input
-                      type="text"
-                      className="lg:w-[282px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder={t("City")}
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                    />
-                    <input
-                      type="text"
-                      className="lg:w-[412px] lg:h-[54px] lg:border lg:rounded-[15px] border focus:outline-none mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[157.73px]"
-                      placeholder="State/Province/Region"
-                      name="province"
-                      value={formData.province}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="flex">
-                    <input
-                      type="text"
-                      className="lg:w-[282px] lg:h-[54px] border focus:outline-none rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder="ZIP / Postal Code"
-                      name="postalCode"
-                      value={formData.postalCode}
-                      onChange={handleChange}
-                    />
-                    <input
-                      type="text"
-                      className="lg:w-[412px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading- sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs xsm:w-[159.73px]"
-                      placeholder={t("Occupation")}
-                      name="occupation"
-                      value={formData.occupation}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="flex">
-                    <input
-                      type="text"
-                      className="lg:w-[282px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] mr-[20px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[243.28px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[143.28px] xsm:h-[37.23px] xsm:rounded-[10.42px] xsm:text-xs"
-                      placeholder={t("Skills")}
-                      name="skills"
-                      value={formData.skills}
-                      onChange={handleChange}
-                    />
-                    <input
-                      type="text"
-                      className="lg:w-[412px] lg:h-[54px] focus:outline-none border rounded-[15px] mt-[15px] lg:text-xl text-white placeholder-gray-300 p-3 leading-6 sm:w-[259.73px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-xs xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-xs"
-                      placeholder={t("Interests")}
-                      name="interest"
-                      value={formData.interest}
-                      onChange={handleChange}
-                    />
-                  </div>
+                  
                 </div>
-                <button className="bg-primary px-3 py-2 rounded-[15px] border lg:text-xl text-secondary mt-[30px] leading-6 font-bold sm:text-xs sm:mb-7 sm:mt-2 sm:py-[7.55px] sm:px-[17.1px] sm:rounded-[9.4px] xsm:text-xs xsm:mb-7 xsm:mt-2 xsm:py-[7.55px] xsm:px-[17.1px] xsm:rounded-[9.4px]">
-                  Next
-                </button>
-              </form>
+                <div className="flex">
+                  <input
+                    type="text"
+                    className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] lg:w-[282px] lg:h-[54px] border focus:outline-none rounded-[15px] mt-[15px] mr-[20px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[243.28px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                    placeholder="ZIP / Postal Code"
+                    name="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] focus:outline-none border rounded-[15px] mt-[15px] lg:w-[412px] lg:h-[54px] lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[259.73px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:w-[159.73px]"
+                    placeholder="Occupation"
+                    name="occupation"
+                    value={formData.occupation}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex">
+                  <input
+                    type="text"
+                    className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] lg:w-[282px] lg:h-[54px] border focus:outline-none rounded-[15px] mt-[15px] mr-[20px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[243.28px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[143.28px] xsm:h-[37.23px] xsm:rounded-[10.42px] xsm:text-[10.81px] xsm:pl-[9px]"
+                    placeholder="Skills"
+                    name="skills"
+                    value={formData.skills}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] focus:outline-none border rounded-[15px] mt-[15px] lg:w-[412px] lg:h-[54px] lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[259.73px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                    placeholder="Interests"
+                    name="interest"
+                    value={formData.interest}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <button className="bg-primary rounded-[15px] border lg:text-[25px] text-secondary mt-[22px] lg:leading-[30.26px] font-bold sm:text-xs sm:mb-7 sm:mt-2 sm:py-[7.55px] sm:px-[17.1px] sm:rounded-[9.4px] xsm:text-xs xsm:mb-7 xsm:mt-2 xsm:py-[7.55px] xsm:px-[17.1px] xsm:rounded-[9.4px]">
+                Next
+              </button>
+            </form>
             </div>
           </div>
         </div>

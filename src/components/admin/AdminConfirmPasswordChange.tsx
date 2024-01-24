@@ -2,22 +2,28 @@ import { media } from "../../assets";
 
 export const AdminConfirmPasswordChange = () => {
   return (
-    <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[1117px]">
-      <div className="bg-primary opacity-90 bg-no-repeat bg-cover w-[100%] h-[1117px]">
+    <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
+      <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
         <img
           src={`${media.redLogo}`}
           alt=""
-          className="absolute top-10 left-2 h-[90px] w-[220px]"
+          className="absolute top-[37px] left-[73px] h-[90px] w-[219.87px] lg:top-[37px] lg:left-[73px] lg:h-[90px] lg:w-[219.87px] md:w-[136px] md:h-[56px] md-top-[29px] md:left-[27px] sm:w-[136px] sm:h-[56px] md-top-[29px] sm:left-[27px] xsm:w-[90px] xsm:h-[37px] xsm:top-[11px] xsm:left-[7px]"
         />
-        <div className="relative top-64 flex  flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center min-h-screen">
           <img
             src={`${media.passwordChanged}`}
             alt=""
-            className="w-[306px] h-[306px]"
+            className="w-[200.78px] h-[200.78px] lg:w-[200.78px] lg:h-[200.78px] md:w-[133.96px] md:h-[133.96px] sm:w-[133.96px] sm:h-[133.96px] xsm:w-[77.54px] xsm:h-[77.54px]"
           />
-          <span className="text-4xl font-bold">Password <br /> Changed!</span>
-          <p className="text-xl">Your password have been changed successfully.</p>
-          <button className="bg-tertiary w-[276px] h-[76px] rounded-[24px] text-primary mt-4 font-bold">Return to MCSS</button>
+          <span className="text-[53.78px] leading-[65.09px] mt-[4.78px] lg:text-[53.78px] lg:leading-[65.09px] lg:mt-[4.78px] font-bold md:text-[35.88px] md:leading-[43.43px] md:mt-[3.19px] sm:text-[35.88px] sm:leading-[43.43px] sm:mt-[3.19px] xsm:text-[20.77px] xsm:leading-[25.14px] xsm:mt-[1.85px]">
+            Password <br /> Changed!
+          </span>
+          <p className="text-[23.9px] leading-[28.93px] mt-[13.42px] lg:text-[23.9px] lg:leading-[28.93px] lg:mt-[13.42px] md:text-[15.95px] md:leading-[19.3px] md:mt-[9.69px] sm:text-[15.95px] sm:leading-[19.3px] sm:mt-[9.69px] xsm:text-[9.23px] xsm:leading-[11.17px] xsm:mt-[5.38px]">
+            Your password have been changed successfully.
+          </p>
+          <button className="bg-tertiary w-[276.08px] h-[76.49px] rounded-[23.9px] text-[23.9px] leading-[28.93px] text-primary mt-[27.17px] font-bold lg:w-[276.08px] lg:h-[76.49px] lg:rounded-[23.9px] lg:text-[23.9px] lg:leading-[28.93px] md:w-[184.2px] md:h-[51.03px] md:rounded-[15.95px] md:text-[15.95px] md:leading-[19.3px] md:mt-[18.48px] sm:w-[184.2px] sm:h-[51.03px] sm:rounded-[15.95px] sm:text-[15.95px] sm:leading-[19.3px] sm:mt-[18.48px] xsm:w-[106.62px] xsm:h-[29.54px] xsm:rounded-[9.23px] xsm:text-[9.23px] xsm:leading-[11.17px] xsm:mt-[10.69px]">
+            Return to MCSS
+          </button>
         </div>
       </div>
     </div>

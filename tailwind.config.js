@@ -16,6 +16,10 @@ export default {
         secondary: '#D24836',
         tertiary: '#FF1D1D',
       },
+      fontFamily: {
+        // sans: ['Lelawadee'],
+        leelawadee: ['Leelawadee', 'sans-serif']
+      }
     }, 
     boxShadow: {
 
@@ -24,7 +28,7 @@ export default {
       "hero":"url('/src/assets/img/slide3.jpg')",
       "details":"url('/src/assets/img/MLCS-135.jpg')",
       "success":"url('/src/assets/img/MLCS-30.jpg')",
-      "admin": "url('/src/assets/img/slide1.jpg')"
+      "admin": "url('/src/assets/img/admin.jpg')"
     }
   },
   plugins: [],

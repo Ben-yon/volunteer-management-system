@@ -16,10 +16,10 @@ export const ImageSlideshow = ( { images, interval = 5000 }: ImageSlideshowProps
     };
 
     return (
-        <div className="image-slideshow lg:relative">
-          <img src={images[currentImageIndex]} alt="" className="lg:h-[750px] lg:w-[449px] lg:rounded-[50px] md:w-[100vw] sm:w-[100vw] sm:h-[500px] sm:rounded-none sm:object-cover sm:object-top xsm:w-[100vw] xsm:h-[300px] xsm:rounded-none xsm:object-cover xsm:object-top" />
+        <div className="lg:relative">
+          <img src={images[currentImageIndex]} alt="" className="lg:h-[750px] lg:w-[449px] lg:rounded-[50px] md:w-[100%] sm:w-[100%] sm:h-[500px] sm:rounded-none sm:object-cover sm:object-top xsm:w-[100%] xsm:h-[500px] xsm:rounded-none xsm:object-cover xsm:object-top" />
     
-          <div className="dots sm:relative sm:bottom-6 xsm:relative xsm:bottom-6 lg:relative lg:bottom-10">
+        <div className="dots sm:relative sm:bottom-6 xsm:relative xsm:bottom-6 lg:relative lg:bottom-10">
             {images.map((_, index) => (
               <button
                 key={index}
