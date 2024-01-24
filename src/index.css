@@ -71,3 +71,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-family: 'Leelawadee';
     src: url('/src/assets/fonts/Leelawadee.ttf');
 }
+
+.admin-primary-gradient {
+    background: linear-gradient(180deg, #FF0000 0%, #680000 100%);
+}

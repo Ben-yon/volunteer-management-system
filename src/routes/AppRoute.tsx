@@ -11,6 +11,7 @@ import { AdminPasswordReset } from "../components/admin/AdminPasswordReset";
 import { AdminCheckEmail } from "../components/admin/AdminCheckEmail";
 import { AdminCreateNewPassword } from "../components/admin/AdminCreateNewPassword";
 import { AdminConfirmPasswordChange } from "../components/admin/AdminConfirmPasswordChange";
+import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -60,6 +61,17 @@ export const AppRoutes = () => {
             <Route
                 path="/admin/password-reset/confirm-password-change"
                 element={<AdminConfirmPasswordChange/>}
+            />
+        </Routes>
+    )
+}
+
+export const AdminRoutes = () => {
+    return (
+        <Routes>
+            <Route
+                path="/profile-management"
+                element={<ProfileManagement/>}
             />
         </Routes>
     )

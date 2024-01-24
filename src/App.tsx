@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import { AppRoutes } from './routes/AppRoute';
+import { AdminRoutes } from './routes/AppRoute';
 import { LanguageProvider } from './components/LanguageProvider';
 import { LanguageSelect } from './components/LanguageSelect';
 import { I18nextProvider } from 'react-i18next';
@@ -17,7 +18,8 @@ function App() {
               <div className='absolute top-8 right-16 z-10'>
                 <LanguageSelect />
               </div>
-              <AppRoutes/>      
+              <AppRoutes/>
+              <AdminRoutes/>      
         </BrowserRouter>
       </I18nextProvider>
     </LanguageProvider>
