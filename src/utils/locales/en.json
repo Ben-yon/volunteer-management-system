@@ -5,9 +5,11 @@
     "First Name": "First Name",
     "Last Name": "Second Name",
     "Interests": "Interests",
+    "ZIP / Postal Code": "ZIP / Postal Code",
     "Occupation": "Occupation",
     "City": "City",
     "Skills": "Skills",
     "Address": "Address",
-    "Street Address": "Street Address"
+    "Street Address": "Street Address",
+    "Next": "Next"
 }

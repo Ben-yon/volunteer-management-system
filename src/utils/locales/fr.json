@@ -5,9 +5,11 @@
     "First Name": "Prénom",
     "Last Name": "Nom de famille",
     "Interests": "Intérêts",
+    "ZIP / Postal Code": "Code Postal",
     "Occupation": "Profession",
     "City": "Ville",
     "Skills": "Compétences",
     "Address": "Adresse",
-    "Street Address": "Adresse de la rue"
+    "Street Address": "Adresse de la rue",
+    "Next": "Suivant"    
 }
