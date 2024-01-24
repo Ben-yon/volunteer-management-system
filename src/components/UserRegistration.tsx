@@ -7,7 +7,6 @@ import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
 import { db } from "../utils/db";
 
-import { useTranslation } from "react-i18next";
 
 export const UserRegistration = () => {
   const imageUploader = useRef<HTMLInputElement>(null);
@@ -36,7 +35,6 @@ export const UserRegistration = () => {
     return details
   }
   
-  const { t } = useTranslation()
 
   const navigate = useNavigate();
 
