@@ -15,6 +15,7 @@ export default {
         primary: "#FFFFFF",
         secondary: '#D24836',
         tertiary: '#FF1D1D',
+        'menu-focus': '#FFFFFF29'
       },
       fontFamily: {
         // sans: ['Lelawadee'],

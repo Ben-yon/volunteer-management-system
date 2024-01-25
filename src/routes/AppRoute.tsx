@@ -13,6 +13,12 @@ import { AdminCreateNewPassword } from "../components/admin/AdminCreateNewPasswo
 import { AdminConfirmPasswordChange } from "../components/admin/AdminConfirmPasswordChange";
 import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
 import { Volunteer } from "../components/profileManagment/Volunteers";
+import { Notification } from "../components/profileManagment/Notification";
+import { Events } from "../components/profileManagment/Events";
+import { Home } from "../components/profileManagment/Home";
+import { Networks } from "../components/profileManagment/Networks";
+import { Giving } from "../components/profileManagment/Giving";
+import { Programs } from "../components/profileManagment/Programs";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -75,8 +81,32 @@ export const AdminRoutes = () => {
     return (
         <Routes>
             <Route
-                path="/volunteers"
+                path=""
+                element={<Home/>}
+            />
+            <Route
+                path="volunteers"
                 element={<Volunteer/>}
+            />
+            <Route
+                path="notification"
+                element={<Notification/>}
+            />
+            <Route
+                path="events"
+                element={<Events/>}
+            />
+            <Route
+                path="networks"
+                element={<Networks/>}
+            />
+            <Route
+                path="giving"
+                element={<Giving/>}
+            />
+            <Route
+                path="programs"
+                element={<Programs/>}
             />
         </Routes>
     )

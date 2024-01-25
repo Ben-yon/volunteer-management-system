@@ -75,3 +75,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .admin-primary-gradient {
     background: linear-gradient(180deg, #FF0000 0%, #680000 100%);
 }
+
+.admin-secondary-gradient {
+    background: linear-gradient(180deg, #680000  0%, #FF0000 100%);
+
+}
