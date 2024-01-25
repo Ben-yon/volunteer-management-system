@@ -6,6 +6,7 @@ import { LanguageProvider } from './components/LanguageProvider';
 import { LanguageSelect } from './components/LanguageSelect';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
+import { ProfileManagement } from './components/profileManagment/ProfileManagement';
 
 //import { styles } from './styles';
 
@@ -19,7 +20,10 @@ function App() {
                 <LanguageSelect />
               </div>
               <AppRoutes/>
-              <AdminRoutes/>      
+              {/* <div className='flex'>
+              <ProfileManagement/>
+              <AdminRoutes/>
+              </div> */}
         </BrowserRouter>
       </I18nextProvider>
     </LanguageProvider>

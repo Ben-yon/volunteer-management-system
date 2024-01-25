@@ -12,6 +12,7 @@ import { AdminCheckEmail } from "../components/admin/AdminCheckEmail";
 import { AdminCreateNewPassword } from "../components/admin/AdminCreateNewPassword";
 import { AdminConfirmPasswordChange } from "../components/admin/AdminConfirmPasswordChange";
 import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
+import { Volunteer } from "../components/profileManagment/Volunteers";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -62,6 +63,10 @@ export const AppRoutes = () => {
                 path="/admin/password-reset/confirm-password-change"
                 element={<AdminConfirmPasswordChange/>}
             />
+            <Route
+                path="/profile-management/*"
+                element={<ProfileManagement/>}
+            />
         </Routes>
     )
 }
@@ -70,8 +75,8 @@ export const AdminRoutes = () => {
     return (
         <Routes>
             <Route
-                path="/profile-management"
-                element={<ProfileManagement/>}
+                path="/volunteers"
+                element={<Volunteer/>}
             />
         </Routes>
     )
