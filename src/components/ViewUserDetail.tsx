@@ -15,20 +15,20 @@ export const ViewUserDetail = () => {
     }
 
     return (
-        <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[654px] sm:overflow-none ">
-            <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100vh] sm:relative xsm:h-[100vh]">
+        <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:overflow-none ">
+            <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[100vh] sm:relative xsm:h-[100vh]">
                 <div>
                     <img src={`${media.whiteLogo}`} alt="LOGO" className='lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]'/>
                 </div>
 
-                <div className="lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 top-[182px] lg:w-[580px] lg:h-[552.56px] white-gradient rounded-[67.49px] opacity-100 m-auto md:w-[476px] md:h-[527.25px] md:top-[270px] xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
+                <div className="relative flex flex-col justify-center items-center lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 top-[182px] lg:w-[580px] lg:h-[552.56px] white-gradient rounded-[67.49px] opacity-100 m-auto md:w-[476px] md:h-[527.25px] md:top-[270px] sm:w-[476px] sm:h-[527.25px] sm:top-[270px] xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
                     <div className="lg:mt-[65.54px] items-center">
                         <p className="text-white text-center text-3xl font-bold xsm:text-xl xsm:mt-9">Review Your <br/> Information</p>
                         <p className="text-white text-center text-xs font-normal">Please take a moment to review <br/> the information you've entered</p>
                     </div>
-                    <div className="items-center">
+                    <div className="flex flex-col items-center">
                         <div>
-                            <img src={imageState.previewSrc} alt="" className={imageState.previewSrc ? `${styles.imageUploader} mb-2 ml-14 mt-3 xsm:ml-7 xsm:w-[52.49px] xsm:h-[52.49px] border-4` : ''} />
+                            <img src={imageState.previewSrc} alt="" className={imageState.previewSrc ? `${styles.imageUploader} mb-2 ml-14 mt-3 xsm:ml-1 xsm:w-[52.49px] xsm:h-[52.49px] border-4` : ''} />
                         </div>
                         <p className="text-primary text-center text-2xl font-bold xsm:text-xl">{ formData?.firstName} { formData?.lastName } </p>
                         <p className="text-primary text-center text-2xl xsm:text-xl">{ formData?.date }</p>
