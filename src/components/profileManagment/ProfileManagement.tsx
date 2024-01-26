@@ -54,7 +54,7 @@ export const ProfileManagement = () => {
               <img src={media.giving} alt="" className="pl-[46px] pr-3" />
               Giving
             </NavLink>
-            <NavLink to="volunteers" className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]">
+            <NavLink to="volunteers" className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus active:bg-menu-focus pt-[12px] pb-[3.14px]">
               <img src={media.volunteers} alt="" className="pl-[46px] pr-3" />
               Volunteers
             </NavLink>
@@ -63,8 +63,27 @@ export const ProfileManagement = () => {
               Programs
             </NavLink>
           </nav>
-          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px]">
-              <li>life</li>
+          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px] flex flex-col space-y-2 text-primary">
+              <NavLink to='admins' className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px] mt-[50px]">
+                <img src={media.admins} alt="" className="pl-[46px] pr-3" />
+                Admins
+              </NavLink>
+              <NavLink to='profile' className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]">
+                <img src={media.profile} alt="" className="pl-[46px] pr-3" />
+                Profile
+              </NavLink>
+              <NavLink to='support' className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]">
+                <img src={media.support} alt="" className="pl-[46px] pr-3"/>
+                Support
+              </NavLink>
+              <NavLink to='settings' className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]">
+                <img src={media.settings} alt="" className="pl-[46px] pr-3" />
+                Settings
+              </NavLink>
+              <NavLink to='integrations' className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]">
+                <img src={media.integrations} alt="" className="pl-[46px] pr-3" />
+                Integrations
+              </NavLink>
           </nav>
         </div>
         <div className="">

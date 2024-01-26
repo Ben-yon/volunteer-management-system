@@ -19,6 +19,11 @@ import { Home } from "../components/profileManagment/Home";
 import { Networks } from "../components/profileManagment/Networks";
 import { Giving } from "../components/profileManagment/Giving";
 import { Programs } from "../components/profileManagment/Programs";
+import { Admins } from "../components/profileManagment/Admins";
+import { Profile } from "../components/profileManagment/Profile";
+import { Support } from "../components/profileManagment/Support";
+import { Settings } from "../components/profileManagment/Settings";
+import { Integrations } from "../components/profileManagment/Integration";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -107,6 +112,26 @@ export const AdminRoutes = () => {
             <Route
                 path="programs"
                 element={<Programs/>}
+            />
+            <Route
+                path="admins"
+                element={<Admins/>}
+            />
+            <Route
+                path="profile"
+                element={<Profile/>}
+            />
+            <Route
+                path="support"
+                element={<Support/>}
+            />
+            <Route
+                path="settings"
+                element={<Settings/>}
+            />
+            <Route
+                path="integrations"
+                element={<Integrations/>}
             />
         </Routes>
     )
