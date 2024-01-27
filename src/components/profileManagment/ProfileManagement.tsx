@@ -63,7 +63,7 @@ export const ProfileManagement = () => {
               Programs
             </NavLink>
           </nav>
-          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px] flex flex-col space-y-2 text-primary">
+          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px] flex flex-col space-y-2 text-primary items-start">
               <NavLink to='admins' className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px] mt-[50px]">
                 <img src={media.admins} alt="" className="pl-[46px] pr-3" />
                 Admins
@@ -84,6 +84,14 @@ export const ProfileManagement = () => {
                 <img src={media.integrations} alt="" className="pl-[46px] pr-3" />
                 Integrations
               </NavLink>
+              <div className="w-[308px] h-[97px] bg-menu-focus flex items-center space-x-3 item top-margin">
+                <img src={media.upload} alt="" className="w-[60px] h-[60px] mt-[5px] ml-[40px]"/>
+                <div className="flex flex-col">
+                  <p>Ken Boehm</p>
+                  <span className="text-[10px] leading-[12.1px]">boehm.samuel.sb@gmail.com</span>
+                  <span className="text-[10px] leading-[12.1px]">Admin</span>
+                </div>
+              </div>
           </nav>
         </div>
         <div className="">
