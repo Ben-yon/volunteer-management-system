@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { media } from "../assets";
 import { TableProps } from "../interfaces/TablePropsInterface";
@@ -16,21 +16,17 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
     canNextPage,
     canPreviousPage,
     setGlobalFilter,
-  } = useTable({ columns, data, initialState: { pageIndex: 0, pageSize: 10 } }, useGlobalFilter, usePagination);
+  } = useTable(
+    { columns, data, initialState: { pageIndex: 0, pageSize: 15 } },
+    useGlobalFilter,
+    usePagination
+  );
 
-  const { globalFilter, pageIndex, pageSize } = state;
+  const { globalFilter, pageIndex } = state;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGlobalFilter(e.target.value || undefined);
   };
-
-  const filteredData = useMemo(() => {
-      return data.filter((row) => {
-          return Object.values(row).some((cellValue) =>
-            String(cellValue).toLowerCase().includes(globalFilter)
-          );
-        })
-  }, [data, globalFilter]);
 
   return (
     <div>
@@ -49,16 +45,47 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         />
       </div>
       <table {...getTableProps()} style={{ marginTop: "1rem" }}>
-        <thead className="text-[12.83px] text-left">
+        <thead
+          style={{
+            textAlign: "left",
+            fontSize: "10.83px",
+          }}
+        >
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                <th
+                  {...column.getHeaderProps()}
+                  style={{
+                    ...(column.id == "address" && {
+                      position: "absolute",
+                      left: "565px",
+                    }),
+                    ...(column.id == "birth" && {
+                      position: "relative",
+                      left: "25px",
+                    }),
+                    ...(column.id == "interests" && {
+                      position: "relative",
+                      left: "25px",
+                    }),
+                    ...(column.id == "availability" && {
+                      position: 'relative',
+                      left: '25px'
+                    }),
+                    ...(column.id == "fullname" && {
+                      position: "relative",
+                      left: '25px'
+                    })
+                  }}
+                >
+                  {column.render("Header")}
+                </th>
               ))}
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()} style={{ marginTop: "15px" }}>
           {page.map((row) => {
             prepareRow(row);
             return (
@@ -91,7 +118,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <span>
           Page{" "}
           <strong>
-            {pageIndex + 1} of {Math.ceil(filteredData.length / pageSize)}
+            {pageIndex + 1} of {page.length}
           </strong>{" "}
         </span>
       </div>

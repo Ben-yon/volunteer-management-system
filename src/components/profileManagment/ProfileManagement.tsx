@@ -54,7 +54,7 @@ export const ProfileManagement = () => {
               <img src={media.giving} alt="" className="pl-[46px] pr-3" />
               Giving
             </NavLink>
-            <NavLink to="volunteers" className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus active:bg-menu-focus pt-[12px] pb-[3.14px]">
+            <NavLink to="volunteers" className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus active::bg-menu-focus pt-[12px] pb-[3.14px]">
               <img src={media.volunteers} alt="" className="pl-[46px] pr-3" />
               Volunteers
             </NavLink>
