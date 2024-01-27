@@ -5,7 +5,26 @@ import whiteLogo from './img/whiteLogo.png';
 import envelope from './icons/envelope.svg';
 import addPassword from './icons/addPassword.svg';
 import upload from './icons/upload.svg';
-import passwordChanged from './icons/passwordChanged.svg'
+import passwordChanged from './icons/passwordChanged.svg';
+
+
+import notification from './icons/notification.svg';
+import home from './icons/home.svg';
+import admin_icon from './icons/admin_icon.svg';
+import menu_notification from './icons/menu_notification.svg';
+import networks from './icons/networks.svg';
+import menu_events from './icons/menu_events.svg';
+import giving from './icons/giving.svg';
+import volunteers from './icons/volunteers.svg';
+import menu_programs from './icons/menu_programs.svg';
+import admins from './icons/ri_admin.svg';
+import profile from './icons/profile.svg';
+import support from './icons/bx_support.svg';
+import settings from './icons/settings.svg';
+import integrations from './icons/integrations.svg';
+import search from './icons/mdi_search.svg';
+import chat from './icons/bxs_chat.svg';
+
 
 import slide1 from './img/slide1.png';
 import slide2 from './img/slide2.png';
@@ -23,8 +42,24 @@ export const media = {
     whiteLogo,
     envelope,
     upload,
+    notification,
     addPassword,
+    networks,
+    admin_icon,
     passwordChanged,
+    giving,
+    menu_notification,
+    menu_events,
+    volunteers,
+    menu_programs,
+    settings,
+    integrations,
+    profile,
+    chat,
+    admins,
+    support,
+    home,
+    search,
     slide1,
     slide2,
     slide3,

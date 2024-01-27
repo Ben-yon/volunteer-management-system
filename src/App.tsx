@@ -17,7 +17,7 @@ function App() {
               <div className='absolute top-8 right-16 z-10'>
                 <LanguageSelect />
               </div>
-              <AppRoutes/>      
+              <AppRoutes/>
         </BrowserRouter>
       </I18nextProvider>
     </LanguageProvider>
