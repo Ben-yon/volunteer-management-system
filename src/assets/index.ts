@@ -23,6 +23,7 @@ import support from './icons/bx_support.svg';
 import settings from './icons/settings.svg';
 import integrations from './icons/integrations.svg';
 import search from './icons/mdi_search.svg';
+import chat from './icons/bxs_chat.svg';
 
 
 import slide1 from './img/slide1.png';
@@ -50,6 +51,7 @@ export const media = {
     settings,
     integrations,
     profile,
+    chat,
     admins,
     support,
     home,

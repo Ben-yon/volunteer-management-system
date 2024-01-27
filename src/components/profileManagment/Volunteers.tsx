@@ -6,24 +6,87 @@ export const Volunteer = () => {
   const columns = [
     {
       Header: "Name",
-      accessor: "userDetails",
+      accessor: (row: any) => `${row.fullname} ${row.jobTitle}`,
       Cell: ({ row }: any) => (
         <div
           style={{
             width: "247px",
-            height: "48px",
+            height: "48.63px",
             backgroundColor: "#D9D9D9",
             borderRadius: "5px",
             marginBottom: "3px",
             marginRight: "14px",
             padding: "9.4px",
-            
+            display: "flex",
+            position: "relative",
           }}
         >
-          <p>{row.original.fullname}</p>
-          <p style={{fontSize: '8px' }}>{row.original.job_title}</p>
+          <div>
+            <p>{row.original.fullname}</p>
+            <p style={{ fontSize: "8px" }}>{row.original.jobTitle}</p>
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              right: "3px",
+              borderRadius: "50%",
+              width: "15px",
+              height: "15px",
+              padding: "15px",
+              backgroundColor: "white",
+            }}
+          >
+            <img
+              src={media.chat}
+              style={{
+                position: "absolute",
+                bottom: "6px",
+                right: "6px",
+                zIndex: "1",
+                width: "18px",
+                height: "18px",
+              }}
+            />
+          </div>
         </div>
       ),
+    },
+    {
+      Header: "Date of Birth",
+      accessor: "date of birth",
+      Cell: ({ value }: { value: any }) => (
+        <div
+          style={{
+            width: "356.95px",
+            height: "48.63px",
+            fontWeight: "bold",
+            marginRight: "30px",
+            backgroundColor: "#D9D9D9",
+            borderRadius: "5px",
+            marginBottom: "3px",
+            fontSize: "10px",
+            paddingLeft: "30px",
+            paddingTop: "18px",
+            position: "relative",
+          }}
+        >
+          {value}
+        </div>
+      ),
+    },
+    {
+      Header: "Address",
+      accessor: "address",
+      Cell: ({ value }: { value: any }) => (
+        <div 
+          style={{
+            position: "absolute",
+            left: "435px"
+          }}
+        >
+          {value}
+        </div>
+      )
     },
     {
       Header: "Interests",
@@ -32,24 +95,21 @@ export const Volunteer = () => {
         <div
           style={{
             width: "247px",
-            display: 'flex',
+            display: "flex",
             height: "48px",
             backgroundColor: "#D9D9D9",
             borderRadius: "5px",
             marginBottom: "3px",
             marginRight: "14px",
             padding: "9.4px",
-            opacity: '80%'
+            opacity: "80%",
           }}
         >
-          <img src={media.admins} alt="" />
           {value}
         </div>
       ),
     },
-    { Header: "Address", accessor: "address" },
-    { Header: "Date of Birth", accessor: "date of birth" },
-    { Header: "Days Available Per Week", accessor: "days available in a week" },
+    { Header: "Days Available Per Week", accessor: "days available per week" },
   ];
 
   const data = randomData;

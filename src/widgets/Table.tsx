@@ -16,23 +16,21 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
     canNextPage,
     canPreviousPage,
     setGlobalFilter,
-  } = useTable({ columns, data }, useGlobalFilter, usePagination);
+  } = useTable({ columns, data, initialState: { pageIndex: 0, pageSize: 10 } }, useGlobalFilter, usePagination);
 
-  const { globalFilter, pageIndex } = state;
+  const { globalFilter, pageIndex, pageSize } = state;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGlobalFilter(e.target.value || undefined);
   };
 
-  const filterRows = useMemo(() => {
-    return globalFilter
-      ? page.filter((row) => {
-          return Object.values(row.original).some((cellValue) =>
-            String(cellValue).toLowerCase().includes(globalFilter.toLowerCase())
+  const filteredData = useMemo(() => {
+      return data.filter((row) => {
+          return Object.values(row).some((cellValue) =>
+            String(cellValue).toLowerCase().includes(globalFilter)
           );
         })
-      : page;
-  }, [globalFilter, page]);
+  }, [data, globalFilter]);
 
   return (
     <div>
@@ -61,7 +59,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {filterRows.map((row) => {
+          {page.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
@@ -93,7 +91,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <span>
           Page{" "}
           <strong>
-            {pageIndex + 1} of {page.length}{" "}
+            {pageIndex + 1} of {Math.ceil(filteredData.length / pageSize)}
           </strong>{" "}
         </span>
       </div>
