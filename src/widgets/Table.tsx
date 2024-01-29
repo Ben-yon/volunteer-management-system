@@ -77,6 +77,10 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
                     ...(column.id == "fullname" && {
                       position: "relative",
                       left: '25px'
+                    }),
+                    ...(column.id == "days" && {
+                      display: "block",
+                      width: "132px"
                     })
                   }}
                 >

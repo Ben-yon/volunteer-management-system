@@ -133,6 +133,7 @@ export const Volunteer = () => {
     {
       Header: "Days available per week",
       accessor: "days available per week",
+      id: 'days',
       Cell: ({ value }: { value: any }) => (
         <div
           style={{

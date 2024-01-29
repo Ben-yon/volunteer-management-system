@@ -1,8 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { media } from "../../assets";
 import { AdminRoutes } from "../../routes/AppRoute";
+import { useState } from "react";
 
-export const ProfileManagement = () => {
+export const ProfileManagement = () => { 
+  const [ activeLink, setActiveLink ] = useState<string | null>("")
+
+  const handleClick = (path: string) => {
+    setActiveLink(path);
+  }
+
+
   return (
     <div className="w-[100%] flex overflow-x-clip">
       <div className="absolute top-[49px] right-[67.4px] flex space-x-6">
@@ -34,7 +42,8 @@ export const ProfileManagement = () => {
           <nav className="border border-red-400 admin-primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
             <NavLink
               to=""
-              className="flex focus:bg-menu-focus pt-[8px] pb-[3.14px] mt-[40px]"
+              className={`flex ${activeLink === '' ? 'bg-menu-focus': ' '}  pt-[8px] pb-[3.14px] mt-[40px]`}
+              onClick={() => handleClick('')}
             >
               <img
                 src={media.home}
@@ -45,7 +54,8 @@ export const ProfileManagement = () => {
             </NavLink>
             <NavLink
               to="notification"
-              className="flex space-x-[13px] focus:filter focus:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'notification' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('notification')}
             >
               <img
                 src={media.menu_notification}
@@ -56,35 +66,40 @@ export const ProfileManagement = () => {
             </NavLink>
             <NavLink
               to="networks"
-              className="flex space-x-[13px] focus:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'networks' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('networks')}
             >
               <img src={media.networks} alt="" className="pl-[46px] pr-3" />
               Networks
             </NavLink>
             <NavLink
               to="events"
-              className="flex space-x-[13px] focus:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'events' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('events')}
             >
               <img src={media.menu_events} alt="" className="pl-[46px] pr-3" />
               Events
             </NavLink>
             <NavLink
               to="giving"
-              className="flex space-x-[13px] focus:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'giving' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('giving')}
             >
               <img src={media.giving} alt="" className="pl-[46px] pr-3" />
               Giving
             </NavLink>
             <NavLink
               to="volunteers"
-              className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus active::bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'volunteers' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('volunteers')}
             >
               <img src={media.volunteers} alt="" className="pl-[46px] pr-3" />
               Volunteers
             </NavLink>
             <NavLink
               to="programs"
-              className="flex space-x-[13px] focus:bg-menu-focus pt-[12px] pb-[3.14px] "
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'programs' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('programs')}
             >
               <img
                 src={media.menu_programs}
@@ -97,35 +112,41 @@ export const ProfileManagement = () => {
           <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px] flex flex-col space-y-2 text-primary">
             <NavLink
               to="admins"
-              className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px] mt-[50px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'admins' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px] mt-[50px]`}
+              onClick={() => handleClick('admins')}
             >
               <img src={media.admins} alt="" className="pl-[46px] pr-3" />
               Admins
             </NavLink>
             <NavLink
               to="profile"
-              className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'profile' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('profile')}
             >
               <img src={media.profile} alt="" className="pl-[46px] pr-3" />
               Profile
             </NavLink>
             <NavLink
               to="support"
-              className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'support' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('support')}
             >
               <img src={media.support} alt="" className="pl-[46px] pr-3" />
               Support
             </NavLink>
             <NavLink
               to="settings"
-              className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'settings' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('settings')}
             >
               <img src={media.settings} alt="" className="pl-[46px] pr-3" />
               Settings
             </NavLink>
             <NavLink
               to="integrations"
-              className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px]"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'integrations' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('integrations')}
+              
             >
               <img src={media.integrations} alt="" className="pl-[46px] pr-3" />
               Integrations
@@ -146,7 +167,7 @@ export const ProfileManagement = () => {
             </div>
           </nav>
         </div>
-        <div className="overflow-x-auto ">
+        <div className="overflow-x-auto max-w-[950px]">
           <AdminRoutes />
         </div>
       </div>
