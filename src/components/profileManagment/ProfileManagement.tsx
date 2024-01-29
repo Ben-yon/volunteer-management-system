@@ -94,7 +94,7 @@ export const ProfileManagement = () => {
               Programs
             </NavLink>
           </nav>
-          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px] flex flex-col space-y-2 text-primary items-start">
+          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[488px] rounded-[23px] flex flex-col space-y-2 text-primary">
             <NavLink
               to="admins"
               className="flex space-x-[13px] focus:bg-menu-focus hover:bg-menu-focus pt-[12px] pb-[3.14px] mt-[50px]"
