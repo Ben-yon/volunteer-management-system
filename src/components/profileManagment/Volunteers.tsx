@@ -37,7 +37,7 @@ export const Volunteer = () => {
           <div
             style={{
               position: "absolute",
-              right: "3px",
+              right: "12px",
               borderRadius: "50%",
               width: "15px",
               height: "15px",

@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { AppRoutes } from './routes/AppRoute';
 import { LanguageProvider } from './components/LanguageProvider';
-import { LanguageSelect } from './components/LanguageSelect';
+// import { LanguageSelect } from './components/LanguageSelect'; 
 import { I18nextProvider } from 'react-i18next';
 import i18n from './utils/i18n';
 
@@ -14,9 +14,9 @@ function App() {
     <LanguageProvider>
       <I18nextProvider i18n={i18n}>   
         <BrowserRouter>
-              <div className='absolute top-8 right-16 z-10'>
+              {/* <div className='absolute top-8 right-16 z-10'>
                 <LanguageSelect />
-              </div>
+              </div> */}
               <AppRoutes/>
         </BrowserRouter>
       </I18nextProvider>

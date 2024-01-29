@@ -60,6 +60,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
                     ...(column.id == "address" && {
                       position: "absolute",
                       left: "565px",
+                      top: '80px'
                     }),
                     ...(column.id == "birth" && {
                       position: "relative",
@@ -118,7 +119,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <span>
           Page{" "}
           <strong>
-            {pageIndex + 1} of {page.length}
+            {pageIndex + 1} of {Math.floor(data.length / page.length)}
           </strong>{" "}
         </span>
       </div>
