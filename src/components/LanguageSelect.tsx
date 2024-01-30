@@ -6,7 +6,6 @@ import { media } from '../assets'
 const languageOptions: LanguageOption[] = [
   { value: "en", label: "English", icon: media.flag_uk },
   { value: "fr", label: "French", icon: media.flag_france },
-  { value: "de", label: "Deutsch", icon: "" },
 ];
 
 export const LanguageSelect = () => {
@@ -26,7 +25,7 @@ export const LanguageSelect = () => {
       <select
         value={language}
         onChange={handleLanguageChange}
-        className="w-[85px] lg:w-[85px] lg:text-[20px] md:w-[70px] sm:w-[70px] xsm:w-[60px] focus:outline-none bg-transparent text-primary"
+        className="w-[85px] lg:w-[85px]  md:w-[80px] sm:w-[75px]  xsm:w-[75px] focus:outline-none bg-transparent text-primary"
       >
         {languageOptions.map((option) => (
           <option key={option.value} value={option.value} className="custom-option">
