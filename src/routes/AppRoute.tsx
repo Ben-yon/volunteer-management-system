@@ -24,6 +24,7 @@ import { Profile } from "../components/profileManagment/Profile";
 import { Support } from "../components/profileManagment/Support";
 import { Settings } from "../components/profileManagment/Settings";
 import { Integrations } from "../components/profileManagment/Integration";
+import { VolunteerDetails } from "../components/profileManagment/VolunteerDetails";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 
@@ -92,6 +93,10 @@ export const AdminRoutes = () => {
             <Route
                 path="volunteers"
                 element={<Volunteer/>}
+            />
+            <Route
+                path="volunteers/details/:id"
+                element={<VolunteerDetails/>}
             />
             <Route
                 path="notification"

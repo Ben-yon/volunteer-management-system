@@ -167,7 +167,7 @@ export const ProfileManagement = () => {
             </div>
           </nav>
         </div>
-        <div className="overflow-x-auto max-w-[950px]">
+        <div>
           <AdminRoutes />
         </div>
       </div>

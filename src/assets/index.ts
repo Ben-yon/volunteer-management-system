@@ -24,6 +24,7 @@ import settings from './icons/settings.svg';
 import integrations from './icons/integrations.svg';
 import search from './icons/mdi_search.svg';
 import chat from './icons/bxs_chat.svg';
+import birthday from './icons/birthday.svg'
 
 
 import slide1 from './img/slide1.png';
@@ -59,6 +60,7 @@ export const media = {
     admins,
     support,
     home,
+    birthday,
     search,
     slide1,
     slide2,

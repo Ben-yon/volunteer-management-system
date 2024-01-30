@@ -94,3 +94,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .top-margin{
     margin-top: 50px !important;
 }
+
+.details-card {
+    background: linear-gradient(179.78deg, #FFFFFF 68.38%, #D9D9D9 99.81%);
+    box-shadow: 1px 1px 11.300000190734863px 2px #00000040;
+
+}
