@@ -53,6 +53,22 @@ export const VolunteerDetails = () => {
                     <p className="text-[12px] leading-[14.52px] mt-[8px]">{userDetails?.jobTitle}</p>
                 </div>
             </div>
+            <div className="w-[374px] h-[213px] rounded-[20px] details-card-sec mt-[35px] flex flex-col items-center justify-center">
+                <div className="flex space-x-2 justify-center items-center">
+                    <img src={media.bookLove} alt="" className="w-[57px] h-[57px]"/>
+                    <p className="text-primary flex flex-col text-[12px] leading-[14.52px]">
+                        <span className="font-bold ">Interests</span>
+                        <span>{userDetails?.interests}, reading</span>
+                    </p>
+                </div>
+                <div className="flex justify-center items-center space-x-2 mt-[12px] -ml-10 text-[12px] leading-[14.52px]">
+                    <img src={media.location} alt="" className="w-[68px] h-[68px]"/>
+                    <div className="text-primary flex flex-col">
+                        <h2 className="font-bold">Location</h2> 
+                        <span>{userDetails?.address}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
