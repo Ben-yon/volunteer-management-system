@@ -20,7 +20,7 @@ export const SuccessfulRegistration = () => {
 
   return (
     <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:[100vh] sm:overflow-none ">
-      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100vh] sm:relative xsm:h-[100vh]">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100%] h-[100vh] sm:relative xsm:h-[100vh]">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
             src={media.lang_white}
@@ -36,7 +36,7 @@ export const SuccessfulRegistration = () => {
             className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="lg:relative lg:flex lg:flex-col lg:items-center lg:top-28 lg:w-[493px] lg:h-[556.7px] white-gradient lg:rounded-[67.49px] lg:opacity-100 m-auto md:w-[428px] md:h-[473.59px] md:m-auto md:top-[299px] md:rounded-[50.65px] xsm:w-[240px] xsm:h-auto xsm:relative xsm:p-8 xsm:flex xsm:flex-col xsm:top-24 xsm:m-auto xsm:rounded-[20px] xsm:items-center">
+        <div className="relative flex flex-col items-center top-[100px] w-[493px] h-[506.7px] lg:relative lg:flex lg:flex-col lg:items-center lg:top-[100px] lg:w-[493px] lg:h-[506.7px] white-gradient lg:rounded-[67.49px] lg:opacity-100 m-auto md:w-[428px] md:h-[473.59px] md:m-auto md:top-[140px] md:rounded-[50.65px] sm:w-[428px] sm:h-[473.59px] sm:top-[140px] sm:rounded-[50.65px] xsm:w-[240px] xsm:h-auto xsm:relative xsm:p-8 xsm:flex xsm:flex-col xsm:top-24 xsm:m-auto xsm:rounded-[20px] xsm:items-center">
           <h2 className="lg:text-primary lg:text-4xl font-bold lg:mt-28 xsm:text-xl xsm:font-extrabold xsm:mt-6 xsm:text-primary">
             Great!
           </h2>
