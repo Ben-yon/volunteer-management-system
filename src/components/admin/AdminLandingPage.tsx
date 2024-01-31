@@ -1,20 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import { media } from '../../assets'
+import { media } from "../../assets";
+import { LanguageSelect } from "../LanguageSelect";
 
 export const AdminLandingPage = () => {
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-    navigate('sign-in')
+    navigate("sign-in");
   };
 
   const handleSignUp = () => {
-        navigate('sign-up')
+    navigate("sign-up");
   };
 
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100%]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+          <img
+            src={media.lang_black}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <img
           src={`${media.redLogo}`}
           alt=""
@@ -28,13 +37,15 @@ export const AdminLandingPage = () => {
             Admin
           </p>
           <div className="flex lg:flex md:flex sm:flex xsm:flex">
-            <button className="w-[166.94px] h-[71.55px] text-[22.66px] leading-[27.42px] bg-black text-white rounded-[23.85px] font-bold mr-[41.73px] lg:w-[166.94px] lg:h-[71.55px] lg:text-[22.66px] lg:leading-[27.42px] lg:mr-[41.73px] md:w-[103.58px] md:h-[44.39px] md:rounded-[14.8px] md:text-[14.06px] md:leading-[17.01px] md:mr-[26.64px] sm:w-[103.58px] sm:h-[44.39px] sm:rounded-[14.8px] sm:text-[14.06px] sm:leading-[17.01px] sm:mr-[26.64px] xsm:w-[65.37px] xsm:h-[27.45px] xsm:rounded-[8.48px] xsm:text-[11.06px] xsm:leading-[12.75px] xsm:mr-[15.27px]"
-                    onClick={handleSignIn}
+            <button
+              className="w-[166.94px] h-[71.55px] text-[22.66px] leading-[27.42px] bg-black text-white rounded-[23.85px] font-bold mr-[41.73px] lg:w-[166.94px] lg:h-[71.55px] lg:text-[22.66px] lg:leading-[27.42px] lg:mr-[41.73px] md:w-[103.58px] md:h-[44.39px] md:rounded-[14.8px] md:text-[14.06px] md:leading-[17.01px] md:mr-[26.64px] sm:w-[103.58px] sm:h-[44.39px] sm:rounded-[14.8px] sm:text-[14.06px] sm:leading-[17.01px] sm:mr-[26.64px] xsm:w-[65.37px] xsm:h-[27.45px] xsm:rounded-[8.48px] xsm:text-[11.06px] xsm:leading-[12.75px] xsm:mr-[15.27px]"
+              onClick={handleSignIn}
             >
               Sign In
             </button>
-            <button className="w-[224.17px] h-[71.55px] text-[22.66px] leading-[27.42px] bg-black text-white rounded-[23.85px] font-bold lg:w-[224.17px] lg:h-[71.55px] lg:text-[22.66px] lg:leading-[27.42px] md:w-[139.0px] md:h-[44.39px] md:rounded-[14.8px] md:text-[14.06px] md:leading-[17.0px] sm:w-[139.0px] sm:h-[44.39px] sm:rounded-[14.8px] sm:text-[14.06px] sm:leading-[17.0px] xsm:w-[85.73px] xsm:h-[27.45px] xsm:text-[11.06px] xsm:leading-[12.75px] xsm:rounded-[9.75px]"
-                onClick={handleSignUp}
+            <button
+              className="w-[224.17px] h-[71.55px] text-[22.66px] leading-[27.42px] bg-black text-white rounded-[23.85px] font-bold lg:w-[224.17px] lg:h-[71.55px] lg:text-[22.66px] lg:leading-[27.42px] md:w-[139.0px] md:h-[44.39px] md:rounded-[14.8px] md:text-[14.06px] md:leading-[17.0px] sm:w-[139.0px] sm:h-[44.39px] sm:rounded-[14.8px] sm:text-[14.06px] sm:leading-[17.0px] xsm:w-[85.73px] xsm:h-[27.45px] xsm:text-[11.06px] xsm:leading-[12.75px] xsm:rounded-[9.75px]"
+              onClick={handleSignUp}
             >
               Sign Up
             </button>

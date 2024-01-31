@@ -1,7 +1,8 @@
 {
     "Register": "Register",
     "Fill out this form to become a Volunteer": "Fill out this form to become a Volunteer",
-    "Review Your Information": "Review Your Information",
+    "Review Your": "Review Your",
+    "Information": "Information",
     "First Name": "First Name",
     "Last Name": "Second Name",
     "Interests": "Interests",
@@ -11,5 +12,8 @@
     "Skills": "Skills",
     "Address": "Address",
     "Street Address": "Street Address",
-    "Next": "Next"
+    "Next": "Next",
+    "Please take a moment to review": "Please take a moment to review",
+    "the information you've entered": "the information you've entered",
+    "Submit": "Submit"
 }

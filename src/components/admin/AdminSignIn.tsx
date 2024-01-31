@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
 import { media } from "../../assets";
+import { LanguageSelect } from "../LanguageSelect";
 
 export const AdminSignIn = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] md:w-[100%] h-[100%]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+          <img
+            src={media.lang_black}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <img
           src={`${media.redLogo}`}
           alt=""
@@ -29,7 +38,7 @@ export const AdminSignIn = () => {
               placeholder="Password"
             />
             <span className="mt-[21.7px] lg:mt-[21.7px] lg:text-[19.15px] lg:leading-[23.17px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] sm:text-[12.4] sm:leading-[15.01px] sm:mt-[14.06px] xsm:text-[7.11px] xsm:leading-[8.6px] xsm:mt-[8.06px]">
-              <Link to='/admin/password-reset/'>Forgot Password?</Link> 
+              <Link to="/admin/password-reset/">Forgot Password?</Link>
             </span>
             <button className=" bg-tertiary text-white rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px]">
               Sign In

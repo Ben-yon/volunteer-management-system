@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import { media } from "../../assets";
 import { useNavigate } from "react-router-dom";
+import { LanguageSelect } from "../LanguageSelect";
 
 export const AdminPasswordReset = () => {
   const navigate = useNavigate();
@@ -13,6 +14,14 @@ export const AdminPasswordReset = () => {
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+          <img
+            src={media.lang_black}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <img
           src={`${media.redLogo}`}
           alt=""

@@ -1,20 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
 import { FormEvent } from "react";
+import { LanguageSelect } from "../LanguageSelect";
 
 export const AdminCreateNewPassword = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const setNewPassword = (event:FormEvent<HTMLFormElement>) => {
+  const setNewPassword = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate('/admin/password-reset/confirm-password-change')
-  }
-
+    navigate("/admin/password-reset/confirm-password-change");
+  };
 
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+          <img
+            src={media.lang_black}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <img
           src={`${media.redLogo}`}
           alt=""
