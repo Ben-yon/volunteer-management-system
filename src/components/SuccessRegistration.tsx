@@ -1,28 +1,34 @@
 import { useEffect, useRef } from "react";
 import { media } from "../assets";
 import gsap from "gsap";
+import { LanguageSelect } from "./LanguageSelect";
 
 export const SuccessfulRegistration = () => {
-
   const checkmarkElement = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (checkmarkElement.current){
+    if (checkmarkElement.current) {
       gsap.from(checkmarkElement.current, {
         y: 150,
-        duration: 2.5, 
+        duration: 2.5,
         ease: "circ.out",
         yoyo: true,
-        repeat: 1
-      })
+        repeat: 1,
+      });
     }
-  },[]);
-
-
+  }, []);
 
   return (
     <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:[100vh] sm:overflow-none ">
       <div className="red-gradient bg-no-repeat bg-cover lg:w-[100%] lg:h-[100vh] sm:relative xsm:h-[100vh]">
+        <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
+          <img
+            src={media.lang_white}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <div>
           <img
             src={`${media.whiteLogo}`}
@@ -40,13 +46,12 @@ export const SuccessfulRegistration = () => {
             Email from MCSS
           </p>
           <div>
-            
-          <img
-            src={`${media.checkmark}`}
-            alt=""
-            className="lg:mt-[18.44px] xsm:w-[107.85px] xsm:h-[107.85px]"
-            ref={checkmarkElement}
-          />
+            <img
+              src={`${media.checkmark}`}
+              alt=""
+              className="lg:mt-[18.44px] xsm:w-[107.85px] xsm:h-[107.85px]"
+              ref={checkmarkElement}
+            />
           </div>
           <button className="register-form-submit lg:text-primary lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:py-3 lg:px-6 xsm:rounded-[5.24px] xsm:text-xs xsm:px-3 xsm:py-2 xsm:text-center xsm:text-primary xsm:font-bold">
             MCSS

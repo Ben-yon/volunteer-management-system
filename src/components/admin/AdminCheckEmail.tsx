@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
 import { media } from "../../assets";
+import { LanguageSelect } from "../LanguageSelect";
 
 export const AdminCheckEmail = () => {
-  
-
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+          <img
+            src={media.lang_black}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <img
           src={`${media.redLogo}`}
           alt=""
@@ -28,7 +35,9 @@ export const AdminCheckEmail = () => {
             Open Email
           </button>
           <p className="text-[15px] leading-[18.15px] mt-[38.83px] lg:text-[15px] lg:leading-[18.15px] lg:mt-[38.83px] md:text-[12.37px] md:leading-[14.97px] md:mt-[12.37px] sm:text-[12.37px] sm:leading-[14.97px] sm:mt-[12.37px] xsm:text-[5.5px] xsm:leading-[6.65px] xsm:mt-[5.5px]">
-            <Link to="/admin/password-reset/new-password">Skip, I’ll confirm later</Link>
+            <Link to="/admin/password-reset/new-password">
+              Skip, I’ll confirm later
+            </Link>
           </p>
         </div>
       </div>

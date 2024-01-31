@@ -1,17 +1,25 @@
 import { media } from "../../assets";
 import { Link, useNavigate } from "react-router-dom";
+import { LanguageSelect } from "../LanguageSelect";
 
 export const AdminRegistration = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const signUp = () => {
-    navigate('/admin/register-confirm')
-  }
+    navigate("/admin/register-confirm");
+  };
 
   return (
     <div className="bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100vw] h-[100vh] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100vw] lg:h-[100vh] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+          <img
+            src={media.lang_black}
+            alt="language"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+          />
+          <LanguageSelect />
+        </div>
         <img
           src={`${media.redLogo}`}
           alt=""
@@ -49,9 +57,10 @@ export const AdminRegistration = () => {
                 <b>MCSS Terms</b> and <b>Privacy Policy</b>
               </a>
             </p>
-            <button 
-              onClick={signUp }
-              className="bg-tertiary text-white rounded-[21.41px] w-[181.95px] h-[68.5px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[181.95px] lg:h-[68.5px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[18.24px] font-bold text-[23.55px]">
+            <button
+              onClick={signUp}
+              className="bg-tertiary text-white rounded-[21.41px] w-[181.95px] h-[68.5px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[181.95px] lg:h-[68.5px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[18.24px] font-bold text-[23.55px]"
+            >
               Sign Up
             </button>
             <p className="mt-[21.67px] text-[16.05px] leading-[19.43px] lg:mt-[21.67px] lg:text-[16.05px] lg:leading-[19.43px] md:text-[12.86px] md:leading-[15.57px] md:mt-[20.58px] sm:text-[12.86px] sm:leading-[15.57px] sm:mt-[20.58px] xsm:text-[7.17px] xsm:leading-[8.68px] xsm:mt-[11.47px]">

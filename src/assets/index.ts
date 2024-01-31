@@ -32,7 +32,8 @@ import slide3 from './img/slide3.png';
 
 import flag_france from './icons/flag_france.svg';
 import flag_uk from './icons/flag_uk.svg';
-import lang from './icons/lang.svg'
+import lang_white from './icons/lang-white.svg';
+import lang_black from './icons/lang-black.svg';
 
 
 export const media = {
@@ -65,5 +66,6 @@ export const media = {
     slide3,
     flag_france,
     flag_uk,
-    lang
+    lang_white,
+    lang_black
 }
