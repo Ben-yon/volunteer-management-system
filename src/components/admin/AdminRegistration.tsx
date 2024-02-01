@@ -1,8 +1,24 @@
 import { media } from "../../assets";
 import { Link, useNavigate } from "react-router-dom";
 import { LanguageSelect } from "../LanguageSelect";
+import { useFormValidation } from "../../utils/validate";
+import { AdminSignUpFormData } from "../../interfaces/FormDataInterface";
 
 export const AdminRegistration = () => {
+  const validationRules = {
+    firstName: { required: true, minLength: 5 },
+    surname: { required: true, minLength: 5 },
+    email: { required: true, email: true },
+    password: { required: true, password: true, minLength: 8 },
+  };
+
+  const { values, errors, handleChange, validate } = useFormValidation<AdminSignUpFormData>({
+    firstName: "",
+    surname: "",
+    email: "",
+    password: ""
+  }, validationRules );
+
   const navigate = useNavigate();
 
   const signUp = () => {

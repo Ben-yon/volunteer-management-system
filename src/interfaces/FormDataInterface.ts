@@ -14,7 +14,14 @@ export interface FormDataInterface{
     interest: string;
 }
 
-export interface AdminSiginFormData {
+export interface AdminSignInFormData {
+    email: string;
+    password: string;
+}
+
+export interface AdminSignUpFormData{
+    firstName: string;
+    surname: string;
     email: string;
     password: string;
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
-import { AdminSiginFormData } from "../../interfaces/FormDataInterface";
+import { AdminSignInFormData } from "../../interfaces/FormDataInterface";
 
 export const AdminSignIn = () => {
   const ValidationRule = {
@@ -11,7 +11,7 @@ export const AdminSignIn = () => {
   };
 
   const { values, errors, handleChange, validate } =
-    useFormValidation<AdminSiginFormData>(
+    useFormValidation<AdminSignInFormData>(
       {
         email: "",
         password: "",
