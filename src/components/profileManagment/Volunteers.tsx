@@ -1,15 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
 import { Table } from "../../widgets/Table";
 import randomData from "./../../utils/MOCK_DATA.json";
 
+
+
 export const Volunteer = () => {
+  const navigate = useNavigate()
+
+  const handleViewVolunteerDetails = (id: string) => {
+    navigate(`details/${id}`);
+  }
+
   const columns = [
     {
       Header: "Name",
       accessor: (row: any) => `${row.fullname} ${row.jobTitle}`,
       id: "fullname",
       Cell: ({ row }: any) => (
-        <div
+        <div 
           style={{
             width: "347px",
             height: "48.63px",
@@ -21,6 +30,8 @@ export const Volunteer = () => {
             display: "flex",
             position: "relative",
           }}
+          onClick={() => handleViewVolunteerDetails(row.original.id)}
+          className="hover:cursor-pointer"
         >
           <div>
             <p
@@ -37,7 +48,7 @@ export const Volunteer = () => {
           <div
             style={{
               position: "absolute",
-              right: "3px",
+              right: "12px",
               borderRadius: "50%",
               width: "15px",
               height: "15px",
@@ -62,7 +73,7 @@ export const Volunteer = () => {
     },
     {
       Header: "Date of Birth",
-      accessor: "date of birth",
+      accessor: "date_of_birth",
       id: "birth",
       Cell: ({ value }: { value: any }) => (
         <div
@@ -131,8 +142,9 @@ export const Volunteer = () => {
       ),
     },
     {
-      Header: "Days available per week",
-      accessor: "days available per week",
+      Header: "Daysavailable per week",
+      accessor: "days_available_per_week",
+      id: 'days',
       Cell: ({ value }: { value: any }) => (
         <div
           style={{
@@ -197,7 +209,7 @@ export const Volunteer = () => {
       <h2 className="text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         Volunteers
       </h2>
-      <div className="relative">
+      <div className=" relative lg:overflow-x-auto lg:max-w-[950px]">
         <Table columns={columns} data={data} />
       </div>
     </div>

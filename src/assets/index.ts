@@ -6,6 +6,8 @@ import envelope from './icons/envelope.svg';
 import addPassword from './icons/addPassword.svg';
 import upload from './icons/upload.svg';
 import passwordChanged from './icons/passwordChanged.svg';
+import location from './icons/location.svg';
+import bookLove from './icons/mdi_book-love.svg';
 
 
 import notification from './icons/notification.svg';
@@ -24,6 +26,7 @@ import settings from './icons/settings.svg';
 import integrations from './icons/integrations.svg';
 import search from './icons/mdi_search.svg';
 import chat from './icons/bxs_chat.svg';
+import birthday from './icons/birthday.svg'
 
 
 import slide1 from './img/slide1.png';
@@ -54,12 +57,15 @@ export const media = {
     volunteers,
     menu_programs,
     settings,
+    location,
+    bookLove,
     integrations,
     profile,
     chat,
     admins,
     support,
     home,
+    birthday,
     search,
     slide1,
     slide2,

@@ -6,10 +6,12 @@ export interface TableProps{
 }
 
 export interface TableData {
+    id: number;
     fullname: string;
-    dateOfBirth: string;
+    jobTitle: string;
+    date_of_birth: string;
     address: string;
     interests: string;
-    DaysAvailablePerWeek: number;
-    Availability: string;
+    days_available_per_week: number;
+    availability: string;
 }
