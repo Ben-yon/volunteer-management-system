@@ -18,10 +18,15 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
             [name]: ''
         }));
     };
-    
+
     const isValidEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
+    }
+
+    const isValidPasswordFormat = (password: string): boolean => {
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+        return passwordRegex.test(password);
     }
 
     const validate = (): boolean => {
@@ -40,6 +45,17 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
                 newErrors[fieldName] = 'Invalid email address.';
                 isValid = false;
             }
+
+            if (rules.minLength && fieldValue.length < rules.minLength ){
+                newErrors[fieldName] = `Minimum length is ${rules.minLength} characters`;
+                isValid = false;
+            }
+
+            if (rules.password && fieldValue && !isValidPasswordFormat(fieldValue)){
+                newErrors[fieldName] = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+                isValid = false;
+            }
+
         }
 
         setErrors(newErrors);

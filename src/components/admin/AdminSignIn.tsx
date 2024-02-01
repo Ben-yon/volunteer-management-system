@@ -7,7 +7,7 @@ import { AdminSiginFormData } from "../../interfaces/FormDataInterface";
 export const AdminSignIn = () => {
   const ValidationRule = {
     email: { required: true, email: true },
-    password: { required: true },
+    password: { required: true, password: true },
   };
 
   const { values, errors, handleChange, validate } =
@@ -54,25 +54,35 @@ export const AdminSignIn = () => {
             <p className="text-black text-[25.53px] lg:text-[25.53px] lg:mt-[10.6px] md:text-[16.5px] md:leading-[20.01px] md:mt-[7.56px] sm:mt-[7.56px] leading-6 xsm:text-[9.48px] xsm:leading-[11.47px] xsm:mt-[3.93px]">
               Sign in to your account below
             </p>
-            <div>
+            <div className="flex flex-col">
               <input
-                type="email"
+                type="text"
                 name="email"
                 className="border focus:outline-none rounded-[21.41px] bg-gray-100 leading-[33.99px] w-[651px] h-[81.69px] mt-[35.38px] pl-[37.02px] text-[28.08px] lg:w-[651px] lg:h-[81.69px] lg:rounded-[21.41px] lg:text-[28.08px] lg:leading-[33.99px] lg:mt-[35.38px] md:w-[421.65px] md:h-[52.91px] md:rounded-[16.54px] md:text-[18.19px] md:leading-[22.01px] md:pl-[23.98px] md:mt-[22.99px] sm:w-[421.65px] sm:h-[52.91px] sm:rounded-[16.54px] sm:text-[18.19px] sm:leading-[22.01px] sm:pl-[23.91px] xsm:w-[241.73px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.62px] xsm:pl-[13.75px] xsm:mt-[13.65px]"
                 placeholder="Email"
                 value={values.email}
                 onChange={handleChange}
               />
-              {errors.email && <span className="text-red-500">{errors.email}</span>}
+              {errors.email && (
+                <span className="text-red-500">{errors.email}</span>
+              )}
             </div>
-            <input
-              type="password"
-              name="password"
-              className="border focus:outline-none w-[651px] h-[81.69px] mt-[21.7px] text-[28.08px] leading-[33.99px] rounded-[21.41px] pl-[37.02px] lg:w-[651px] lg:h-[81.69px] lg:rounded-[21.41px] lg:text-[28.08px] lg:leading-[33.99px] bg-gray-100 text-black md:w-[421.65px] md:h-[52.91px] md:rounded-[16.54px] md:text-[18.91px] md:leading-[22.01px] md:pl-[23.98px] md:mt-[21.7px] sm:w-[421.65px] sm:h-[52.91px] sm:rounded-[16.54px] sm:text-[18.19px] sm:leading-[22.01px] sm:pl-[23.91px] xsm:w-[241.77px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.62px] xsm:pl-[13.75px] xsm:mt-[8.06px]"
-              placeholder="Password"
-              value={values.password}
-              onChange={handleChange}
-            />
+            <div className="flex flex-col">
+              <input
+                type="password"
+                name="password"
+                className="border focus:outline-none w-[651px] h-[81.69px] mt-[21.7px] text-[28.08px] leading-[33.99px] rounded-[21.41px] pl-[37.02px] lg:w-[651px] lg:h-[81.69px] lg:rounded-[21.41px] lg:text-[28.08px] lg:leading-[33.99px] bg-gray-100 text-black md:w-[421.65px] md:h-[52.91px] md:rounded-[16.54px] md:text-[18.91px] md:leading-[22.01px] md:pl-[23.98px] md:mt-[21.7px] sm:w-[421.65px] sm:h-[52.91px] sm:rounded-[16.54px] sm:text-[18.19px] sm:leading-[22.01px] sm:pl-[23.91px] xsm:w-[241.77px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.62px] xsm:pl-[13.75px] xsm:mt-[8.06px]"
+                placeholder="Password"
+                value={values.password}
+                onChange={handleChange}
+              />
+              {errors.password && (
+                <span className="text-red-500 text-sm flex flex-wrap w-[400px]">{errors.password}</span>
+              )}
+              {errors.required && (
+                <span className="text-red-500 text-sm flex flex-wrap w-[400px]">{errors.required}</span>
+              )}
+            </div>
             <span className="mt-[21.7px] lg:mt-[21.7px] lg:text-[19.15px] lg:leading-[23.17px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] sm:text-[12.4] sm:leading-[15.01px] sm:mt-[14.06px] xsm:text-[7.11px] xsm:leading-[8.6px] xsm:mt-[8.06px]">
               <Link to="/admin/password-reset/">Forgot Password?</Link>
             </span>
