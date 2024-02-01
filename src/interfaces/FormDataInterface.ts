@@ -25,3 +25,12 @@ export interface AdminSignUpFormData{
     email: string;
     password: string;
 }
+
+export interface AdminResetPasswordFormData{
+    email: string;
+}
+
+export interface AdminNewPasswordFormData{
+    password: string;
+    confirmPassword: string;
+}

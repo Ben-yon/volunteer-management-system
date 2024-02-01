@@ -37,7 +37,7 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
             const fieldValue = values[fieldName as keyof T];
             const rules = validationRules[fieldName];   
 
-            if (rules.required && !fieldName){
+            if (rules.required && !fieldValue){
                 newErrors[fieldName] ='This field is required.';
                 isValid = false;
             }

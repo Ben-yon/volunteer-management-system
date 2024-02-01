@@ -5,7 +5,7 @@ import { useFormValidation } from "../../utils/validate";
 import { AdminSignInFormData } from "../../interfaces/FormDataInterface";
 
 export const AdminSignIn = () => {
-  const ValidationRule = {
+  const ValidationRules = {
     email: { required: true, email: true },
     password: { required: true, password: true },
   };
@@ -16,7 +16,7 @@ export const AdminSignIn = () => {
         email: "",
         password: "",
       },
-      ValidationRule
+      ValidationRules
     );
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -64,7 +64,7 @@ export const AdminSignIn = () => {
                 onChange={handleChange}
               />
               {errors.email && (
-                <span className="text-red-500">{errors.email}</span>
+                <span className="text-red-500 text-[10px]">{errors.email}</span>
               )}
             </div>
             <div className="flex flex-col">
@@ -77,10 +77,7 @@ export const AdminSignIn = () => {
                 onChange={handleChange}
               />
               {errors.password && (
-                <span className="text-red-500 text-sm flex flex-wrap w-[400px]">{errors.password}</span>
-              )}
-              {errors.required && (
-                <span className="text-red-500 text-sm flex flex-wrap w-[400px]">{errors.required}</span>
+                <span className="text-red-500 flex flex-wrap w-[400px] text-[10px]">{errors.password}</span>
               )}
             </div>
             <span className="mt-[21.7px] lg:mt-[21.7px] lg:text-[19.15px] lg:leading-[23.17px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] sm:text-[12.4] sm:leading-[15.01px] sm:mt-[14.06px] xsm:text-[7.11px] xsm:leading-[8.6px] xsm:mt-[8.06px]">

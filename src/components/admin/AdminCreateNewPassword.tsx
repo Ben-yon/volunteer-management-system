@@ -2,13 +2,30 @@ import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
 import { FormEvent } from "react";
 import { LanguageSelect } from "../LanguageSelect";
+import { useFormValidation } from "../../utils/validate";
+import { AdminNewPasswordFormData } from "../../interfaces/FormDataInterface";
 
 export const AdminCreateNewPassword = () => {
+  const validationRules = {
+    password: { required: true, password: true, minLength: 8 },
+    confirmPassword: { required: true, password: true, minLength: 8 },
+  };
+
+  const { values, errors, handleChange, validate } =
+    useFormValidation<AdminNewPasswordFormData>({
+      password: "",
+      confirmPassword: "",
+    }, validationRules);
+
   const navigate = useNavigate();
 
   const setNewPassword = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate("/admin/password-reset/confirm-password-change");
+    if (validate()) {
+      navigate("/admin/password-reset/confirm-password-change");
+    }else{
+      throw new DOMException("Validation failed!")
+    }
   };
 
   return (
@@ -42,18 +59,34 @@ export const AdminCreateNewPassword = () => {
               previous used passwords.
             </p>
             <form onSubmit={setNewPassword} className="flex flex-col mt-4">
-              <input
-                type="text"
-                name=""
-                className="bg-gray-100 w-[551.68px] h-[69.23px] rounded-[20px] px-4 text-[22px] leading-[26.63px] pl-[37.86px] lg:w-[551.68px] lg:h-[69.23px] lg:rounded-[20px] lg:px-4 lg:text-[22px] lg:leading-[26.63px] lg:pl-[37.86px] md:w-[428.16px] md:h-[53.73px] md:rounded-[16.79px] md:text-[18.47px] md:leading-[22.35px] md:pl-[29.38px] sm:w-[428.16px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[18.47px] sm:leading-[22.35px] sm:pl-[29.38px] xsm:w-[247.51px] xsm:h-[31.06px] xsm:rounded-[9.71px] xsm:text-[10.68px] xsm:leading-[12.92px] xsm:pl-[16.99px]"
-                placeholder="New Password"
-              />
-              <input
-                type="text"
-                name=""
-                className="bg-gray-100 w-[551.68px] h-[69.23px] rounded-[20px] px-4 text-[22px] leading-[26.63px] pl-[37.86px] mt-[10.82px] lg:w-[551.68px] lg:h-[69.23px] lg:rounded-[20px] lg:px-4 lg:text-[22px] lg:leading-[26.63px] lg:pl-[37.86px] md:w-[428.16px] md:h-[53.73px] md:rounded-[16.79px] md:text-[18.47px] md:leading-[22.35px] md:pl-[29.38px] md:mb-[18.63px] sm:w-[428.16px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[18.47px] sm:leading-[22.35px] sm:pl-[29.38px] sm:mb-[18.63px] xsm:w-[247.51px] xsm:h-[31.06px] xsm:rounded-[9.71px] xsm:text-[10.68px] xsm:leading-[12.92px] xsm:pl-[16.99px] xsm:mb-[20.48px]"
-                placeholder="Confirm Password"
-              />
+              <div className="flex flex-col">
+                <input
+                  type="password"
+                  name="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  className="bg-gray-100 w-[551.68px] h-[69.23px] rounded-[20px] px-4 text-[22px] leading-[26.63px] pl-[37.86px] lg:w-[551.68px] lg:h-[69.23px] lg:rounded-[20px] lg:px-4 lg:text-[22px] lg:leading-[26.63px] lg:pl-[37.86px] md:w-[428.16px] md:h-[53.73px] md:rounded-[16.79px] md:text-[18.47px] md:leading-[22.35px] md:pl-[29.38px] sm:w-[428.16px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[18.47px] sm:leading-[22.35px] sm:pl-[29.38px] xsm:w-[247.51px] xsm:h-[31.06px] xsm:rounded-[9.71px] xsm:text-[10.68px] xsm:leading-[12.92px] xsm:pl-[16.99px]"
+                  placeholder="New Password"
+                />
+                {errors.password && (
+                  <span className="text-red-500 text-[10px]">
+                    {errors.password}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col">
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={values.confirmPassword}
+                  onChange={handleChange}
+                  className="bg-gray-100 w-[551.68px] h-[69.23px] m-0 rounded-[20px] px-4 text-[22px] leading-[26.63px] pl-[37.86px] mt-[10.82px] lg:w-[551.68px] lg:h-[69.23px] lg:rounded-[20px] lg:px-4 lg:text-[22px] lg:leading-[26.63px] lg:pl-[37.86px] md:w-[428.16px] md:h-[53.73px] md:rounded-[16.79px] md:text-[18.47px] md:leading-[22.35px] md:pl-[29.38px] md:mb-[18.63px] sm:w-[428.16px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[18.47px] sm:leading-[22.35px] sm:pl-[29.38px] sm:mb-[18.63px] xsm:w-[247.51px] xsm:h-[31.06px] xsm:rounded-[9.71px] xsm:text-[10.68px] xsm:leading-[12.92px] xsm:pl-[16.99px] xsm:mb-[20.48px]"
+                  placeholder="Confirm Password"
+                />
+                {errors.confirmPassword && (
+                  <span className="text-red-500 text-[10px]">{errors.confirmPassword}</span>
+                )}
+              </div>
               <button className="bg-tertiary w-[249.88px] h-[69.23px] rounded-[20px] text-[20px] leading-[24.2px] mt-[22.71px] text-primary font-bold lg:w-[249.88px] lg:h-[69.23px] lg:rounded-[20px] lg:text-[20px] lg:leading-[24.2px] lg:mt-[22.71px] md:w-[193.93px] md:h-[53.73px] md:rounded-[16.79px] md:text-[16.79px] md:leading-[20.32px] md:m-auto sm:w-[193.93px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[16.79px] sm:leading-[20.32px] sm:m-auto xsm:w-[112.11px] xsm:h-[31.06px] xsm:text-[9.71px] xsm:leading-[11.75px] xsm:m-auto">
                 Reset Password
               </button>
