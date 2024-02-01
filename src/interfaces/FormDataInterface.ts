@@ -13,3 +13,8 @@ export interface FormDataInterface{
     skills: string;
     interest: string;
 }
+
+export interface AdminSiginFormData {
+    email: string;
+    password: string;
+}

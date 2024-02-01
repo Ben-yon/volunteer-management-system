@@ -18,6 +18,11 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
             [name]: ''
         }));
     };
+    
+    const isValidEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 
     const validate = (): boolean => {
         let isValid = true;
@@ -41,10 +46,6 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
         return isValid
     };
 
-    const isValidEmail = (email: string): boolean => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
 
     return {
         values,
