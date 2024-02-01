@@ -4,6 +4,7 @@ export interface ValidationRules {
         email ?: boolean;
         minLength ?: number;
         password ?: boolean;
+        isNumber ?: boolean;
     };
 }
 

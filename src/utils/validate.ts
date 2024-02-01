@@ -29,6 +29,10 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
         return passwordRegex.test(password);
     }
 
+    const IsValidNumber = (numberField: string): boolean => {
+        return !isNaN(parseInt(numberField));
+    }
+
     const validate = (): boolean => {
         let isValid = true;
         const newErrors: Errors = {};
@@ -53,6 +57,10 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
 
             if (rules.password && fieldValue && !isValidPasswordFormat(fieldValue)){
                 newErrors[fieldName] = 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.';
+                isValid = false;
+            }
+            if (rules.isNumber && fieldValue && !IsValidNumber(fieldValue)){
+                newErrors[fieldName] = 'Must be a number';
                 isValid = false;
             }
 
