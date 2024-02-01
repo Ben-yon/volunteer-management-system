@@ -20,7 +20,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
     render(): React.ReactNode {
         if (this.state.hasError){
-            return <div className="flex justify-center items-center text-5xl text-red-500">Something went wrong. Please refresh the page or try again later.</div>;
+            return <div className="flex justify-center items-center min-h-screen text-3xl text-red-500">Something went wrong. Please refresh the page or try again later.</div>;
         }
         return this.props.children;
     }   

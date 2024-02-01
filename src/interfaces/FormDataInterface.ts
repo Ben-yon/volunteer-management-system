@@ -13,3 +13,24 @@ export interface FormDataInterface{
     skills: string;
     interest: string;
 }
+
+export interface AdminSignInFormData {
+    email: string;
+    password: string;
+}
+
+export interface AdminSignUpFormData{
+    firstName: string;
+    surname: string;
+    email: string;
+    password: string;
+}
+
+export interface AdminResetPasswordFormData{
+    email: string;
+}
+
+export interface AdminNewPasswordFormData{
+    password: string;
+    confirmPassword: string;
+}
