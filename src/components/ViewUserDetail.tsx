@@ -7,7 +7,7 @@ import {  useTranslation } from 'react-i18next'
 
 export const ViewUserDetail = () => {
   const { state } = useLocation();
-  const { formData, imageState } = state;
+  const { values, imageState } = state;
 
   const { t } = useTranslation();
 
@@ -18,8 +18,8 @@ export const ViewUserDetail = () => {
   };
 
   return (
-    <div className="lg:relative bg-success bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:overflow-none ">
-      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[100vh] sm:relative xsm:h-[100vh]">
+    <div className="lg:relative bg-success bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[100vw] sm:overflow-none ">
+      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:h-[100vh] sm:relative xsm:h-[100vh]">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
             src={media.lang_white}
@@ -58,29 +58,32 @@ export const ViewUserDetail = () => {
               />
             </div>
             <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {formData?.firstName} {formData?.lastName}{" "}
+              {values?.firstName} {values?.lastName}{" "}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.date}
+              {values?.date}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.daysOfMonth}{" "}
-              {formData.daysOfMonth ? <span>Days per Month</span> : ""}{" "}
+              {values?.daysPerWeek}{" "}
+              {values.daysPerWeek ? <span>Days per week</span> : ""}{" "}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.address}
+              {values?.address}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.streetAddress} {formData?.city}
+              {values?.streetAddress} {values?.city}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.province}
+              {values?.province}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.country}
+              {values?.country}
             </p>
             <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {formData?.skills}
+              {values?.skills}
+            </p>
+            <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
+              {values?.interest}
             </p>
           </div>
           <button

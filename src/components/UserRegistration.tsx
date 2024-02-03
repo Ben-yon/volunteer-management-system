@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { styles } from "../styles";
 import { ImageUploadStore } from "../interfaces/ImageUploadInterface";
 import { FormDataInterface } from "../interfaces/FormDataInterface";
@@ -17,6 +17,7 @@ export const UserRegistration = () => {
     file: null,
     previewSrc: undefined,
   });
+  
 
   const firstNameRef = useRef<HTMLInputElement>(null);
 
@@ -37,7 +38,7 @@ export const UserRegistration = () => {
     interest: { required: true },
   };
 
-  const { values, errors, handleChange, validate } =
+  let { values, errors, handleChange, validate } =
     useFormValidation<FormDataInterface>(
       {
         firstName: "",
@@ -57,33 +58,37 @@ export const UserRegistration = () => {
     );
 
   const storeUserDetails = () => {
-    const details = db.userDetails.add({
-      firstName: values.firstName,
-      lastName: values.lastName,
-      date: values.date,
-      daysPerWeek: values.daysPerWeek,
-      address: values.address,
-      streetAddress: values.streetAddress,
-      city: values.city,
-      province: values.province,
-      postalCode: values.postalCode,
-      occupation: values.occupation,
-      skills: values.skills,
-      interest: values.interest,
-    });
+    const details = db.transaction('rw', db.userDetails, async () => {
+        if (await db.userDetails.where('id').equals(1).count()){
+          await db.userDetails.update(1, values)
+        }else{
+          await db.userDetails.add({...values})
+        }
+        }).catch((error) => {
+        console.error('Dexie error', error)
+      });
     return details;
   };
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    db.userDetails.toArray()
+    .then((data) => {
+      if ( data.length > 0){
+        console.log(data)
+        values = data[0]; 
+      }
+    })
+  })
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validate()) {
-      if (firstNameRef.current) firstNameRef.current.focus();
-      console.log(values);
+      // if (firstNameRef.current) firstNameRef.current.focus();
+      // console.log(values); 
       storeUserDetails();
-      let formData = values;
-      navigate("/view-user-details", { state: { formData, imageState } });
+      navigate("/view-user-details", { state: { values, imageState } });
     }else{
       throw new DOMException("Validation failed.")
     }
@@ -137,7 +142,7 @@ export const UserRegistration = () => {
           />
         </div>
         <div className="flex items-center justify-center min-h-screen lg:flex lg:items-center m-auto lg:justify-center">
-          <div className="lg:flex lg:left-92 lg:justify-center lg:items-center md:block md:w-[100vw] md:h-[100%] md:top-0 sm:block sm:w-[100vw] sm:top-0">
+          <div className="lg:relative lg:flex lg:left-92 lg:justify-center lg:items-center md:w-[100vw] md:h-[100%] md:absolute md:top-0 sm:block sm:w-[100vw] sm:top-0">
             <div className="lg:flex sm:block md:block xsm:hidden">
               <ImageSlideshow
                 images={[
@@ -155,7 +160,7 @@ export const UserRegistration = () => {
                 <p className="text-primary text-[19px] leading-[22.99px] lg:text-[19px] lg:leading-[22.99px] md:text-[12.99px] md:leading-[15.72px] md:mt-[1.29px] sm:text-[12.99px] sm:leading-[15.72px] sm:mt-[1.29px] xsm:text-[12.3px]">
                   {t("Fill out this form to become a Volunteer")}
                 </p>
-                <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-0">
+                <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-">
                   <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
                     <input
                       type="file"
@@ -185,7 +190,7 @@ export const UserRegistration = () => {
                       />
                     </div>
                   </div>
-                  <div className="m-auto lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">
+                  <div className="lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">
                     <div className="flex flex-col">
                       <input
                         type="text"
@@ -202,7 +207,7 @@ export const UserRegistration = () => {
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col mb-[34px]">
                       <input
                         type="text"
                         name="lastName"
