@@ -27,6 +27,7 @@ export const ProfileManagement = () => {
             </span>
           </p>
         </div>
+        <img src={media.data_upload} alt="" className="w-[28px] h-[28px]" />
         <img src={media.notification} alt="" className="w-[30px] h-[27.27px]" />
       </div>
       <div className="relative top-24 left-14 flex">

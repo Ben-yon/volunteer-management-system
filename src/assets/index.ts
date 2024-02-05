@@ -26,7 +26,9 @@ import settings from './icons/settings.svg';
 import integrations from './icons/integrations.svg';
 import search from './icons/mdi_search.svg';
 import chat from './icons/bxs_chat.svg';
-import birthday from './icons/birthday.svg'
+import birthday from './icons/birthday.svg';
+import data_upload from './icons/ph_export-bold.svg';
+import polygon from './icons/polygon.svg';
 
 
 import slide1 from './img/slide1.png';
@@ -66,6 +68,8 @@ export const media = {
     support,
     home,
     birthday,
+    data_upload,
+    polygon,
     search,
     slide1,
     slide2,

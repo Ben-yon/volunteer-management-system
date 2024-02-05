@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { media } from "../assets";
 import { TableProps } from "../interfaces/TablePropsInterface";
@@ -11,11 +11,13 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
     prepareRow,
     state,
     page,
+    gotoPage,
     nextPage,
-    previousPage,
+    // previousPage,
     canNextPage,
-    canPreviousPage,
+    // canPreviousPage,
     setGlobalFilter,
+    pageCount,
   } = useTable(
     { columns, data, initialState: { pageIndex: 0, pageSize: 15 } },
     useGlobalFilter,
@@ -23,6 +25,22 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
   );
 
   const { globalFilter, pageIndex } = state;
+
+  const pageinationItems = useMemo(() => {
+    const items: any[] = [];
+    for (let i = 0; i < pageCount; i++) {
+      items.push(
+        <button
+          key={i}
+          onClick={() => gotoPage(i)}
+          style={{ fontWeight: pageIndex === i ? "bold" : "normal", margin: "2px", fontSize: '10px'}}
+        >
+          {i + 1}
+        </button>
+      );
+    }
+    return items;
+  }, [gotoPage, pageIndex, pageCount]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGlobalFilter(e.target.value || undefined);
@@ -39,7 +57,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <input
           type="text"
           value={globalFilter || ""}
-          className="w-[1018px] h-[43px] rounded-[13px] border border-black-100 text-[15px] font-light  leading-[16.52px] pl-[43px]"
+          className="w-[1018px] h-[43px] rounded-[13px] border border-black-100 text-[15px] font-light focus:outline-none leading-[16.52px] pl-[43px]"
           placeholder="Search by name, interests, skills"
           onChange={handleSearchChange}
         />
@@ -60,28 +78,32 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
                     ...(column.id == "address" && {
                       position: "absolute",
                       left: "565px",
-                      top: '80px'
+                      top: "58px",
                     }),
                     ...(column.id == "birth" && {
-                      position: "relative",
-                      left: "25px",
+                      position: "absolute",
+                      left: "370px",
+                      top: "58px",
                     }),
                     ...(column.id == "interests" && {
-                      position: "relative",
-                      left: "25px",
+                      position: "absolute",
+                      left: "800px",
                     }),
                     ...(column.id == "availability" && {
-                      position: 'relative',
-                      left: '25px'
+                      position: "absolute",
+                      left: "1090px",
+                      top: "58px",
                     }),
                     ...(column.id == "fullname" && {
                       position: "relative",
-                      left: '25px'
+                      left: "25px",
                     }),
                     ...(column.id == "days" && {
                       display: "block",
-                      width: "132px"
-                    })
+                      width: "132px",
+                      position: "absolute",
+                      left: "940px",
+                    }),
                   }}
                 >
                   {column.render("Header")}
@@ -105,27 +127,26 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <div className="mt-[15px]">
-        <button
-          onClick={() => previousPage()}
+      <div className="mt-[15px] flex justify-end">
+        {/* <button
+          onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
-          className="text-primary p-4 py-2 text-center bg-black rounded-[10px]"
         >
-          Previous
+          {"<<"}
         </button>{" "}
+        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+          {'<'}
+        </button> */}
+        {pageinationItems}
         <button
           onClick={() => nextPage()}
           disabled={!canNextPage}
-          className="text-primary p-4 py-2 text-center bg-black rounded-[10px]"
         >
-          Next
+          <img src={media.polygon} />
         </button>{" "}
-        <span>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {Math.floor(data.length / page.length)}
-          </strong>{" "}
-        </span>
+        <button onClick={() => gotoPage(pageCount -1)} disabled={!canNextPage} className="flex items-center ml-1">
+        <img src={media.polygon} /><img src={media.polygon} />
+        </button>
       </div>
     </div>
   );
