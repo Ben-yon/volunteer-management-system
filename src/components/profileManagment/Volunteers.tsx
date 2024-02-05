@@ -142,7 +142,7 @@ export const Volunteer = () => {
       ),
     },
     {
-      Header: "Daysavailable per week",
+      Header: "Days available per week",
       accessor: "days_available_per_week",
       id: 'days',
       Cell: ({ value }: { value: any }) => (
@@ -151,6 +151,7 @@ export const Volunteer = () => {
             textAlign: "center",
             fontWeight: "bold",
             fontSize: "10px",
+            width: "132px",
           }}
         >
           {value} Days
