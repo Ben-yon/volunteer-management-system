@@ -103,3 +103,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .details-card-sec {
     background: linear-gradient(189.19deg, #F20000 6.96%, #6D0000 141%);
 }
+
+.details-availability-card{
+    box-shadow: 1px 1px 11.300000190734863px 2px #0000001C;
+}
+
+progress {
+    -webkit-appearance: none;
+  }
+  
+  ::-webkit-progress-value {
+    background-color: #E80000;
+  }
+
+  ::-moz-progress-bar {
+    background-color: #E80000;
+  }
+
+  progress-bar{
+    background-color: #E80000;
+  }
+  

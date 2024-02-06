@@ -31,7 +31,7 @@ export const Volunteer = () => {
             position: "relative",
           }}
           onClick={() => handleViewVolunteerDetails(row.original.id)}
-          className="hover:cursor-pointer"
+          className="hover:cursor-pointer hover:opacity-[84%]"
         >
           <div>
             <p
