@@ -45,7 +45,7 @@ export const ViewUserDetail = () => {
               {t("Please take a moment to review")} <br /> {t("the information you've entered")}
             </p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center h-auto">
             <div>
               <img
                 src={imageState.previewSrc}

@@ -124,8 +124,8 @@ export const UserRegistration = () => {
   };
 
   return (
-    <div className="relative filter w-[100vw] h-[100%] lg:relative bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
-      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-[100%]">
+    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[850px] md:h-[1200px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
+      <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-full">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
             src={media.lang_white}
@@ -138,11 +138,11 @@ export const UserRegistration = () => {
           <img
             src={`${media.whiteLogo}`}
             alt="LOGO"
-            className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[30px] lg:right-[35px] md:absolute md:w-[133px] md:h-[55px] md:bottom-[32px] md:right-[31px]  sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
+            className="absolute w-[221px] h-[90px] right-[35px] bottom-[30px] lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[30px] lg:right-[35px] md:absolute md:w-[133px] md:h-[55px] md:bottom-[32px] md:right-[31px]  sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="flex items-center justify-center min-h-screen lg:flex lg:items-center m-auto lg:justify-center">
-          <div className="lg:relative lg:flex lg:left-92 lg:justify-center lg:items-center md:w-[100vw] md:h-[100%] md:absolute md:top-0 sm:block sm:w-[100vw] sm:top-0">
+        <div className="flex items-center justify-center min-h-screen  lg:flex lg:items-center m-auto lg:justify-center">
+          <div className="relative flex items-center justify-center lg:relative lg:flex lg:left-92 lg:justify-center lg:items-center md:absolute md:top-0 sm:block sm:w-[100vw] sm:top-0">
             <div className="lg:flex sm:block md:block xsm:hidden">
               <ImageSlideshow
                 images={[
@@ -382,7 +382,7 @@ export const UserRegistration = () => {
                     </div>
                   </div>
                 </div>
-                <button className="bg-primary rounded-[15px] border lg:text-[25px] text-secondary mt-[22px] lg:leading-[30.26px] font-bold sm:text-xs sm:mb-7 sm:mt-2 sm:py-[7.55px] sm:px-[17.1px] sm:rounded-[9.4px] xsm:text-xs xsm:mb-7 xsm:mt-2 xsm:py-[7.55px] xsm:px-[17.1px] xsm:rounded-[9.4px]">
+                <button className="bg-primary rounded-[15px] border lg:text-[25px] text-secondary mt-[28px] lg:leading-[30.26px] font-bold sm:text-xs sm:mb-7 sm:mt-[22px] sm:py-[7.55px] sm:px-[17.1px] sm:rounded-[9.4px] xsm:text-xs xsm:mb-7 xsm:mt-2 xsm:py-[7.55px] xsm:px-[17.1px] xsm:rounded-[9.4px]">
                   {t("Next")}
                 </button>
               </form>
