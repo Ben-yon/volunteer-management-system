@@ -1,23 +1,28 @@
-import React, { FormEvent, useEffect, useRef, useState } from "react";
+import  { FormEvent, useEffect, useRef, useState } from "react";
 import { styles } from "../styles";
-import { ImageUploadStore } from "../interfaces/ImageUploadInterface";
+//import { ImageUploadStore } from "../interfaces/ImageUploadInterface";
 import { FormDataInterface } from "../interfaces/FormDataInterface";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
 import { db } from "../utils/db";
 import { useTranslation } from "react-i18next";
 import { LanguageSelect } from "./LanguageSelect";
 import { useFormValidation } from "../utils/validate";
+import Modal from "../widgets/Modal";
 
 export const UserRegistration = () => {
-  const imageUploader = useRef<HTMLInputElement>(null);
-  const uploadedImageRef = useRef<HTMLImageElement | null>(null);
-  const [imageState, setImageState] = useState<ImageUploadStore>({
-    file: null,
-    previewSrc: undefined,
-  });
+  // const imageUploader = useRef<HTMLInputElement>(null);
+  const uploadedImageRef = useRef<string | undefined>(media.upload);
+  // const [imageState, setImageState] = useState<ImageUploadStore>({
+  //   file: null,
+  //   previewSrc: undefined,
+  // });
   
+
+  const updateAvatar = (imgSrc: string | undefined): void => {
+    uploadedImageRef.current = imgSrc
+  }
 
   const firstNameRef = useRef<HTMLInputElement>(null);
 
@@ -70,7 +75,7 @@ export const UserRegistration = () => {
     return details;
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     db.userDetails.toArray()
@@ -88,40 +93,43 @@ export const UserRegistration = () => {
       // if (firstNameRef.current) firstNameRef.current.focus();
       // console.log(values); 
       storeUserDetails();
-      navigate("/view-user-details", { state: { values, imageState } });
+      // navigate("/view-user-details", { state: { values, imageState } });
     }else{
       throw new DOMException("Validation failed.")
     }
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const file = e.target.files?.[0];
+  const [ modalOpen, setModalOpen ] = useState(false);
 
-    if (file) {
-      const reader = new FileReader();
 
-      if (uploadedImageRef.current) {
-        setImageState({ ...imageState, file });
-      }
-      reader.onload = (e: ProgressEvent<FileReader>) => {
-        if (!uploadedImageRef.current) return;
-        uploadedImageRef.current.src = e.target?.result as string;
-        setImageState({
-          ...imageState,
-          previewSrc: e.target?.result as string,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  //   const file = e.target.files?.[0];
 
-  const handleInValidFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) return;
-    if (!e.target.files[0].type.match(/^image\//)) {
-      alert("Only image files are accepted!");
-      setImageState({ ...imageState, file: null, previewSrc: undefined });
-    }
-  };
+  //   if (file) {
+  //     const reader = new FileReader();
+
+  //     if (uploadedImageRef.current) {
+  //       setImageState({ ...imageState, file });
+  //     }
+  //     reader.onload = (e: ProgressEvent<FileReader>) => {
+  //       if (!uploadedImageRef.current) return;
+  //       uploadedImageRef.current.src = e.target?.result as string;
+  //       setImageState({
+  //         ...imageState,
+  //         previewSrc: e.target?.result as string,
+  //       });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
+
+  // const handleInValidFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (!e.target.files) return;
+  //   if (!e.target.files[0].type.match(/^image\//)) {
+  //     alert("Only image files are accepted!");
+  //     setImageState({ ...imageState, file: null, previewSrc: undefined });
+  //   }
+  // };
 
   return (
     <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[850px] md:h-[1200px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
@@ -162,32 +170,16 @@ export const UserRegistration = () => {
                 </p>
                 <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-">
                   <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        handleImageUpload(e);
-                        handleInValidFile(e);
-                      }}
-                      ref={imageUploader}
-                      style={{ display: "none" }}
-                    />
                     <div
                       onClick={() => {
-                        if (!imageUploader.current) return;
-                        imageUploader.current.click();
+                        setModalOpen(true)
                       }}
                     >
                       <img
-                        src={`${media.upload}`}
+                        src={uploadedImageRef.current}
                         className={`${styles.imageUploader} absolute md:w-[80.52px] md:h-[80.52px] sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
                       />
-                      <img
-                        ref={uploadedImageRef}
-                        src={imageState.previewSrc}
-                        // alt="Upload Image"
-                        className={`${styles.imageUploader} absolute md:w-[80.52px] md:h-[80.52px] sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
-                      />
+                      {modalOpen && <Modal updateAvatar={updateAvatar} closeModal={() => setModalOpen(false)}/>}
                     </div>
                   </div>
                   <div className="lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">

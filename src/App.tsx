@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
+import 'react-image-crop/dist/ReactCrop.css';
 
 import { AppRoutes } from './routes/AppRoute';
 import { LanguageProvider } from './components/LanguageProvider';
