@@ -30,6 +30,7 @@ export const ImageCropper: React.FC<ModalProps> = ({ updateAvatar, closeModal })
       const imageUrl = e.target?.result as string;
       imgElement.src = imageUrl;
 
+      //@ts-ignore
       imgElement.onload = (
         event: React.SyntheticEvent<HTMLImageElement, Event>
       ): void => {
@@ -101,6 +102,7 @@ export const ImageCropper: React.FC<ModalProps> = ({ updateAvatar, closeModal })
                 imageRef.current,
                 previewCanvasRef.current,
                 convertToPixelCrop(
+                  //@ts-ignore
                   crop,
                   imageRef.current?.width,
                   imageRef.current?.height

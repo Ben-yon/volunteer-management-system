@@ -7,7 +7,7 @@ import {  useTranslation } from 'react-i18next'
 
 export const ViewUserDetail = () => {
   const { state } = useLocation();
-  const { values, imageState } = state;
+  const { values, uploadedImageRef } = state;
 
   const { t } = useTranslation();
 
@@ -48,10 +48,10 @@ export const ViewUserDetail = () => {
           <div className="flex flex-col items-center h-auto">
             <div>
               <img
-                src={imageState.previewSrc}
+                src={uploadedImageRef.current}
                 alt=""
                 className={
-                  imageState.previewSrc
+                  uploadedImageRef.current
                     ? `${styles.imageUploader} mb-2 ml-14 mt-3 xsm:ml-1 xsm:w-[52.49px] xsm:h-[52.49px] border-4`
                     : ""
                 }

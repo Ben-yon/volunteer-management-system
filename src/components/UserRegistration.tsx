@@ -1,8 +1,7 @@
 import  { FormEvent, useEffect, useRef, useState } from "react";
 import { styles } from "../styles";
-//import { ImageUploadStore } from "../interfaces/ImageUploadInterface";
 import { FormDataInterface } from "../interfaces/FormDataInterface";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
 import { db } from "../utils/db";
@@ -12,13 +11,7 @@ import { useFormValidation } from "../utils/validate";
 import Modal from "../widgets/Modal";
 
 export const UserRegistration = () => {
-  // const imageUploader = useRef<HTMLInputElement>(null);
   const uploadedImageRef = useRef<string | undefined>(media.upload);
-  // const [imageState, setImageState] = useState<ImageUploadStore>({
-  //   file: null,
-  //   previewSrc: undefined,
-  // });
-  
 
   const updateAvatar = (imgSrc: string | undefined): void => {
     uploadedImageRef.current = imgSrc
@@ -75,7 +68,7 @@ export const UserRegistration = () => {
     return details;
   };
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     db.userDetails.toArray()
@@ -93,7 +86,7 @@ export const UserRegistration = () => {
       // if (firstNameRef.current) firstNameRef.current.focus();
       // console.log(values); 
       storeUserDetails();
-      // navigate("/view-user-details", { state: { values, imageState } });
+      navigate("/view-user-details", { state: { values, uploadedImageRef } });
     }else{
       throw new DOMException("Validation failed.")
     }
@@ -102,37 +95,8 @@ export const UserRegistration = () => {
   const [ modalOpen, setModalOpen ] = useState(false);
 
 
-  // const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
-  //   const file = e.target.files?.[0];
-
-  //   if (file) {
-  //     const reader = new FileReader();
-
-  //     if (uploadedImageRef.current) {
-  //       setImageState({ ...imageState, file });
-  //     }
-  //     reader.onload = (e: ProgressEvent<FileReader>) => {
-  //       if (!uploadedImageRef.current) return;
-  //       uploadedImageRef.current.src = e.target?.result as string;
-  //       setImageState({
-  //         ...imageState,
-  //         previewSrc: e.target?.result as string,
-  //       });
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
-  // const handleInValidFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (!e.target.files) return;
-  //   if (!e.target.files[0].type.match(/^image\//)) {
-  //     alert("Only image files are accepted!");
-  //     setImageState({ ...imageState, file: null, previewSrc: undefined });
-  //   }
-  // };
-
   return (
-    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[850px] md:h-[1200px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
+    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1200px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
       <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-full">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
@@ -179,8 +143,8 @@ export const UserRegistration = () => {
                         src={uploadedImageRef.current}
                         className={`${styles.imageUploader} absolute md:w-[80.52px] md:h-[80.52px] sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
                       />
-                      {modalOpen && <Modal updateAvatar={updateAvatar} closeModal={() => setModalOpen(false)}/>}
                     </div>
+                      {modalOpen && <Modal updateAvatar={updateAvatar} closeModal={() => setModalOpen(false)}/>}
                   </div>
                   <div className="lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">
                     <div className="flex flex-col">
