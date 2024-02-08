@@ -33,6 +33,10 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
         return !isNaN(parseInt(numberField));
     }
 
+    const isDayOfWeek = (numberField: string): boolean => {
+        return parseInt(numberField) <= 7 && parseInt(numberField) !== 0;
+    }
+
     const validate = (): boolean => {
         let isValid = true;
         const newErrors: Errors = {};
@@ -64,6 +68,10 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
                 isValid = false;
             }
 
+            if(rules.isDayOfWeek && fieldName && !isDayOfWeek(fieldValue)){
+                newErrors[fieldName] = "Number must be range from 1 to 7";
+                isValid = false;
+            }
         }
 
         setErrors(newErrors);

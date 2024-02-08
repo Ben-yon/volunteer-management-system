@@ -5,6 +5,7 @@ export interface ValidationRules {
         minLength ?: number;
         password ?: boolean;
         isNumber ?: boolean;
+        isDayOfWeek?: boolean;
     };
 }
 

@@ -4,12 +4,17 @@ import { styles } from "../styles";
 import { media } from "../assets";
 import { LanguageSelect } from "./LanguageSelect";
 import {  useTranslation } from 'react-i18next'
+// import { useEffect } from "react";
 
 export const ViewUserDetail = () => {
   const { state } = useLocation();
-  const { values, uploadedImageRef } = state;
+  const { formData, uploadedImageRef } = state;
 
   const { t } = useTranslation();
+
+  // useEffect(() => {
+  //   console.log(formData)
+  // }, [formData])
 
   const navigate = useNavigate();
 
@@ -58,32 +63,32 @@ export const ViewUserDetail = () => {
               />
             </div>
             <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {values?.firstName} {values?.lastName}{" "}
+              {formData?.firstName} {formData?.lastName}{" "}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {values?.date}
+              {formData?.date}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {values?.daysPerWeek}{" "}
-              {values.daysPerWeek ? <span>Days per week</span> : ""}{" "}
+              {formData?.daysPerWeek}{" "}
+              {formData.daysPerWeek ? <span>Days per week</span> : ""}{" "}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {values?.address}
+              {formData?.address}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {values?.streetAddress} {values?.city}
+              {formData?.streetAddress} {formData?.city}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {values?.province}
+              {formData?.province}
             </p>
             <p className="text-primary text-center text-2xl xsm:text-xl">
-              {values?.country}
+              {formData?.country}
             </p>
             <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {values?.skills}
+              {formData?.skills}
             </p>
             <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {values?.interest}
+              {formData?.interest}
             </p>
           </div>
           <button
