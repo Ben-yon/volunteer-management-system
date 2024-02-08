@@ -16,18 +16,18 @@ export const AdminLandingPage = () => {
   return (
     <div className="relative bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100%] h-[100%]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100%] h-[100vh]">
-        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1 md:absolute md:top-[39px] md:right-[47px] sm:top-[33px] xsm:top-[18px] xsm:right-[32.1px]">
           <img
             src={media.lang_black}
             alt="language"
-            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px] xsm:w-[21.05px] xsm:h-[19.76px]"
           />
           <LanguageSelect />
         </div>
         <img
           src={`${media.redLogo}`}
           alt=""
-          className="absolute top-[29px] lg:absolute lg:top-[29px] left-[27px] lg:h-[90px] lg:w-[220px] md:w-[90px] md:h-[37px] md:absolute md:top-[11px] sm:w-[90px] sm:h-[37px] xsm:w-[90px] xsm:h-[37px] xsm:absolute xsm:top-[11px]"
+          className="absolute top-[29px] lg:absolute lg:top-[29px] left-[27px] lg:h-[90px] lg:w-[220px] md:w-[136px] md:h-[56px] md:absolute md:top-[29px] md:left[29px] sm:w-[120px] sm:h-[49px] sm:top-[24px] xsm:w-[90px] xsm:h-[37px] xsm:absolute xsm:top-[11px]"
         />
         <div className="flex flex-col justify-center items-center min-h-screen">
           <h2 className="text-tertiary font-leelawadee font-semibold text-center text-[274.26px] leading-[327.96px] lg:text-[274.26px] lg:leading-[327.96px] md:text-[170.17px] md:leading-[203.48px] sm:text-[170.17px] sm:leading-[203.48px] xsm:text-[97.54px] xsm:leading-[116.64px] ">
