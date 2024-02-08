@@ -10,6 +10,7 @@ import { LanguageSelect } from "./LanguageSelect";
 import { useFormValidation } from "../utils/validate";
 import Modal from "../widgets/Modal";
 
+
 export const UserRegistration = () => {
   const uploadedImageRef = useRef<string | undefined>(media.upload);
 
@@ -96,7 +97,7 @@ export const UserRegistration = () => {
 
 
   return (
-    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1200px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
+    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
       <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-full">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
@@ -188,7 +189,7 @@ export const UserRegistration = () => {
                         name="date"
                         value={values.date}
                         onChange={handleChange}
-                        className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[18px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-44 text-white uppercase placeholder-gray-300 pr-2 mr-[24px] md:w-[141.12px] md:h-[37.23px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:mt-40 xsm:w-[141.12px] xsm:h-[36.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-36"
+                        className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[16px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-48 text-white uppercase placeholder-gray-300 pr-2 mr-[24px] md:w-[141.12px] md:h-[37.23px] md:rounded-[10.42px] md:text-[12.9px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[12.90px] sm:leading-[16.81px] sm:pl-[11.11px] sm:mt-40 xsm:w-[141.12px] xsm:h-[36.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-40"
                         placeholder="DD/MM/YYYY"
                       />
                       {errors.date && (
@@ -203,7 +204,7 @@ export const UserRegistration = () => {
                         name="daysPerWeek"
                         value={values.daysPerWeek}
                         onChange={handleChange}
-                        className="text-white placeholder-gray-300 leading-[24.2px] lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-44 md:w-[148.05px] md:h-[37.5px] md:text-[13.89px] md:leading-[16.81px] md:rounded-[10.42px] md:pl-[11.11px] sm:w-[148.05px] sm:h-[37.5px] sm:text-[13.89px] sm:leading-[16.81px] sm:rounded-[10.42px] sm:pl-[11.11px] sm:mt-40 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-36"
+                        className="text-white placeholder-gray-300 leading-[24.2px] lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-48  md:w-[148.05px] md:h-[37.5px] md:text-[13.89px] md:leading-[16.81px] md:rounded-[10.42px] md:pl-[11.11px] sm:w-[148.05px] sm:h-[37.5px] sm:text-[13.89px] sm:leading-[16.81px] sm:rounded-[10.42px] sm:pl-[11.11px] sm:mt-40 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-40"
                         placeholder={t("Days per week")}
                       />
                       {errors.daysPerWeek && (
@@ -349,3 +350,5 @@ export const UserRegistration = () => {
     </div>
   );
 };
+
+
