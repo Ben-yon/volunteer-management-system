@@ -31,6 +31,7 @@ const setCanvasPreview = (
     // Move the crop origin to the canvas origin (0,0)
     ctx.translate(-cropX, -cropY);
     ctx.drawImage(
+      //@ts-ignore
       image,
       0,
       0,
