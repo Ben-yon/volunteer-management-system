@@ -1,4 +1,4 @@
-import  { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { styles } from "../styles";
 import { FormDataInterface } from "../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +10,26 @@ import { LanguageSelect } from "./LanguageSelect";
 import { useFormValidation } from "../utils/validate";
 import Modal from "../widgets/Modal";
 
-
 export const UserRegistration = () => {
   const uploadedImageRef = useRef<string | undefined>(media.upload);
+  const [formData, setFormData] = useState<FormDataInterface>({
+    firstName: "",
+    lastName: "",
+    date: "",
+    daysPerWeek: "",
+    address: "",
+    streetAddress: "",
+    city: "",
+    province: "",
+    postalCode: "",
+    occupation: "",
+    skills: "",
+    interest: "",
+  });
 
   const updateAvatar = (imgSrc: string | undefined): void => {
-    uploadedImageRef.current = imgSrc
-  }
+    uploadedImageRef.current = imgSrc;
+  };
 
   const firstNameRef = useRef<HTMLInputElement>(null);
 
@@ -26,7 +39,7 @@ export const UserRegistration = () => {
     firstName: { required: true, minLength: 5 },
     lastName: { required: true, minLength: 2 },
     date: { required: true },
-    daysPerWeek: { required: true, isNumber: true },
+    daysPerWeek: { required: true, isNumber: true, isDayOfWeek: true },
     address: { required: true },
     streetAddress: { required: true },
     city: { required: true },
@@ -57,14 +70,16 @@ export const UserRegistration = () => {
     );
 
   const storeUserDetails = () => {
-    const details = db.transaction('rw', db.userDetails, async () => {
-        if (await db.userDetails.where('id').equals(1).count()){
-          await db.userDetails.update(1, values)
-        }else{
-          await db.userDetails.add({...values})
+    const details = db
+      .transaction("rw", db.userDetails, async () => {
+        if (await db.userDetails.count() <= 1) {
+          await db.userDetails.update(1, values);
+        } else {
+          await db.userDetails.add({ ...values });
         }
-        }).catch((error) => {
-        console.error('Dexie error', error)
+      })
+      .catch((error) => {
+        console.error("Dexie error", error);
       });
     return details;
   };
@@ -72,29 +87,26 @@ export const UserRegistration = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    db.userDetails.toArray()
-    .then((data) => {
-      if ( data.length > 0){
-        console.log(data)
-        values = data[0]; 
+    db.userDetails.toArray().then((data) => {
+      if (data.length > 0) {
+        setFormData(data[0]);
       }
-    })
-  })
+    });
+  });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validate()) {
-      // if (firstNameRef.current) firstNameRef.current.focus();
-      // console.log(values); 
+      console.log(values);
+      setFormData(values);
       storeUserDetails();
-      navigate("/view-user-details", { state: { values, uploadedImageRef } });
-    }else{
-      throw new DOMException("Validation failed.")
+      navigate("/view-user-details", { state: { formData, uploadedImageRef } });
+    } else {
+      throw new DOMException("Validation failed.");
     }
   };
 
-  const [ modalOpen, setModalOpen ] = useState(false);
-
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
@@ -137,7 +149,7 @@ export const UserRegistration = () => {
                   <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
                     <div
                       onClick={() => {
-                        setModalOpen(true)
+                        setModalOpen(true);
                       }}
                     >
                       <img
@@ -145,7 +157,12 @@ export const UserRegistration = () => {
                         className={`${styles.imageUploader} absolute md:w-[80.52px] md:h-[80.52px] sm:w-[80.52px] sm:h-[80.52px] xsm:w-[80.52px] xsm:h-[80.52px]`}
                       />
                     </div>
-                      {modalOpen && <Modal updateAvatar={updateAvatar} closeModal={() => setModalOpen(false)}/>}
+                    {modalOpen && (
+                      <Modal
+                        updateAvatar={updateAvatar}
+                        closeModal={() => setModalOpen(false)}
+                      />
+                    )}
                   </div>
                   <div className="lg:ml-40 sm:flex sm:flex-col sm:ml-28 xsm:flex xsm:flex-col xsm:ml-28">
                     <div className="flex flex-col">
@@ -334,7 +351,9 @@ export const UserRegistration = () => {
                         onChange={handleChange}
                       />
                       {errors.interest && (
-                        <span className="text-gray-100 text-[10px]">{errors.interest}</span>
+                        <span className="text-gray-100 text-[10px]">
+                          {errors.interest}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -350,5 +369,3 @@ export const UserRegistration = () => {
     </div>
   );
 };
-
-
