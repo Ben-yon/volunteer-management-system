@@ -72,11 +72,7 @@ export const UserRegistration = () => {
   const storeUserDetails = () => {
     const details = db
       .transaction("rw", db.userDetails, async () => {
-        if (await db.userDetails.count() <= 1) {
-          await db.userDetails.update(1, values);
-        } else {
           await db.userDetails.add({ ...values });
-        }
       })
       .catch((error) => {
         console.error("Dexie error", error);
@@ -89,18 +85,18 @@ export const UserRegistration = () => {
   useEffect(() => {
     db.userDetails.toArray().then((data) => {
       if (data.length > 0) {
-        setFormData(data[0]);
+        console.log(data)
       }
     });
   });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setFormData(values);
     if (validate()) {
       console.log(values);
-      setFormData(values);
       storeUserDetails();
-      navigate("/view-user-details", { state: { formData, uploadedImageRef } });
+      navigate("/view-user-details", { state: { values, uploadedImageRef } });
     } else {
       throw new DOMException("Validation failed.");
     }
