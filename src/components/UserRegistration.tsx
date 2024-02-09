@@ -72,7 +72,7 @@ export const UserRegistration = () => {
   const storeUserDetails = () => {
     const details = db
       .transaction("rw", db.userDetails, async () => {
-        if (await db.userDetails.where("id").equals(1).count()) {
+        if (await db.userDetails.count() <= 1) {
           await db.userDetails.update(1, values);
         } else {
           await db.userDetails.add({ ...values });
@@ -89,8 +89,7 @@ export const UserRegistration = () => {
   useEffect(() => {
     db.userDetails.toArray().then((data) => {
       if (data.length > 0) {
-        console.log(data);
-        values = data[0];
+        setFormData(data[0]);
       }
     });
   });
