@@ -4,6 +4,8 @@ export interface FormDataInterface{
     lastName: string;
     date: string;
     daysPerWeek: string;
+    contact: string;
+    email: string;
     address: string;
     streetAddress: string;
     city: string;

@@ -4,17 +4,14 @@ import { styles } from "../styles";
 import { media } from "../assets";
 import { LanguageSelect } from "./LanguageSelect";
 import {  useTranslation } from 'react-i18next'
-// import { useEffect } from "react";
 
 export const ViewUserDetail = () => {
   const { state } = useLocation();
-  const { formData, uploadedImageRef } = state;
+  const { values, uploadedImageRef } = state;
 
   const { t } = useTranslation();
 
-  // useEffect(() => {
-  //   console.log(formData)
-  // }, [formData])
+
 
   const navigate = useNavigate();
 
@@ -43,10 +40,10 @@ export const ViewUserDetail = () => {
 
         <div className="relative flex flex-col justify-center items-center lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 top-[182px] lg:w-[480px] lg:h-[522.56px] white-gradient rounded-[67.49px] opacity-100 m-auto md:w-[476px] md:h-[527.25px] md:top-[270px] sm:w-[476px] sm:h-[527.25px] sm:top-[270px] xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
           <div className="lg:mt-[65.54px] items-center">
-            <p className="text-white text-center text-3xl font-bold xsm:text-xl xsm:mt-9">
+            <p className="text-white text-center text-[33.75px] leading-[33.75px] lg:text-[33.75px] lg:leading-[33.75px] font-bold md:text-[24.35px] md:leading-[24.35px] sm:text-[24.35px] sm:leading-[24.35px] xsm:text-[15.91px] xsm:leading-[15.91px] xsm:mt-9">
               {t("Review Your")} <br /> {t("Information")}
             </p>
-            <p className="text-white text-center text-xs font-normal">
+            <p className="text-white text-center text-[12.66px] leading-[15.32px] lg:text-[12.66px] lg:leading-[15.32px] md:text-[9.13px] md:leading-[11.05px] sm:text-[9.13px] sm:leading-[11.05px] xsm:text-[7.97px] xsm:leading-[8.22px] font-normal">
               {t("Please take a moment to review")} <br /> {t("the information you've entered")}
             </p>
           </div>
@@ -62,37 +59,37 @@ export const ViewUserDetail = () => {
                 }
               />
             </div>
-            <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {formData?.firstName} {formData?.lastName}{" "}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] font-bold xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.firstName} {values?.lastName}{" "}
             </p>
-            <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.date}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.date}
             </p>
-            <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.daysPerWeek}{" "}
-              {formData.daysPerWeek ? <span>Days per week</span> : ""}{" "}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.daysPerWeek}{" "}
+              {values.daysPerWeek ? <span>Days per week</span> : ""}{" "}
             </p>
-            <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.address}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.address}
             </p>
-            <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.streetAddress} {formData?.city}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.streetAddress} {values?.city}
             </p>
-            <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.province}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.province}
             </p>
-            <p className="text-primary text-center text-2xl xsm:text-xl">
-              {formData?.country}
+            <p className="text-primary text-center text-2xl md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.country}
             </p>
-            <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {formData?.skills}
+            <p className="text-primary text-center text-2xl font-bold md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.skills}
             </p>
-            <p className="text-primary text-center text-2xl font-bold xsm:text-xl">
-              {formData?.interest}
+            <p className="text-primary text-center text-2xl font-bold md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+              {values?.interest}
             </p>
           </div>
           <button
-            className="register-form-submit lg:text-primary lg:h-14 lg:w-32 lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:text-xl lg:px-8 lg:pr-4 lg:pl-4 xsm:rounded-[6px] xsm:w-[62.04px] xsm:text-xs xsm:px-2 xsm:py-2 xsm:text-primary xsm:font-bold xsm:mt-[18.5px]"
+            className="register-form-submit lg:text-primary lg:h-14 lg:w-32 lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:text-xl lg:px-8 lg:pr-4 lg:pl-4 md:text-[15.22px] md:leading-[18.42px] md:w-[94.96px] md:rounded-[9.13px] sm:text-[15.22px] sm:leading-[18.42px] sm:w-[94.96px] sm:rounded-[9.13px] xsm:rounded-[6px] xsm:w-[62.04px] xsm:text-xs xsm:px-2 xsm:py-2 xsm:text-primary xsm:font-bold xsm:mt-[18.5px]"
             onClick={handleSubmit}
           >
             {t("Submit")}
