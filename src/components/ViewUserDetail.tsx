@@ -4,7 +4,6 @@ import { styles } from "../styles";
 import { media } from "../assets";
 import { LanguageSelect } from "./LanguageSelect";
 import {  useTranslation } from 'react-i18next'
-import { useEffect } from "react";
 
 export const ViewUserDetail = () => {
   const { state } = useLocation();
@@ -12,9 +11,7 @@ export const ViewUserDetail = () => {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    console.log(values)
-  }, [values])
+
 
   const navigate = useNavigate();
 

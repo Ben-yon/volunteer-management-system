@@ -12,20 +12,20 @@ import Modal from "../widgets/Modal";
 
 export const UserRegistration = () => {
   const uploadedImageRef = useRef<string | undefined>(media.upload);
-  const [formData, setFormData] = useState<FormDataInterface>({
-    firstName: "",
-    lastName: "",
-    date: "",
-    daysPerWeek: "",
-    address: "",
-    streetAddress: "",
-    city: "",
-    province: "",
-    postalCode: "",
-    occupation: "",
-    skills: "",
-    interest: "",
-  });
+  // const [formData, setFormData] = useState<FormDataInterface>({
+  //   firstName: "",
+  //   lastName: "",
+  //   date: "",
+  //   daysPerWeek: "",
+  //   address: "",
+  //   streetAddress: "",
+  //   city: "",
+  //   province: "",
+  //   postalCode: "",
+  //   occupation: "",
+  //   skills: "",
+  //   interest: "",
+  // });
 
   const updateAvatar = (imgSrc: string | undefined): void => {
     uploadedImageRef.current = imgSrc;
@@ -40,6 +40,8 @@ export const UserRegistration = () => {
     lastName: { required: true, minLength: 2 },
     date: { required: true },
     daysPerWeek: { required: true, isNumber: true, isDayOfWeek: true },
+    contact: {required: true},
+    email: {required: true, email: true},
     address: { required: true },
     streetAddress: { required: true },
     city: { required: true },
@@ -58,6 +60,8 @@ export const UserRegistration = () => {
         date: "",
         daysPerWeek: "",
         address: "",
+        contact: "",
+        email: "",
         streetAddress: "",
         city: "",
         province: "",
@@ -69,7 +73,7 @@ export const UserRegistration = () => {
       validationRules
     );
 
-  const storeUserDetails = () => {
+  const storeUserDetails = async () => {
     const details = db
       .transaction("rw", db.userDetails, async () => {
           await db.userDetails.add({ ...values });
@@ -80,22 +84,31 @@ export const UserRegistration = () => {
     return details;
   };
 
+  const clearData = async () => {
+    try{
+      await db.userDetails.clear()
+      console.log('data cleared')
+    }catch(error){
+      console.error(error)
+    }
+  }
+
   const navigate = useNavigate();
 
   useEffect(() => {
     db.userDetails.toArray().then((data) => {
       if (data.length > 0) {
-        console.log(data)
+        values = data[0]
       }
     });
   });
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFormData(values);
+    // setFormData(values);
+    await clearData();
     if (validate()) {
-      console.log(values);
-      storeUserDetails();
+      await storeUserDetails();
       navigate("/view-user-details", { state: { values, uploadedImageRef } });
     } else {
       throw new DOMException("Validation failed.");
@@ -223,6 +236,38 @@ export const UserRegistration = () => {
                       {errors.daysPerWeek && (
                         <span className="text-gray-100 text-[10px]">
                           {errors.daysPerWeek}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex">
+                    <div className="flex flex-col">
+                      <input
+                        type="text"
+                        className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] lg:w-[282px] lg:h-[54px] border focus:outline-none rounded-[15px] mt-[15px] mr-[20px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[243.28px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[143.28px] xsm:h-[37.23px] xsm:rounded-[10.42px] xsm:text-[10.81px] xsm:pl-[9px]"
+                        placeholder={t("Contact")}
+                        name="contact"
+                        value={values.contact}
+                        onChange={handleChange}
+                      />
+                      {errors.contact && (
+                        <span className="text-gray-100 text-[10px]">
+                          {errors.contact}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-col">
+                      <input
+                        type="text"
+                        className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] focus:outline-none border rounded-[15px] mt-[15px] lg:w-[412px] lg:h-[54px] lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[259.73px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
+                        placeholder={t("Email")}
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                      />
+                      {errors.interest && (
+                        <span className="text-gray-100 text-[10px]">
+                          {errors.interest}
                         </span>
                       )}
                     </div>
