@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.0",
     "@types/react-table": "^7.7.19",
     "autoprefixer": "^10.4.16",
     "dexie": "^3.2.4",
@@ -23,8 +24,11 @@
     "react-image-crop": "^11.0.5",
     "react-router-dom": "^6.21.1",
     "react-table": "^7.8.0",
+    "split-type": "^0.3.4",
     "tailwindcss": "^3.4.0",
     "vite-plugin-pwa": "^0.17.5",
+    "workbox-build": "^7.0.0",
+    "workbox-window": "^7.0.0",
     "yarn": "^1.22.21"
   },
   "devDependencies": {

@@ -1,21 +1,31 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { media } from "../assets";
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { LanguageSelect } from "./LanguageSelect";
+import { useGSAP } from '@gsap/react';
 
 export const SuccessfulRegistration = () => {
   const checkmarkElement = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    if (checkmarkElement.current) {
-      gsap.from(checkmarkElement.current, {
-        y: 150,
-        duration: 2.5,
-        ease: "circ.out",
-        yoyo: true,
-        repeat: 1,
-      });
-    }
+  useGSAP(() => {
+      const tl = gsap.timeline({paused: false, repeat: 0});
+
+      tl.fromTo(
+        checkmarkElement.current,
+        { 
+          y: '100%',
+          duration: 3, 
+          rotate: '180%',
+          ease: 'power1.inout' 
+
+        },
+        {
+          y: '%',
+          duration: 1, 
+          rotate: '360%',
+          ease: 'power1.inOut'
+        }
+      )
   }, []);
 
   return (
