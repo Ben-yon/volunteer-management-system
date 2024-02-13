@@ -1,9 +1,33 @@
 import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
+import SplitType from 'split-type';
+import { useGSAP } from '@gsap/react';
+import { gsap } from "gsap";
 
 export const AdminLandingPage = () => {
   const navigate = useNavigate();
+
+
+  
+  useGSAP(() => {
+      SplitType.create('#hello');
+      const tl = gsap.timeline({paused: false, repeat: 0})
+
+      tl.from('.char', {
+        scale: 1,
+        x: '-150px',
+        duration: 1,
+        repeat: 0,
+        ease: 'power2.inOut',
+        yoyo: true,
+        stagger: {
+          each: 0.2
+        }
+      },
+      )
+
+    })
 
   const handleSignIn = () => {
     navigate("sign-in");
@@ -30,7 +54,7 @@ export const AdminLandingPage = () => {
           className="absolute top-[29px] lg:absolute lg:top-[29px] left-[27px] lg:h-[90px] lg:w-[220px] md:w-[136px] md:h-[56px] md:absolute md:top-[29px] md:left[29px] sm:w-[120px] sm:h-[49px] sm:top-[24px] xsm:w-[90px] xsm:h-[37px] xsm:absolute xsm:top-[11px]"
         />
         <div className="flex flex-col justify-center items-center min-h-screen">
-          <h2 className="text-tertiary font-leelawadee font-semibold text-center text-[274.26px] leading-[327.96px] lg:text-[274.26px] lg:leading-[327.96px] md:text-[170.17px] md:leading-[203.48px] sm:text-[170.17px] sm:leading-[203.48px] xsm:text-[97.54px] xsm:leading-[116.64px] ">
+          <h2 id="hello" className="text-tertiary font-leelawadee font-semibold text-center text-[274.26px] leading-[327.96px] lg:text-[274.26px] lg:leading-[327.96px] md:text-[170.17px] md:leading-[203.48px] sm:text-[170.17px] sm:leading-[203.48px] xsm:text-[97.54px] xsm:leading-[116.64px]">
             Hello
           </h2>
           <p className="relative -top-72 left-64 font-leelawadee font-semibold text-tertiary text-[59.62px] leading-[73.04px] lg:-top-72 lg:left-64 lg:text-[59.62px] lg:leading-[73.04px] md:text-[36.99px] md:leading-[45.32px] md:-top-44 md:left-40 sm:text-[36.99px] sm:leading-[45.32px] sm:-top-44 sm:left-40 xsm:text-[21.1px] xsm:leading-[25.98px] xsm:-top-[100px] xsm:left-[90px]">
