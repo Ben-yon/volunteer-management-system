@@ -16,7 +16,7 @@ export const AdminLandingPage = () => {
 
       tl.from('.char', {
         scale: 1,
-        x: '-150px',
+        x: '-950px',
         duration: 1,
         repeat: 0,
         ease: 'power2.inOut',
