@@ -21,7 +21,7 @@ export const SuccessfulRegistration = () => {
         },
         {
           y: '%',
-          duration: 1, 
+          duration: 0.4, 
           rotate: '360%',
           ease: 'power1.inOut'
         }
@@ -35,7 +35,7 @@ export const SuccessfulRegistration = () => {
           <img
             src={media.lang_white}
             alt="language"
-            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+            className="w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px] md:w-[31px] md:h-[29.1px] sm:w-[31px] sm:h-[29.1px] xsm:w-[14.2px] xsm:h-[14.0px]"
           />
           <LanguageSelect />
         </div>
@@ -46,7 +46,7 @@ export const SuccessfulRegistration = () => {
             className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="relative flex flex-col items-center top-[100px] w-[493px] h-[506.7px] lg:relative lg:flex lg:flex-col lg:items-center lg:top-[100px] lg:w-[493px] lg:h-[506.7px] white-gradient lg:rounded-[67.49px] lg:opacity-100 m-auto md:w-[428px] md:h-[473.59px] md:m-auto md:top-[140px] md:rounded-[50.65px] sm:w-[428px] sm:h-[473.59px] sm:top-[140px] sm:rounded-[50.65px] xsm:w-[240px] xsm:h-auto xsm:relative xsm:p-8 xsm:flex xsm:flex-col xsm:top-24 xsm:m-auto xsm:rounded-[20px] xsm:items-center">
+        <div className="relative flex flex-col items-center justify-center top-[100px] w-[493px] h-[506.7px] lg:relative lg:flex lg:flex-col lg:items-center lg:top-[100px] lg:w-[493px] lg:h-[506.7px] white-gradient lg:rounded-[67.49px] lg:opacity-100 m-auto md:w-[428px] md:h-[473.59px] md:m-auto md:top-[140px] md:rounded-[50.65px] sm:w-[428px] sm:h-[473.59px] sm:top-[140px] sm:rounded-[50.65px] xsm:w-[240px] xsm:h-auto xsm:relative xsm:p-8 xsm:flex xsm:flex-col xsm:top-24 xsm:m-auto xsm:rounded-[20px] xsm:items-center">
           <h2 className="lg:text-primary lg:text-4xl font-bold lg:mt-28 xsm:text-xl xsm:font-extrabold xsm:mt-6 xsm:text-primary">
             Great!
           </h2>

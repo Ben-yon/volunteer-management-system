@@ -124,7 +124,7 @@ export const UserRegistration = () => {
           <img
             src={media.lang_white}
             alt="language"
-            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+            className="w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px] md:w-[31px] md:h-[29.1px] sm:w-[31px] sm:h-[29.1px] xsm:w-[14.2px] xsm:h-[14.0px]"
           />
           <LanguageSelect />
         </div>
