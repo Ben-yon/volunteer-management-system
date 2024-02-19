@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { TableData } from "../../interfaces/TablePropsInterface";
 import { media } from "../../assets";
 
+import { BarChart, Bar, XAxis, ResponsiveContainer } from 'recharts';
+
 export const VolunteerDetails = () => {
   const [userDetails, setUserDetails] = useState<TableData | undefined>({
     id: 0,
@@ -18,6 +20,7 @@ export const VolunteerDetails = () => {
   const { id } = useParams();
 
   const userDetailsSet = data;
+  const daysOfWeek = [{name: 'Sunday', worked: 2}, {name:'Monday', worked: 5}, {name: 'Tuesday', worked: 7}, {name: 'Wednesday', worked: 2}, {name: 'Thursday', worked: 4}, {name: 'Friday', worked: 0}, {name:'Saturday', worked: 4}]
 
   useEffect(() => {
     let convertedId = parseInt(id!);
@@ -82,7 +85,13 @@ export const VolunteerDetails = () => {
             </p>
           </div>
           <div className="w-[374px] h-[237px] ml-[40px] rounded-[20px] details-availability-card">
-            h
+            <ResponsiveContainer>
+              <BarChart width={150} data={daysOfWeek} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
+                <XAxis stroke="#E80000B2" strokeWidth={10} padding={{ left: 30}} />
+                <Bar dataKey="worked" fill="#E80000"/>
+              </BarChart>
+              
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
@@ -94,7 +103,7 @@ export const VolunteerDetails = () => {
             <span>{userDetails?.interests}, reading</span>
           </p>
         </div>
-        <div className="flex justify-center items-center space-x-2 mt-[12px] -ml-10 text-[12px] leading-[14.52px]">
+        <div className="flex justify-center items-center space-x-2 mt-[12px] text-[12px] leading-[14.52px]">
           <img src={media.location} alt="" className="w-[68px] h-[68px]" />
           <div className="text-primary flex flex-col">
             <h2 className="font-bold">Location</h2>
