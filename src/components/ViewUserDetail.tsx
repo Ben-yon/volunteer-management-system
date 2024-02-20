@@ -20,13 +20,13 @@ export const ViewUserDetail = () => {
   };
 
   return (
-    <div className="lg:relative bg-success bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[100vw] sm:overflow-none ">
-      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[100vh] md:h-[100vh]  sm:h-[100vh] sm:relative xsm:h-[100vh]">
+    <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[100vw] sm:overflow-none ">
+      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[100vh] md:h-[100vh] sm:h-[100vh] sm:relative xsm:h-[100vh]">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
             src={media.lang_white}
             alt="language"
-            className=" w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px]"
+            className="w-[31px] h-[29.1px] lg:w-[31px] lg:h-[29.1px] md:w-[31px] md:h-[29.1px] sm:w-[31px] sm:h-[29.1px] xsm:w-[14.2px] xsm:h-[14.0px]"
           />
           <LanguageSelect />
         </div>
@@ -37,7 +37,7 @@ export const ViewUserDetail = () => {
             className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="relative flex flex-col justify-center items-center lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 top-[182px] lg:w-[480px] lg:h-[682.56px] white-gradient rounded-[67.49px] opacity-100 m-auto md:w-[476px] md:h-[527.25px] md:top-[270px] sm:w-[476px] sm:h-[527.25px] sm:top-[270px] xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
+        <div className="relative flex flex-col justify-center items-center text-center lg:relative lg:flex lg:flex-col lg:items-center lg:justify-center lg:top-20 top-[182px] lg:w-[680px] lg:h-[682.56px] white-gradient rounded-[67.49px] opacity-100 m-auto md:w-[476px] md:h-[527.25px] md:top-[270px] sm:w-[476px] sm:h-[527.25px] sm:top-[270px] xsm:w-[277px] xsm:h-[342px] xsm:rounded-[47.1px] xsm:relative xsm:top-[163.43px] xsm:flex xsm:flex-col xsm:items-center">
           <div className="lg:mt-[65.54px] items-center">
             <p className="text-white  text-[33.75px] leading-[33.75px] lg:text-[33.75px] lg:leading-[33.75px] font-bold md:text-[24.35px] md:leading-[24.35px] sm:text-[24.35px] sm:leading-[24.35px] xsm:text-[15.91px] xsm:leading-[15.91px] xsm:mt-9">
               {t("Review Your")} <br /> {t("Information")}

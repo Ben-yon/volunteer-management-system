@@ -3,12 +3,15 @@ import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import { AdminSignInFormData } from "../../interfaces/FormDataInterface";
+import { useNavigate } from "react-router-dom";
 
 export const AdminSignIn = () => {
   const ValidationRules = {
     email: { required: true, email: true },
     password: { required: true, password: true },
   };
+
+  const navigate = useNavigate();
 
   const { values, errors, handleChange, validate } =
     useFormValidation<AdminSignInFormData>(
@@ -22,6 +25,7 @@ export const AdminSignIn = () => {
     e.preventDefault();
     if (validate()) {
       console.log("Form submitted", values);
+      navigate('/profile-management')
     } else {
       console.log("Form validation failed:", errors);
     }
