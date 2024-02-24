@@ -20,8 +20,8 @@ export const ViewUserDetail = () => {
   };
 
   return (
-    <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100%] sm:w-[100vw] sm:overflow-none ">
-      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[100vh] md:h-[100vh] sm:h-[100vh] sm:relative xsm:h-[100vh]">
+    <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[130vh] md:w-[100vw] md:h-[120%] sm:w-[100vw] sm:overflow-none ">
+      <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[130vh] md:h-[130vh] sm:h-[100vh] sm:relative xsm:h-[100vh]">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
             src={media.lang_white}
@@ -95,7 +95,7 @@ export const ViewUserDetail = () => {
           </button>
           <button
             className="rounded-full w-[10px] h-[10px] p-4 bg-primary mt-[16.03px] font-bold flex  justify-center items-center"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/')}
           >
             &lt;
           </button>

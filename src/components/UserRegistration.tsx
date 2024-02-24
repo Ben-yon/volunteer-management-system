@@ -17,6 +17,8 @@ export const UserRegistration = () => {
   //   lastName: "",
   //   date: "",
   //   daysPerWeek: "",
+  //   email: "",
+  //   contact: "",
   //   address: "",
   //   streetAddress: "",
   //   city: "",
@@ -94,11 +96,14 @@ export const UserRegistration = () => {
   }
 
   const navigate = useNavigate();
+  
 
   useEffect(() => {
     db.userDetails.toArray().then((data) => {
       if (data.length > 0) {
+        // console.log(data)
         values = data[0]
+        console.log(values)
       }
     });
   });
