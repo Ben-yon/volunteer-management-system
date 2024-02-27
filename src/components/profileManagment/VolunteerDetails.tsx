@@ -11,7 +11,7 @@ export const VolunteerDetails = () => {
     id: 0,
     fullname: "",
     jobTitle: "",
-    date_of_birth: "string",
+    date_of_birth: "",
     address: "",
     interests: "",
     days_available_per_week: 0,
