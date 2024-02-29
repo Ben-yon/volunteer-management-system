@@ -11,6 +11,8 @@ import { useFormValidation } from "../utils/validate";
 import Modal from "../widgets/Modal";
 
 export const UserRegistration = () => {
+  const [ currentPage, setCurrentPage ] = useState<number>(0)
+
   const uploadedImageRef = useRef<string | undefined>(media.upload);
   // const [formData, setFormData] = useState<FormDataInterface>({
   //   firstName: "",
@@ -28,6 +30,14 @@ export const UserRegistration = () => {
   //   skills: "",
   //   interest: "",
   // });
+
+  // const gotoPage = (pageNumber: number) => {
+  //   setCurrentPage(pageNumber);
+  // }
+
+  // const nextPage = () => {
+  //   setCurrentPage((prevPage) => prevPage + 1)
+  // }
 
   const updateAvatar = (imgSrc: string | undefined): void => {
     uploadedImageRef.current = imgSrc;
@@ -123,7 +133,7 @@ export const UserRegistration = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] bg-hero bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
+    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
       <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-full">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
