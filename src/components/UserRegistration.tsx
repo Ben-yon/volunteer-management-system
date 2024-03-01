@@ -11,7 +11,7 @@ import { useFormValidation } from "../utils/validate";
 import Modal from "../widgets/Modal";
 
 export const UserRegistration = () => {
-  const [ currentPage, setCurrentPage ] = useState<number>(0)
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const uploadedImageRef = useRef<string | undefined>(media.upload);
   // const [formData, setFormData] = useState<FormDataInterface>({
@@ -52,8 +52,8 @@ export const UserRegistration = () => {
     lastName: { required: true, minLength: 2 },
     date: { required: true },
     daysPerWeek: { required: true, isNumber: true, isDayOfWeek: true },
-    contact: {required: true},
-    email: {required: true, email: true},
+    contact: { required: true },
+    email: { required: true, email: true },
     address: { required: true },
     streetAddress: { required: true },
     city: { required: true },
@@ -88,7 +88,7 @@ export const UserRegistration = () => {
   const storeUserDetails = async () => {
     const details = db
       .transaction("rw", db.userDetails, async () => {
-          await db.userDetails.add({ ...values });
+        await db.userDetails.add({ ...values });
       })
       .catch((error) => {
         console.error("Dexie error", error);
@@ -97,23 +97,22 @@ export const UserRegistration = () => {
   };
 
   const clearData = async () => {
-    try{
-      await db.userDetails.clear()
-      console.log('data cleared')
-    }catch(error){
-      console.error(error)
+    try {
+      await db.userDetails.clear();
+      console.log("data cleared");
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     db.userDetails.toArray().then((data) => {
       if (data.length > 0) {
         // console.log(data)
-        values = data[0]
-        console.log(values)
+        values = data[0];
+        console.log(values);
       }
     });
   });
