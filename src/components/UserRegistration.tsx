@@ -31,9 +31,10 @@ export const UserRegistration = () => {
   //   interest: "",
   // });
 
-  // const gotoPage = (pageNumber: number) => {
-  //   setCurrentPage(pageNumber);
-  // }
+  //@ts-ignore
+  const gotoPage = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  }
 
   // const nextPage = () => {
   //   setCurrentPage((prevPage) => prevPage + 1)
@@ -130,6 +131,26 @@ export const UserRegistration = () => {
   };
 
   const [modalOpen, setModalOpen] = useState(false);
+
+  const formSection = [
+    {
+      title: 'Register',
+      content: <div className="xsm:flex xsm:flex-col xsm:items-center xsm:justify-center">
+      <h2 className="text-[29.09px] leading-[35.21px] font-extrabold text-primary">
+        Welcome
+      </h2>
+      <img src={`${media.mcss}`} className="w-[150.12px] h-[150.12px]" />
+      <p className="text-primary text-center w-[261.84px] h-[107.06px] text-[11.64px] leading-[14.08px] font-bold">
+        We’re an incorporated Black and Racialized-led and serving
+        community-based multi-services agency that delivers a continuum of
+        programs and services in the Lower Mainland of British Columbia. 
+      </p>
+      <button className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-semibold">Register as a Volunteer</button>
+    </div>
+    },
+
+
+  ]
 
   return (
     <div className="relative filter min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
@@ -419,17 +440,8 @@ export const UserRegistration = () => {
               </form>
             </div>
           </div>
-          <div className="lg:hidden md:hidden sm:hidden xsm:flex xsm:flex-col xsm:items-center xsm:justify-center">
-            <h2 className="text-[29.09px] leading-[35.21px] font-extrabold text-primary">
-              Welcome
-            </h2>
-            <img src={`${media.mcss}`} className="w-[150.12px] h-[150.12px]" />
-            <p className="text-primary text-center w-[261.84px] h-[107.06px] text-[11.64px] leading-[14.08px] font-bold">
-              We’re an incorporated Black and Racialized-led and serving
-              community-based multi-services agency that delivers a continuum of
-              programs and services in the Lower Mainland of British Columbia. 
-            </p>
-            <button className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-semibold">Register as a Volunteer</button>
+          <div className="lg:hidden md:hidden sm:hidden">
+              {formSection[currentPage].content}
           </div>
         </div>
       </div>
