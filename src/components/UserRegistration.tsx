@@ -132,7 +132,7 @@ export const UserRegistration = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="relative filter flex items-center justify-center min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
+    <div className="relative filter min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
       <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-full">
         <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
           <img
@@ -149,8 +149,8 @@ export const UserRegistration = () => {
             className="absolute w-[221px] h-[90px] right-[35px] bottom-[30px] lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[30px] lg:right-[35px] md:absolute md:w-[133px] md:h-[55px] md:bottom-[32px] md:right-[31px]  sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="flex items-center justify-center min-h-screen  lg:flex lg:items-center m-auto lg:justify-center">
-          <div className="relative flex items-center justify-center lg:relative lg:flex lg:left-92 lg:justify-center lg:items-center md:absolute md:top-0 sm:block sm:w-[100vw] sm:top-0">
+        <div className="flex items-center justify-center min-h-screen lg:flex lg:items-center m-auto lg:justify-center">
+          <div className="relative flex items-center justify-center lg:relative lg:flex lg:left-92 lg:justify-center lg:items-center md:absolute md:top-0 sm:block sm:w-[100vw] sm:top-0 xsm:hidden">
             <div className="lg:flex sm:block md:block xsm:hidden">
               <ImageSlideshow
                 images={[
@@ -162,14 +162,14 @@ export const UserRegistration = () => {
             </div>
             <div className="flex items-center justify-center lg:flex md:flex sm:p-10 sm:ml-[43px] xsm:p-8 xsm:items-center">
               <form onSubmit={handleSubmit}>
-                <strong className="text-primary mt-15 text-[50px] leading-[60.51px] lg:text-[50px] lg:leading-[60.51px] md:text-[34.63px] md:leading-[41.91px] sm:text-[34.63px] sm:leading-[41.91px] xsm:text-[20.48px] xsm:leading-[23.57px] xsm:mt-0">
+                <strong className="text-primary mt-15 text-[50px] leading-[60.51px] lg:text-[50px] lg:leading-[60.51px] md:text-[34.63px] md:leading-[41.91px] sm:text-[34.63px] sm:leading-[41.91px] xsm:hidden xsm:text-[20.48px] xsm:leading-[23.57px] xsm:mt-0">
                   {t("Register")}
                 </strong>
-                <p className="text-primary text-[19px] leading-[22.99px] lg:text-[19px] lg:leading-[22.99px] md:text-[12.99px] md:leading-[15.72px] md:mt-[1.29px] sm:text-[12.99px] sm:leading-[15.72px] sm:mt-[1.29px] xsm:text-[12.3px]">
+                <p className="text-primary text-[19px] leading-[22.99px] lg:text-[19px] lg:leading-[22.99px] md:text-[12.99px] md:leading-[15.72px] md:mt-[1.29px] sm:text-[12.99px] sm:leading-[15.72px] sm:mt-[1.29px] xsm:hidden xsm:text-[12.3px]">
                   {t("Fill out this form to become a Volunteer")}
                 </p>
-                <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-">
-                  <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
+                <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-0">
+                  <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2 xsm:hidden">
                     <div
                       onClick={() => {
                         setModalOpen(true);
@@ -418,6 +418,18 @@ export const UserRegistration = () => {
                 </button>
               </form>
             </div>
+          </div>
+          <div className="lg:hidden md:hidden sm:hidden xsm:flex xsm:flex-col xsm:items-center xsm:justify-center">
+            <h2 className="text-[29.09px] leading-[35.21px] font-extrabold text-primary">
+              Welcome
+            </h2>
+            <img src={`${media.mcss}`} className="w-[150.12px] h-[150.12px]" />
+            <p className="text-primary text-center w-[261.84px] h-[107.06px] text-[11.64px] leading-[14.08px] font-bold">
+              We’re an incorporated Black and Racialized-led and serving
+              community-based multi-services agency that delivers a continuum of
+              programs and services in the Lower Mainland of British Columbia. 
+            </p>
+            <button className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-semibold">Register as a Volunteer</button>
           </div>
         </div>
       </div>
