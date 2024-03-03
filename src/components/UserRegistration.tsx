@@ -183,14 +183,14 @@ export const UserRegistration = () => {
             </div>
             <div className="flex items-center justify-center lg:flex md:flex sm:p-10 sm:ml-[43px] xsm:p-8 xsm:items-center">
               <form onSubmit={handleSubmit}>
-                <strong className="text-primary mt-15 text-[50px] leading-[60.51px] lg:text-[50px] lg:leading-[60.51px] md:text-[34.63px] md:leading-[41.91px] sm:text-[34.63px] sm:leading-[41.91px] xsm:hidden xsm:text-[20.48px] xsm:leading-[23.57px] xsm:mt-0">
+                <strong className="text-primary mt-15 text-[50px] leading-[60.51px] lg:text-[50px] lg:leading-[60.51px] md:text-[34.63px] md:leading-[41.91px] sm:text-[34.63px] sm:leading-[41.91px] xsm:text-[20.48px] xsm:leading-[23.57px] xsm:mt-0">
                   {t("Register")}
                 </strong>
-                <p className="text-primary text-[19px] leading-[22.99px] lg:text-[19px] lg:leading-[22.99px] md:text-[12.99px] md:leading-[15.72px] md:mt-[1.29px] sm:text-[12.99px] sm:leading-[15.72px] sm:mt-[1.29px] xsm:hidden xsm:text-[12.3px]">
+                <p className="text-primary text-[19px] leading-[22.99px] lg:text-[19px] lg:leading-[22.99px] md:text-[12.99px] md:leading-[15.72px] md:mt-[1.29px] sm:text-[12.99px] sm:leading-[15.72px] sm:mt-[1.29px] xsm:text-[12.3px]">
                   {t("Fill out this form to become a Volunteer")}
                 </p>
                 <div className="absolute mt-[35px] flex flex-col mr-[32px] sm:mt-[30.75px] sm:space-y-0">
-                  <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2 xsm:hidden">
+                  <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2">
                     <div
                       onClick={() => {
                         setModalOpen(true);
