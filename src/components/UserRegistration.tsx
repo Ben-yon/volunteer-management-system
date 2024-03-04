@@ -34,11 +34,7 @@ export const UserRegistration = () => {
   //@ts-ignore
   const gotoPage = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-  }
-
-  // const nextPage = () => {
-  //   setCurrentPage((prevPage) => prevPage + 1)
-  // }
+  };
 
   const updateAvatar = (imgSrc: string | undefined): void => {
     uploadedImageRef.current = imgSrc;
@@ -130,27 +126,353 @@ export const UserRegistration = () => {
     }
   };
 
+  const nextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const formSection = [
     {
-      title: 'Register',
-      content: <div className="xsm:flex xsm:flex-col xsm:items-center xsm:justify-center">
-      <h2 className="text-[29.09px] leading-[35.21px] font-extrabold text-primary">
-        Welcome
-      </h2>
-      <img src={`${media.mcss}`} className="w-[150.12px] h-[150.12px]" />
-      <p className="text-primary text-center w-[261.84px] h-[107.06px] text-[11.64px] leading-[14.08px] font-bold">
-        We’re an incorporated Black and Racialized-led and serving
-        community-based multi-services agency that delivers a continuum of
-        programs and services in the Lower Mainland of British Columbia. 
-      </p>
-      <button className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-semibold">Register as a Volunteer</button>
-    </div>
+      title: "landing page",
+      content: (
+        <div className="xsm:flex xsm:flex-col xsm:items-center xsm:justify-center">
+          <h2 className="text-[29.09px] leading-[35.21px] font-extrabold text-primary">
+            Welcome
+          </h2>
+          <img src={`${media.mcss}`} className="w-[150.12px] h-[150.12px]" />
+          <p className="text-primary text-center w-[261.84px] h-[107.06px] text-[11.64px] leading-[14.08px] font-bold">
+            We’re an incorporated Black and Racialized-led and serving
+            community-based multi-services agency that delivers a continuum of
+            programs and services in the Lower Mainland of British Columbia. 
+          </p>
+          <button
+            className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-semibold"
+            onClick={nextPage}
+          >
+            Register as a Volunteer
+          </button>
+        </div>
+      ),
     },
-
-
-  ]
+    {
+      title: "Profile picture upload",
+      content: (
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-[29px] leading-[35.1px] font-[700] text-primary">
+            Profile
+          </h2>
+          <p className="text-[10px] leading-[12.1px] text-primary mt-[3px] font-[400]">
+            Upload Your Profile Picture
+          </p>
+          <div className="sm:relative sm:bottom-2 xsm:relative xsm:bottom-2 mt-[79px]">
+            <div
+              onClick={() => {
+                setModalOpen(true);
+              }}
+            >
+              <img
+                src={uploadedImageRef.current}
+                className={`${styles.imageUploader} w-[153px] h-[153px]`}
+              />
+            </div>
+            {modalOpen && (
+              <Modal
+                updateAvatar={updateAvatar}
+                closeModal={() => setModalOpen(false)}
+              />
+            )}
+          </div>
+          <button
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[101px]"
+            onClick={nextPage}
+          >
+            Next
+          </button>
+        </div>
+      ),
+    },
+    {
+      title: "User Register 1",
+      content: (
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-primary font-[700] text-[29px] leading-[35.1px]">
+            Register
+          </h2>
+          <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
+            Fill out this form to become a volunteer
+          </p>
+          <form action="" className="mt-[60.99px]">
+            <label
+              htmlFor="firstname"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
+            >
+              First Name
+            </label>
+            <input
+              type="text"
+              value={values.firstName}
+              onChange={handleChange}
+              placeholder="enter first name"
+              name="firstName"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="lastname"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Last Name
+            </label>
+            <input
+              type="text"
+              value={values.lastName}
+              onChange={handleChange}
+              placeholder="enter last name"
+              name="lastName"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="date"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Date of Birth
+            </label>
+            <input
+              type="date"
+              value={values.date}
+              onChange={handleChange}
+              placeholder="DD/MM/YYYY"
+              name="date"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="daysOfWeek"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Days available per week
+            </label>
+            <input
+              type="text"
+              value={values.daysPerWeek}
+              onChange={handleChange}
+              placeholder="enter number of days available"
+              name="daysPerWeek"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+          </form>
+          <button
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            onClick={nextPage}
+          >
+            Next
+          </button>
+        </div>
+      ),
+    },
+    {
+      title: "User Register 2",
+      content: (
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-primary font-[700] text-[29px] leading-[35.1px]">
+            Register
+          </h2>
+          <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
+            Fill out this form to become a volunteer
+          </p>
+          <form action="" className="mt-[60.99px]">
+            <label
+              htmlFor="contact"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
+            >
+              Contact
+            </label>
+            <input
+              type="text"
+              value={values.contact}
+              onChange={handleChange}
+              placeholder="enter your contact number"
+              name="contact"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="Email"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              value={values.email}
+              onChange={handleChange}
+              placeholder="enter your email address"
+              name="email"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="address"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Address
+            </label>
+            <input
+              type="address"
+              value={values.address}
+              onChange={handleChange}
+              placeholder="enter your address"
+              name="address"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="streetAddress"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Street Address
+            </label>
+            <input
+              type="text"
+              value={values.streetAddress}
+              onChange={handleChange}
+              placeholder="enter your street address"
+              name="streetAddress"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+          </form>
+          <button
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            onClick={nextPage}
+          >
+            Next
+          </button>
+        </div>
+      ),
+    },
+    {
+      title: "User Register 3",
+      content: (
+        <div className="flex flex-col items-center justify-center">
+          <h2 className="text-primary font-[700] text-[29px] leading-[35.1px]">
+            Register
+          </h2>
+          <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
+            Fill out this form to become a volunteer
+          </p>
+          <form action="" className="mt-[60.99px]">
+            <label
+              htmlFor="city"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
+            >
+              City
+            </label>
+            <input
+              type="text"
+              value={values.city}
+              onChange={handleChange}
+              placeholder="enter your city"
+              name="city"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="state"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              State/Province/Region
+            </label>
+            <input
+              type="text"
+              value={values.province}
+              onChange={handleChange}
+              placeholder="enter your state/province/region"
+              name="province"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="zipcode"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              ZIP/Postal Code
+            </label>
+            <input
+              type="text"
+              value={values.postalCode}
+              onChange={handleChange}
+              placeholder="enter your zip/postal code"
+              name="postalCode"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+            <label
+              htmlFor="occupation"
+              className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+            >
+              Occupation
+            </label>
+            <input
+              type="text"
+              value={values.occupation}
+              onChange={handleChange}
+              placeholder="enter your occupation"
+              name="occupation"
+              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+            />
+          </form>
+          <button
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            onClick={nextPage}
+          >
+            Next
+          </button>
+        </div>
+      ),
+    },
+      {
+        title: "User Register 4",
+        content: (
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="text-primary font-[700] text-[29px] leading-[35.1px]">
+              Register
+            </h2>
+            <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
+              Fill out this form to become a volunteer
+            </p>
+            <form action="" className="mt-[60.99px]">
+              <label
+                htmlFor="skills"
+                className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
+              >
+                Skills
+              </label>
+              <input
+                type="text"
+                value={values.skills}
+                onChange={handleChange}
+                placeholder="enter your skills"
+                name="skills"
+                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+              />
+              <label
+                htmlFor="interests"
+                className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
+              >
+                Interests
+              </label>
+              <input
+                type="text"
+                value={values.interest}
+                onChange={handleChange}
+                placeholder="enter your interests"
+                name="interests"
+                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+              />
+            </form>
+            <button
+              className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+              onClick={nextPage}
+            >
+              Register
+            </button>
+          </div>
+        ),
+      },
+  ];
 
   return (
     <div className="relative filter min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
@@ -441,7 +763,7 @@ export const UserRegistration = () => {
             </div>
           </div>
           <div className="lg:hidden md:hidden sm:hidden">
-              {formSection[currentPage].content}
+            {formSection[currentPage].content}
           </div>
         </div>
       </div>
