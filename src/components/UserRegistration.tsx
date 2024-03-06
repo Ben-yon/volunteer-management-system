@@ -218,7 +218,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter first name"
                 name="firstName"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.firstName && (
                 <span className="text-gray-100 text-[10px]">
@@ -239,7 +239,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter last name"
                 name="lastName"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.lastName && (
                 <span className="text-gray-100 text-[10px]">
@@ -279,7 +279,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter number of days available"
                 name="daysPerWeek"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.daysPerWeek && (
                 <span className="text-gray-100 text-[10px]">
@@ -321,7 +321,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your contact number"
                 name="contact"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.contact && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -342,7 +342,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your email address"
                 name="email"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.email && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -363,7 +363,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your address"
                 name="address"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.address && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -384,7 +384,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your street address"
                 name="streetAddress"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.streetAddress && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -426,7 +426,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your city"
                 name="city"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.city && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -447,7 +447,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your state/province/region"
                 name="province"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.province && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -468,7 +468,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your zip/postal code"
                 name="postalCode"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.postalCode && (
                 <span className="text-gray-100 text-[6.1px]">
@@ -489,7 +489,7 @@ export const UserRegistration = () => {
                 onChange={handleChange}
                 placeholder="enter your occupation"
                 name="occupation"
-                className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+                className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.occupation && (
                 <span className="text-gray-100 tex-[6.1px]">
@@ -530,7 +530,7 @@ export const UserRegistration = () => {
               onChange={handleChange}
               placeholder="enter your skills"
               name="skills"
-              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+              className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
             />
             <label
               htmlFor="interests"
@@ -544,7 +544,7 @@ export const UserRegistration = () => {
               onChange={handleChange}
               placeholder="enter your interests"
               name="interests"
-              className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
+              className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
             />
           </form>
           <button
