@@ -129,9 +129,7 @@ export const UserRegistration = () => {
   };
 
   const nextPage = () => {
-    if (validate()) {
       setCurrentPage((prevPage) => prevPage + 1);
-    }
   };
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -206,7 +204,7 @@ export const UserRegistration = () => {
           <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
             Fill out this form to become a volunteer
           </p>
-          <form action="" className="mt-[60.99px]">
+          <div className="mt-[60.99px]">
             <label
               htmlFor="firstname"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
@@ -289,7 +287,7 @@ export const UserRegistration = () => {
                 </span>
               )}
             </div>
-          </form>
+          </div>
           <button
             className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
             onClick={nextPage}
@@ -309,7 +307,7 @@ export const UserRegistration = () => {
           <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
             Fill out this form to become a volunteer
           </p>
-          <form action="" className="mt-[60.99px]">
+          <div className="mt-[60.99px]">
             <label
               htmlFor="contact"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
@@ -394,7 +392,7 @@ export const UserRegistration = () => {
                 </span>
               )}
             </div>
-          </form>
+          </div>
           <button
             className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
             onClick={nextPage}
@@ -414,7 +412,7 @@ export const UserRegistration = () => {
           <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
             Fill out this form to become a volunteer
           </p>
-          <form action="" className="mt-[60.99px]">
+          <div className="mt-[60.99px]">
             <label
               htmlFor="city"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
@@ -499,7 +497,7 @@ export const UserRegistration = () => {
                 </span>
               )}
             </div>
-          </form>
+          </div>
           <button
             className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
             onClick={nextPage}
@@ -519,7 +517,7 @@ export const UserRegistration = () => {
           <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
             Fill out this form to become a volunteer
           </p>
-          <form action="" className="mt-[60.99px]">
+          <form className="mt-[60.99px]" onSubmit={handleSubmit}>
             <label
               htmlFor="skills"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
@@ -551,7 +549,6 @@ export const UserRegistration = () => {
           </form>
           <button
             className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
-            onClick={nextPage}
           >
             Register
           </button>
