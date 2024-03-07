@@ -1,32 +1,34 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { media } from "../assets";
 import { gsap } from "gsap";
 import { LanguageSelect } from "./LanguageSelect";
-import { useGSAP } from '@gsap/react';
+import { useGSAP } from "@gsap/react";
 
 export const SuccessfulRegistration = () => {
   const checkmarkElement = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
-      const tl = gsap.timeline({paused: false, repeat: 0});
+    const tl = gsap.timeline({ paused: false, repeat: 0 });
 
-      tl.fromTo(
-        checkmarkElement.current,
-        { 
-          y: '100%',
-          duration: 3, 
-          rotate: '180%',
-          ease: 'power1.inout' 
-
-        },
-        {
-          y: '%',
-          duration: 0.4, 
-          rotate: '360%',
-          ease: 'power1.inOut'
-        }
-      )
+    tl.fromTo(
+      checkmarkElement.current,
+      {
+        y: "100%",
+        duration: 3,
+        rotate: "180%",
+        ease: "power1.inout",
+      },
+      {
+        y: "%",
+        duration: 0.4,
+        rotate: "360%",
+        ease: "power1.inOut",
+      }
+    );
   }, []);
+
+  const navigate = useNavigate();
 
   return (
     <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:[100vh] sm:overflow-none ">
@@ -63,7 +65,10 @@ export const SuccessfulRegistration = () => {
               ref={checkmarkElement}
             />
           </div>
-          <button className="register-form-submit lg:text-primary lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:py-3 lg:px-6 xsm:rounded-[5.24px] xsm:text-xs xsm:px-3 xsm:py-2 xsm:text-center xsm:text-primary xsm:font-bold">
+          <button
+            className="register-form-submit lg:text-primary lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:py-3 lg:px-6 xsm:rounded-[5.24px] xsm:text-xs xsm:px-3 xsm:py-2 xsm:text-center xsm:text-primary xsm:font-bold"
+            onClick={() => navigate('/')}
+          >
             MCSS
           </button>
         </div>

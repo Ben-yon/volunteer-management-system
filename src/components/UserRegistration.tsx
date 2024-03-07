@@ -127,6 +127,13 @@ export const UserRegistration = () => {
       throw new DOMException("Validation failed.");
     }
   };
+  const formSubmitMobile = async () => {
+    // setFormData(values);
+    await clearData();
+      await storeUserDetails();
+      navigate("/view-user-details", { state: { values, uploadedImageRef } });
+
+  };
 
   const nextPage = () => {
       setCurrentPage((prevPage) => prevPage + 1);
@@ -517,7 +524,7 @@ export const UserRegistration = () => {
           <p className="text-primary text-[10px] leading-[12.px] mt-[5.79px] font-[400] text-center w-[98px] h-[24px]">
             Fill out this form to become a volunteer
           </p>
-          <form className="mt-[60.99px]" onSubmit={handleSubmit}>
+          <form className="mt-[60.99px]">
             <label
               htmlFor="skills"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block"
@@ -549,6 +556,7 @@ export const UserRegistration = () => {
           </form>
           <button
             className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            onClick={formSubmitMobile}
           >
             Register
           </button>
