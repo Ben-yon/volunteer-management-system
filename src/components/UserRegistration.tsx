@@ -130,13 +130,12 @@ export const UserRegistration = () => {
   const formSubmitMobile = async () => {
     // setFormData(values);
     await clearData();
-      await storeUserDetails();
-      navigate("/view-user-details", { state: { values, uploadedImageRef } });
-
+    await storeUserDetails();
+    navigate("/view-user-details", { state: { values, uploadedImageRef } });
   };
 
   const nextPage = () => {
-      setCurrentPage((prevPage) => prevPage + 1);
+    setCurrentPage((prevPage) => prevPage + 1);
   };
 
   const [modalOpen, setModalOpen] = useState(false);
