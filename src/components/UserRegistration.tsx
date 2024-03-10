@@ -854,6 +854,7 @@ export const UserRegistration = () => {
           </div>
           <div className="lg:hidden md:hidden sm:hidden">
             {formSection[currentPage].content}
+            <span>{}</span>
           </div>
         </div>
       </div>
