@@ -32,9 +32,9 @@ export const UserRegistration = () => {
   // });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const gotoPage = (pageNumber: number) => {
-  //   setCurrentPage(pageNumber);
-  // };
+  const goToPage = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   const updateAvatar = (imgSrc: string | undefined): void => {
     uploadedImageRef.current = imgSrc;
@@ -854,7 +854,21 @@ export const UserRegistration = () => {
           </div>
           <div className="lg:hidden md:hidden sm:hidden">
             {formSection[currentPage].content}
-            <span>{}</span>
+          </div>
+          <div className="flex justify-center mt-4">
+            {formSection.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToPage(index)}
+                className={`mr-2 px-4 py-2 rounded ${
+                  currentPage === index
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
           </div>
         </div>
       </div>
