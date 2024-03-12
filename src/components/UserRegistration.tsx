@@ -155,7 +155,7 @@ export const UserRegistration = () => {
             programs and services in the Lower Mainland of British Columbia.
           </p>
           <button
-            className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-semibold"
+            className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-[700] text-[11.83px] leading-[14.32px]"
             onClick={nextPage}
           >
             Register as a Volunteer
@@ -192,7 +192,7 @@ export const UserRegistration = () => {
             )}
           </div>
           <button
-            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[101px]"
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-[700] mt-[101px] text-[11.83px] leading-[14.32px]"
             onClick={nextPage}
           >
             Next
@@ -295,7 +295,7 @@ export const UserRegistration = () => {
             </div>
           </div>
           <button
-            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-[700] mt-[32.86px] text-[11.83px] leading-[14.32px]"
             onClick={nextPage}
           >
             Next
@@ -400,7 +400,7 @@ export const UserRegistration = () => {
             </div>
           </div>
           <button
-            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-[700] mt-[32.86px] text-[11.83px] leading-[14.32px]"
             onClick={nextPage}
           >
             Next
@@ -505,7 +505,7 @@ export const UserRegistration = () => {
             </div>
           </div>
           <button
-            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-[700] mt-[32.86px] text-[11.83px] leading-[14.32px]"
             onClick={nextPage}
           >
             Next
@@ -554,7 +554,7 @@ export const UserRegistration = () => {
             />
           </form>
           <button
-            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-bold mt-[32.86px]"
+            className="w-[261.84px] h-[32.58px] rounded-[6.1px] bg-primary text-secondary font-[700] mt-[32.86px] text-[11.83px] leading-[14.32px]"
             onClick={formSubmitMobile}
           >
             Register
@@ -854,21 +854,21 @@ export const UserRegistration = () => {
           </div>
           <div className="lg:hidden md:hidden sm:hidden">
             {formSection[currentPage].content}
-          </div>
-          <div className="flex justify-center mt-4">
-            {formSection.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToPage(index)}
-                className={`mr-2 px-4 py-2 rounded ${
-                  currentPage === index
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                {index + 1}
-              </button>
-            ))}
+            <div className="flex justify-center mt-4">
+              {formSection.slice(2).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToPage(index + 2)}
+                  className={`mr-2 text-[9.07px] leading-[10.97px] ${
+                    currentPage === index + 2
+                      ? "text-white"
+                      : "text-gray-400"
+                  } ${currentPage >=  2 ? 'block' : 'hidden' }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
