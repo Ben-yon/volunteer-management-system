@@ -46,8 +46,8 @@ export const VolunteerDetails = () => {
       <h2 className="text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         {userDetails?.fullname}
       </h2>
-      <div className="flex">
-        <div className="w-[371px] h-[480px] rounded-[20px] details-card">
+      <div className="flex rea">
+        <div className="w-[776px] h-[480px] rounded-[20px] details-card relative">
           <span className="text-[10px] flex ml-[33px] relative top-[22px] left-[33px]">
             <img
               src={media.birthday}
@@ -56,10 +56,10 @@ export const VolunteerDetails = () => {
             />
             {userDetails?.date_of_birth}
           </span>
-          <p className="text-[35px] relative -right-[285px] -top-[25px] hover:cursor-pointer">
+          <p className="text-[35px] absolute right-[60px] top-[0px] hover:cursor-pointer">
             ...
           </p>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center relative top-[92px]">
             <img
               src={media.upload}
               alt="profile"
@@ -73,7 +73,7 @@ export const VolunteerDetails = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col relative">
           <div className="w-[374px] h-[213px] rounded-[20px] ml-[40px] mb-[30px] flex flex-col items-center justify-center details-availability-card">
             <h2 className="text-[16px] leading-[19.36px] font-bold -ml-48 mb-4">
               Availability
@@ -110,7 +110,7 @@ export const VolunteerDetails = () => {
                 <Bar dataKey="worked" fill="#E80000" />
               </BarChart>
             </ResponsiveContainer>
-            <p className="text-[12px] leading-[14.52px] mt-[10.57px] font-bold absolute top-[510px] left-[910px]">
+            <p className="text-[12px] leading-[14.52px] mt-[10.57px] text-secondary font-bold relative -top-[38px] text-center">
               Out of a week
             </p>
           </div>

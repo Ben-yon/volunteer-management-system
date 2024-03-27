@@ -13,6 +13,9 @@ export const ProfileManagement = () => {
 
   return (
     <div className="w-[100%] flex overflow-x-clip">
+      <div className="absolute top-[25px] left-[33px] w-[206px] h-[85px]">
+        <img src={`${media.redLogo}`} alt="" />
+      </div>
       <div className="absolute top-[49px] right-[67.4px] flex space-x-6">
         <div className="flex">
           <img
@@ -30,7 +33,7 @@ export const ProfileManagement = () => {
         <img src={media.data_upload} alt="" className="w-[28px] h-[28px]" />
         <img src={media.notification} alt="" className="w-[30px] h-[27.27px]" />
       </div>
-      <div className="relative top-24 left-14 flex">
+      <div className="relative top-24 left-14 flex mt-[60px]">
         <div className="relative flex flex-col space-y-5 mr-[40px]">
           <div className="flex font-extrabold text-[20px] leading-[21.78px]">
             <img
