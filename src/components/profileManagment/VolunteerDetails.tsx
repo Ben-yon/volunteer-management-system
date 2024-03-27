@@ -116,17 +116,21 @@ export const VolunteerDetails = () => {
           </div>
         </div>
       </div>
-      <div className="w-[374px] h-[213px] rounded-[20px] details-card-sec mt-[35px] flex flex-col items-center justify-center">
-        <div className="flex space-x-2 justify-center items-center">
-          <img src={media.bookLove} alt="" className="w-[57px] h-[57px]" />
-          <p className="text-primary flex flex-col text-[12px] leading-[14.52px]">
+      <div className="mt-[35px] flex items-center space-x-5">
+        <div className="flex flex-col space-y-4 w-[248px] h-[237px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
+          <div className="bg-black rounded-full p-4">
+            <img src={media.bookLove} alt="" className="w-[57px] h-[57px]" />
+          </div>
+          <p className="text-black flex flex-col text-[12px] text-center leading-[14.52px]">
             <span className="font-bold ">Interests</span>
             <span>{userDetails?.interests}, reading</span>
           </p>
         </div>
-        <div className="flex justify-center items-center space-x-2 mt-[12px] text-[12px] leading-[14.52px]">
-          <img src={media.location} alt="" className="w-[68px] h-[68px]" />
-          <div className="text-primary flex flex-col">
+        <div className="flex flex-col space-y-4 w-[248px] h-[237px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
+          <div className="bg-black rounded-full p-4">
+            <img src={media.location} alt="" className="w-[68px] h-[68px]" />
+          </div>
+          <div className="text-black flex flex-col">
             <h2 className="font-bold">Location</h2>
             <span>{userDetails?.address}</span>
           </div>
