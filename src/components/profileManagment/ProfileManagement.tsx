@@ -13,6 +13,9 @@ export const ProfileManagement = () => {
 
   return (
     <div className="w-[100%] flex overflow-x-clip">
+      <div className="absolute top-[25px] left-[33px] w-[206px] h-[85px]">
+        <img src={`${media.redLogo}`} alt="" />
+      </div>
       <div className="absolute top-[49px] right-[67.4px] flex space-x-6">
         <div className="flex">
           <img
@@ -30,7 +33,7 @@ export const ProfileManagement = () => {
         <img src={media.data_upload} alt="" className="w-[28px] h-[28px]" />
         <img src={media.notification} alt="" className="w-[30px] h-[27.27px]" />
       </div>
-      <div className="relative top-24 left-14 flex">
+      <div className="relative top-24 left-14 flex mt-[60px]">
         <div className="relative flex flex-col space-y-5 mr-[40px]">
           <div className="flex font-extrabold text-[20px] leading-[21.78px]">
             <img
@@ -63,31 +66,35 @@ export const ProfileManagement = () => {
                 alt=""
                 className="pl-[46px] pr-3"
               />
-              Notification
+              Notifications
             </NavLink>
             <NavLink
-              to="networks"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'networks' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('networks')}
+              to="inbox"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'inbox' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('inbox')}
             >
-              <img src={media.networks} alt="" className="pl-[46px] pr-3" />
-              Networks
+              <img
+                src={media.chat_white}
+                alt=""
+                className="pl-[46px] pr-3"
+              />
+              Inbox
             </NavLink>
             <NavLink
-              to="events"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'events' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('events')}
-            >
-              <img src={media.menu_events} alt="" className="pl-[46px] pr-3" />
-              Events
-            </NavLink>
-            <NavLink
-              to="giving"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'giving' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('giving')}
+              to="training"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'training' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('training')}
             >
               <img src={media.giving} alt="" className="pl-[46px] pr-3" />
-              Giving
+              Training
+            </NavLink>
+            <NavLink
+              to="scheduling"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'scheduling' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('scheduling')}
+            >
+              <img src={media.menu_events} alt="" className="pl-[46px] pr-3" />
+              Scheduling
             </NavLink>
             <NavLink
               to="volunteers"
@@ -168,7 +175,7 @@ export const ProfileManagement = () => {
             </div>
           </nav>
         </div>
-        <div>
+        <div className="relative -top-6">
           <AdminRoutes />
         </div>
       </div>

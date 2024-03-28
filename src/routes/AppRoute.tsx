@@ -14,10 +14,10 @@ import { AdminConfirmPasswordChange } from "../components/admin/AdminConfirmPass
 import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
 import { Volunteer } from "../components/profileManagment/Volunteers";
 import { Notification } from "../components/profileManagment/Notification";
-import { Events } from "../components/profileManagment/Events";
+import { Scheduling } from "../components/profileManagment/Scheduling";
 import { Home } from "../components/profileManagment/Home";
-import { Networks } from "../components/profileManagment/Networks";
-import { Giving } from "../components/profileManagment/Giving";
+import { Inbox } from "../components/profileManagment/Inbox";
+import { Training } from "../components/profileManagment/Training";
 import { Programs } from "../components/profileManagment/Programs";
 import { Admins } from "../components/profileManagment/Admins";
 import { Profile } from "../components/profileManagment/Profile";
@@ -103,16 +103,16 @@ export const AdminRoutes = () => {
                 element={<Notification/>}
             />
             <Route
-                path="events"
-                element={<Events/>}
+                path="scheduling"
+                element={<Scheduling/>}
             />
             <Route
-                path="networks"
-                element={<Networks/>}
+                path="inbox"
+                element={<Inbox/>}
             />
             <Route
-                path="giving"
-                element={<Giving/>}
+                path="training"
+                element={<Training/>}
             />
             <Route
                 path="programs"

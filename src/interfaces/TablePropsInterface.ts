@@ -14,4 +14,8 @@ export interface TableData {
     interests: string;
     days_available_per_week: number;
     availability: string;
+    skills: string;
+    email: string;
+    phone_number: string;
+    linkedIn: string;
 }

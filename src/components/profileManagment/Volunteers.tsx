@@ -210,7 +210,7 @@ export const Volunteer = () => {
       <h2 className="text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         Volunteers
       </h2>
-      <div className=" relative lg:overflow-x-auto lg:max-w-[950px]">
+      <div className=" relative xlg:overflow-x-auto lg:max-w-[950px]">
         <Table columns={columns} data={data} />
       </div>
     </div>
