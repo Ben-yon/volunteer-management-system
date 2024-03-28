@@ -17,7 +17,11 @@ export const VolunteerDetails = () => {
     interests: "",
     days_available_per_week: 0,
     availability: "",
-    skills: ""
+    skills: "",
+    email: "",
+    phone_number: "",
+    linkedIn: ""
+
   });
   const { id } = useParams();
   const navigate = useNavigate()
@@ -127,8 +131,8 @@ export const VolunteerDetails = () => {
           </div>
         </div>
       </div>
-      <div className="mt-[35px] flex items-center space-x-5">
-      <div className="flex flex-col space-y-4 w-[248px] h-[237px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
+      <div className="mt-[35px] flex items-center">
+        <div className="flex flex-col space-y-4 w-[248px] h-[237px] mr-[16px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
           <div className="bg-black rounded-full p-4">
             <img src={media.skills} alt="" className="w-[57px] h-[57px]" />
           </div>
@@ -137,7 +141,7 @@ export const VolunteerDetails = () => {
             <span>{userDetails?.skills}</span>
           </p>
         </div>
-        <div className="flex flex-col space-y-4 w-[248px] h-[237px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
+        <div className="flex flex-col space-y-4 w-[248px] h-[237px] mr-[16px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
           <div className="bg-black rounded-full p-4">
             <img src={media.bookLove} alt="" className="w-[57px] h-[57px]" />
           </div>
@@ -146,7 +150,7 @@ export const VolunteerDetails = () => {
             <span>{userDetails?.interests}</span>
           </p>
         </div>
-        <div className="flex flex-col space-y-4 w-[248px] h-[237px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
+        <div className="flex flex-col space-y-4 w-[248px] h-[237px] mr-[64px] rounded-[20px] justify-center items-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_-18px_rgba(0,0,0.1,0.5)]">
           <div className="bg-black rounded-full p-4">
             <img src={media.location} alt="" className="w-[68px] h-[68px]" />
           </div>
@@ -155,21 +159,29 @@ export const VolunteerDetails = () => {
             <span className="text-[12px]">{userDetails?.address}</span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center">
           <div className="flex justify-center items-center space-x-[14px]">
             <div className="bg-[#EA0000] rounded-full p-[11px]">
               <img src={`${media.phone}`} />
             </div>
               <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                knsdklfjakdj
+                {userDetails?.phone_number}
               </p>
           </div>
           <div className="flex justify-center items-center space-x-[14px] mt-[10px]">
             <div className="bg-[#EA0000] rounded-full p-[11px]">
-              <img src={`${media.envelope}`} className="w-[24px] h-[24px]"/>
+              <img src={`${media.email}`} className="w-[24px] h-[24px]"/>
             </div>
               <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                knsdklfjakdj
+                {userDetails?.email}
+              </p>
+          </div>
+          <div className="flex justify-center items-center space-x-[14px] mt-[10px]">
+            <div className="bg-[#EA0000] rounded-full p-[11px]">
+              <img src={`${media.linkedin}`} className="w-[24px] h-[24px]"/>
+            </div>
+              <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
+                {userDetails?.linkedIn}
               </p>
           </div>
         </div>

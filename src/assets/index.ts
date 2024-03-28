@@ -13,6 +13,7 @@ import skills from './icons/skills.svg';
 import chat_white from './icons/chat-white.svg';
 import phone from './icons/phone.svg';
 import email from './icons/email.svg';
+import linkedin from './icons/linkedin.svg';
 
 
 import notification from './icons/notification.svg';
@@ -87,5 +88,6 @@ export const media = {
     skills,
     chat_white,
     phone,
-    email
+    email,
+    linkedin
 }

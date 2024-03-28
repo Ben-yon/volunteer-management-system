@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { media } from "../assets";
 import { TableProps } from "../interfaces/TablePropsInterface";
@@ -13,9 +13,9 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
     page,
     gotoPage,
     nextPage,
-    // previousPage,
+    previousPage,
     canNextPage,
-    // canPreviousPage,
+    canPreviousPage,
     setGlobalFilter,
     pageCount,
   } = useTable(
@@ -26,21 +26,11 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
 
   const { globalFilter, pageIndex } = state;
 
-  const pageinationItems = useMemo(() => {
-    const items: any[] = [];
-    for (let i = 0; i < pageCount; i++) {
-      items.push(
-        <button
-          key={i}
-          onClick={() => gotoPage(i)}
-          style={{ fontWeight: pageIndex === i ? "bold" : "normal", margin: "2px", fontSize: '10px'}}
-        >
-          {i + 1}
-        </button>
-      );
-    }
-    return items;
-  }, [gotoPage, pageIndex, pageCount]);
+  const totalPages = Math.ceil(data.length / page.length)
+  const visiblePageLinks = 6;
+  const startPage = Math.max(0, pageIndex - Math.floor(visiblePageLinks / 2));
+  const endPage = Math.min(totalPages -1, startPage + visiblePageLinks - 1)
+  
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGlobalFilter(e.target.value || undefined);
@@ -128,16 +118,22 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         </tbody>
       </table>
       <div className="mt-[15px] flex justify-end">
-        {/* <button
+        <button
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
         >
           {"<<"}
-        </button>{" "}
+        </button>{""}
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
           {'<'}
-        </button> */}
-        {pageinationItems}
+        </button>{" "}
+        {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
+          <button key={index} onClick={() => gotoPage(startPage + index)} 
+          style={{ fontWeight: pageIndex === index ? "bold" : "normal", margin: "2px", fontSize: '10px'}}
+          >
+            {startPage + index + 1}
+          </button>
+        ))}
         <button
           onClick={() => nextPage()}
           disabled={!canNextPage}
