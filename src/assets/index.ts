@@ -9,6 +9,10 @@ import passwordChanged from './icons/passwordChanged.svg';
 import location from './icons/location.svg';
 import bookLove from './icons/mdi_book-love.svg';
 import mcss from './img/mcss.png';
+import skills from './icons/skills.svg';
+import chat_white from './icons/chat-white.svg';
+import phone from './icons/phone.svg';
+import email from './icons/email.svg';
 
 
 import notification from './icons/notification.svg';
@@ -79,5 +83,9 @@ export const media = {
     flag_uk,
     lang_white,
     lang_black,
-    mcss
+    mcss,
+    skills,
+    chat_white,
+    phone,
+    email
 }

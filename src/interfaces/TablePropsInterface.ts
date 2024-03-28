@@ -14,4 +14,5 @@ export interface TableData {
     interests: string;
     days_available_per_week: number;
     availability: string;
+    skills: string;
 }

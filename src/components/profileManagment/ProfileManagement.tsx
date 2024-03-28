@@ -66,31 +66,35 @@ export const ProfileManagement = () => {
                 alt=""
                 className="pl-[46px] pr-3"
               />
-              Notification
+              Notifications
             </NavLink>
             <NavLink
-              to="networks"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'networks' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('networks')}
+              to="inbox"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'inbox' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('inbox')}
             >
-              <img src={media.networks} alt="" className="pl-[46px] pr-3" />
-              Networks
+              <img
+                src={media.chat_white}
+                alt=""
+                className="pl-[46px] pr-3"
+              />
+              Inbox
             </NavLink>
             <NavLink
-              to="events"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'events' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('events')}
-            >
-              <img src={media.menu_events} alt="" className="pl-[46px] pr-3" />
-              Events
-            </NavLink>
-            <NavLink
-              to="giving"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'giving' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('giving')}
+              to="training"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'training' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('training')}
             >
               <img src={media.giving} alt="" className="pl-[46px] pr-3" />
-              Giving
+              Training
+            </NavLink>
+            <NavLink
+              to="scheduling"
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'scheduling' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              onClick={() => handleClick('scheduling')}
+            >
+              <img src={media.menu_events} alt="" className="pl-[46px] pr-3" />
+              Scheduling
             </NavLink>
             <NavLink
               to="volunteers"
@@ -171,7 +175,7 @@ export const ProfileManagement = () => {
             </div>
           </nav>
         </div>
-        <div>
+        <div className="relative -top-6">
           <AdminRoutes />
         </div>
       </div>
