@@ -121,11 +121,12 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <button
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
+          className="flex items-center mr-1"
         >
-          {"<<"}
-        </button>{""}
+          <img src={media.left_polygon} alt="left-arrow"/><img src={media.left_polygon} alt="left-arrow" />
+        </button>{" "}
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
+          <img src={media.left_polygon} alt="left-arrow" />
         </button>{" "}
         {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
           <button key={index} onClick={() => gotoPage(startPage + index)} 
