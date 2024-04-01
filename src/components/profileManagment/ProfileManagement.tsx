@@ -78,7 +78,10 @@ export const ProfileManagement = () => {
                 alt=""
                 className="pl-[46px] pr-3"
               />
-              Inbox
+              Messages
+              <div className="bg-primary relative -right-12 top-2 w-[10px] h-[10px]">
+                <p className="text-black text-[6.36px] leading-[7.7px] text-center pt-[2px]">4</p>
+              </div>
             </NavLink>
             <NavLink
               to="training"
