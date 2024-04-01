@@ -69,9 +69,9 @@ export const ProfileManagement = () => {
               Notifications
             </NavLink>
             <NavLink
-              to="inbox"
+              to="messages"
               className={`flex space-x-[13px] focus:filter ${activeLink === 'inbox' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
-              onClick={() => handleClick('inbox')}
+              onClick={() => handleClick('messages')}
             >
               <img
                 src={media.chat_white}
