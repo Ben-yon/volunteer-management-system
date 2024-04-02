@@ -70,7 +70,7 @@ export const ProfileManagement = () => {
             </NavLink>
             <NavLink
               to="messages"
-              className={`flex space-x-[13px] focus:filter ${activeLink === 'inbox' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
+              className={`flex space-x-[13px] focus:filter ${activeLink === 'messages' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px]`}
               onClick={() => handleClick('messages')}
             >
               <img

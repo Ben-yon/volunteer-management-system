@@ -47,7 +47,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <input
           type="text"
           value={globalFilter || ""}
-          className="w-[1018px] h-[43px] rounded-[13px] border border-black-100 text-[15px] font-light focus:outline-none leading-[16.52px] pl-[43px]"
+          className="w-[1140px] h-[43px] rounded-[13px] border border-black-100 text-[15px] font-light focus:outline-none leading-[16.52px] pl-[43px]"
           placeholder="Search by name, interests, skills"
           onChange={handleSearchChange}
         />
