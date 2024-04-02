@@ -14,5 +14,12 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {},
-    extraReducers: (builder) => {}
+    // extraReducers: (builder) => {
+    //     builder.addCase(fetchUserAsync.fulfilled, (state) => {
+    //         state.loading = false;
+    //     })
+    // }
 })
+
+
+export default authSlice.reducer;
