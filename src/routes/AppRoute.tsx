@@ -16,7 +16,7 @@ import { Volunteer } from "../components/profileManagment/Volunteers";
 import { Notification } from "../components/profileManagment/Notification";
 import { Scheduling } from "../components/profileManagment/Scheduling";
 import { Home } from "../components/profileManagment/Home";
-import { Inbox } from "../components/profileManagment/Inbox";
+import { Messages } from "../components/profileManagment/Messages";
 import { Training } from "../components/profileManagment/Training";
 import { Programs } from "../components/profileManagment/Programs";
 import { Admins } from "../components/profileManagment/Admins";
@@ -107,8 +107,8 @@ export const AdminRoutes = () => {
                 element={<Scheduling/>}
             />
             <Route
-                path="inbox"
-                element={<Inbox/>}
+                path="messages"
+                element={<Messages/>}
             />
             <Route
                 path="training"

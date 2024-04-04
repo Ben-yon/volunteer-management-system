@@ -52,7 +52,7 @@ export const VolunteerDetails = () => {
       </p>
       <h2 className="flex text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         {userDetails?.fullname}
-        <button onClick={() =>  navigate('/profile-management/inbox')}>
+        <button onClick={() =>  navigate('/profile-management/messages')}>
           <img src={`${media.chat}`} className="w-[33px] h-[33px] ml-[8px]" />
         </button>
       </h2>
