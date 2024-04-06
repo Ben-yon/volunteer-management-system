@@ -47,6 +47,7 @@ import flag_france from './icons/flag_france.svg';
 import flag_uk from './icons/flag_uk.svg';
 import lang_white from './icons/lang-white.svg';
 import lang_black from './icons/lang-black.svg';
+import compose from './icons/compose.svg';
 
 
 export const media = {
@@ -93,5 +94,6 @@ export const media = {
     email,
     linkedin,
     left_polygon,
-    msg_search
+    msg_search,
+    compose
 }
