@@ -127,3 +127,9 @@ progress {
   .char{
     font-family: "Leelawadee";
   }
+
+
+message-gradient {
+    border: linear-gradient(180.02deg, #FFFFFF 0.02%, #F2F2F2 97.97%);
+}
+
