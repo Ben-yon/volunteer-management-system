@@ -38,7 +38,7 @@ export const VolunteerDetails = () => {
   ];
 
   useEffect(() => {
-    let convertedId = parseInt(id!);
+    const convertedId = parseInt(id!);
     const user = userDetailsSet.find((user) => user.id == convertedId);
     console.log(user);
     setUserDetails(user);

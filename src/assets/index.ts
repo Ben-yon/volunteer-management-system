@@ -14,7 +14,8 @@ import chat_white from './icons/chat-white.svg';
 import phone from './icons/phone.svg';
 import email from './icons/email.svg';
 import linkedin from './icons/linkedin.svg';
-import left_polygon from './icons/left_polygon.svg'
+import left_polygon from './icons/left_polygon.svg';
+import msg_search from './icons/msg_search.svg'
 
 
 import notification from './icons/notification.svg';
@@ -46,6 +47,7 @@ import flag_france from './icons/flag_france.svg';
 import flag_uk from './icons/flag_uk.svg';
 import lang_white from './icons/lang-white.svg';
 import lang_black from './icons/lang-black.svg';
+import compose from './icons/compose.svg';
 
 
 export const media = {
@@ -91,5 +93,7 @@ export const media = {
     phone,
     email,
     linkedin,
-    left_polygon
+    left_polygon,
+    msg_search,
+    compose
 }

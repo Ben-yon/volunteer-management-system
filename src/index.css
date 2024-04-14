@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+@import 'react-calendar/dist/Calendar.css';
 
 @tailwind base;
 @tailwind components;
@@ -75,11 +76,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .admin-primary-gradient {
-    background: linear-gradient(180deg, #FF0000 0%, #680000 100%);
+    background: linear-gradient(176.42deg, #9E0000 2.39%, #680000 97.06%);
 }
 
 .admin-secondary-gradient {
-    background: linear-gradient(180deg, #680000 0%, #FF0000 100%);
+    background: linear-gradient(180deg, #9E0000 0%, #680000 100%);
 }
 
 .table-row {
@@ -108,6 +109,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     box-shadow: 1px 1px 11.300000190734863px 2px #0000001C;
 }
 
+.home-chat-shadow{
+    box-shadow: 1px 1px 11.300000190734863px 2px #0000001C;
+}
+
 progress {
     -webkit-appearance: none;
   }
@@ -126,4 +131,79 @@ progress {
   
   .char{
     font-family: "Leelawadee";
+  }
+
+
+.message-gradient {
+    border: linear-gradient(180.02deg, #FFFFFF 0.02%, #F2F2F2 97.97%);
+}
+
+.dashboard-shadow{
+    box-shadow: 1px 1px 11.300000190734863px 2px #0000001C;
+}
+
+.divider{
+    border: 2px solid #FFFFFF33;
+    height: 74px;
+    rotate: -90 deg
+}
+
+.react-calendar {
+    width: 433px;
+    height: 431px;
+    background-color: #790000; /* Set background color to reddish */
+    border: 1px solid #ccc;
+    padding-top: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 100px;
+    border-radius: 20px;
+  }
+  
+  .react-calendar__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .react-calendar__navigation__label,
+  .react-calendar__navigation__arrow {
+    cursor: pointer;
+  }
+
+  .react-calendar__tile--active, .react-calendar__tile:hover{
+    background-color: #C8A379;
+  }
+
+  
+  .react-calendar__navigation__label {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 800;
+    background-color: transparent;
+  }
+  
+    button.react-calendar__navigation__arrow {
+    background-color: #C8A379;
+    border: none;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 10px;
+  }
+  button .react-calendar__navigation__label__labelText button .react-calendar__navigation__label__labelText:hover {
+    background-color: none;
+    /* position: relative;
+    top: -50px;
+    left: -90px; */
+  }
+
+  button.react-calendar__tile.react-calendar__tile--now{
+    background-color: #C8A379;
+    padding: 10px;
+    border-radius: 100%;
+  }
+  
+  .react-calendar__month-view__days__day--weekend abbr {
+    /* color: black; Set weekend day color to red */
   }
