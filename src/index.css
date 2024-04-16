@@ -193,11 +193,9 @@ progress {
     border-radius: 90%;
     padding: 2px;
   }
-  button .react-calendar__navigation__label__labelText button .react-calendar__navigation__label__labelText:hover {
-    background-color: none;
-    /* position: relative;
-    top: -50px;
-    left: -90px; */
+   button.react-calendar__navigation__arrow:hover {
+    background-color: indigo;
+   
   }
 
   button.react-calendar__tile.react-calendar__tile--now{
