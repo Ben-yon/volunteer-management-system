@@ -1,4 +1,5 @@
 import { AdminCalendar } from "../../widgets/Calendar";
+import { CustomPieChart } from "../../widgets/CustomPieChart";
 
 export const Home = () => {
   return (
@@ -70,7 +71,10 @@ export const Home = () => {
           </div>
           <div className="flex">
             <div className="w-[425px] h-[248px] rounded-[20px] bg-dashboard-home dashboard-shadow mt-[24px]"></div>
-            <div className="w-[301px] h-[248px] rounded-[20px] bg-dashboard-home dashboard-shadow mt-[24px] ml-[24px]"></div>
+            <div className="w-[301px] h-[248px] rounded-[20px] bg-dashboard-home dashboard-shadow mt-[24px] ml-[24px]">
+              <CustomPieChart/>
+              <p className="text-primary font-[700] text-[15px] leading-[18.15px] relative -top-[25px] left-[80px]">Active Volunteers</p>
+            </div>
           </div>
         </div>
         <div className="w-[486px] h-[379px] rounded-[20px] bg-[#F9F9F9] home-chat-shadow ml-[26px]">

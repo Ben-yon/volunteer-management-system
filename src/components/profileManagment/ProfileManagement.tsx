@@ -41,9 +41,9 @@ export const ProfileManagement = () => {
               alt=""
               className="w-[25.93px] h-[25.93px]"
             />
-            <p className="text-[#E30000] p-1">Admin Panel</p>
+            <p className="text-[#790000] p-1">Admin Panel</p>
           </div>
-          <nav className="border border-red-400 admin-primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
+          <nav className="admin-primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
             <NavLink
               to=""
               className={`flex ${activeLink === '' ? 'bg-menu-focus': ' '}  pt-[8px] pb-[3.14px] mt-[40px] text-[13px] leading-[15.73px] font-[600]`}
@@ -120,7 +120,7 @@ export const ProfileManagement = () => {
               Programs
             </NavLink>
           </nav>
-          <nav className="border border-red-400 admin-secondary-gradient w-[308px] h-[448px] rounded-[23px] flex flex-col space-y-2 text-primary">
+          <nav className="admin-secondary-gradient w-[308px] h-[448px] rounded-[23px] flex flex-col space-y-2 text-primary">
             <NavLink
               to="admins"
               className={`flex space-x-[13px] focus:filter ${activeLink === 'admins' ? 'bg-menu-focus': ''} pt-[12px] pb-[3.14px] mt-[50px] text-[13px] leading-[15.73px] font-[600]`}
