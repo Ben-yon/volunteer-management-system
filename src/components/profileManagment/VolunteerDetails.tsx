@@ -146,7 +146,7 @@ export const VolunteerDetails = () => {
             <img src={media.bookLove} alt="" className="w-[57px] h-[57px]" />
           </div>
           <p className="text-black flex flex-col text-[12px] text-center leading-[14.52px]">
-            <span className="font-bold ">Interests</span>
+            <span className="font-bold ">interests</span>
             <span>{userDetails?.interests}</span>
           </p>
         </div>

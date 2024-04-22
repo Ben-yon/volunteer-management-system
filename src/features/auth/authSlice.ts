@@ -1,11 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AuthStateInterface } from "../../interfaces/AuthInterface";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RegsiterStateInterface } from "../../interfaces/AuthInterface";
+import { registerVolunteer } from "./authAction";
 
 
-const initialState: AuthStateInterface = {
+const initialState: RegsiterStateInterface = {
     loading: false,
     // userInfo: {},
-    userToken: null,
+    userInfo: {
+        firstName: "",
+        lastName: "",
+        date: "",
+        daysAvailable: "",
+        contact: "",
+        email: "",
+        address: "",
+        streetAddress: "",
+        city: "",
+        region: "",
+        zipCode: "",
+        occupation: "",
+        skills: "",
+        interests: "",
+        userId: "",
+        id: ""
+    },
     error: null,
     success: false
 }
@@ -14,11 +32,22 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {},
-    // extraReducers: (builder) => {
-    //     builder.addCase(fetchUserAsync.fulfilled, (state) => {
-    //         state.loading = false;
-    //     })
-    // }
+    extraReducers: (builder) => {
+        builder.addCase(registerVolunteer.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(registerVolunteer.fulfilled, (state) => {
+            state.loading = false;
+            state.success = true;
+        })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .addCase(registerVolunteer.rejected, (state, action: PayloadAction<any>) => {
+            state.loading = false;
+            state.error = action.payload;
+            state.success = false;
+        });
+    }
 })
 
 
