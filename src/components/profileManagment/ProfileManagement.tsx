@@ -41,7 +41,7 @@ export const ProfileManagement = () => {
               alt=""
               className="w-[25.93px] h-[25.93px]"
             />
-            <p className="text-[#790000] p-1">Admin Panel</p>
+            <p className="text-dashboard-home p-1">Admin Panel</p>
           </div>
           <nav className="admin-primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
             <NavLink
