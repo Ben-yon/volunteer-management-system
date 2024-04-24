@@ -11,7 +11,7 @@ export const AdminCalendar = () => {
   return (
     <div className='rounded-[20px]'>
       <Calendar onChange={onChange} value={value} />
-      <button className='w-[311px] h-[45px] bg-[#C8A379] rounded-[12px] relative -top-[98px] left-[55px]'>
+      <button className='w-[311px] h-[45px] bg-[#C8A379] rounded-[12px] relative -top-[72px] left-[55px]'>
       </button>
     </div>
   );

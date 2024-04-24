@@ -4,7 +4,7 @@ import { AuthStateInterface } from "../../interfaces/AuthInterface";
 
 const initialState: AuthStateInterface = {
     loading: false,
-    userInfo: {},
+    // userInfo: {},
     userToken: null,
     error: null,
     success: false

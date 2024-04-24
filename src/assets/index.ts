@@ -49,6 +49,13 @@ import lang_white from './icons/lang-white.svg';
 import lang_black from './icons/lang-black.svg';
 import compose from './icons/compose.svg';
 
+// Here I want to push some sample images of people
+
+import sample01 from './img/sample01.jpg';
+import sample02 from './img/sample02.jpg';
+import sample03 from './img/sample03.jpg';
+import sample04 from './img/sample04.jpg';
+
 
 export const media = {
     checkcircle,
@@ -95,5 +102,9 @@ export const media = {
     linkedin,
     left_polygon,
     msg_search,
-    compose
+    compose,
+    sample01,
+    sample02,
+    sample03,
+    sample04
 }
