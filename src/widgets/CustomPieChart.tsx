@@ -26,16 +26,17 @@ const COLORS = ['#C8A379', '#FFFFF1'];
 
 export const CustomPieChart = () => {
     return (
-        <ResponsiveContainer>
-            <PieChart width={300} height={300}>
+        <ResponsiveContainer width="100%" height="100%">
+            <PieChart width={10} height={10}>
                 <Pie
                     data={data}
                     cx="50%"
                     cy="50%"
-                    labelLine={false}
+                    labelLine={true}
                     label={RenderCustomizedLabel}
                     outerRadius={80}
-                    fill='#8884d8'
+                    paddingAngle={5}
+                    fill='#ffffff'
                     dataKey="value"
                 >
                 {data.map((_entry, index) => (

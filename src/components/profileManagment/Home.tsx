@@ -71,7 +71,14 @@ export const Home = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="w-[425px] h-[248px] rounded-[20px] bg-dashboard-home dashboard-shadow mt-[24px]"></div>
+            <div className="flex flex-col items-center justify-center space-y-3 w-[425px] h-[248px] rounded-[20px] bg-dashboard-home dashboard-shadow mt-[24px]">
+              <div className="flex items-center justify-center">
+                <img src={`${media.sample03}`} alt="" className="w-[135.69px] h-[135.69px] rounded-full object-cover ml-8"/>
+                <img src={`${media.sample02}`} alt="" className="w-[135.69px] h-[135.69px] rounded-full object-cover relative -left-6"/>
+                <img src={`${media.sample01}`} alt="" className="w-[135.69px] h-[135.69px] rounded-full object-cover relative -left-12" />
+              </div>
+              <p className="font-[700] text-[25px] text-primary leading-[30.26px]">New Volunteers</p>
+            </div>
             <div className="w-[301px] h-[248px] rounded-[20px] bg-dashboard-home dashboard-shadow mt-[24px] ml-[24px]">
               <CustomPieChart/>
               <p className="text-primary font-[700] text-[15px] leading-[18.15px] relative -top-[25px] left-[80px]">Active Volunteers</p>
@@ -95,41 +102,41 @@ export const Home = () => {
                 </div>
             </div>
             <div className="flex items-center justify-center mt-[25px]">
-                <img src={`${media.slide2}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
+                <img src={`${media.sample01}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
                 <div className="mr-[182px]">
                   <p className="text-dashboard-home font-[600] text-[13px] leading-[15.73px]">
-                    Elijah Tetteh
+                    Gabriel Carter
                   </p>
                   <span className="italic text-[9px] leading-[10.89px]">typing</span>
                 </div>
                 <div className="flex flex-col space-y-1">
-                  <p className="text-dashboard-home font-[500] text-[9px] leading-[10.89px] ">08:30 AM</p>
+                  <p className="text-dashboard-home font-[500] text-[9px] leading-[10.89px] ">12:30 PM</p>
+                  <span className="text-primary ml-[30px] flex items-center justify-center bg-dashboard-home w-[10px] h-[10px] text-[6px] leading-[7.26px] font-[500] rounded-full">1</span>
+                </div>
+            </div>
+            <div className="flex items-center justify-center mt-[25px]">
+                <img src={`${media.sample02}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
+                <div className="mr-[182px]">
+                  <p className="text-dashboard-home font-[600] text-[13px] leading-[15.73px]">
+                    Lily Turner
+                  </p>
+                  <span className="italic text-[9px] leading-[10.89px]">typing</span>
+                </div>
+                <div className="flex flex-col space-y-1">
+                  <p className="text-dashboard-home font-[500] text-[9px] leading-[10.89px] ">02:30 PM</p>
                   <span className="text-primary ml-[30px] flex items-center justify-center bg-dashboard-home w-[10px] h-[10px] text-[6px] leading-[7.26px] font-[500] rounded-full">2</span>
                 </div>
             </div>
             <div className="flex items-center justify-center mt-[25px]">
-                <img src={`${media.slide2}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
+                <img src={`${media.sample03}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
                 <div className="mr-[182px]">
                   <p className="text-dashboard-home font-[600] text-[13px] leading-[15.73px]">
-                    Elijah Tetteh
+                    Lucas Martin
                   </p>
                   <span className="italic text-[9px] leading-[10.89px]">typing</span>
                 </div>
                 <div className="flex flex-col space-y-1">
-                  <p className="text-dashboard-home font-[500] text-[9px] leading-[10.89px] ">08:30 AM</p>
-                  <span className="text-primary ml-[30px] flex items-center justify-center bg-dashboard-home w-[10px] h-[10px] text-[6px] leading-[7.26px] font-[500] rounded-full">2</span>
-                </div>
-            </div>
-            <div className="flex items-center justify-center mt-[25px]">
-                <img src={`${media.slide2}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
-                <div className="mr-[182px]">
-                  <p className="text-dashboard-home font-[600] text-[13px] leading-[15.73px]">
-                    Elijah Tetteh
-                  </p>
-                  <span className="italic text-[9px] leading-[10.89px]">typing</span>
-                </div>
-                <div className="flex flex-col space-y-1">
-                  <p className="text-dashboard-home font-[500] text-[9px] leading-[10.89px] ">08:30 AM</p>
+                  <p className="text-dashboard-home font-[500] text-[9px] leading-[10.89px] ">07:00 PM</p>
                   <span className="text-primary ml-[30px] flex items-center justify-center bg-dashboard-home w-[10px] h-[10px] text-[6px] leading-[7.26px] font-[500] rounded-full">2</span>
                 </div>
             </div>
