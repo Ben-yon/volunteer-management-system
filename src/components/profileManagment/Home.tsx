@@ -118,7 +118,7 @@ export const Home = () => {
                 <img src={`${media.sample02}`} alt="avatar" className="w-[38px] h-[38px] rounded-full mr-[16px]"/>
                 <div className="mr-[182px]">
                   <p className="text-dashboard-home font-[600] text-[13px] leading-[15.73px]">
-                    Lily Turner
+                    Gabriel Carter
                   </p>
                   <span className="italic text-[9px] leading-[10.89px]">typing</span>
                 </div>
@@ -147,10 +147,112 @@ export const Home = () => {
         <div className="">
           <AdminCalendar />
         </div>
-        <div className="w-[813px] h-[431px] bg-dashboard-home dashboard-shadow ml-[24px] rounded-[20px]">
+        <div className="w-[813px] h-[431px] bg-dashboard-home dashboard-shadow ml-[24px] rounded-[20px] flex flex-col">
           <h2 className="capitalize text-primary text-center font-[700] text-[20px] leading-[24.2px] mt-[20px]">
             Available on site
           </h2>
+          <div className="columns-2 mt-[15px] ">
+              <div className="flex flex-col justify-center items-center  space-y-1">
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center items-center  space-y-1">
+              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+                <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
+                    <img src={`${media.sample01}`} alt="" className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"/>
+                    <img src="" alt="" />
+                    <div className="flex flex-col justify-center">
+                      <h2 className="text-[13px]font-[700] leading-[15.73px]">Peter Smith</h2>
+                      <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">UX/UI Design . Adobe XD, Figma</p>
+                    </div>
+                </div>
+              </div>
+          </div>
         </div>
       </div>
     </div>
