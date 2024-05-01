@@ -37,6 +37,7 @@ import chat from './icons/bxs_chat.svg';
 import birthday from './icons/birthday.svg';
 import data_upload from './icons/ph_export-bold.svg';
 import polygon from './icons/polygon.svg';
+import chat_red from './icons/chat-red.svg';
 
 
 import slide1 from './img/slide1.png';
@@ -106,5 +107,6 @@ export const media = {
     sample01,
     sample02,
     sample03,
-    sample04
+    sample04,
+    chat_red
 }

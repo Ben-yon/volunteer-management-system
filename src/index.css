@@ -16,7 +16,6 @@
 }
 
 
-
 .red-gradient {
     background: linear-gradient(180deg, #FF0000 0%, rgba(12, 12, 12, 0.89) 100%);
 }
@@ -105,6 +104,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: linear-gradient(189.19deg, #F20000 6.96%, #6D0000 141%);
 }
 
+.emails-card {
+  background: #6D0000;
+  box-shadow: 0px 0px 7.6px 0px #00000012;
+
+}
+
+
 .details-availability-card{
     box-shadow: 1px 1px 11.300000190734863px 2px #0000001C;
 }
@@ -174,6 +180,11 @@ progress {
 
   .react-calendar__tile--active, .react-calendar__tile--hovered{
     background-color: #C8A379;
+    border-radius: full;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
   }
 
   
@@ -200,8 +211,11 @@ progress {
 
   button.react-calendar__tile.react-calendar__tile--now{
     background-color: #C8A379;
-    padding: px;
-    border-radius: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    border-radius: 80%;
   }
   
   .react-calendar__month-view__days__day abbr {
