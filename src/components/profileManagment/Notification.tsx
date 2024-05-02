@@ -11,16 +11,18 @@ export const Notification = () => {
       </h2>
 
       <div className="flex space-x-[15px]">
-        <div className="w-[408px] h-[840px] rounded-[13px] details-card">
+        <div className="flex flex-col w-[408px] h-[840px] rounded-[13px] details-card">
           <a
             href="#"
-            className="font-[600] text-[15px] leading-[18.15px] text-[#790000] relative top-[33px] left-[42px]"
+            className="mb-[40px] font-[600] text-[15px] leading-[18.15px] text-[#790000] relative top-[33px] left-[42px]"
           >
             View All
           </a>
-
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex items-center relative top-[39px] left-[42px]">
             <img src={`${media.sample04}`} alt="" className="w-[49px] h-[49px] rounded-full" />
+            <div className="flex flex-col items-center">
+                <p className="text-[#790000] font-[600] text-[10px] leading-[12.1px] ml-[14px]">Education & Outreach</p>
+            </div>
           </div>
         </div>
         <div className="w-[408px] h-[840px] rounded-[13px] emails-card">
