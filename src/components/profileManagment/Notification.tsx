@@ -27,6 +27,7 @@ export const Notification = () => {
                     <p className="font-[500] text-[7px] leading-[8.47px]">Coming Up on 15th May @Toronto.</p>
                  </div>
                  <p className="font-[500] text-[7px] leading-[8.47px] ml-[14px] mt-[5px]">Saturday 7:30am</p>
+                 <p className="w-[6px] h-[6px] bg-red text-secondary">.</p>
             </div>
           </div>
         </div>
