@@ -20,8 +20,13 @@ export const Notification = () => {
           </a>
           <div className="flex items-center relative top-[39px] left-[42px]">
             <img src={`${media.sample04}`} alt="" className="w-[49px] h-[49px] rounded-full" />
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col">
                 <p className="text-[#790000] font-[600] text-[10px] leading-[12.1px] ml-[14px]">Education & Outreach</p>
+                 <div className="flex items-center justify-center w-[147px] h-[19px] border rounded-[7px] mt-[6px] ml-[13px]">
+                    <img src={`${media.notify_icon}`} alt="event_icon" className="w-[11px] h-[11px] mr-[3px]"/>
+                    <p className="font-[500] text-[7px] leading-[8.47px]">Coming Up on 15th May @Toronto.</p>
+                 </div>
+                 <p className="font-[500] text-[7px] leading-[8.47px] ml-[14px] mt-[5px]">Saturday 7:30am</p>
             </div>
           </div>
         </div>
