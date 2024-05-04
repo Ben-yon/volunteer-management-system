@@ -2,7 +2,7 @@ export interface FormDataInterface{
 
     firstName: string;
     lastName: string;
-    date: string;
+    dateOfBirth: string;
     daysAvailable: string;
     contact: string;
     email: string;
@@ -14,6 +14,7 @@ export interface FormDataInterface{
     occupation: string;
     skills: string;
     interests: string;
+    profilePicture: string;
 }
 
 export interface AdminSignInFormData {

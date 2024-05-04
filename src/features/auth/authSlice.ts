@@ -9,7 +9,7 @@ const initialState: RegsiterStateInterface = {
     userInfo: {
         firstName: "",
         lastName: "",
-        date: "",
+        dateOfBirth: "",
         daysAvailable: "",
         contact: "",
         email: "",
@@ -31,14 +31,17 @@ const initialState: RegsiterStateInterface = {
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+
+    },
     extraReducers: (builder) => {
         builder.addCase(registerVolunteer.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(registerVolunteer.fulfilled, (state) => {
+        .addCase(registerVolunteer.fulfilled, (state, action) => {
             state.loading = false;
+            state.userInfo = action.payload
             state.success = true;
         })
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

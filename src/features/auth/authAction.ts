@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { FormDataInterface } from "../../interfaces/FormDataInterface";
+import api from './../../utils/axios'
 
 export const registerVolunteer = createAsyncThunk(
   "auth/register",
@@ -9,6 +10,7 @@ export const registerVolunteer = createAsyncThunk(
       email,
       firstName,
       lastName,
+      dateOfBirth,
       address,
       city,
       contact,
@@ -24,21 +26,19 @@ export const registerVolunteer = createAsyncThunk(
   ) => {
     try{
 
-        const backendURL = 'http://20.127.229.228:8093'
         const config = {
             headers: {
                 'Content-Type': 'application/json',
             }
         }
-        await axios.post(
-            `${backendURL}/volunteers/register`,
+        await api.post(
+            'volunteers/',
             {
-              user:{},
-              volunteer: {
                 email,
                 firstName,
                 lastName,
                 address,
+                dateOfBirth,
                 city,
                 contact,
                 daysAvailable,
@@ -48,10 +48,11 @@ export const registerVolunteer = createAsyncThunk(
                 zipCode,
                 streetAddress,
                 region
-              }
             },
             config
-        )
+        ).then((response) => {
+          console.log(response)
+        })
     }catch( error ){
         if ( axios.isAxiosError(error) && error.response &&  error.response.data.message){
             return rejectWithValue(error.response.data.message)

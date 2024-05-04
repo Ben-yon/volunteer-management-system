@@ -34,7 +34,10 @@ export const ViewUserDetail = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    dispatch(registerVolunteer(values))
+    values['profilePicture'] = uploadedImageRef.current;
+    console.log(values);
+    dispatch(registerVolunteer(values));
+    console.log(userInfo);
     navigate("/successful-registration");
   };
 
@@ -116,7 +119,7 @@ export const ViewUserDetail = () => {
           <button
             className="rounded-full w-[10px] h-[10px] p-4 bg-primary mt-[16.03px] font-bold flex  justify-center items-center"
             disabled={loading}
-            onClick={() => navigate('/')}
+            onClick={() => navigate(-1)}
           >
             &lt;
           </button>

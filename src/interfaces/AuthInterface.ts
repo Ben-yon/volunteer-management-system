@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface RegsiterStateInterface {
     loading: boolean;
-    userInfo: VolunteerRegisterPayload; // Consider refining the type based on your user data structure
+    userInfo: VolunteerRegisterPayload | undefined; // Consider refining the type based on your user data structure
     error: string | null;
     success: boolean;
   }
@@ -12,7 +12,7 @@ export interface RegsiterStateInterface {
     id: string;
     firstName: string;
     lastName: string;
-    date: string;
+    dateOfBirth: string;
     daysAvailable: string;
     contact: string;
     email: string;

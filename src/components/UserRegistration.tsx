@@ -37,7 +37,7 @@ export const UserRegistration = () => {
   const validationRules = {
     firstName: { required: true, minLength: 2 },
     lastName: { required: true, minLength: 2 },
-    date: { required: true },
+    dateOfBirth: { required: true },
     daysAvailable: { required: true, isNumber: true, isDayOfWeek: true },
     contact: { required: true },
     email: { required: true, email: true },
@@ -57,7 +57,7 @@ export const UserRegistration = () => {
       {
         firstName: "",
         lastName: "",
-        date: "",
+        dateOfBirth: "",
         daysAvailable: "",
         address: "",
         contact: "",
@@ -69,6 +69,7 @@ export const UserRegistration = () => {
         occupation: "",
         skills: "",
         interests: "",
+        profilePicture: ""
       },
       validationRules
     );
@@ -251,10 +252,10 @@ export const UserRegistration = () => {
             <div className="flex flex-col">
               <input
                 type="date"
-                value={values.date}
+                value={values.dateOfBirth}
                 onChange={handleChange}
                 placeholder="DD/MM/YYYY"
-                name="date"
+                name="dateOfBirth"
                 className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.date && (
@@ -648,15 +649,15 @@ export const UserRegistration = () => {
                     <div className="flex flex-col">
                       <input
                         type="date"
-                        name="date"
-                        value={values.date}
+                        name="dateOfBirth"
+                        value={values.dateOfBirth}
                         onChange={handleChange}
                         className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[16px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-48 text-white uppercase placeholder-gray-300 pr-2 mr-[24px] md:w-[141.12px] md:h-[37.23px] md:rounded-[10.42px] md:text-[12.9px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[12.90px] sm:leading-[16.81px] sm:pl-[11.11px] sm:mt-40 xsm:w-[141.12px] xsm:h-[36.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-40"
                         placeholder="DD/MM/YYYY"
                       />
                       {errors.date && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.date}
+                          {errors.dateOfBirth}
                         </span>
                       )}
                     </div>
