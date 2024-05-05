@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { FormDataInterface } from "../../interfaces/FormDataInterface";
+import { AdminSignInFormData, FormDataInterface } from "../../interfaces/FormDataInterface";
 import api from './../../utils/axios'
 
 export const registerVolunteer = createAsyncThunk(
@@ -61,4 +61,27 @@ export const registerVolunteer = createAsyncThunk(
         }
     }
   }
+
 );
+export const Login = createAsyncThunk("auth/login",
+  async({
+    email, 
+    password
+  }: AdminSignInFormData, {rejectWithValue}) => {
+    try{
+
+      await api.post('Users/Authenticate', {
+        email,
+        password
+      }).then((response) => {
+        console.log(response)
+      })
+    }catch( error){
+      if ( axios.isAxiosError(error) && error.response &&  error.response.data.message){
+        return rejectWithValue(error.response.data.message)
+    }else{
+        return rejectWithValue(error);
+    }
+    }
+  }
+)
