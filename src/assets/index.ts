@@ -50,7 +50,9 @@ import flag_uk from './icons/flag_uk.svg';
 import lang_white from './icons/lang-white.svg';
 import lang_black from './icons/lang-black.svg';
 import compose from './icons/compose.svg';
-
+import red_dot from './icons/red_dot.svg';
+import white_envelope from './icons/envelope_white.svg'
+import attachment from './icons/atttachment.svg';
 // Here I want to push some sample images of people
 
 import sample01 from './img/sample01.jpg';
@@ -69,6 +71,7 @@ export const media = {
     notification,
     addPassword,
     networks,
+    white_envelope,
     admin_icon,
     passwordChanged,
     giving,
@@ -85,6 +88,7 @@ export const media = {
     admins,
     support,
     home,
+    red_dot,
     birthday,
     data_upload,
     polygon,
@@ -110,5 +114,6 @@ export const media = {
     sample03,
     sample04,
     chat_red,
+    attachment,
     notify_icon
 }
