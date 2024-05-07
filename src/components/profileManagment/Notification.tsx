@@ -154,7 +154,7 @@ export const Notification = () => {
               className="w-[49px] h-[49px] rounded-full border-[2px] border-white"
             />
             <div className="flex flex-col">
-              <p className="text-[#790000] font-[600] text-[10px] leading-[12.1px] ml-[14px] text-primary">
+              <p className="font-[600] text-[10px] leading-[12.1px] ml-[14px] text-primary">
                 Education & Outreach
               </p>
               <div className="flex items-center justify-center w-[147px] h-[19px] border bg-primary rounded-[7px] mt-[6px] ml-[13px]">
@@ -214,7 +214,7 @@ export const Notification = () => {
               className="w-[49px] h-[49px] rounded-full border-[2px] border-white"
             />
             <div className="flex flex-col">
-              <p className="text-[#790000] font-[600] text-[10px] leading-[12.1px] ml-[14px] text-primary">
+              <p className="font-[600] text-[10px] leading-[12.1px] ml-[14px] text-primary">
                 Education & Outreach
               </p>
               <div className="flex items-center justify-center w-[147px] h-[19px] border bg-primary rounded-[7px] mt-[6px] ml-[13px]">
