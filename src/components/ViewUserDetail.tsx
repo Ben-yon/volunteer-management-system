@@ -8,7 +8,7 @@ import {  useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../features/store";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { registerVolunteer } from "../features/auth/authAction";
+import { registerVolunteer } from "../features/register/registerVolunteerAction";
 import { Spinner } from "../widgets/Spinner";
 import { useEffect } from "react";
 
@@ -21,7 +21,7 @@ export const ViewUserDetail = () => {
   const { t } = useTranslation();
 
   const { loading, userInfo, error, success } = useSelector(
-    (state: RootState) => state.auth
+    (state: RootState) => state.registerVolunteerSlice
   );
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -37,8 +37,9 @@ export const ViewUserDetail = () => {
     values['profilePicture'] = uploadedImageRef.current;
     console.log(values);
     dispatch(registerVolunteer(values));
-    console.log(userInfo);
-    navigate("/successful-registration");
+    if (success){
+      navigate("/successful-registration");
+    }
   };
 
   return (

@@ -1,11 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Link } from "react-router-dom";
 import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import { AdminSignInFormData } from "../../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { adminLogin } from "../../features/auth/authAction";
+import { ThunkAction } from "@reduxjs/toolkit";
 
 export const AdminSignIn = () => {
+  const {loading, userInfo, error, success} = useSelector(
+    (state: RootState) => state.authSlice
+  );
+
+  const dispatch = useDispatch<ThunkAction<any, any, any>>()
+
+
   const ValidationRules = {
     email: { required: true, email: true },
     password: { required: true, password: true },
@@ -24,8 +37,10 @@ export const AdminSignIn = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted", values);
-      navigate('/profile-management')
+      dispatch(adminLogin(values))
+      if(success){
+        navigate('/profile-management')
+      }
     } else {
       console.log("Form validation failed:", errors);
     }
