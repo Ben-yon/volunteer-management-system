@@ -18,7 +18,8 @@ const initialState: LoginInterface = {
     role: [],
     },
     error: null,
-    success: false
+    success: false,
+    isAuthenticated: false
 }
 
 const authSlice = createSlice({
@@ -34,12 +35,14 @@ const authSlice = createSlice({
             state.loading = false;
             state.userInfo = action.payload
             state.success = true;
+            state.isAuthenticated = true;
         })
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .addCase(adminLogin.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;
             state.error = action.payload;
             state.success = false;
+            state.isAuthenticated = false;
         });
     }
 });

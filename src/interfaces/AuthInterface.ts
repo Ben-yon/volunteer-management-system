@@ -11,6 +11,7 @@ export interface RegisterStateInterface {
     userInfo: LoginPayload | undefined;
     error: string | null;
     success: boolean;
+    isAuthenticated: boolean
   }
 
 

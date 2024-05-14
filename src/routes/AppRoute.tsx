@@ -1,7 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { UserRegistration } from "../components/UserRegistration";
-import { ViewUserDetail  } from "../components/ViewUserDetail";
+import { ViewUserDetail } from "../components/ViewUserDetail";
 import { SuccessfulRegistration } from "../components/SuccessRegistration";
 import { AdminLandingPage } from "../components/admin/AdminLandingPage";
 import { AdminSignIn } from "../components/admin/AdminSignIn";
@@ -25,119 +25,72 @@ import { Support } from "../components/profileManagment/Support";
 import { Settings } from "../components/profileManagment/Settings";
 import { Integrations } from "../components/profileManagment/Integration";
 import { VolunteerDetails } from "../components/profileManagment/VolunteerDetails";
+import { useSelector } from "react-redux";
+import { RootState } from "../features/store";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
-
 export const AppRoutes = () => {
-    return (
-        <Routes>
-            <Route
-                path="/"
-                element={<UserRegistration/>}
-            />
-            <Route
-                path="view-user-details"
-                element={<ViewUserDetail/>}
-            />
-            <Route
-                path="successful-registration"
-                element={<SuccessfulRegistration/>}
-            />
-            <Route
-                path="admin"
-                element={<AdminLandingPage/>}
-            />
-            <Route
-                path="/admin/sign-in"
-                element={<AdminSignIn/>}
-            />
-            <Route
-                path="/admin/sign-up"
-                element={<AdminRegistration/>}
-            />
-            <Route
-                path="/admin/register-confirm"
-                element={<AdminRegistrationConfirmation/>}
-            />
-            <Route
-                path="/admin/password-reset"
-                element={<AdminPasswordReset/>}
-            />
-            <Route
-                path="/admin/password-reset/check-email"
-                element={<AdminCheckEmail/>}
-            />
-            <Route
-                path="/admin/password-reset/new-password"
-                element={<AdminCreateNewPassword/>}
-            />
-            <Route
-                path="/admin/password-reset/confirm-password-change"
-                element={<AdminConfirmPasswordChange/>}
-            />
-            <Route
-                path="/profile-management/*"
-                element={<ProfileManagement/>}
-            />
-        </Routes>
-    )
-}
+  const isAuthenticated  =! useSelector(
+    (state: RootState) => {
+        return state.authSlice.isAuthenticated
+    }
+  );
+
+  return (
+    <Routes>
+      <Route path="/" element={<UserRegistration />} />
+      <Route path="view-user-details" element={<ViewUserDetail />} />
+      <Route
+        path="successful-registration"
+        element={<SuccessfulRegistration />}
+      />
+      <Route path="admin" element={<AdminLandingPage />} />
+      <Route path="/admin/sign-in" element={<AdminSignIn />} />
+      <Route path="/admin/sign-up" element={<AdminRegistration />} />
+      <Route
+        path="/admin/register-confirm"
+        element={<AdminRegistrationConfirmation />}
+      />
+      <Route path="/admin/password-reset" element={<AdminPasswordReset />} />
+      <Route
+        path="/admin/password-reset/check-email"
+        element={<AdminCheckEmail />}
+      />
+      <Route
+        path="/admin/password-reset/new-password"
+        element={<AdminCreateNewPassword />}
+      />
+      <Route
+        path="/admin/password-reset/confirm-password-change"
+        element={<AdminConfirmPasswordChange />}
+      />
+      {isAuthenticated ? 
+        <Route path="/profile-management/*" element={<ProfileManagement />} />
+      : 
+        <Route path="/admin/sign-in" element={<AdminSignIn />} />
+      }
+    <Route path="*" element={<Navigate to="/admin/sign-in" replace />} />
+    </Routes>
+  );
+};
 
 export const AdminRoutes = () => {
-    return (
-        <Routes>
-            <Route
-                path=""
-                element={<Home/>}
-            />
-            <Route
-                path="volunteers"
-                element={<Volunteer/>}
-            />
-            <Route
-                path="volunteers/details/:id"
-                element={<VolunteerDetails/>}
-            />
-            <Route
-                path="notification"
-                element={<Notification/>}
-            />
-            <Route
-                path="scheduling"
-                element={<Scheduling/>}
-            />
-            <Route
-                path="messages"
-                element={<Messages/>}
-            />
-            <Route
-                path="training"
-                element={<Training/>}
-            />
-            <Route
-                path="programs"
-                element={<Programs/>}
-            />
-            <Route
-                path="admins"
-                element={<Admins/>}
-            />
-            <Route
-                path="profile"
-                element={<Profile/>}
-            />
-            <Route
-                path="support"
-                element={<Support/>}
-            />
-            <Route
-                path="settings"
-                element={<Settings/>}
-            />
-            <Route
-                path="integrations"
-                element={<Integrations/>}
-            />
-        </Routes>
-    )
-}
+  return (
+    <Routes>
+      <Route path="/profile-management" element={<Home />} />
+      <Route path="volunteers" element={<Volunteer />} />
+      <Route path="volunteers/details/:id" element={<VolunteerDetails />} />
+      <Route path="notification" element={<Notification />} />
+      <Route path="scheduling" element={<Scheduling />} />
+      <Route path="messages" element={<Messages />} />
+      <Route path="training" element={<Training />} />
+      <Route path="programs" element={<Programs />} />
+      <Route path="admins" element={<Admins />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="support" element={<Support />} />
+      <Route path="settings" element={<Settings />} />
+      <Route path="integrations" element={<Integrations />} />
+      <Route path="*" element={<Navigate to="/admin/sign-in" replace />} />
+    </Routes>
+  );
+};

@@ -2,9 +2,12 @@ import { NavLink } from "react-router-dom";
 import { media } from "../../assets";
 import { AdminRoutes } from "../../routes/AppRoute";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export const ProfileManagement = () => { 
   const [ activeLink, setActiveLink ] = useState<string | null>("")
+  const { state } = useLocation()
+  const userInfo = state?.userInfo;
 
   const handleClick = (path: string) => {
     setActiveLink(path);
@@ -24,9 +27,9 @@ export const ProfileManagement = () => {
             className="w-[50px] h-[50px] mr-[12px] relative -top-1"
           />
           <p className="text-[15px] leading-[18.5px] flex flex-col">
-            Ken Boehm
+            {userInfo?.firstName}
             <span className="text-[10px] leading-[12.1px] font-bold">
-              Admin
+              {userInfo?.roles.name}
             </span>
           </p>
         </div>

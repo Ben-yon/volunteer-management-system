@@ -37,7 +37,7 @@ export const ViewUserDetail = () => {
     values['profilePicture'] = uploadedImageRef.current;
     console.log(values);
     dispatch(registerVolunteer(values));
-    if (success){
+    if (success === true){
       navigate("/successful-registration");
     }
   };
