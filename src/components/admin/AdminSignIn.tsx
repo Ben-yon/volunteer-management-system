@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Link } from "react-router-dom";
 import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
@@ -9,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
 import { adminLogin } from "../../features/auth/authAction";
-import { ThunkAction } from "@reduxjs/toolkit";
+import { ThunkDispatch } from "@reduxjs/toolkit";
 
 export const AdminSignIn = () => {
   const {loading, userInfo, error, success} = useSelector(
     (state: RootState) => state.authSlice
   );
 
-  const dispatch = useDispatch<ThunkAction<any, any, any>>()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
 
   const ValidationRules = {
