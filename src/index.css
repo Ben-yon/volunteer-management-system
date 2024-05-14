@@ -24,6 +24,9 @@
     background: linear-gradient(176.98deg, #ec5959 2.5%, rgba(255, 255, 255, 0) 97.82%);
 }
 
+.programs-gradient {
+  background: linear-gradient(180.02deg, #FFFFFF 0.02%, #F2F2F2 97.97%);
+}
 .register-form-submit {
     background: #0A1024;
 }
