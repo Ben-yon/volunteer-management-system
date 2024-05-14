@@ -4,11 +4,25 @@ import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import { AdminSignInFormData } from "../../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { adminLogin } from "../../features/auth/authAction";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { Spinner } from "../../widgets/Spinner";
+
 
 export const AdminSignIn = () => {
+  const {loading, userInfo, error, success} = useSelector(
+    (state: RootState) => state.authSlice
+  );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+
+
   const ValidationRules = {
     email: { required: true, email: true },
-    password: { required: true, password: true },
+    password: { required: true },
   };
 
   const navigate = useNavigate();
@@ -24,8 +38,11 @@ export const AdminSignIn = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (validate()) {
-      console.log("Form submitted", values);
-      navigate('/profile-management')
+      dispatch(adminLogin(values))
+      if(success===true){
+        console.log(userInfo)
+        navigate('/profile-management/', { state: { userInfo }})
+      }
     } else {
       console.log("Form validation failed:", errors);
     }
@@ -88,8 +105,13 @@ export const AdminSignIn = () => {
               <Link to="/admin/password-reset/">Forgot Password?</Link>
             </span>
             <button className=" bg-tertiary text-white rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px]">
-              Sign In
+            { loading ? <Spinner/> : "Sign In"}
             </button>
+            <p className="">
+                {error && (
+                  <span className="text-red-500 flex flex-wrap w-[400px] text-[10px]">Email or password is wrong</span>
+                )}
+            </p>
             <p className="text-[19.15px] leading-[23.17px] lg:text-[19.15px] lg:leading-[23.17px] mt-[21.7px] lg:mt-[21.7px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] xsm:mt-[11.43px] xsm:text-[7.11px] xsm:leading-[8.6px]">
               Dont' have an account?{" "}
               <Link to="/admin/sign-up">

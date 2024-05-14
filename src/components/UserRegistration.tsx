@@ -1,7 +1,8 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { styles } from "../styles";
-import { FormDataInterface } from "../interfaces/FormDataInterface";
 import { useNavigate } from "react-router-dom";
+
+import { FormDataInterface } from "../interfaces/FormDataInterface";
+import { styles } from "../styles";
 import { ImageSlideshow } from "../widgets/ImageSlideshow";
 import { media } from "../assets";
 import { db } from "../utils/db";
@@ -10,26 +11,15 @@ import { LanguageSelect } from "./LanguageSelect";
 import { useFormValidation } from "../utils/validate";
 import Modal from "../widgets/Modal";
 
+
 export const UserRegistration = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
+  
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   const uploadedImageRef = useRef<string | undefined>(media.upload);
-  // const [formData, setFormData] = useState<FormDataInterface>({
-  //   firstName: "",
-  //   lastName: "",
-  //   date: "",
-  //   daysPerWeek: "",
-  //   email: "",
-  //   contact: "",
-  //   address: "",
-  //   streetAddress: "",
-  //   city: "",
-  //   province: "",
-  //   postalCode: "",
-  //   occupation: "",
-  //   skills: "",
-  //   interest: "",
-  // });
+
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const goToPage = (pageNumber: number) => {
@@ -45,20 +35,20 @@ export const UserRegistration = () => {
   const { t } = useTranslation();
 
   const validationRules = {
-    firstName: { required: true, minLength: 5 },
+    firstName: { required: true, minLength: 2 },
     lastName: { required: true, minLength: 2 },
-    date: { required: true },
-    daysPerWeek: { required: true, isNumber: true, isDayOfWeek: true },
+    dateOfBirth: { required: true },
+    daysAvailable: { required: true, isNumber: true, isDayOfWeek: true },
     contact: { required: true },
     email: { required: true, email: true },
     address: { required: true },
     streetAddress: { required: true },
     city: { required: true },
-    province: { required: true },
-    postalCode: { required: true },
+    region: { required: true },
+    zipCode: { required: true },
     occupation: { required: true },
     skills: { required: true },
-    interest: { required: true },
+    interests: { required: true },
   };
 
   // eslint-disable-next-line prefer-const
@@ -67,18 +57,19 @@ export const UserRegistration = () => {
       {
         firstName: "",
         lastName: "",
-        date: "",
-        daysPerWeek: "",
+        dateOfBirth: "",
+        daysAvailable: "",
         address: "",
         contact: "",
         email: "",
         streetAddress: "",
         city: "",
-        province: "",
-        postalCode: "",
+        region: "",
+        zipCode: "",
         occupation: "",
         skills: "",
-        interest: "",
+        interests: "",
+        profilePicture: ""
       },
       validationRules
     );
@@ -97,7 +88,7 @@ export const UserRegistration = () => {
   const clearData = async () => {
     try {
       await db.userDetails.clear();
-      console.log("data cleared");
+      
     } catch (error) {
       console.error(error);
     }
@@ -108,13 +99,12 @@ export const UserRegistration = () => {
   useEffect(() => {
     db.userDetails.toArray().then((data) => {
       if (data.length > 0) {
-        // console.log(data)
         // eslint-disable-next-line react-hooks/exhaustive-deps
         values = data[0];
         console.log(values);
       }
     });
-  });
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -262,10 +252,10 @@ export const UserRegistration = () => {
             <div className="flex flex-col">
               <input
                 type="date"
-                value={values.date}
+                value={values.dateOfBirth}
                 onChange={handleChange}
                 placeholder="DD/MM/YYYY"
-                name="date"
+                name="dateOfBirth"
                 className="text-primary placeholder-gray-300 uppercase border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
               {errors.date && (
@@ -281,15 +271,15 @@ export const UserRegistration = () => {
             <div className="flex flex-col">
               <input
                 type="text"
-                value={values.daysPerWeek}
+                value={values.daysAvailable}
                 onChange={handleChange}
                 placeholder="enter number of days available"
-                name="daysPerWeek"
+                name="daysAvailable"
                 className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
-              {errors.daysPerWeek && (
+              {errors.daysAvailable && (
                 <span className="text-gray-100 text-[10px]">
-                  {errors.daysPerWeek}
+                  {errors.daysAvailable}
                 </span>
               )}
             </div>
@@ -444,20 +434,20 @@ export const UserRegistration = () => {
               htmlFor="state"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
             >
-              State/Province/Region
+              State/region/Region
             </label>
             <div className="flex flex-col">
               <input
                 type="text"
-                value={values.province}
+                value={values.region}
                 onChange={handleChange}
-                placeholder="enter your state/province/region"
-                name="province"
+                placeholder="enter your state/region/region"
+                name="region"
                 className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
-              {errors.province && (
+              {errors.region && (
                 <span className="text-gray-100 text-[6.1px]">
-                  {errors.province}
+                  {errors.region}
                 </span>
               )}
             </div>
@@ -470,15 +460,15 @@ export const UserRegistration = () => {
             <div className="flex flex-col">
               <input
                 type="text"
-                value={values.postalCode}
+                value={values.zipCode}
                 onChange={handleChange}
                 placeholder="enter your zip/postal code"
-                name="postalCode"
+                name="zipCode"
                 className="text-primary placeholder-gray-300 uppercase focus:capitalize border-b-2 text-[7.93px] leading-[9.6px] font-[700] w-[254.97px] h-[45.33px] rounded-[1.13px] focus:outline-none"
               />
-              {errors.postalCode && (
+              {errors.zipCode && (
                 <span className="text-gray-100 text-[6.1px]">
-                  {errors.postalCode}
+                  {errors.zipCode}
                 </span>
               )}
             </div>
@@ -542,11 +532,11 @@ export const UserRegistration = () => {
               htmlFor="interests"
               className="text-primary text-[13.6px] leading-[16.46px] font-[700] block mt-[34px]"
             >
-              Interests
+              interests
             </label>
             <input
               type="text"
-              value={values.interest}
+              value={values.interests}
               onChange={handleChange}
               placeholder="enter your interests"
               name="interests"
@@ -659,30 +649,30 @@ export const UserRegistration = () => {
                     <div className="flex flex-col">
                       <input
                         type="date"
-                        name="date"
-                        value={values.date}
+                        name="dateOfBirth"
+                        value={values.dateOfBirth}
                         onChange={handleChange}
                         className="lg:w-[181px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[16px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-48 text-white uppercase placeholder-gray-300 pr-2 mr-[24px] md:w-[141.12px] md:h-[37.23px] md:rounded-[10.42px] md:text-[12.9px] md:leading-[16.81px] md:pl-[11.11px] sm:w-[141.12px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[12.90px] sm:leading-[16.81px] sm:pl-[11.11px] sm:mt-40 xsm:w-[141.12px] xsm:h-[36.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-40"
                         placeholder="DD/MM/YYYY"
                       />
                       {errors.date && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.date}
+                          {errors.dateOfBirth}
                         </span>
                       )}
                     </div>
                     <div className="flex flex-col">
                       <input
                         type="text"
-                        name="daysPerWeek"
-                        value={values.daysPerWeek}
+                        name="daysAvailable"
+                        value={values.daysAvailable}
                         onChange={handleChange}
                         className="text-white placeholder-gray-300 leading-[24.2px] lg:w-[253px] lg:h-[54px] focus:outline-none border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] lg:pl-[16px] lg:mt-48  md:w-[148.05px] md:h-[37.5px] md:text-[13.89px] md:leading-[16.81px] md:rounded-[10.42px] md:pl-[11.11px] sm:w-[148.05px] sm:h-[37.5px] sm:text-[13.89px] sm:leading-[16.81px] sm:rounded-[10.42px] sm:pl-[11.11px] sm:mt-40 xsm:w-[148.05px] xsm:h-[35.5px] xsm:text-xs xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:mt-40"
                         placeholder={t("Days per week")}
                       />
-                      {errors.daysPerWeek && (
+                      {errors.daysAvailable && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.daysPerWeek}
+                          {errors.daysAvailable}
                         </span>
                       )}
                     </div>
@@ -712,9 +702,9 @@ export const UserRegistration = () => {
                         value={values.email}
                         onChange={handleChange}
                       />
-                      {errors.interest && (
+                      {errors.interests && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.interest}
+                          {errors.interests}
                         </span>
                       )}
                     </div>
@@ -769,14 +759,14 @@ export const UserRegistration = () => {
                       <input
                         type="text"
                         className="text-white placeholder-gray-300 border focus:outline-none text-[20px] leading-[24.2px] mt-[15px] lg:w-[412px] lg:h-[54px] lg:border lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[259.73px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px] xsm:w-[157.73px]"
-                        placeholder="State/Province/Region"
-                        name="province"
-                        value={values.province}
+                        placeholder="State/region/Region"
+                        name="region"
+                        value={values.region}
                         onChange={handleChange}
                       />
-                      {errors.province && (
+                      {errors.region && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.province}
+                          {errors.region}
                         </span>
                       )}
                     </div>
@@ -787,13 +777,13 @@ export const UserRegistration = () => {
                         type="text"
                         className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] lg:w-[282px] lg:h-[54px] border focus:outline-none rounded-[15px] mt-[15px] mr-[20px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[243.28px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[143.28px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
                         placeholder={t("ZIP / Postal Code")}
-                        name="postalCode"
-                        value={values.postalCode}
+                        name="zipCode"
+                        value={values.zipCode}
                         onChange={handleChange}
                       />
-                      {errors.postalCode && (
+                      {errors.zipCode && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.postalCode}
+                          {errors.zipCode}
                         </span>
                       )}
                     </div>
@@ -833,21 +823,21 @@ export const UserRegistration = () => {
                       <input
                         type="text"
                         className="text-white placeholder-gray-300 text-[20px] leading-[24.2px] focus:outline-none border rounded-[15px] mt-[15px] lg:w-[412px] lg:h-[54px] lg:rounded-[15px] lg:text-[20px] lg:leading-[24.2px] md:h-[37.23px] md:w-[259.73px] md:rounded-[10.42px] md:text-[13.89px] md:leading-[16.81px] md:pl-[11.11px] sm:h-[37.23px] sm:rounded-[10.42px] sm:text-[13.89px] sm:leading-[16.81px] sm:pl-[11.11px] sm:w-[259.73px] xsm:w-[159.73px] xsm:h-[35.23px] xsm:rounded-[8px] xsm:text-[10.81px] xsm:pl-[9px]"
-                        placeholder={t("Interests")}
-                        name="interest"
-                        value={values.interest}
+                        placeholder={t("interests")}
+                        name="interests"
+                        value={values.interests}
                         onChange={handleChange}
                       />
-                      {errors.interest && (
+                      {errors.interests && (
                         <span className="text-gray-100 text-[10px]">
-                          {errors.interest}
+                          {errors.interests}
                         </span>
                       )}
                     </div>
                   </div>
                 </div>
                 <button className="bg-primary rounded-[15px] border lg:text-[25px] text-secondary mt-[28px] lg:leading-[30.26px] font-bold sm:text-xs sm:mb-7 sm:mt-[22px] sm:py-[7.55px] sm:px-[17.1px] sm:rounded-[9.4px] xsm:text-xs xsm:mb-7 xsm:mt-2 xsm:py-[7.55px] xsm:px-[17.1px] xsm:rounded-[9.4px]">
-                  {t("Next")}
+                   {t("Next")}
                 </button>
               </form>
             </div>
@@ -875,3 +865,5 @@ export const UserRegistration = () => {
     </div>
   );
 };
+
+

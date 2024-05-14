@@ -1,9 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 //import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { styles } from "../styles";
 import { media } from "../assets";
 import { LanguageSelect } from "./LanguageSelect";
 import {  useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../features/store";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { registerVolunteer } from "../features/register/registerVolunteerAction";
+import { Spinner } from "../widgets/Spinner";
+import { useEffect } from "react";
+
+
 
 export const ViewUserDetail = () => {
   const { state } = useLocation();
@@ -11,12 +20,26 @@ export const ViewUserDetail = () => {
 
   const { t } = useTranslation();
 
+  const { loading, userInfo, error, success } = useSelector(
+    (state: RootState) => state.registerVolunteerSlice
+  );
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  useEffect(() => {
+    console.log(userInfo, success);
+  }, [userInfo, success])
 
 
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/successful-registration");
+    values['profilePicture'] = uploadedImageRef.current;
+    console.log(values);
+    dispatch(registerVolunteer(values));
+    if (success === true){
+      navigate("/successful-registration");
+    }
   };
 
   return (
@@ -47,6 +70,7 @@ export const ViewUserDetail = () => {
             </p>
           </div>
           <div className="flex flex-col items-center h-auto">
+            {error}
             <div>
               <img
                 src={uploadedImageRef.current}
@@ -65,8 +89,8 @@ export const ViewUserDetail = () => {
               {values?.date}
             </p>
             <p className="text-primary text-center  lg:text-[15.17px] lg:leading-[17.73px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
-              {values?.daysPerWeek}{" "}
-              {values.daysPerWeek ? <span>Days per week</span> : ""}{" "}
+              {values?.daysAvailable}{" "}
+              {values.daysAvailable ? <span>Days per week</span> : ""}{" "}
             </p>
             <p className="text-primary text-center  lg:text-[15.17px] lg:leading-[17.73px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
               {values?.address}
@@ -75,7 +99,7 @@ export const ViewUserDetail = () => {
               {values?.streetAddress} {values?.city}
             </p>
             <p className="text-primary text-center  lg:text-[15.17px] lg:leading-[17.73px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
-              {values?.province}
+              {values?.region}
             </p>
             <p className="text-primary text-center  lg:text-[15.17px] lg:leading-[17.73px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
               {values?.country}
@@ -84,18 +108,19 @@ export const ViewUserDetail = () => {
               {values?.skills}
             </p>
             <p className="text-primary text-center  lg:text-[15.17px] lg:leading-[17.73px]  font-bold md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
-              {values?.interest}
+              {values?.interests}
             </p>
           </div>
           <button
             className="register-form-submit lg:text-primary lg:h-14 lg:w-32 lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:text-xl lg:px-8 lg:pr-4 lg:pl-4 md:text-[15.22px] md:leading-[18.42px] md:w-[94.96px] md:rounded-[9.13px] sm:text-[15.22px] sm:leading-[18.42px] sm:w-[94.96px] sm:rounded-[9.13px] xsm:rounded-[6px] xsm:w-[62.04px] xsm:text-xs xsm:px-2 xsm:py-2 xsm:text-primary xsm:font-bold xsm:mt-[18.5px]"
             onClick={handleSubmit}
           >
-            {t("Submit")}
+            { loading ? <Spinner/> : t("Submit")}
           </button>
           <button
             className="rounded-full w-[10px] h-[10px] p-4 bg-primary mt-[16.03px] font-bold flex  justify-center items-center"
-            onClick={() => navigate('/')}
+            disabled={loading}
+            onClick={() => navigate(-1)}
           >
             &lt;
           </button>

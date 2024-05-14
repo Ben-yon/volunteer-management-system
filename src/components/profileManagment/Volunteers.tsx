@@ -117,7 +117,7 @@ export const Volunteer = () => {
       ),
     },
     {
-      Header: "Interests",
+      Header: "interests",
       accessor: "interests",
       id: "interests",
       Cell: ({ value }: { value: any }) => (

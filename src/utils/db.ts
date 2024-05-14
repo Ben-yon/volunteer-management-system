@@ -8,7 +8,7 @@ export class localStorage extends Dexie {
     super("myDatabase");
     this.version(1).stores({
       userDetails:
-        "firstName, lastName, dateOfBirth, daysOfMonth, address, streetAddress, city, province, postalCode, occupation, skills, interest",
+        "firstName, lastName, dateOfBirth, daysOfMonth, address, streetAddress, city, region, zipCode, occupation, skills, interests",
     });
   }
 }

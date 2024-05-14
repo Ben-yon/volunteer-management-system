@@ -2,18 +2,19 @@ export interface FormDataInterface{
 
     firstName: string;
     lastName: string;
-    date: string;
-    daysPerWeek: string;
+    dateOfBirth: string;
+    daysAvailable: string;
     contact: string;
     email: string;
     address: string;
     streetAddress: string;
     city: string;
-    province: string;
-    postalCode: string;
+    region: string;
+    zipCode: string;
     occupation: string;
     skills: string;
-    interest: string;
+    interests: string;
+    profilePicture: string;
 }
 
 export interface AdminSignInFormData {
