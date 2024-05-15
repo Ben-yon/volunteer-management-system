@@ -9,12 +9,22 @@ import { RootState } from "../../features/store";
 import { adminLogin } from "../../features/auth/authAction";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { Spinner } from "../../widgets/Spinner";
+import { useEffect } from "react";
 
 
 export const AdminSignIn = () => {
   const {loading, userInfo, error, success, isAuthenticated} = useSelector(
     (state: RootState) => state.authSlice
   );
+
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    if(success){
+      navigate('/profile-management', { state: { userInfo, isAuthenticated }})
+    }
+  }, [userInfo, isAuthenticated, success, navigate])
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
@@ -25,7 +35,6 @@ export const AdminSignIn = () => {
     password: { required: true },
   };
 
-  const navigate = useNavigate();
 
   const { values, errors, handleChange, validate } =
     useFormValidation<AdminSignInFormData>(
@@ -39,9 +48,6 @@ export const AdminSignIn = () => {
     e.preventDefault();
     if (validate()) {
       dispatch(adminLogin(values))
-      if(success){
-        navigate('/profile-management', { state: { userInfo, isAuthenticated }})
-      }
     } else {  
       console.log("Form validation failed:", errors);
     }
