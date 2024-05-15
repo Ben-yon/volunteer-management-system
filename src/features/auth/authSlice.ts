@@ -1,5 +1,5 @@
+import { LoginInterface } from './../../interfaces/AuthInterface';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginInterface } from '../../interfaces/AuthInterface';
 import { adminLogin } from './authAction';
 
 
@@ -25,13 +25,22 @@ const initialState: LoginInterface = {
 const authSlice = createSlice({
     name: 'authSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            localStorage.removeItem('token');
+            state.loading = false;
+            state.isAuthenticated = false;
+            state.success = false;
+            state.userInfo = null;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(adminLogin.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
-        .addCase(adminLogin.fulfilled, (state, action) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .addCase(adminLogin.fulfilled, (state, action: PayloadAction<any>) => {
             state.loading = false;
             state.userInfo = action.payload
             state.success = true;
@@ -46,5 +55,5 @@ const authSlice = createSlice({
         });
     }
 });
-
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

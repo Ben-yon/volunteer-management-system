@@ -11,7 +11,6 @@ import { AdminPasswordReset } from "../components/admin/AdminPasswordReset";
 import { AdminCheckEmail } from "../components/admin/AdminCheckEmail";
 import { AdminCreateNewPassword } from "../components/admin/AdminCreateNewPassword";
 import { AdminConfirmPasswordChange } from "../components/admin/AdminConfirmPasswordChange";
-import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
 import { Volunteer } from "../components/profileManagment/Volunteers";
 import { Notification } from "../components/profileManagment/Notification";
 import { Scheduling } from "../components/profileManagment/Scheduling";
@@ -27,14 +26,14 @@ import { Integrations } from "../components/profileManagment/Integration";
 import { VolunteerDetails } from "../components/profileManagment/VolunteerDetails";
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store";
+import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
-  const isAuthenticated  =! useSelector(
-    (state: RootState) => {
-        return state.authSlice.isAuthenticated
-    }
+  const { isAuthenticated }  = useSelector(
+    (state: RootState) => state.authSlice
   );
+
 
   return (
     <Routes>
@@ -64,12 +63,12 @@ export const AppRoutes = () => {
         path="/admin/password-reset/confirm-password-change"
         element={<AdminConfirmPasswordChange />}
       />
-      {isAuthenticated ? 
+      {isAuthenticated === true ? (
         <Route path="/profile-management/*" element={<ProfileManagement />} />
-      : 
+      ) : (
         <Route path="/admin/sign-in" element={<AdminSignIn />} />
-      }
-    <Route path="*" element={<Navigate to="/admin/sign-in" replace />} />
+      )}
+      <Route path="*" element={<Navigate to="/admin/sign-in" replace />} />
     </Routes>
   );
 };
@@ -77,7 +76,7 @@ export const AppRoutes = () => {
 export const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="/profile-management" element={<Home />} />
+      <Route path="" element={<Home />} />
       <Route path="volunteers" element={<Volunteer />} />
       <Route path="volunteers/details/:id" element={<VolunteerDetails />} />
       <Route path="notification" element={<Notification />} />
