@@ -12,7 +12,7 @@ import { Spinner } from "../../widgets/Spinner";
 
 
 export const AdminSignIn = () => {
-  const {loading, userInfo, error, success} = useSelector(
+  const {loading, userInfo, error, success, isAuthenticated} = useSelector(
     (state: RootState) => state.authSlice
   );
 
@@ -39,11 +39,10 @@ export const AdminSignIn = () => {
     e.preventDefault();
     if (validate()) {
       dispatch(adminLogin(values))
-      if(success===true){
-        console.log(userInfo)
-        navigate('/profile-management/', { state: { userInfo }})
+      if(success){
+        navigate('/profile-management', { state: { userInfo, isAuthenticated }})
       }
-    } else {
+    } else {  
       console.log("Form validation failed:", errors);
     }
   };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_SERVER_BASE_URL, // Replace with your API endpoint
+  baseURL: import.meta.env.VITE_BACKEND_SERVER_BASE_URL, // Replace with your API endpoint
   // Add other default configurations (headers, timeout, etc.)
 });
 

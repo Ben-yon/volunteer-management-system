@@ -11,12 +11,14 @@ export const adminLogin = createAsyncThunk("auth/login",
   }: AdminSignInFormData, {rejectWithValue}) => {
     try{
 
-      await api.post('Users/Authenticate', {
+      const { data } = await api.post('Users/Authenticate', {
         email,
         password
-      }).then((response) => {
-        console.log(response)
-      })
+      });
+
+      localStorage.setItem('token', data?.token)
+      return data;
+      
     }catch( error){
       if ( axios.isAxiosError(error) && error.response &&  error.response.data.message){
         return rejectWithValue(error.response.data.message)

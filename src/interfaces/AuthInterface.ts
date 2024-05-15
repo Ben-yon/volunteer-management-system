@@ -8,10 +8,10 @@ export interface RegisterStateInterface {
 
   export interface LoginInterface{
     loading: boolean;
-    userInfo: LoginPayload | undefined;
+    userInfo: LoginPayload | any;
     error: string | null;
     success: boolean;
-    isAuthenticated: boolean
+    isAuthenticated: boolean;
   }
 
 
