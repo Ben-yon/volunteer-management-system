@@ -64,7 +64,7 @@ export interface VolunteersPayload extends BaseUserInterface{
   userId: string;
   id: string;
   dateOfBirth: string;
-  daysAvailable: string;
+  daysAvailable: number;
   contact: string;
   address: string;
   streetAddress: string;

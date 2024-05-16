@@ -11,7 +11,7 @@ const initialState: VolunteerStateInterface = {
             firstName: "",
             lastName: "",
             dateOfBirth: "",
-            daysAvailable: "",
+            daysAvailable: 0,
             contact: "",
             email: "",
             address: "",
