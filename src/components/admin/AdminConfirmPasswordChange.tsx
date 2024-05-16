@@ -30,7 +30,7 @@ export const AdminConfirmPasswordChange = () => {
           <p className="text-[23.9px] leading-[28.93px] mt-[13.42px] lg:text-[23.9px] lg:leading-[28.93px] lg:mt-[13.42px] md:text-[15.95px] md:leading-[19.3px] md:mt-[9.69px] sm:text-[15.95px] sm:leading-[19.3px] sm:mt-[9.69px] xsm:text-[9.23px] xsm:leading-[11.17px] xsm:mt-[5.38px]">
             Your password have been changed successfully.
           </p>
-          <button className="bg-tertiary w-[276.08px] h-[76.49px] rounded-[23.9px] text-[23.9px] leading-[28.93px] text-primary mt-[27.17px] font-bold lg:w-[276.08px] lg:h-[76.49px] lg:rounded-[23.9px] lg:text-[23.9px] lg:leading-[28.93px] md:w-[184.2px] md:h-[51.03px] md:rounded-[15.95px] md:text-[15.95px] md:leading-[19.3px] md:mt-[18.48px] sm:w-[184.2px] sm:h-[51.03px] sm:rounded-[15.95px] sm:text-[15.95px] sm:leading-[19.3px] sm:mt-[18.48px] xsm:w-[106.62px] xsm:h-[29.54px] xsm:rounded-[9.23px] xsm:text-[9.23px] xsm:leading-[11.17px] xsm:mt-[10.69px]">
+          <button className="bg-admin-secondary w-[276.08px] h-[76.49px] rounded-[23.9px] text-[23.9px] leading-[28.93px] text-primary mt-[27.17px] font-bold lg:w-[276.08px] lg:h-[76.49px] lg:rounded-[23.9px] lg:text-[23.9px] lg:leading-[28.93px] md:w-[184.2px] md:h-[51.03px] md:rounded-[15.95px] md:text-[15.95px] md:leading-[19.3px] md:mt-[18.48px] sm:w-[184.2px] sm:h-[51.03px] sm:rounded-[15.95px] sm:text-[15.95px] sm:leading-[19.3px] sm:mt-[18.48px] xsm:w-[106.62px] xsm:h-[29.54px] xsm:rounded-[9.23px] xsm:text-[9.23px] xsm:leading-[11.17px] xsm:mt-[10.69px]">
             Return to MCSS
           </button>
         </div>

@@ -109,7 +109,7 @@ export const AdminSignIn = () => {
             <span className="mt-[21.7px] lg:mt-[21.7px] lg:text-[19.15px] lg:leading-[23.17px] md:text-[12.4px] md:leading-[15.01px] md:mt-[14.06px] sm:text-[12.4] sm:leading-[15.01px] sm:mt-[14.06px] xsm:text-[7.11px] xsm:leading-[8.6px] xsm:mt-[8.06px]">
               <Link to="/admin/password-reset/">Forgot Password?</Link>
             </span>
-            <button className=" bg-tertiary text-white rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px]">
+            <button className=" bg-admin-secondary text-white rounded-[25.53px] w-[167.22px] h-[81.69px] text-[28.08px] leading-[33.99px] lg:text-[28.08px] lg:leading-[33.99px] lg:rounded-[25.53px] lg:w-[167.22px] lg:h-[81.69px] mt-[43.28px] font-bold md:text-[18.19px] md:leading-[22.01px] md:w-[108.31px] md:h-[52.91px] md:mt-[27.99px] xsm:w-[62.09px] xsm:h-[30.33px] xsm:rounded-[9.48px] xsm:text-[10.43px] xsm:leading-[12.6px] xsm:mt-[15.65px]">
             { loading ? <Spinner/> : "Sign In"}
             </button>
             <p className="">

@@ -44,7 +44,7 @@ export const ProfileManagement = () => {
           <p className="text-[15px] leading-[18.5px] flex flex-col font-[600]">
             {userInfo?.firstName} {userInfo?.lastName}
             <span className="text-[10px] leading-[12.1px] font-bold">
-              {userInfo?.roles[0].name}
+              {userInfo?.roles[0]?.name}
             </span>
           </p>
         </div>
@@ -67,9 +67,9 @@ export const ProfileManagement = () => {
               alt=""
               className="w-[25.93px] h-[25.93px]"
             />
-            <p className="text-dashboard-home p-1">Admin Panel</p>
+            <p className="text-admin-secondary p-1">Admin Panel</p>
           </div>
-          <nav className="admin-primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
+          <nav className="primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
             <NavLink
               to=""
               className={`flex ${
@@ -158,7 +158,7 @@ export const ProfileManagement = () => {
               Programs
             </NavLink>
           </nav>
-          <nav className="admin-secondary-gradient w-[308px] h-[448px] rounded-[23px] flex flex-col space-y-2 text-primary">
+          <nav className="secondary-gradient w-[308px] h-[448px] rounded-[23px] flex flex-col space-y-2 text-primary">
             <NavLink
               to="admins"
               className={`flex space-x-[13px] focus:filter ${
@@ -216,11 +216,11 @@ export const ProfileManagement = () => {
                 className="w-[60px] h-[60px] mt-[5px] ml-[40px]"
               />
               <div className="flex flex-col">
-                <p>Ken Boehm</p>
+                <p className="font-[600] text-[15px] leading-[18.15px]">{userInfo?.firstName} {userInfo?.lastName}</p>
                 <span className="text-[10px] leading-[12.1px]">
-                  boehm.samuel.sb@gmail.com
+                  {userInfo?.email}
                 </span>
-                <span className="text-[10px] leading-[12.1px]">Admin</span>
+                <span className="text-[10px] leading-[12.1px]">{userInfo?.roles[0]?.name}</span>
               </div>
             </div>
           </nav>

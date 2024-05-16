@@ -87,7 +87,7 @@ export const AdminCreateNewPassword = () => {
                   <span className="text-red-500 text-[10px]">{errors.confirmPassword}</span>
                 )}
               </div>
-              <button className="bg-tertiary w-[249.88px] h-[69.23px] rounded-[20px] text-[20px] leading-[24.2px] mt-[22.71px] text-primary font-bold lg:w-[249.88px] lg:h-[69.23px] lg:rounded-[20px] lg:text-[20px] lg:leading-[24.2px] lg:mt-[22.71px] md:w-[193.93px] md:h-[53.73px] md:rounded-[16.79px] md:text-[16.79px] md:leading-[20.32px] md:m-auto sm:w-[193.93px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[16.79px] sm:leading-[20.32px] sm:m-auto xsm:w-[112.11px] xsm:h-[31.06px] xsm:text-[9.71px] xsm:leading-[11.75px] xsm:m-auto">
+              <button className="bg-admin-secondary w-[249.88px] h-[69.23px] rounded-[20px] text-[20px] leading-[24.2px] mt-[22.71px] text-primary font-bold lg:w-[249.88px] lg:h-[69.23px] lg:rounded-[20px] lg:text-[20px] lg:leading-[24.2px] lg:mt-[22.71px] md:w-[193.93px] md:h-[53.73px] md:rounded-[16.79px] md:text-[16.79px] md:leading-[20.32px] md:m-auto sm:w-[193.93px] sm:h-[53.73px] sm:rounded-[16.79px] sm:text-[16.79px] sm:leading-[20.32px] sm:m-auto xsm:w-[112.11px] xsm:h-[31.06px] xsm:text-[9.71px] xsm:leading-[11.75px] xsm:m-auto">
                 Reset Password
               </button>
             </form>

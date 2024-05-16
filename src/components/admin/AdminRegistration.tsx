@@ -3,29 +3,46 @@ import { Link, useNavigate } from "react-router-dom";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import { AdminSignUpFormData } from "../../interfaces/FormDataInterface";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { adminRegister } from "../../features/register/adminRegisterAction";
+import { Spinner } from "../../widgets/Spinner";
 
 export const AdminRegistration = () => {
   const validationRules = {
     firstName: { required: true, minLength: 5 },
-    surname: { required: true, minLength: 2 },
+    lastName: { required: true, minLength: 2 },
     email: { required: true, email: true },
     password: { required: true, password: true, minLength: 8 },
   };
 
+  const { loading, success } = useSelector((state: RootState) => state.adminRegisterSlice);
+
+  //eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+
   const { values, errors, handleChange, validate } = useFormValidation<AdminSignUpFormData>({
     firstName: "",
-    surname: "",
+    lastName: "",
     email: "",
-    password: ""
+    password: "",
+    profilePicture: ""
   }, validationRules );
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(success){
+      navigate("/admin/register-confirm");
+    }
+  }, [success, navigate])
+
   const signUp = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validate()){
-      navigate("/admin/register-confirm");
+      dispatch(adminRegister(values))
     }else{
       throw new DOMException('Validation failed')
     }
@@ -73,15 +90,15 @@ export const AdminRegistration = () => {
             <div className="flex flex-col">
               <input
                 type="text"
-                name="surname"
-                value={values.surname}
+                name="lastName"
+                value={values.lastName}
                 onChange={handleChange}
                 className="rounded-[21.41px] bg-gray-100 leading-[28.5px] text-black text-[23.55px] pl-[29.97px] border focus:outline-none w-[545.86px] h-[68.5px] lg:w-[545.86px] lg:h-[68.5px] lg:rounded-[21.41px] lg:text-[23.55px] lg:leading-[28.5px] lg:pl-[29.97px] lg:mt-[10.7px] md:w-[437.39px] md:h-[54.88px] md:rounded-[17.15px] md:text-[18.86px] md:leading-[22.83px] md:pl-[24.01px] md:mt-[8.57px] sm:w-[437.39px] sm:h-[54.88px] sm:rounded-[17.15px] sm:text-[18.86px] sm:leading-[22.83px] sm:pl-[24.01px] sm:mt-[8.57px] xsm:w-[243.77px] xsm:h-[30.59px] xsm:rounded-[9.5px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[4.78px] xsm:pl-[13.38px]"
                 placeholder="Surname"
               />
-              {errors.surname && (
+              {errors.lastName && (
                 <span className="text-red-500 text-[10px]">
-                  {errors.surname}
+                  {errors.lastName}
                 </span>
               )}
             </div>
@@ -118,8 +135,8 @@ export const AdminRegistration = () => {
                 <b>MCSS Terms</b> and <b>Privacy Policy</b>
               </a>
             </p>
-            <button className="bg-tertiary text-white rounded-[21.41px] w-[181.95px] h-[68.5px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[181.95px] lg:h-[68.5px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[18.24px] font-bold text-[23.55px]">
-              Sign Up
+            <button className="bg-admin-secondary text-white rounded-[21.41px] w-[181.95px] h-[68.5px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[181.95px] lg:h-[68.5px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[18.24px] font-bold text-[23.55px]">
+              { loading ? <Spinner/> : "Sign Up"}
             </button>
             <p className="mt-[21.67px] text-[16.05px] leading-[19.43px] lg:mt-[21.67px] lg:text-[16.05px] lg:leading-[19.43px] md:text-[12.86px] md:leading-[15.57px] md:mt-[20.58px] sm:text-[12.86px] sm:leading-[15.57px] sm:mt-[20.58px] xsm:text-[7.17px] xsm:leading-[8.68px] xsm:mt-[11.47px]">
               Already have an account?{" "}

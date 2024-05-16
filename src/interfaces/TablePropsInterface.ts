@@ -1,21 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Column } from 'react-table'
+import { VolunteersPayload } from './AuthInterface';
 
 export interface TableProps{
     columns: Column[];
-    data: any[];
+    data: any[] | readonly[];
 }
 
-export interface TableData {
-    id: number;
-    fullname: string;
-    jobTitle: string;
-    date_of_birth: string;
-    address: string;
-    interests: string;
-    days_available_per_week: number;
-    availability: string;
-    skills: string;
-    email: string;
-    phone_number: string;
-    linkedIn: string;
+export interface TableData extends VolunteersPayload{
+    
 }

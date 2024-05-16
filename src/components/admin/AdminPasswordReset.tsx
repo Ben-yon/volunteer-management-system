@@ -64,7 +64,7 @@ export const AdminPasswordReset = () => {
                 <span className="text-red-500 text-[10px]">{errors.email}</span>
               )}
             </div>
-            <button className="bg-tertiary w-[159px] h-[74px] rounded-[23.09px] text-primary font-bold text-[23.09px] leading-[27.95x] mt-[19.11px] lg:w-[159px] lg:h-[74px] lg:rounded-[23.09px] lg:text-[23.09px] lg:leading-[27.95x] lg:mt-[19.11px] md:w-[124.24px] md:h-[57.82px] md:text-[18.04px] md:leading-[21.8px] sm:w-[124.24px] sm:h-[57.82px] sm:text-[18.04px] sm:leading-[21.8px] xsm:w-[68.96px] xsm:h-[32.09px] xsm:rounded-[10.01px] xsm:text-[10.01px] xsm:leading-[12.12px]">
+            <button className="bg-admin-secondary w-[159px] h-[74px] rounded-[23.09px] text-primary font-bold text-[23.09px] leading-[27.95x] mt-[19.11px] lg:w-[159px] lg:h-[74px] lg:rounded-[23.09px] lg:text-[23.09px] lg:leading-[27.95x] lg:mt-[19.11px] md:w-[124.24px] md:h-[57.82px] md:text-[18.04px] md:leading-[21.8px] sm:w-[124.24px] sm:h-[57.82px] sm:text-[18.04px] sm:leading-[21.8px] xsm:w-[68.96px] xsm:h-[32.09px] xsm:rounded-[10.01px] xsm:text-[10.01px] xsm:leading-[12.12px]">
               Submit
             </button>
           </form>

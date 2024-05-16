@@ -1,7 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
 import { Table } from "../../widgets/Table";
-import randomData from "./../../utils/MOCK_DATA.json";
+import { useDispatch, useSelector } from "react-redux";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useEffect, useState } from "react";
+import { getVolunteers } from "../../features/volunteer/volunteerAction";
+import { RootState } from "../../features/store";
+import { Spinner } from "../../widgets/Spinner";
 
 
 
@@ -200,7 +206,19 @@ export const Volunteer = () => {
     },
   ];
 
-  const data = randomData;
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+  const { loading, success, userInfo, error } = useSelector((state: RootState) => state.volunteerSlice)
+  const [ data, setData ]: any = useState<any[] | readonly[]>();
+
+
+  useEffect(()=>{
+    dispatch(getVolunteers());
+    if(success){
+      setData(userInfo)
+    }else{
+      console.log(error);
+    }
+  }, [data, success, dispatch, userInfo, error])
 
   return (
     <div>
@@ -211,7 +229,10 @@ export const Volunteer = () => {
         Volunteers
       </h2>
       <div className=" relative xlg:overflow-x-auto lg:max-w-[950px]">
+        {
+          loading ? <Spinner/> :
         <Table columns={columns} data={data} />
+        }
       </div>
     </div>
   );

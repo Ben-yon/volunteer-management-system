@@ -10,6 +10,7 @@ const initialState: RegisterStateInterface = {
         firstName: "",
         lastName: "",
         dateOfBirth: "",
+        profilePicture: "",
         daysAvailable: "",
         contact: "",
         email: "",
@@ -39,7 +40,8 @@ const registerVolunteerSlice = createSlice({
             state.loading = true;
             state.error = null;
         })
-        .addCase(registerVolunteer.fulfilled, (state, action) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        .addCase(registerVolunteer.fulfilled, (state, action: PayloadAction<any>) => {
             state.loading = false;
             state.userInfo = action.payload
             state.success = true;
