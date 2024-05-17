@@ -77,11 +77,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     src: url('/src/assets/fonts/Leelawadee.ttf');
 }
 
-.admin-primary-gradient {
+.primary-gradient {
     background: linear-gradient(176.42deg, #9E0000 2.39%, #680000 97.06%);
 }
 
-.admin-secondary-gradient {
+.secondary-gradient {
     background: linear-gradient(180deg, #9E0000 0%, #680000 100%);
 }
 

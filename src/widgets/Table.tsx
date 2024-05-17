@@ -3,6 +3,7 @@ import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { media } from "../assets";
 import { TableProps } from "../interfaces/TablePropsInterface";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Table: React.FC<TableProps> = ({ columns, data }) => {
   const {
     getTableProps,
@@ -26,7 +27,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
 
   const { globalFilter, pageIndex } = state;
 
-  const totalPages = Math.ceil(data.length / page.length)
+  const totalPages = Math.ceil(data!.length / page.length)
   const visiblePageLinks = 6;
   const startPage = Math.max(0, pageIndex - Math.floor(visiblePageLinks / 2));
   const endPage = Math.min(totalPages -1, startPage + visiblePageLinks - 1)

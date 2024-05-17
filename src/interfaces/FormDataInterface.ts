@@ -24,9 +24,10 @@ export interface AdminSignInFormData {
 
 export interface AdminSignUpFormData{
     firstName: string;
-    surname: string;
+    lastName: string;
     email: string;
     password: string;
+    profilePicture: string | null;
 }
 
 export interface AdminResetPasswordFormData{

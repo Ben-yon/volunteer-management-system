@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Column } from 'react-table'
 
 export interface TableProps{
     columns: Column[];
-    data: any[];
+    data: any[] | readonly[];
 }
 
+
 export interface TableData {
-    id: number;
+    id: string
     fullname: string;
     jobTitle: string;
     date_of_birth: string;
@@ -17,5 +19,4 @@ export interface TableData {
     skills: string;
     email: string;
     phone_number: string;
-    linkedIn: string;
 }
