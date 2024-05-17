@@ -11,7 +11,7 @@ const initialState: RegisterStateInterface = {
         lastName: "",
         dateOfBirth: "",
         profilePicture: "",
-        daysAvailable: "",
+        daysAvailable: 0,
         contact: "",
         email: "",
         address: "",

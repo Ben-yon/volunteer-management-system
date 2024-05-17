@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { VolunteerStateInterface } from "../../interfaces/AuthInterface";
 import { getVolunteers } from "./volunteerAction";
@@ -57,13 +58,17 @@ const volunteerSlice = createSlice({
                 state.loading = true;
                 state.success = false
             })
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .addCase(getVolunteers.fulfilled, (state, action: PayloadAction<any>) => {
                 state.error = null;
                 state.userInfo = action.payload;
                 state.success = true;
                 state.loading = false;
 
+            })
+            .addCase(getVolunteers.rejected, (state, action: PayloadAction<any>) => {
+                state.error = action.payload
+                state.loading = false;
+                state.success = false
             })
     }
 })

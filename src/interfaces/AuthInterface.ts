@@ -24,7 +24,7 @@ export interface VolunteerRegisterPayload {
   lastName: string;
   profilePicture: string;
   dateOfBirth: string;
-  daysAvailable: string;
+  daysAvailable: number;
   contact: string;
   email: string;
   address: string;
@@ -80,7 +80,7 @@ export interface VolunteersPayload extends BaseUserInterface{
   active: boolean;
   modifiedDate: string;
   modifiedBy: string;
-  user: LoginPayload;
+  user: LoginPayload | undefined;
 }
 
 export interface AdminRegisterPayload extends BaseUserInterface{

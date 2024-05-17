@@ -1,31 +1,50 @@
 import { useParams } from "react-router-dom";
-import data from "./../../utils/MOCK_DATA.json";
+// import data from "./../../utils/MOCK_DATA.json";
 import { useEffect, useState } from "react";
-import { TableData } from "../../interfaces/TablePropsInterface";
+// import { TableData } from "../../interfaces/TablePropsInterface";
 import { media } from "../../assets";
 import { useNavigate } from "react-router-dom";
 
 import { BarChart, Bar, XAxis, ResponsiveContainer } from "recharts";
+import { useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
 export const VolunteerDetails = () => {
-  const [userDetails, setUserDetails] = useState<TableData | undefined>({
-    id: "",
-    fullName: "",
-    jobTitle: "",
-    date_of_birth: "",
-    address: "",
-    interests: "",
-    days_available_per_week: 0,
-    availability: "",
-    skills: "",
-    email: "",
-    phone_number: "",
+  const [userDetails, setUserDetails] = useState<VolunteersPayload | undefined>({
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        profilePicture: "",
+        daysAvailable: 0,
+        contact: "",
+        email: "",
+        address: "",
+        streetAddress: "",
+        city: "",
+        region: "",
+        zipCode: "",
+        occupation: "",
+        skills: "",
+        interests: "",
+        userId: "",
+        id: "",
+        confirmed: false,
+        modifiedBy: "",
+        createdBy: "",
+        modifiedDate: "",
+        createdDate: "",
+        active: false,
+        user: undefined
 
   });
+
+  const { userInfo } = useSelector((state: RootState) => state.volunteerSlice)
+
   const { id } = useParams();
   const navigate = useNavigate()
 
-  const userDetailsSet = data;
+  const userDetailsSet = userInfo;
   const daysOfWeek = [
     { name: "Sunday", worked: 0 },
     { name: "Monday", worked: 5 },
@@ -37,8 +56,8 @@ export const VolunteerDetails = () => {
   ];
 
   useEffect(() => {
-    const convertedId = parseInt(id!);
-    const user = userDetailsSet.find((user) => user.id == convertedId);
+    
+    const user = userDetailsSet.find((user) => user.id == id);
     console.log(user);
     setUserDetails(user);
   }, [userDetailsSet, id]);
@@ -50,7 +69,7 @@ export const VolunteerDetails = () => {
         MCSS Volunteers
       </p>
       <h2 className="flex text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
-        {userDetails?.fullname}
+        {userDetails?.firstName} {userDetails?.lastName}
         <button onClick={() =>  navigate('/profile-management/messages')}>
           <img src={`${media.chat}`} className="w-[33px] h-[33px] ml-[8px]" />
         </button>
@@ -63,7 +82,7 @@ export const VolunteerDetails = () => {
               alt=""
               className="mr-[2.12px] -mt-[2px]"
             />
-            {userDetails?.date_of_birth}
+            {userDetails?.dateOfBirth}
           </span>
           <p className="text-[35px] absolute right-[60px] top-[0px] hover:cursor-pointer">
             ...
@@ -76,10 +95,10 @@ export const VolunteerDetails = () => {
             />
             <div>
               <p className="text-[34.4px] leading-[41.63px] font-[700] mt-[28px]">
-                {userDetails?.fullname}
+              {userDetails?.firstName} {userDetails?.lastName}
               </p>
               <p className="text-[16.5px] leading-[19.98px] font-[700] mt-[8px]">
-                {userDetails?.jobTitle}
+                {userDetails?.occupation}
               </p>
               <p className="text-[16.5px] leading-[19.98px] font-[400] mt-[8px]">
                 {userDetails?.skills}
@@ -94,12 +113,12 @@ export const VolunteerDetails = () => {
             </h2>
             <label className="relative">
               <progress
-                value={userDetails!.days_available_per_week / 10}
+                value={userDetails!.daysAvailable / 10}
                 max={0.7}
                 className="w-[290.56px] h-[48.43px] rounded-t-[6px] rounded-b-[6px] bg-red-300"
               ></progress>
               <p className="absolute top-[12px] left-[18px] text-primary">
-                {userDetails?.days_available_per_week} Days
+                {userDetails?.daysAvailable} Days
               </p>
             </label>
             <p className="text-[12px] leading-[14.52px] mt-[10.57px] font-bold">
@@ -164,7 +183,7 @@ export const VolunteerDetails = () => {
               <img src={`${media.phone}`} />
             </div>
               <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                {userDetails?.phone_number}
+                {userDetails?.contact}
               </p>
           </div>
           <div className="flex justify-center items-center space-x-[14px] mt-[10px]">
@@ -180,7 +199,7 @@ export const VolunteerDetails = () => {
               <img src={`${media.linkedin}`} className="w-[24px] h-[24px]"/>
             </div>
               <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                {userDetails?.linkedIn}
+                {userDetails?.email}
               </p>
           </div>
         </div>
