@@ -4,10 +4,11 @@ import { media } from "../../assets";
 import { Table } from "../../widgets/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getVolunteers } from "../../features/volunteer/volunteerAction";
 import { RootState } from "../../features/store";
 import { Spinner } from "../../widgets/Spinner";
+import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
 
 
@@ -18,10 +19,14 @@ export const Volunteer = () => {
     navigate(`details/${id}`);
   }
 
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
+  const { loading, success, userInfo } = useSelector((state: RootState) => state.volunteerSlice)
+  const [ data, setData ]: any = useState<VolunteersPayload[]>();
+
   const columns = [
     {
       Header: "Name",
-      accessor: (row: any) => `${row.fullname} ${row.jobTitle}`,
+      accessor: (row: any) => `${row?.firstName} ${row?.lastName} ${row?.occupation}`,
       id: "fullname",
       Cell: ({ row }: any) => (
         <div 
@@ -36,7 +41,7 @@ export const Volunteer = () => {
             display: "flex",
             position: "relative",
           }}
-          onClick={() => handleViewVolunteerDetails(row.original.id)}
+          onClick={() => handleViewVolunteerDetails(row?.original?.id)}
           className="hover:cursor-pointer hover:opacity-[84%]"
         >
           <div>
@@ -45,10 +50,10 @@ export const Volunteer = () => {
                 fontWeight: "bold",
               }}
             >
-              {row.original.fullname}
+              {row?.original?.firstName} {row?.original?.lastName}
             </p>
             <p style={{ fontSize: "8px", lineHeight: "9.86px" }}>
-              {row.original.jobTitle}
+              {row?.original?.occupation}
             </p>
           </div>
           <div
@@ -79,7 +84,7 @@ export const Volunteer = () => {
     },
     {
       Header: "Date of Birth",
-      accessor: "date_of_birth",
+      accessor: "dateOfBirth",
       id: "birth",
       Cell: ({ value }: { value: any }) => (
         <div
@@ -149,7 +154,7 @@ export const Volunteer = () => {
     },
     {
       Header: "Days available per week",
-      accessor: "days_available_per_week",
+      accessor: "daysAvailable",
       id: 'days',
       Cell: ({ value }: { value: any }) => (
         <div
@@ -166,16 +171,16 @@ export const Volunteer = () => {
     },
     {
       Header: "Availability",
-      accessor: "availability",
+      accessor: "active",
       id: 'availability',
       Cell: ({ value }: { value: any }) => (
         <div
           style={{
             background: "",
-            ...(value == "online" && {
+            ...(value == "true" && {
               color: "#24FF00",
             }),
-            ...(value == "offline" && {
+            ...(value == "false" && {
               color: "#FF0000",
             }),
             display: "flex",
@@ -206,19 +211,18 @@ export const Volunteer = () => {
     },
   ];
 
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
-  const { loading, success, userInfo, error } = useSelector((state: RootState) => state.volunteerSlice)
-  const [ data, setData ]: any = useState<any[] | readonly[]>();
 
-
-  useEffect(()=>{
+  const fetchVolunteerData = useCallback(() => {
     dispatch(getVolunteers());
     if(success){
       setData(userInfo)
-    }else{
-      console.log(error);
+      console.log(data)
     }
-  }, [data, success, dispatch, userInfo, error])
+  }, [dispatch, success, userInfo, data])
+
+  useEffect(()=>{
+    fetchVolunteerData()
+  }, [fetchVolunteerData])
 
   return (
     <div>

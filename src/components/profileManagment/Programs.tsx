@@ -8,7 +8,7 @@ export const Programs = () => {
         Programs
       </h2>
       <div className="w-[1244px] h-[840px] border-[0.5px] rounded-[39px] programs-gradient">
-
+          
       </div>
     </div>
   );
