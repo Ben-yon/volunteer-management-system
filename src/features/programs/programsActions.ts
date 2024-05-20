@@ -59,4 +59,3 @@ export const program = createAsyncThunk("programs/id", async(id: string, {reject
       }
 });
 
-export const 
