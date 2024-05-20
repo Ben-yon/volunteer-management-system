@@ -1,19 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { media } from "../../assets";
 import { AdminRoutes } from "../../routes/AppRoute";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+import { LoginPayload } from "../../interfaces/AuthInterface";
 
 export const ProfileManagement = () => {
   const [activeLink, setActiveLink] = useState<string | null>("");
+  const [ userInfo, setUserInfo ]  = useState<LoginPayload>();
+  const [ isAuthenticated, setIsAutheticated ] = useState<boolean>();
 
   const { state } = useLocation();
   const navigate = useNavigate();
-  const userInfo = state?.userInfo;
-  const isAuthenticated = state?.isAuthenticated;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -21,6 +22,11 @@ export const ProfileManagement = () => {
   const handleClick = (path: string) => {
     setActiveLink(path);
   };
+
+  useEffect(() => {
+    setUserInfo(state?.userInfo);
+    setIsAutheticated(state?.isAuthenticated)
+  }, [state])
 
   const userLogout = () => {
     dispatch(logout());

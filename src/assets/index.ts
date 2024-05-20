@@ -15,7 +15,8 @@ import phone from './icons/phone.svg';
 import email from './icons/email.svg';
 import linkedin from './icons/linkedin.svg';
 import left_polygon from './icons/left_polygon.svg';
-import msg_search from './icons/msg_search.svg'
+import msg_search from './icons/msg_search.svg';
+import add from './icons/add_icon.svg';
 
 
 import notification from './icons/notification.svg';
@@ -115,5 +116,6 @@ export const media = {
     sample04,
     chat_red,
     attachment,
-    notify_icon
+    notify_icon,
+    add
 }

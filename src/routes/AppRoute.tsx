@@ -64,7 +64,7 @@ export const AppRoutes = () => {
         element={<AdminConfirmPasswordChange />}
       />
       {isAuthenticated === true ? (
-        <Route path="/profile-management/*" element={<ProfileManagement />} />
+        <Route path="/profile-management/*" element={<ProfileManagement />}/>
       ) : (
         <Route path="/admin/sign-in" element={<AdminSignIn />} />
       )}
@@ -83,7 +83,7 @@ export const AdminRoutes = () => {
       <Route path="scheduling" element={<Scheduling />} />
       <Route path="messages" element={<Messages />} />
       <Route path="training" element={<Training />} />
-      <Route path="programs" element={<Programs />} />
+      <Route path="programs" element={<Programs />} children />
       <Route path="admins" element={<Admins />} />
       <Route path="profile" element={<Profile />} />
       <Route path="support" element={<Support />} />

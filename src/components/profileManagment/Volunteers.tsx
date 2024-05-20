@@ -4,24 +4,22 @@ import { media } from "../../assets";
 import { Table } from "../../widgets/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getVolunteers } from "../../features/volunteer/volunteerAction";
 import { RootState } from "../../features/store";
 import { Spinner } from "../../widgets/Spinner";
 import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
-
-
 export const Volunteer = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleViewVolunteerDetails = (id: string) => {
     navigate(`details/${id}`);
-  }
+  };
 
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
-  const { loading, success, userInfo } = useSelector((state: RootState) => state.volunteerSlice)
-  const [ data, setData ]: any = useState<VolunteersPayload[]>();
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const { loading, success, userInfo } = useSelector((state: RootState) => state.volunteerSlice);
+  const [data, setData] = useState<VolunteersPayload[]>([]);
 
   const columns = [
     {
@@ -29,7 +27,7 @@ export const Volunteer = () => {
       accessor: (row: any) => `${row?.firstName} ${row?.lastName} ${row?.occupation}`,
       id: "fullname",
       Cell: ({ row }: any) => (
-        <div 
+        <div
           style={{
             width: "347px",
             height: "48.63px",
@@ -45,11 +43,7 @@ export const Volunteer = () => {
           className="hover:cursor-pointer hover:opacity-[84%]"
         >
           <div>
-            <p
-              style={{
-                fontWeight: "bold",
-              }}
-            >
+            <p style={{ fontWeight: "bold" }}>
               {row?.original?.firstName} {row?.original?.lastName}
             </p>
             <p style={{ fontSize: "8px", lineHeight: "9.86px" }}>
@@ -193,36 +187,34 @@ export const Volunteer = () => {
               width: "12px",
               height: "12px",
               borderRadius: "50%",
-              ...(value == "online" && {
+              ...(value == "true" && {
                 background: "#24FF00",
               }),
-              ...(value == "offline" && {
+              ...(value == "false " && {
                 background: "#FF0000",
               }),
               marginRight: "5px",
             }}
           ></div>
-          <p style={{
-            fontSize: '12px',
-            lineHeight: '14.1px'
-          }}>{value}</p>
+          <p style={{ fontSize: '12px', lineHeight: '14.1px' }}>{value}</p>
         </div>
       ),
     },
   ];
 
-
   const fetchVolunteerData = useCallback(() => {
     dispatch(getVolunteers());
-    if(success){
-      setData(userInfo)
-      console.log(data)
-    }
-  }, [dispatch, success, userInfo, data])
+  }, [dispatch]);
 
-  useEffect(()=>{
-    fetchVolunteerData()
-  }, [fetchVolunteerData])
+  useEffect(() => {
+    fetchVolunteerData();
+  }, [fetchVolunteerData]);
+
+  useEffect(() => {
+    if (success) {
+      setData(userInfo);
+    }
+  }, [success, userInfo]);
 
   return (
     <div>
@@ -232,11 +224,8 @@ export const Volunteer = () => {
       <h2 className="text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         Volunteers
       </h2>
-      <div className=" relative xlg:overflow-x-auto lg:max-w-[950px]">
-        {
-          loading ? <Spinner/> :
-        <Table columns={columns} data={data} />
-        }
+      <div className="relative xlg:overflow-x-auto lg:max-w-[950px]">
+        {loading ? <Spinner /> : <Table columns={columns} data={data} />}
       </div>
     </div>
   );

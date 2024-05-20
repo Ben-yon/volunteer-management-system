@@ -46,7 +46,7 @@ export interface LoginPayload {
   telephone: string;
   active: boolean;
   token: string;
-  role: Array<UserRole[]>;
+  roles: Array<UserRole>;
 }
 
 export interface UserRole {
