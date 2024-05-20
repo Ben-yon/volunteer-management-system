@@ -1,7 +1,7 @@
 
 export const CreatePrograms: React.FC = () => {
     return (
-        <div className="flex flex-col items-center justify-center">nt
+        <div className="flex flex-col items-center justify-center">
             <h2 className="w-[212px] h-[116px] text-[48.16px] font-[700] leading-[58.29px]">Program Details</h2>
             <form action="">
                 <input type="text" placeholder="Name of Program" className="bg-admin-accent w-[921px] h-[68px] rounded-[21.41px]"/>

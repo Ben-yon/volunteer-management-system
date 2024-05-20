@@ -24,7 +24,7 @@ export const Volunteer = () => {
   const columns = [
     {
       Header: "Name",
-      accessor: (row: any) => `${row?.firstName} ${row?.lastName} ${row?.occupation}`,
+      accessor: (row: any) => `${row?.profilePicture} ${row?.firstName} ${row?.lastName} ${row?.occupation}`,
       id: "fullname",
       Cell: ({ row }: any) => (
         <div
@@ -42,6 +42,7 @@ export const Volunteer = () => {
           onClick={() => handleViewVolunteerDetails(row?.original?.id)}
           className="hover:cursor-pointer hover:opacity-[84%]"
         >
+          <img src={`${row.original.profilePicture}`} alt="" />
           <div>
             <p style={{ fontWeight: "bold" }}>
               {row?.original?.firstName} {row?.original?.lastName}
@@ -171,7 +172,7 @@ export const Volunteer = () => {
         <div
           style={{
             background: "",
-            ...(value == "true" && {
+            ...(value == "active" && {
               color: "#24FF00",
             }),
             ...(value == "false" && {
