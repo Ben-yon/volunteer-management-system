@@ -3,7 +3,7 @@ import api from "../../utils/axios";
 import { ProgramsInterface } from "./../../interfaces/ProgramsInterface";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const programsActions = createAsyncThunk(
+export const createProgram = createAsyncThunk(
   "programs",
   async (programData: ProgramsInterface, { rejectWithValue }) => {
     try {
