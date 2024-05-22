@@ -1,6 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { media } from "../../assets";
-import { AdminRoutes } from "../../routes/AppRoute";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
@@ -232,7 +231,7 @@ export const ProfileManagement = () => {
           </nav>
         </div>
         <div className="relative -top-6">
-          <AdminRoutes />
+          <Outlet />
         </div>
       </div>
     </div>

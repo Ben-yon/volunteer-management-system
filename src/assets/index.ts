@@ -17,6 +17,7 @@ import linkedin from './icons/linkedin.svg';
 import left_polygon from './icons/left_polygon.svg';
 import msg_search from './icons/msg_search.svg';
 import add from './icons/add_icon.svg';
+import add_nobg from './icons/add_nobg.svg'
 
 
 import notification from './icons/notification.svg';
@@ -117,5 +118,6 @@ export const media = {
     chat_red,
     attachment,
     notify_icon,
-    add
+    add,
+    add_nobg
 }

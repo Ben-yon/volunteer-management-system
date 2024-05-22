@@ -27,13 +27,14 @@ import { VolunteerDetails } from "../components/profileManagment/VolunteerDetail
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store";
 import { ProfileManagement } from "../components/profileManagment/ProfileManagement";
+import { CreatePrograms } from "../components/profileManagment/CreatePrograms";
+import { AddProgramImages } from "../components/profileManagment/AddProgramImages";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
-  const { isAuthenticated }  = useSelector(
+  const { isAuthenticated } = useSelector(
     (state: RootState) => state.authSlice
   );
-
 
   return (
     <Routes>
@@ -64,7 +65,23 @@ export const AppRoutes = () => {
         element={<AdminConfirmPasswordChange />}
       />
       {isAuthenticated === true ? (
-        <Route path="/profile-management/*" element={<ProfileManagement />}/>
+        <Route path="/profile-management/*" element={<ProfileManagement />}>
+          <Route path="" element={<Home />} />
+          <Route path="volunteers" element={<Volunteer />} />
+          <Route path="volunteers/details/:id" element={<VolunteerDetails />} />
+          <Route path="notification" element={<Notification />} />
+          <Route path="scheduling" element={<Scheduling />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="training" element={<Training />} />
+          <Route path="programs" element={<Programs />} />
+          <Route path="programs/create" element={<CreatePrograms />}/>
+          <Route path="programs/add-images" element={<AddProgramImages />}/>
+          <Route path="admins" element={<Admins />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="support" element={<Support />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="integrations" element={<Integrations />} />
+        </Route>
       ) : (
         <Route path="/admin/sign-in" element={<AdminSignIn />} />
       )}
@@ -73,23 +90,4 @@ export const AppRoutes = () => {
   );
 };
 
-export const AdminRoutes = () => {
-  return (
-    <Routes>
-      <Route path="" element={<Home />} />
-      <Route path="volunteers" element={<Volunteer />} />
-      <Route path="volunteers/details/:id" element={<VolunteerDetails />} />
-      <Route path="notification" element={<Notification />} />
-      <Route path="scheduling" element={<Scheduling />} />
-      <Route path="messages" element={<Messages />} />
-      <Route path="training" element={<Training />} />
-      <Route path="programs" element={<Programs />} children />
-      <Route path="admins" element={<Admins />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="support" element={<Support />} />
-      <Route path="settings" element={<Settings />} />
-      <Route path="integrations" element={<Integrations />} />
-      <Route path="*" element={<Navigate to="/admin/sign-in" replace />} />
-    </Routes>
-  );
-};
+

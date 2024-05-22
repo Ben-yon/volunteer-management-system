@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.0",
+    "@microsoft/signalr": "^8.0.0",
     "@reduxjs/toolkit": "^2.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/react-table": "^7.7.19",
+    "@types/signalr": "^2.4.3",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.8",
     "dexie": "^3.2.4",

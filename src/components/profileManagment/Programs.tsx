@@ -23,9 +23,9 @@ export const Programs = () => {
         </div>
         <div
           className="flex flex-col items-center justify-center w-[199px] h-[199px] rounded-full bg-black hover:cursor-pointer relative top-6 left-6"
-          onClick={() => navigate("#")}
+          onClick={() => navigate("create")}
         >
-          <img
+          <img  
             src={`${media.add}`}
             alt="add icon"
             className="h-[83.43px] w-[83.43px]"
