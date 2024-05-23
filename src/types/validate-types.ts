@@ -4,7 +4,7 @@ import { Errors } from "../interfaces/ValidateInterface";
 export type UseFormValidationResult<T> = {
     values: FormValues<T>;
     errors: Errors;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    handleChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     validate: () => boolean;
 }
 

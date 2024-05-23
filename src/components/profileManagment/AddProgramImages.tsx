@@ -1,12 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { media } from "../../assets";
 import { useRef, useState } from "react";
 import Modal from "../../widgets/Modal";
 
 export const AddProgramImages = () => {
   const navigate = useNavigate();
+  const { state } = useLocation()
+  const values = state?.values
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [thumbnailModalOpen, setThumbnailModalOpen] = useState(false);
+  const [descriptionModalOpen, setDescriptionModalOpen] = useState(false);
+  const [ error, setError ] = useState<string>("")
 
   const thumbnailRef = useRef<string | undefined>();
   const descriptionImageRef = useRef<string | undefined>();
@@ -15,12 +19,16 @@ export const AddProgramImages = () => {
       thumbnailRef.current = imgSrc;
   }
 
-  const updateDesciptionImage = (imgSrc: string | undefined): void => {
+  const updateDescriptionImage = (imgSrc: string | undefined): void => {
     descriptionImageRef.current = imgSrc;
   };
 
   const nextPage = () => {
-    navigate("#");
+    if(thumbnailRef.current && descriptionImageRef.current){
+        navigate("/profile-management/programs/details", {state: {thumbnail: thumbnailRef, descriptionImage: descriptionImageRef, values: values}});
+    }else{
+        setError("Upload the Pictures for the Programs")
+    }
   };
 
   return (
@@ -29,12 +37,13 @@ export const AddProgramImages = () => {
         Add Images
       </h2>
       <div className="flex items-center justify-center space-x-[25px]">
-        <div className="bg-admin-accent w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center" onClick={() => setModalOpen(true)}>
+        <div className="bg-admin-accent w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center" onClick={() => setThumbnailModalOpen(true)}>
         {thumbnailRef.current ? (
             <img
               src={
                 thumbnailRef.current
               } className="object-fit"
+              
             />
           ) : (
             <>
@@ -45,15 +54,15 @@ export const AddProgramImages = () => {
             </>
           )}
         </div>
-        {modalOpen && (
+        {thumbnailModalOpen && (
           <Modal
             updateAvatar={updateThumbnail}
-            closeModal={() => setModalOpen(false)}
+            closeModal={() => setThumbnailModalOpen(false)}
           />
         )}
         <div
           className="bg-admin-accent w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center"
-          onClick={() => setModalOpen(true)}
+          onClick={() => setDescriptionModalOpen(true)}
         >
           {descriptionImageRef.current ? (
             <img
@@ -70,13 +79,16 @@ export const AddProgramImages = () => {
             </>
           )}
         </div>
-        {modalOpen && (
+        {descriptionModalOpen && (
           <Modal
-            updateAvatar={updateDesciptionImage}
-            closeModal={() => setModalOpen(false)}
+            updateAvatar={updateDescriptionImage}
+            closeModal={() => setDescriptionModalOpen(false)}
           />
         )}
       </div>
+      {
+        error ? <p className="text-red-500 text-[10px]">{error}</p> : ""
+      }
       <button
         className="bg-admin-secondary text-[30px] leading-[36.31px] font-[700] text-primary w-[181.95px] h-[68.5px] rounded-[21.41px] mt-[28px]"
         onClick={() => nextPage()}
