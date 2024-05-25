@@ -39,7 +39,7 @@ const initialState: VolunteerStateInterface = {
                 telephone: "",
                 active: false,
                 token: "",
-                role: []
+                roles: []
         }
         }]
     ,

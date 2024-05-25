@@ -22,7 +22,8 @@ export const AdminSignIn = () => {
 
   useEffect(() => {
     if(success){
-      navigate('/profile-management', { state: { userInfo, isAuthenticated }})
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      navigate('/profile-management', { state: { isAuthenticated }});
     }
   }, [userInfo, isAuthenticated, success, navigate])
 
@@ -47,7 +48,7 @@ export const AdminSignIn = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (validate()) {
-      dispatch(adminLogin(values))
+      dispatch(adminLogin(values));
     } else {  
       console.log("Form validation failed:", errors);
     }

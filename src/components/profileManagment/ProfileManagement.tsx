@@ -1,30 +1,46 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { media } from "../../assets";
-import { AdminRoutes } from "../../routes/AppRoute";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
+import { LoginPayload } from "../../interfaces/AuthInterface";
 
 export const ProfileManagement = () => {
   const [activeLink, setActiveLink] = useState<string | null>("");
+  const [ userInfo, setUserInfo ]  = useState<LoginPayload>();
 
   const { state } = useLocation();
   const navigate = useNavigate();
-  const userInfo = state?.userInfo;
-  const isAuthenticated = state?.isAuthenticated;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const handleClick = (path: string) => {
     setActiveLink(path);
+    localStorage.setItem('activeLink', path);
   };
+
+  const token = localStorage.getItem('token')
+
+  useEffect(() => {
+    const storedUserInfo = localStorage.getItem('userInfo');
+    if (storedUserInfo){
+      setUserInfo(JSON.parse(storedUserInfo));
+    }
+  }, [state])
+
+  useEffect(() => {
+    const storedActiveLink = localStorage.getItem('activeLink');
+    if (storedActiveLink) {
+      setActiveLink(storedActiveLink);
+    }
+  }, []);
 
   const userLogout = () => {
     dispatch(logout());
-    if (!isAuthenticated) {
+    if (!token) {
       navigate('/admin/sigin-in');
     }
   };
@@ -42,7 +58,7 @@ export const ProfileManagement = () => {
             className="w-[50px] h-[50px] mr-[12px] relative -top-1"
           />
           <p className="text-[15px] leading-[18.5px] flex flex-col font-[600]">
-            {userInfo?.firstName} {userInfo?.lastName}
+            {userInfo?.firstName} {userInfo?.lastName} 
             <span className="text-[10px] leading-[12.1px] font-bold">
               {userInfo?.roles[0]?.name}
             </span>
@@ -226,7 +242,7 @@ export const ProfileManagement = () => {
           </nav>
         </div>
         <div className="relative -top-6">
-          <AdminRoutes />
+          <Outlet />
         </div>
       </div>
     </div>

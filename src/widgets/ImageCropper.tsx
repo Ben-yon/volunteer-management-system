@@ -30,7 +30,8 @@ export const ImageCropper: React.FC<ModalProps> = ({ updateAvatar, closeModal })
       const imageUrl = e.target?.result as string;
       imgElement.src = imageUrl;
 
-      //@ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-expect-error
       imgElement.onload = (
         event: React.SyntheticEvent<HTMLImageElement, Event>
       ): void => {
@@ -102,6 +103,7 @@ export const ImageCropper: React.FC<ModalProps> = ({ updateAvatar, closeModal })
                 imageRef.current,
                 previewCanvasRef.current,
                 convertToPixelCrop(
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                   //@ts-ignore
                   crop,
                   imageRef.current?.width,

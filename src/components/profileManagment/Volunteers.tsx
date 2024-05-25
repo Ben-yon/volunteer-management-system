@@ -4,27 +4,30 @@ import { media } from "../../assets";
 import { Table } from "../../widgets/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getVolunteers } from "../../features/volunteer/volunteerAction";
 import { RootState } from "../../features/store";
 import { Spinner } from "../../widgets/Spinner";
-
-
+import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
 export const Volunteer = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleViewVolunteerDetails = (id: string) => {
     navigate(`details/${id}`);
-  }
+  };
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const { loading, success, userInfo } = useSelector((state: RootState) => state.volunteerSlice);
+  const [data, setData] = useState<VolunteersPayload[]>([]);
 
   const columns = [
     {
       Header: "Name",
-      accessor: (row: any) => `${row.fullname} ${row.jobTitle}`,
+      accessor: (row: any) => `${row?.profilePicture} ${row?.firstName} ${row?.lastName} ${row?.occupation}`,
       id: "fullname",
       Cell: ({ row }: any) => (
-        <div 
+        <div
           style={{
             width: "347px",
             height: "48.63px",
@@ -36,19 +39,16 @@ export const Volunteer = () => {
             display: "flex",
             position: "relative",
           }}
-          onClick={() => handleViewVolunteerDetails(row.original.id)}
+          onClick={() => handleViewVolunteerDetails(row?.original?.id)}
           className="hover:cursor-pointer hover:opacity-[84%]"
         >
+          <img src={`${row.original.profilePicture}`} alt="" />
           <div>
-            <p
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              {row.original.fullname}
+            <p style={{ fontWeight: "bold" }}>
+              {row?.original?.firstName} {row?.original?.lastName}
             </p>
             <p style={{ fontSize: "8px", lineHeight: "9.86px" }}>
-              {row.original.jobTitle}
+              {row?.original?.occupation}
             </p>
           </div>
           <div
@@ -79,7 +79,7 @@ export const Volunteer = () => {
     },
     {
       Header: "Date of Birth",
-      accessor: "date_of_birth",
+      accessor: "dateOfBirth",
       id: "birth",
       Cell: ({ value }: { value: any }) => (
         <div
@@ -149,7 +149,7 @@ export const Volunteer = () => {
     },
     {
       Header: "Days available per week",
-      accessor: "days_available_per_week",
+      accessor: "daysAvailable",
       id: 'days',
       Cell: ({ value }: { value: any }) => (
         <div
@@ -166,16 +166,16 @@ export const Volunteer = () => {
     },
     {
       Header: "Availability",
-      accessor: "availability",
+      accessor: "active",
       id: 'availability',
       Cell: ({ value }: { value: any }) => (
         <div
           style={{
             background: "",
-            ...(value == "online" && {
+            ...(value === true && {
               color: "#24FF00",
             }),
-            ...(value == "offline" && {
+            ...(value === false && {
               color: "#FF0000",
             }),
             display: "flex",
@@ -188,37 +188,34 @@ export const Volunteer = () => {
               width: "12px",
               height: "12px",
               borderRadius: "50%",
-              ...(value == "online" && {
+              ...(value === true && {
                 background: "#24FF00",
               }),
-              ...(value == "offline" && {
+              ...(value === false && {
                 background: "#FF0000",
               }),
               marginRight: "5px",
             }}
           ></div>
-          <p style={{
-            fontSize: '12px',
-            lineHeight: '14.1px'
-          }}>{value}</p>
+          <p style={{ fontSize: '12px', lineHeight: '14.1px' }}>{value === true ? "Online" : "Offline"}</p>
         </div>
       ),
     },
   ];
 
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
-  const { loading, success, userInfo, error } = useSelector((state: RootState) => state.volunteerSlice)
-  const [ data, setData ]: any = useState<any[] | readonly[]>();
-
-
-  useEffect(()=>{
+  const fetchVolunteerData = useCallback(() => {
     dispatch(getVolunteers());
-    if(success){
-      setData(userInfo)
-    }else{
-      console.log(error);
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchVolunteerData();
+  }, [fetchVolunteerData]);
+
+  useEffect(() => {
+    if (success) {
+      setData(userInfo);
     }
-  }, [data, success, dispatch, userInfo, error])
+  }, [success, userInfo]);
 
   return (
     <div>
@@ -228,11 +225,8 @@ export const Volunteer = () => {
       <h2 className="text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         Volunteers
       </h2>
-      <div className=" relative xlg:overflow-x-auto lg:max-w-[950px]">
-        {
-          loading ? <Spinner/> :
-        <Table columns={columns} data={data} />
-        }
+      <div className="relative xlg:overflow-x-auto lg:max-w-[950px]">
+        {loading ? <Spinner /> : <Table columns={columns} data={data} />}
       </div>
     </div>
   );

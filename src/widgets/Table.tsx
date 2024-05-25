@@ -3,7 +3,6 @@ import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { media } from "../assets";
 import { TableProps } from "../interfaces/TablePropsInterface";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const Table: React.FC<TableProps> = ({ columns, data }) => {
   const {
     getTableProps,
