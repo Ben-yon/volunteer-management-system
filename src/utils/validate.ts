@@ -7,7 +7,7 @@ export function useFormValidation<T>(initialValues: FormValues<T>, validationRul
     const [ errors, setErrors ] = useState<Errors>({});
 
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
         const { name, value } = e.target;
         setValues((prevValues) => ({
             ...prevValues,
