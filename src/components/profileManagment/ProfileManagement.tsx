@@ -10,7 +10,6 @@ import { LoginPayload } from "../../interfaces/AuthInterface";
 export const ProfileManagement = () => {
   const [activeLink, setActiveLink] = useState<string | null>("");
   const [ userInfo, setUserInfo ]  = useState<LoginPayload>();
-  const [ isAuthenticated, setIsAutheticated ] = useState<boolean>();
 
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -22,14 +21,18 @@ export const ProfileManagement = () => {
     setActiveLink(path);
   };
 
+  const token = localStorage.getItem('token')
+
   useEffect(() => {
-    setUserInfo(state?.userInfo);
-    setIsAutheticated(state?.isAuthenticated)
+    const storedUserInfo = localStorage.getItem('userInfo');
+    if (storedUserInfo){
+      setUserInfo(JSON.parse(storedUserInfo));
+    }
   }, [state])
 
   const userLogout = () => {
     dispatch(logout());
-    if (!isAuthenticated) {
+    if (!token) {
       navigate('/admin/sigin-in');
     }
   };
@@ -47,7 +50,7 @@ export const ProfileManagement = () => {
             className="w-[50px] h-[50px] mr-[12px] relative -top-1"
           />
           <p className="text-[15px] leading-[18.5px] flex flex-col font-[600]">
-            {userInfo?.firstName} {userInfo?.lastName}
+            {userInfo?.firstName} {userInfo?.lastName} 
             <span className="text-[10px] leading-[12.1px] font-bold">
               {userInfo?.roles[0]?.name}
             </span>
