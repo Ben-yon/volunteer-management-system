@@ -172,10 +172,10 @@ export const Volunteer = () => {
         <div
           style={{
             background: "",
-            ...(value == "active" && {
+            ...(value === true && {
               color: "#24FF00",
             }),
-            ...(value == "false" && {
+            ...(value === false && {
               color: "#FF0000",
             }),
             display: "flex",
@@ -188,16 +188,16 @@ export const Volunteer = () => {
               width: "12px",
               height: "12px",
               borderRadius: "50%",
-              ...(value == "true" && {
+              ...(value === true && {
                 background: "#24FF00",
               }),
-              ...(value == "false " && {
+              ...(value === false && {
                 background: "#FF0000",
               }),
               marginRight: "5px",
             }}
           ></div>
-          <p style={{ fontSize: '12px', lineHeight: '14.1px' }}>{value}</p>
+          <p style={{ fontSize: '12px', lineHeight: '14.1px' }}>{value === true ? "Online" : "Offline"}</p>
         </div>
       ),
     },
