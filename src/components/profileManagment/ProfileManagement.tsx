@@ -19,6 +19,7 @@ export const ProfileManagement = () => {
 
   const handleClick = (path: string) => {
     setActiveLink(path);
+    localStorage.setItem('activeLink', path);
   };
 
   const token = localStorage.getItem('token')
@@ -29,6 +30,13 @@ export const ProfileManagement = () => {
       setUserInfo(JSON.parse(storedUserInfo));
     }
   }, [state])
+
+  useEffect(() => {
+    const storedActiveLink = localStorage.getItem('activeLink');
+    if (storedActiveLink) {
+      setActiveLink(storedActiveLink);
+    }
+  }, []);
 
   const userLogout = () => {
     dispatch(logout());
