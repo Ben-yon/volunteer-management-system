@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { RootState } from "../../features/store";
@@ -7,15 +6,15 @@ import { Spinner } from "../../widgets/Spinner";
 import { createProgram } from "../../features/programs/createProgramAction";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { extractBase64 } from "../../utils/imageConverter";
+import { ProgramInterface } from "../../interfaces/ProgramsInterface";
+import { useEffect } from "react";
 
 export const ProgramDetails: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const values = state?.values;
-  const thumbnail = state?.thumbnail?.current;
-  const descriptionImage = state?.descriptionImage?.current;
-
-  const [programImages] = useState([]);
+  const thumbnail = state?.programImages[0];
+  const descriptionImage = state?.programImages[1];
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
@@ -23,30 +22,36 @@ export const ProgramDetails: React.FC = () => {
     (state: RootState) => state.createProgramSlice
   );
 
-  const formData = new FormData();
   const submit = () => {
-    formData.append("Name", values?.name);
-    formData.append("Description", values?.description);
-    programImages.forEach(async (_image: any, index: any) => {
-      formData.append(
-        `ProgrammeImages[${index}].ImageFile`,
-        extractBase64(thumbnail)
-      );
-      formData.append(
-        `ProgrammeImages[${index}].Description`,
-        extractBase64(descriptionImage)
-      );
-    });
-    dispatch(createProgram(formData));
+    // console.log(programImages)
+    const programDetails: ProgramInterface = {
+        name: values?.name,
+        description: values?.description,
+        programmeImages: [
+            {
+                image: extractBase64(thumbnail),
+                description: values?.name + values?.description
+            },
+            {
+                image: extractBase64(descriptionImage),
+                description: values?.name + values?.description
+            }
+        ]
+    }
+    dispatch(createProgram(programDetails));
+    // console.log(formData)
     console.log(typeof extractBase64(thumbnail));
-    if (success) {
-      console.log(programInfo);
-      navigate("/profile-management/programs/");
-    }
-    if (error) {
-      console.log(state?.thumbnail);
-    }
   };
+
+  useEffect(() =>{
+    if (success) {
+        console.log(programInfo);
+        navigate("/profile-management/programs/");
+      }
+      if (error) {
+        console.log(state?.thumbnail);
+      }
+  })
 
   return (
     <div className="flex flex-col justify-center">

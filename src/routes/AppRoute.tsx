@@ -28,6 +28,7 @@ import { ProfileManagement } from "../components/profileManagment/ProfileManagem
 import { CreatePrograms } from "../components/profileManagment/CreatePrograms";
 import { AddProgramImages } from "../components/profileManagment/AddProgramImages";
 import { ProgramDetails } from "../components/profileManagment/ProgramDetails";
+import { ViewProgram } from "../components/profileManagment/ViewProgram";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -75,6 +76,7 @@ export const AppRoutes = () => {
           <Route path="programs/create" element={<CreatePrograms />}/>
           <Route path="programs/add-images" element={<AddProgramImages />}/>
           <Route path="programs/details" element={<ProgramDetails/>}/>
+          <Route path="programs/:id" element={<ViewProgram/>}/>
           <Route path="admins" element={<Admins />} />
           <Route path="profile" element={<Profile />} />
           <Route path="support" element={<Support />} />

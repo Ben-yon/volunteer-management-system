@@ -11,24 +11,26 @@ export const AddProgramImages = () => {
   const [thumbnailModalOpen, setThumbnailModalOpen] = useState(false);
   const [descriptionModalOpen, setDescriptionModalOpen] = useState(false);
   const [error, setError] = useState<string>("");
+  const [ programImages ] = useState<string[] | undefined>([])
 
   const thumbnailRef = useRef<string | undefined>();
   const descriptionImageRef = useRef<string | undefined>();
 
-  const updateThumbnail = (imgSrc: string | undefined): void => {
+  const updateThumbnail = (imgSrc: string ): void => {
     thumbnailRef.current = imgSrc;
+    programImages?.push(thumbnailRef.current)
   };
 
-  const updateDescriptionImage = (imgSrc: string | undefined): void => {
+  const updateDescriptionImage = (imgSrc: string): void => {
     descriptionImageRef.current = imgSrc;
+    programImages?.push(descriptionImageRef.current)
   };
 
   const nextPage = () => {
     if (thumbnailRef.current && descriptionImageRef.current) {
       navigate("/profile-management/programs/details", {
         state: {
-          thumbnail: thumbnailRef,
-          descriptionImage: descriptionImageRef,
+          programImages,
           values: values,
         },
       });

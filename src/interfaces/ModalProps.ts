@@ -1,4 +1,4 @@
 export interface ModalProps {
-    updateAvatar: (imgSrc: string | undefined) => void,
+    updateAvatar: (imgSrc: string ) => void,
     closeModal: () => void
 }
