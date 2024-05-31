@@ -13,7 +13,7 @@ export const Programs = () => {
 
   const [programs, setPrograms] = useState<ProgramsPayloadInterface[]>([]);
 
-  const { loading, success, error, programInfo } = useSelector(
+  const { success, error, programInfo } = useSelector(
     (state: RootState) => state.programsSlice
   );
 
@@ -29,6 +29,8 @@ export const Programs = () => {
 
   useEffect(() => {
     if (success) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-expect-error
       setPrograms(programInfo);
     } else {
       console.log(error);
@@ -36,7 +38,7 @@ export const Programs = () => {
   }, [success, programInfo, error]);
 
   const viewProgramDetails = (id: string) => {
-    navigate(`/profile-manangement/programs/${id}`);
+    navigate(`${id}`);
   };
 
   return (
@@ -50,15 +52,15 @@ export const Programs = () => {
       <div>
         <div className="w-[1244px] h-[840px] border-[0.5px] rounded-[39px] programs-gradient grid grid-cols-3 gap-x-2">
           {programs.map((program) => (
-            <div className="w-[310px] h-[310px] rounded-[53px] relative top-[89px] left-[45px]">
+            <div className="w-[310px] h-[310px] rounded-[53px] relative top-[89px] left-[45px]" key={program.id}>
               <img
                 src={`${program.programmeImages[0]?.image}`}
                 alt=""
                 className="object-fit opacity-[70%] rounded-[53px]"
               />
               <p
-                className="w-[210px] h-[59px] rounded-[20px] bg-primary text-[15px] font-[700] leading-[18.15px] relative -top-[90px] left-12 flex items-center justify-center"
-                onClick={() => viewProgramDetails(program.id)}
+                className="w-[210px] h-[59px] rounded-[20px] bg-primary text-[15px] font-[700] leading-[18.15px] relative -top-[90px] left-12 flex items-center justify-center hover:cursor-pointer"
+                onClick={() => viewProgramDetails(program?.id)}
               >
                 {program.name}
               </p>
