@@ -68,6 +68,8 @@ export const AddProgramImages = () => {
         </div>
         {thumbnailModalOpen && (
           <Modal
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-expect-error
             updateAvatar={updateThumbnail}
             closeModal={() => setThumbnailModalOpen(false)}
           />
@@ -89,6 +91,8 @@ export const AddProgramImages = () => {
         </div>
         {descriptionModalOpen && (
           <Modal
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-expect-error
             updateAvatar={updateDescriptionImage}
             closeModal={() => setDescriptionModalOpen(false)}
           />
