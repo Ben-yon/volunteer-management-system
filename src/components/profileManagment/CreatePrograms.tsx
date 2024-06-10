@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ProgramsInterface } from "../../interfaces/ProgramsInterface";
+import { ProgramInterface } from "../../interfaces/ProgramsInterface";
 import { useFormValidation } from "../../utils/validate";
 
 export const CreatePrograms: React.FC = () => {
@@ -11,11 +11,11 @@ export const CreatePrograms: React.FC = () => {
   };
 
   const { values, errors, handleChange, validate } =
-    useFormValidation<ProgramsInterface>(
+    useFormValidation<ProgramInterface>(
       {
         name: "",
         description: "",
-        programImages: "",
+        programmeImages: "",
       },
       ValidationRules
     );

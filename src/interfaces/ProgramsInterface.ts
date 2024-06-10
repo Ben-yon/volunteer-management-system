@@ -1,5 +1,22 @@
-export interface ProgramsInterface{
+export interface ProgramInterface{
     name: string;
     description: string;
-    programImages: Array<string>;
+    programmeImages: Array<ProgramImage>;
+}
+
+interface ProgramImage{
+    image: string;
+    description: string;
+}
+
+
+export interface ProgramsPayloadInterface{
+    id: string;
+    name: string;
+    description: string;
+    createdDate: string;
+    createdBy: string;
+    modifiedDate: string;
+    modifiedBy: string;
+    programmeImages: Array<ProgramImage>;
 }

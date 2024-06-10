@@ -10,7 +10,7 @@ export const adminLogin = createAsyncThunk("auth/login",
     password
   }: AdminSignInFormData, {rejectWithValue}) => {
     try{
-
+      
       const { data } = await api.post('Users/Authenticate', {
         email,
         password

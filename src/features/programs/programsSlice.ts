@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { program, allPrograms } from "./programsActions";
-import { ProgramsInterface } from "../../interfaces/ProgramsInterface";
+import { ProgramsPayloadInterface } from "../../interfaces/ProgramsInterface";
 
 
 
@@ -9,7 +9,7 @@ const initialState = {
     loading: false,
     success: false,
     error: null,
-    programInfo: Array<ProgramsInterface>
+    programInfo: Array<ProgramsPayloadInterface>,
 }
 
 
