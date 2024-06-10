@@ -38,7 +38,7 @@ export const ViewProgram: React.FC = () => {
           <p>{program.description}</p>
           <button
             className="w-[332px] h-[75px] rounded-[27px] bg-black text-primary text-[25px] font-[500] leading-[30.26px] mt-[50px] justify-end"
-            onClick={() => navigate("/scheduling")}
+            onClick={() => navigate("/profile-management/scheduling")}
           >
             Schedule for Program
           </button>
