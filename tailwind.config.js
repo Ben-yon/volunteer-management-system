@@ -17,7 +17,8 @@ export default {
         tertiary: '#FF1D1D',
         'menu-focus': '#FFFFFF29',
         'admin-secondary': '#790000',
-        'admin-accent': '#D9D9D9'
+        'admin-accent': '#D9D9D9',
+        'messages': '#16161612'
       },
       fontFamily: {
         // sans: ['Lelawadee'],
