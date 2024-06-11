@@ -17,7 +17,10 @@ import linkedin from './icons/linkedin.svg';
 import left_polygon from './icons/left_polygon.svg';
 import msg_search from './icons/msg_search.svg';
 import add from './icons/add_icon.svg';
-import add_nobg from './icons/add_nobg.svg'
+import add_nobg from './icons/add_nobg.svg';
+import media_upload from './icons/media_upload.svg';
+import voice_note from './icons/voice_note.svg';
+import send_message from './icons/send_msg.svg'
 
 
 import notification from './icons/notification.svg';
@@ -119,5 +122,8 @@ export const media = {
     attachment,
     notify_icon,
     add,
-    add_nobg
+    add_nobg,
+    media_upload,
+    voice_note,
+    send_message
 }
