@@ -11,38 +11,39 @@ import { RootState } from "../../features/store";
 import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
 export const VolunteerDetails = () => {
-  const [userDetails, setUserDetails] = useState<VolunteersPayload | undefined>({
-        firstName: "",
-        lastName: "",
-        dateOfBirth: "",
-        profilePicture: "",
-        daysAvailable: 0,
-        contact: "",
-        email: "",
-        address: "",
-        streetAddress: "",
-        city: "",
-        region: "",
-        zipCode: "",
-        occupation: "",
-        skills: "",
-        interests: "",
-        userId: "",
-        id: "",
-        confirmed: false,
-        modifiedBy: "",
-        createdBy: "",
-        modifiedDate: "",
-        createdDate: "",
-        active: false,
-        user: undefined
+  const [userDetails, setUserDetails] = useState<VolunteersPayload | undefined>(
+    {
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      profilePicture: "",
+      daysAvailable: 0,
+      contact: "",
+      email: "",
+      address: "",
+      streetAddress: "",
+      city: "",
+      region: "",
+      zipCode: "",
+      occupation: "",
+      skills: "",
+      interests: "",
+      userId: "",
+      id: "",
+      confirmed: false,
+      modifiedBy: "",
+      createdBy: "",
+      modifiedDate: "",
+      createdDate: "",
+      active: false,
+      user: undefined,
+    }
+  );
 
-  });
-
-  const { userInfo } = useSelector((state: RootState) => state.volunteerSlice)
+  const { userInfo } = useSelector((state: RootState) => state.volunteerSlice);
 
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const userDetailsSet = userInfo;
   const daysOfWeek = [
@@ -56,7 +57,6 @@ export const VolunteerDetails = () => {
   ];
 
   useEffect(() => {
-    
     const user = userDetailsSet.find((user) => user.id == id);
     console.log(user);
     setUserDetails(user);
@@ -70,7 +70,7 @@ export const VolunteerDetails = () => {
       </p>
       <h2 className="flex text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
         {userDetails?.firstName} {userDetails?.lastName}
-        <button onClick={() =>  navigate('/profile-management/messages')}>
+        <button onClick={() => navigate("/profile-management/messages")}>
           <img src={`${media.chat}`} className="w-[33px] h-[33px] ml-[8px]" />
         </button>
       </h2>
@@ -88,14 +88,39 @@ export const VolunteerDetails = () => {
             ...
           </p>
           <div className="flex items-center justify-center space-x-[76px] relative top-[142px]">
-            <img
-              src={media.upload}
-              alt="profile"
-              className="w-[218px] h-[218px]"
-            />
+            {!userDetails?.profilePicture && (
+              <div className="relative">
+                {userDetails?.active && (
+                  <div className="w-[40px] h-[41px] bg-active-user rounded-full absolute top-[162px] left-[165px] z-10"></div>
+                )}
+                {!userDetails?.active && (
+                  <div className="w-[40px] h-[41px] bg-inactive-user rounded-full absolute top-[162px] left-[165px] z-10"></div>
+                )}
+                <img
+                  src={media.upload}
+                  alt="profile"
+                  className="w-[218px] h-[218px] rounded-full border-4 border-gray-300"
+                />
+              </div>
+            )}
+            {userDetails?.profilePicture && (
+              <div className="relative">
+                {userDetails?.active && (
+                  <div className="w-[40px] h-[41px] bg-active-user rounded-full absolute top-[162px] left-[165px] z-10"></div>
+                )}
+                {!userDetails?.active && (
+                  <div className="w-[40px] h-[41px] bg-inactive-user rounded-full absolute top-[162px] left-[165px] z-10"></div>
+                )}
+                <img
+                  src={userDetails?.profilePicture}
+                  alt="profile"
+                  className="w-[218px] h-[218px] rounded-full border-8 border-gray-400 relative"
+                />
+              </div>
+            )}
             <div>
               <p className="text-[34.4px] leading-[41.63px] font-[700] mt-[28px]">
-              {userDetails?.firstName} {userDetails?.lastName}
+                {userDetails?.firstName} {userDetails?.lastName}
               </p>
               <p className="text-[16.5px] leading-[19.98px] font-[700] mt-[8px]">
                 {userDetails?.occupation}
@@ -182,28 +207,27 @@ export const VolunteerDetails = () => {
             <div className="bg-[#EA0000] rounded-full p-[11px]">
               <img src={`${media.phone}`} />
             </div>
-              <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                {userDetails?.contact}
-              </p>
+            <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
+              {userDetails?.contact}
+            </p>
           </div>
           <div className="flex justify-center items-center space-x-[14px] mt-[10px]">
             <div className="bg-[#EA0000] rounded-full p-[11px]">
-              <img src={`${media.email}`} className="w-[24px] h-[24px]"/>
+              <img src={`${media.email}`} className="w-[24px] h-[24px]" />
             </div>
-              <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                {userDetails?.email}
-              </p>
+            <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
+              {userDetails?.email}
+            </p>
           </div>
           <div className="flex justify-center items-center space-x-[14px] mt-[10px]">
             <div className="bg-[#EA0000] rounded-full p-[11px]">
-              <img src={`${media.linkedin}`} className="w-[24px] h-[24px]"/>
+              <img src={`${media.linkedin}`} className="w-[24px] h-[24px]" />
             </div>
-              <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
-                {userDetails?.email}
-              </p>
+            <p className="w-[259px] h-[37px] rounded-[17px] bg-[#E6E6E6] pl-[24px] pt-[10px] pb-[6px] text-[13px] leading-[16.73px] font-[700]">
+              {userDetails?.email}
+            </p>
           </div>
         </div>
-        
       </div>
     </div>
   );

@@ -17,6 +17,7 @@ export const registerVolunteer = createAsyncThunk(
         daysAvailable,
         interests,
         skills,
+        profilePicture,
         occupation,
         zipCode,
         streetAddress,
@@ -47,6 +48,7 @@ export const registerVolunteer = createAsyncThunk(
                   occupation,
                   zipCode,
                   streetAddress,
+                  profilePicture,
                   region
               },
               config

@@ -41,8 +41,19 @@ export const Volunteer = () => {
           }}
           onClick={() => handleViewVolunteerDetails(row?.original?.id)}
           className="hover:cursor-pointer hover:opacity-[84%]"
-        >
-          <img src={`${row.original.profilePicture}`} alt="" />
+        > 
+          <div className="mr-[19.4px]">
+          {
+            row?.original?.profilePicture && (
+              <img src={`${row?.original?.profilePicture}`} alt=""  className="w-[28.09px] h-[28.09px] rounded-full"/>
+            )
+          }
+          {
+            !row?.original?.profilePicture && (
+              <img src={media.upload} alt=""  className="w-[28.09px] h-[28.09px] rounded-full"/>
+            )
+          }
+          </div>
           <div>
             <p style={{ fontWeight: "bold" }}>
               {row?.original?.firstName} {row?.original?.lastName}
