@@ -5,6 +5,7 @@ import  volunteerSlice  from "./volunteer/volunteerSlice";
 import adminRegisterSlice from './register/adminRegisterSlice';
 import createProgramSlice from "./programs/createProgramSlice";
 import programsSlice from "./programs/programsSlice";
+import userSlice from "./users/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     adminRegisterSlice: adminRegisterSlice,
     createProgramSlice: createProgramSlice,
     programsSlice: programsSlice,
+    userSlice: userSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
