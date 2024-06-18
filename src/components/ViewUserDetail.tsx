@@ -11,6 +11,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { registerVolunteer } from "../features/register/registerVolunteerAction";
 import { Spinner } from "../widgets/Spinner";
 import { useEffect } from "react";
+import { extractBase64 } from "../utils/imageConverter";
 
 
 
@@ -25,21 +26,22 @@ export const ViewUserDetail = () => {
   );
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-
-  useEffect(() => {
-    console.log(userInfo, success);
-  }, [userInfo, success])
-
-
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
-    values['profilePicture'] = uploadedImageRef.current;
-    console.log(values);
-    dispatch(registerVolunteer(values));
+  useEffect(() => {
     if (success === true){
       navigate("/successful-registration");
+      console.log(userInfo, success);
     }
+  }, [userInfo, success, navigate])
+
+
+
+
+  const handleSubmit = () => {
+    values['profilePicture'] = extractBase64(uploadedImageRef.current);
+    console.log(values);
+    dispatch(registerVolunteer(values));
   };
 
   return (

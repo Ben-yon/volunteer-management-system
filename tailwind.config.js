@@ -18,7 +18,9 @@ export default {
         'menu-focus': '#FFFFFF29',
         'admin-secondary': '#790000',
         'admin-accent': '#D9D9D9',
-        'messages': '#16161612'
+        'messages': '#16161612',
+        'active-user': '#24FF00',
+        'inactive-user': '#FF0000',
       },
       fontFamily: {
         // sans: ['Lelawadee'],

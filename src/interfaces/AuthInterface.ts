@@ -83,6 +83,8 @@ export interface VolunteersPayload extends BaseUserInterface{
   user: LoginPayload | undefined;
 }
 
+export interface UserPayload extends VolunteersPayload{}
+
 export interface AdminRegisterPayload extends BaseUserInterface{
   id: string;
   createdBy: string;
