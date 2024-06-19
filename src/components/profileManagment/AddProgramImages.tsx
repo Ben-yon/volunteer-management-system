@@ -47,64 +47,66 @@ export const AddProgramImages = () => {
       <h2 className="text-black font-[700] text-[27px] leading-[32.68px] pb-6">
         Programs
       </h2>
-      <h2 className="w-[172px] h-[116px] text-[48.16px] font-[700] leading-[58.29px] mb-[18px]">
-        Add Images
-      </h2>
-      <div className="flex items-center justify-center space-x-[25px]">
-        <div
-          className="bg-admin-accent w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center"
-          onClick={() => setThumbnailModalOpen(true)}
-        >
-          {thumbnailRef.current ? (
-            <img src={thumbnailRef.current} className="object-fit" />
-          ) : (
-            <>
-              <img src={`${media.add_nobg}`} />
-              <p className="font-[400] text-[23.55px] leading-[28.5px] text-admin-accent w-[164px] h-[56px] text-center">
-                Add Image for Description
-              </p>
-            </>
+      <div className="flex flex-col justify-center w-[1244px] h-[840px] border-[0.5px] rounded-[39px] programs-gradient">
+        <h2 className="w-[172px] h-[116px] text-[48.16px] font-[700] leading-[58.29px] mb-[18px] ml-[180.28px]">
+          Add Images
+        </h2>
+        <div className="flex items-center justify-center space-x-[25px]">
+          <div
+            className="flex flex-col items-center justify-center"
+            onClick={() => setThumbnailModalOpen(true)}
+          >
+            {thumbnailRef.current ? (
+              <img src={thumbnailRef.current} className="w-[431px] h-[488px] rounded-[30px] object-fit" />
+            ) : (
+              <div className="bg-image-card w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center">
+                <img src={`${media.add_nobg}`} />
+                <p className="font-[400] text-[23.55px] leading-[28.5px] text-admin-accent w-[164px] h-[56px] text-center">
+                  Add Thumbnail
+                </p>
+              </div>
+            )}
+          </div>
+          {thumbnailModalOpen && (
+            <Modal
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-expect-error
+              updateAvatar={updateThumbnail}
+              closeModal={() => setThumbnailModalOpen(false)}
+            />
+          )}
+          <div
+            className="flex flex-col items-center justify-center"
+            onClick={() => setDescriptionModalOpen(true)}
+          >
+            {descriptionImageRef.current ? (
+              <img src={descriptionImageRef.current} className="object-fit w-[431px] h-[488px] rounded-[30px]" />
+            ) : (
+              <div className="bg-image-card w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center">
+                <img src={`${media.add_nobg}`} />
+                <p className="font-[400] text-[23.55px] leading-[28.5px] text-admin-accent w-[164px] h-[56px] text-center">
+                  Add Image for Description
+                </p>
+              </div>
+            )}
+          </div>
+          {descriptionModalOpen && (
+            <Modal
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-expect-error
+              updateAvatar={updateDescriptionImage}
+              closeModal={() => setDescriptionModalOpen(false)}
+            />
           )}
         </div>
-        {thumbnailModalOpen && (
-          <Modal
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          //@ts-expect-error
-            updateAvatar={updateThumbnail}
-            closeModal={() => setThumbnailModalOpen(false)}
-          />
-        )}
-        <div
-          className="bg-admin-accent w-[431px] h-[488px] rounded-[30px] flex flex-col items-center justify-center"
-          onClick={() => setDescriptionModalOpen(true)}
+        {error ? <p className="text-red-500 text-[10px]">{error}</p> : ""}
+        <button
+          className="bg-admin-secondary text-[30px] leading-[36.31px] font-[700] text-primary w-[181.95px] h-[68.5px] rounded-[21.41px] mt-[28px] ml-[180.28px]"
+          onClick={() => nextPage()}
         >
-          {descriptionImageRef.current ? (
-            <img src={descriptionImageRef.current} className="object-fit" />
-          ) : (
-            <>
-              <img src={`${media.add_nobg}`} />
-              <p className="font-[400] text-[23.55px] leading-[28.5px] text-admin-accent w-[164px] h-[56px] text-center">
-                Add Image for Description
-              </p>
-            </>
-          )}
-        </div>
-        {descriptionModalOpen && (
-          <Modal
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          //@ts-expect-error
-            updateAvatar={updateDescriptionImage}
-            closeModal={() => setDescriptionModalOpen(false)}
-          />
-        )}
+          Next
+        </button>
       </div>
-      {error ? <p className="text-red-500 text-[10px]">{error}</p> : ""}
-      <button
-        className="bg-admin-secondary text-[30px] leading-[36.31px] font-[700] text-primary w-[181.95px] h-[68.5px] rounded-[21.41px] mt-[28px]"
-        onClick={() => nextPage()}
-      >
-        Next
-      </button>
     </div>
   );
 };

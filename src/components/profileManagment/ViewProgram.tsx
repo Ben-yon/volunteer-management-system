@@ -2,6 +2,7 @@
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../../features/store";
+import { useEffect } from "react";
 
 export const ViewProgram: React.FC = () => {
   const { id } = useParams();
@@ -10,6 +11,14 @@ export const ViewProgram: React.FC = () => {
   );
 
   const navigate = useNavigate();
+  
+  const schedule = () => {
+    navigate("/profile-management/scheduling");
+  }
+
+  useEffect(() => {
+    localStorage.setItem('activeLink', 'scheduling')
+  }, [])
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
@@ -28,7 +37,7 @@ export const ViewProgram: React.FC = () => {
           <img
             src={program.programmeImages[0].image}
             alt="Image"
-            className="h-[840px] w-[490px] rounded-[29px]"
+            className="h-[840px] w-[490px] rounded-[29px] object-fit"
           />
         </div>
         <div className="flex flex-col">
@@ -38,7 +47,7 @@ export const ViewProgram: React.FC = () => {
           <p>{program.description}</p>
           <button
             className="w-[332px] h-[75px] rounded-[27px] bg-black text-primary text-[25px] font-[500] leading-[30.26px] mt-[50px] justify-end"
-            onClick={() => navigate("/profile-management/scheduling")}
+            onClick={() => schedule() }
           >
             Schedule for Program
           </button>
