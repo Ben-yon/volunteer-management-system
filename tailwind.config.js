@@ -17,10 +17,11 @@ export default {
         tertiary: '#FF1D1D',
         'menu-focus': '#FFFFFF29',
         'admin-secondary': '#790000',
-        'admin-accent': '#D9D9D9',
+        'admin-accent': '#00000066',
         'messages': '#16161612',
         'active-user': '#24FF00',
         'inactive-user': '#FF0000',
+        'image-card': '#D9D9D9',
       },
       fontFamily: {
         // sans: ['Lelawadee'],
