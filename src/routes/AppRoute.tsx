@@ -29,6 +29,7 @@ import { CreatePrograms } from "../components/profileManagment/CreatePrograms";
 import { AddProgramImages } from "../components/profileManagment/AddProgramImages";
 import { ProgramDetails } from "../components/profileManagment/ProgramDetails";
 import { ViewProgram } from "../components/profileManagment/ViewProgram";
+import { AdminUploadProfile } from "../components/admin/AdminUploadProfile";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -46,6 +47,7 @@ export const AppRoutes = () => {
       <Route path="admin" element={<AdminLandingPage />} />
       <Route path="/admin/sign-in" element={<AdminSignIn />} />
       <Route path="/admin/sign-up" element={<AdminRegistration />} />
+      <Route path="/admin/upload-profile-picture" element={<AdminUploadProfile/>}/>
       <Route
         path="/admin/register-confirm"
         element={<AdminRegistrationConfirmation />}

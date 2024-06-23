@@ -9,7 +9,7 @@ import { LoginPayload } from "../../interfaces/AuthInterface";
 
 export const ProfileManagement = () => {
   const [activeLink, setActiveLink] = useState<string | null>("");
-  const [ userInfo, setUserInfo ]  = useState<LoginPayload>();
+  const [userInfo, setUserInfo] = useState<LoginPayload>();
 
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -19,20 +19,20 @@ export const ProfileManagement = () => {
 
   const handleClick = (path: string) => {
     setActiveLink(path);
-    localStorage.setItem('activeLink', path);
+    localStorage.setItem("activeLink", path);
   };
 
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const storedUserInfo = localStorage.getItem('userInfo');
-    if (storedUserInfo){
+    const storedUserInfo = localStorage.getItem("userInfo");
+    if (storedUserInfo) {
       setUserInfo(JSON.parse(storedUserInfo));
     }
-  }, [state])
+  }, [state]);
 
   useEffect(() => {
-    const storedActiveLink = localStorage.getItem('activeLink');
+    const storedActiveLink = localStorage.getItem("activeLink");
     if (storedActiveLink) {
       setActiveLink(storedActiveLink);
     }
@@ -41,7 +41,7 @@ export const ProfileManagement = () => {
   const userLogout = () => {
     dispatch(logout());
     if (!token) {
-      navigate('/admin/sigin-in');
+      navigate("/admin/sigin-in");
     }
   };
 
@@ -52,20 +52,34 @@ export const ProfileManagement = () => {
       </div>
       <div className="absolute top-[49px] right-[67.4px] flex space-x-6">
         <div className="flex">
-          <img
-            src={media.upload}
-            alt=""
-            className="w-[50px] h-[50px] mr-[12px] relative -top-1"
-          />
+          {userInfo?.profilePicture ? (
+            <img
+              src={userInfo?.profilePicture}
+              alt=""
+              className="w-[50px] h-[50px] mr-[12px] relative -top-1"
+            />
+          ) : (
+            <img
+              src={media.upload}
+              alt=""
+              className="w-[50px] h-[50px] mr-[12px] relative -top-1"
+            />
+          )}
+
           <p className="text-[15px] leading-[18.5px] flex flex-col font-[600]">
-            {userInfo?.firstName} {userInfo?.lastName} 
+            {userInfo?.firstName} {userInfo?.lastName}
             <span className="text-[10px] leading-[12.1px] font-bold">
               {userInfo?.roles[0]?.name}
             </span>
           </p>
         </div>
         <div className="hover:cursor-pointer">
-          <img src={media.data_upload} alt="" className="w-[28px] h-[28px]" onClick={() => userLogout()}/>
+          <img
+            src={media.data_upload}
+            alt=""
+            className="w-[28px] h-[28px]"
+            onClick={() => userLogout()}
+          />
         </div>
         <div className="hover:cursor-pointer">
           <img
@@ -232,11 +246,15 @@ export const ProfileManagement = () => {
                 className="w-[60px] h-[60px] mt-[5px] ml-[40px]"
               />
               <div className="flex flex-col">
-                <p className="font-[600] text-[15px] leading-[18.15px]">{userInfo?.firstName} {userInfo?.lastName}</p>
+                <p className="font-[600] text-[15px] leading-[18.15px]">
+                  {userInfo?.firstName} {userInfo?.lastName}
+                </p>
                 <span className="text-[10px] leading-[12.1px]">
                   {userInfo?.email}
                 </span>
-                <span className="text-[10px] leading-[12.1px]">{userInfo?.roles[0]?.name}</span>
+                <span className="text-[10px] leading-[12.1px]">
+                  {userInfo?.roles[0]?.name}
+                </span>
               </div>
             </div>
           </nav>

@@ -14,7 +14,7 @@ export const DeleteAdminModal: React.FC<DeleteAdminModalProps> = ({
     if (deleteValue === "DELETE") {
       getAdminId("");
       setConfirmDeleteModal(true);
-      closeModal;
+      
     } else {
       alert("type DELETE");
     }

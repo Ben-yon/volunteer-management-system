@@ -3,12 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import { AdminSignUpFormData } from "../../interfaces/FormDataInterface";
-import { FormEvent, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../features/store";
-import { ThunkDispatch } from "@reduxjs/toolkit";
-import { adminRegister } from "../../features/register/adminRegisterAction";
-import { Spinner } from "../../widgets/Spinner";
+import { FormEvent } from "react";
+
 
 export const AdminRegistration = () => {
   const validationRules = {
@@ -18,40 +14,39 @@ export const AdminRegistration = () => {
     password: { required: true, password: true, minLength: 8 },
   };
 
-  const { loading, success } = useSelector((state: RootState) => state.adminRegisterSlice);
+  
 
   //eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
-  const { values, errors, handleChange, validate } = useFormValidation<AdminSignUpFormData>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    profilePicture: ""
-  }, validationRules );
+  const { values, errors, handleChange, validate } =
+    useFormValidation<AdminSignUpFormData>(
+      {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        profilePicture: "",
+      },
+      validationRules
+    );
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if(success){
-      navigate("/admin/register-confirm");
-    }
-  }, [success, navigate])
+  
 
-  const signUp = (e: FormEvent<HTMLFormElement>) => {
+  const nextPage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (validate()){
-      dispatch(adminRegister(values))
-    }else{
-      throw new DOMException('Validation failed')
+    if (validate()) {
+      navigate("/admin/upload-profile-picture", { state: { values: values } });
+    } else {
+      throw new DOMException("Validation failed");
     }
   };
 
   return (
     <div className="bg-admin bg-no-repeat bg-cover filter md:filter-none z-0 w-[100vw] h-[100vh] lg:h-[100vh] lg:w-[100vw] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
       <div className="bg-primary opacity-95 bg-no-repeat bg-cover w-[100vw] h-[100vh] lg:w-[100vw] lg:h-[100vh] sm:w-[100vw] md:w-[100vw] md:h-[100vh] sm:h-[100vh] xsm:w-[100vw] xsm:h-[100vh]">
-      <div className="absolute top-8 right-16 z-10 text-black flex space-x-1 md:absolute md:top-[39px] md:right-[47px] sm:top-[33px] xsm:top-[18px] xsm:right-[32.1px]">
+        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1 md:absolute md:top-[39px] md:right-[47px] sm:top-[33px] xsm:top-[18px] xsm:right-[32.1px]">
           <img
             src={media.lang_black}
             alt="language"
@@ -66,7 +61,7 @@ export const AdminRegistration = () => {
         />
         <div className="flex flex-col justify-center items-center min-h-screen">
           <form
-            onSubmit={signUp}
+            onSubmit={nextPage}
             className=" flex flex-col justify-center items-start"
           >
             <h2 className="text-[48.16px] leading-[58.29px] font-bold lg:text-[48.16px] lg:leading-[58.29px] md:text-[38.58px] md:leading-[46.7px] sm:text-[38.58px] sm:leading-[46.7px] sm:font-bold xsm:text-[21.51px] xsm:leading-[26.03px]">
@@ -125,7 +120,9 @@ export const AdminRegistration = () => {
                 placeholder="Password"
               />
               {errors.password && (
-                <span className="text-red-500 text-[10px]">{errors.password}</span>
+                <span className="text-red-500 text-[10px]">
+                  {errors.password}
+                </span>
               )}
             </div>
             <div></div>
@@ -136,7 +133,7 @@ export const AdminRegistration = () => {
               </a>
             </p>
             <button className="bg-admin-secondary text-white rounded-[21.41px] w-[181.95px] h-[68.5px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[181.95px] lg:h-[68.5px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[18.24px] font-bold text-[23.55px]">
-              { loading ? <Spinner/> : "Sign Up"}
+               Next
             </button>
             <p className="mt-[21.67px] text-[16.05px] leading-[19.43px] lg:mt-[21.67px] lg:text-[16.05px] lg:leading-[19.43px] md:text-[12.86px] md:leading-[15.57px] md:mt-[20.58px] sm:text-[12.86px] sm:leading-[15.57px] sm:mt-[20.58px] xsm:text-[7.17px] xsm:leading-[8.68px] xsm:mt-[11.47px]">
               Already have an account?{" "}
