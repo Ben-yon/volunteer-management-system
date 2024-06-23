@@ -1,11 +1,15 @@
-export interface ModalProps extends Props{
+export interface ModalProps extends BasicModalProps{
     updateAvatar: (imgSrc: string | undefined ) => void,
 }
 
-export interface Props{
+export interface BasicModalProps{
     closeModal: () => void
 }
 
-export interface ChangeProfileModalProps extends Props{
+export interface ChangeProfileModalProps extends BasicModalProps{
     setAvatar: (imgSrc: string | undefined) => void
+}
+
+export interface DeleteAdminModalProps extends BasicModalProps{
+    getAdminId: (id: string | undefined) => void
 }

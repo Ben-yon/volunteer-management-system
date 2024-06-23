@@ -1,15 +1,21 @@
 import { useRef, useState } from "react";
 import { media } from "../../assets";
 import { ChangeProfileModal } from "../../widgets/ChangeProfileModal";
+import { DeleteAdminModal } from "../../widgets/DeleteAdminAccountModal";
 
 export const Profile = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const uploadedImageRef = useRef<string | undefined>(media.upload);
 
   const setAvatar = (imgSrc: string | undefined) => {
     uploadedImageRef.current = imgSrc;
   }
   
+  const deleteAdmin = (id: string | undefined) => {
+    console.log(id)
+  }
+
   return (
     <>
       <div className="flex  flex-col justify-center">
@@ -22,7 +28,7 @@ export const Profile = () => {
       </div>
       <div className="flex justify-center space-x-[9px]">
         <div className="w-[336px]">
-          <div className="hover:cursor-pointer" onClick={() => setModalOpen(true)}>
+          <div className="hover:cursor-pointer">
             <img src={uploadedImageRef.current} alt="" className="w-[109px] h-[109px] rounded-full" />
           </div>
             {
@@ -39,7 +45,7 @@ export const Profile = () => {
             </span>
           </div>
           <div className="flex flex-col space-y-[16px] mt-[60px]">
-            <div className="flex items-center space-x-[14px] hover:cursor-pointer">
+            <div className="flex items-center space-x-[14px] hover:cursor-pointer" onClick={() => setModalOpen(true)}>
               <img src={media.change_profile} alt="" />
               <p className="font-[600] text-[14px] leading-[16.94px]">
                 Change Profile
@@ -47,22 +53,27 @@ export const Profile = () => {
             </div>
             <div className="flex items-center space-x-[14px] hover:cursor-pointer">
               <img src={media.change_password} alt="" />
-              <p className="font-[600] text-[14px] leading-[16.94px]">
+              <p className="font-[600] text-[14px] leading-[16.94px] active:bg-black">
                 Change Password
               </p>
             </div>
             <div className="flex items-center space-x-[14px] hover:cursor-pointer">
-              <img src={media.user_logout} alt="" />
+              <img src={media.user_logout} alt="" className="ml-[3px]"/>
               <p className="font-[600] text-[14px] leading-[16.94px]">
                 Log Out
               </p>
             </div>
-            <div className="flex items-center space-x-[14px] hover:cursor-pointer">
-              <img src={media.bin} alt="" />
+            <div className="flex items-center space-x-[14px] hover:cursor-pointer" onClick={() => setDeleteModalOpen(true)}>
+              <img src={media.bin} alt=""/>
               <p className="text-secondary font-[600] text-[14px] leading-[16.94px]">
                 Delete Account
               </p>
             </div>
+            {
+                deleteModalOpen && (
+                    <DeleteAdminModal closeModal={() => setDeleteModalOpen(false)} getAdminId={() => deleteAdmin("")}/>
+                )
+            }
           </div>
         </div>
         <div className="w-[873px] h-[797px] rounded-[21px] border-[2px] flex flex-col">
