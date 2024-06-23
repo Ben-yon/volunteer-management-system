@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { media } from "../../assets";
 import { useEffect, useState, KeyboardEvent } from "react";
 
