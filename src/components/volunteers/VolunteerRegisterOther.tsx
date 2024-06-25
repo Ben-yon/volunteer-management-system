@@ -1,15 +1,15 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { FormDataInterface } from "../interfaces/FormDataInterface";
-import { styles } from "../styles";
-import { ImageSlideshow } from "../widgets/ImageSlideshow";
-import { media } from "../assets";
-import { db } from "../utils/db";
+import { FormDataInterface } from "../../interfaces/FormDataInterface";
+import { styles } from "../../styles";
+import { ImageSlideshow } from "../../widgets/ImageSlideshow";
+import { media } from "../../assets";
+import { db } from "../../utils/db";
 import { useTranslation } from "react-i18next";
-import { LanguageSelect } from "./LanguageSelect";
-import { useFormValidation } from "../utils/validate";
-import Modal from "../widgets/Modal";
+import { LanguageSelect } from "../LanguageSelect";
+import { useFormValidation } from "../../utils/validate";
+import Modal from "../../widgets/Modal";
 
 
 export const UserRegistration = () => {

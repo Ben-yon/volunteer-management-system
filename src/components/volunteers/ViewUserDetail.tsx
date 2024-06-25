@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 //import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { styles } from "../styles";
-import { media } from "../assets";
-import { LanguageSelect } from "./LanguageSelect";
+import { styles } from "../../styles";
+import { media } from "../../assets";
+import { LanguageSelect } from "../LanguageSelect";
 import {  useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../features/store";
+import { RootState } from "../../features/store";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { registerVolunteer } from "../features/register/registerVolunteerAction";
-import { Spinner } from "../widgets/Spinner";
+import { registerVolunteer } from "../../features/register/registerVolunteerAction";
+import { Spinner } from "../../widgets/Spinner";
 import { useEffect } from "react";
-import { extractBase64 } from "../utils/imageConverter";
+import { extractBase64 } from "../../utils/imageConverter";
 
 
 

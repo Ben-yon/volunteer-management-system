@@ -12,16 +12,17 @@ export const Messages = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [message, setMessage] = useState<string>("");
   const [userId, setUserId] = useState<string>("");
-  const [recipientId, setRecipient] = useState<string>("");
+  const [recipientId, setRecipientId] = useState<string>("");
+
+  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
-      .withUrl("<enter connection url here>")
+      .withUrl(`${connectionURL}/HubMessages`)
       .withAutomaticReconnect()
       .build();
-
       setConnection(newConnection);
-  }, []);
+  }, [connectionURL]);
 
 
   useEffect(()=> {

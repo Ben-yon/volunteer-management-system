@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { media } from "../assets";
+import { media } from "../../assets";
 import { gsap } from "gsap";
-import { LanguageSelect } from "./LanguageSelect";
+import { LanguageSelect } from "../LanguageSelect";
 import { useGSAP } from "@gsap/react";
 
 export const SuccessfulRegistration = () => {
