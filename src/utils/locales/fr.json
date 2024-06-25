@@ -1,8 +1,7 @@
 {   
     "Register": "Registre",
     "Fill out this form to become a Volunteer": "Remplissez ce formulaire pour devenir bénévole",
-    "Review Your": "Vérifiez vos",
-    "Information": "informations",
+    "Review Your Information": "Vérifiez vos informations",
     "First Name": "Prénom",
     "Last Name": "Nom de famille",
     "interests": "Intérêts",
@@ -13,7 +12,6 @@
     "Address": "Adresse",
     "Street Address": "Adresse de la rue",
     "Next": "Suivant",
-    "Please take a moment to review": "Veuillez prendre un moment pour examiner",
-    "the information you've entered": "les informations que vous avez saisies",
+    "Please take a moment to review the information you've entered": "Veuillez prendre un moment pour examiner les informations que vous avez saisies",
     "Submit": "Soumettre" 
 }

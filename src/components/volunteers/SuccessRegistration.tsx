@@ -1,32 +1,8 @@
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { media } from "../../assets";
-import { gsap } from "gsap";
 import { LanguageSelect } from "../LanguageSelect";
-import { useGSAP } from "@gsap/react";
 
 export const SuccessfulRegistration = () => {
-  const checkmarkElement = useRef<HTMLImageElement>(null);
-
-  useGSAP(() => {
-    const tl = gsap.timeline({ paused: false, repeat: 0 });
-
-    tl.fromTo(
-      checkmarkElement.current,
-      {
-        y: "100%",
-        duration: 3,
-        rotate: "180%",
-        ease: "power1.inout",
-      },
-      {
-        y: "%",
-        duration: 0.4,
-        rotate: "360%",
-        ease: "power1.inOut",
-      }
-    );
-  }, []);
 
   const navigate = useNavigate();
 
@@ -48,28 +24,20 @@ export const SuccessfulRegistration = () => {
             className="lg:absolute lg:w-[221px] lg:h-[90px] lg:bottom-[39px] lg:right-[35px] sm:absolute sm:w-[133px] sm:h-[55px] sm:bottom-[32px] sm:right-[31px] xsm:absolute xsm:w-[133px] xsm:h-[55px] xsm:bottom-[2%] xsm:right-[31px]"
           />
         </div>
-        <div className="relative flex flex-col items-center justify-center top-[100px] w-[493px] h-[506.7px] lg:relative lg:flex lg:flex-col lg:items-center lg:top-[100px] lg:w-[493px] lg:h-[506.7px] white-gradient lg:rounded-[67.49px] lg:opacity-100 m-auto md:w-[428px] md:h-[473.59px] md:m-auto md:top-[140px] md:rounded-[50.65px] sm:w-[428px] sm:h-[473.59px] sm:top-[140px] sm:rounded-[50.65px] xsm:w-[240px] xsm:h-auto xsm:relative xsm:p-8 xsm:flex xsm:flex-col xsm:top-24 xsm:m-auto xsm:rounded-[20px] xsm:items-center">
-          <h2 className="lg:text-primary lg:text-4xl font-bold lg:mt-28 xsm:text-xl xsm:font-extrabold xsm:mt-6 xsm:text-primary">
+        <div className="relative flex flex-col items-center justify-center top-[245px] w-[1040px] h-[654px] bg-primary lg:relative lg:flex lg:flex-col lg:items-center lg:top-[245px] lg:w-[1040px] lg:h-[654px]  lg:rounded-[67.49px] lg:opacity-100 m-auto md:w-[428px] md:h-[473.59px] md:m-auto md:top-[140px] md:rounded-[50.65px] sm:w-[428px] sm:h-[473.59px] sm:top-[140px] sm:rounded-[50.65px] xsm:w-[240px] xsm:h-auto xsm:relative xsm:p-8 xsm:flex xsm:flex-col xsm:top-24 xsm:m-auto xsm:rounded-[20px] xsm:items-center">
+          <h2 className="text-black text-[91px] lg:text-black lg:text-[91px] leading-[91px] font-[700] lg:mt-28 xsm:text-xl xsm:font-extrabold xsm:mt-6 xsm:text-primary">
             Great!
           </h2>
-          <p className="lg:text-center lg:text-primary lg:text-xm xsm:text-xs xsm:mt-[10.63px] xsm:text-primary xsm:text-center">
+          <p className="text-center text-black text-[25px] leading-[30.26px] mt-[57.73px] lg:text-center lg:text-black lg:leading-[30.26px] lg:text-[25px] lg:mt-[57.73px] xsm:text-xs xsm:mt-[10.63px] xsm:text-primary xsm:text-center">
             You have successfully Registered. <br />
             You will receive a Confirmation <br />
             Email from MCSS
           </p>
-          <div>
-            <img
-              src={`${media.checkmark}`}
-              alt=""
-              className="lg:mt-[18.44px] xsm:w-[107.85px] xsm:h-[107.85px]"
-              ref={checkmarkElement}
-            />
-          </div>
           <button
-            className="register-form-submit lg:text-primary lg:font-bold lg:mt-[28.7px] lg:text-center lg:rounded-[12.7px] lg:leading-5 lg:py-3 lg:px-6 xsm:rounded-[5.24px] xsm:text-xs xsm:px-3 xsm:py-2 xsm:text-center xsm:text-primary xsm:font-bold"
+            className="bg-secondary w-[729px] h-[70px] lg:text-[25px] leading-[30.26px] lg:text-primary font-[700] lg:mt-[84px] lg:text-center lg:rounded-[16px] lg:leading-[30.26px] xsm:rounded-[5.24px] xsm:text-xs xsm:px-3 xsm:py-2 xsm:text-center xsm:text-primary"
             onClick={() => navigate('/')}
           >
-            MCSS
+            Return to MCSS
           </button>
         </div>
       </div>

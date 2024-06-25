@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
 import monthsOfYear from "../../utils/months.json";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { MonthsInterface } from "../../interfaces/MonthsInterface";
 import { useFormValidation } from "../../utils/validate";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const VolunteerRegistration = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
   const { state } = useLocation();
   const { profilePicture } = state;
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedMonth(e.target.value);
@@ -33,10 +34,46 @@ export const VolunteerRegistration = () => {
     );
   }
 
+  const [selectedYear, setSelectedYear] = useState<string>("");
+
+  // Event handler for the select field
+  const handleYearSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedYear(event.target.value);
+  };
+
+  // Get the current year
+  const currentYear = new Date().getFullYear();
+
+  // Generate options dynamically
+  const yearOptions = [];
+  for (let year = 1970; year <= currentYear; year++) {
+    yearOptions.push(
+      <option key={year} value={year}>
+        {year}
+      </option>
+    );
+  }
+
+  const getDate = (): string => {
+    if (selectedDay && selectedMonth && selectedYear) {
+        const monthIndex = months.find((month) => month.name === selectedMonth);
+        const date = new Date(parseInt(selectedYear), monthIndex!.number, parseInt(selectedDay));
+        return formatDate(date);
+    }
+    return '';
+};
+
+const formatDate = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+};
+
   const validationRules = {
     firstName: { required: true, minLength: 2 },
     lastName: { required: true, minLength: 2 },
-    dateOfBirth: { required: true },
     daysAvailable: { required: true, isNumber: true, isDayOfWeek: true },
     contact: { required: true },
     email: { required: true, email: true },
@@ -44,11 +81,10 @@ export const VolunteerRegistration = () => {
     city: { required: true },
   };
 
-    const { values, errors, handleChange, validate } = useFormValidation(
+  const { values, errors, handleChange, validate } = useFormValidation(
     {
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
       daysAvailable: "",
       address: "",
       contact: "",
@@ -58,11 +94,16 @@ export const VolunteerRegistration = () => {
     validationRules
   );
 
-  const nextPage = () => {
-    if(validate()){
-      navigate('/volunteer-register-other', {state: { values: values, profilePicture: profilePicture}})
+  const nextPage = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (validate()) {
+      localStorage.setItem('values', JSON.stringify(values))
+      console.log(getDate());
+      navigate("/volunteer-registration-other-info", {
+        state: { info: values, profilePicture: profilePicture, dateOfBirth: getDate() },
+      });
     }
-  }
+  };
 
   return (
     <div className="relative filter min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
@@ -89,7 +130,7 @@ export const VolunteerRegistration = () => {
           <p className="text-primary font-[500] mt-[5px] text-[25px] leading-[30.26px] text-center">
             Fill out this form to become a Volunteer
           </p>
-          <div className="w-[894px] h-[791px] rounded-[33px] bg-primary mt-[25px] flex flex-col items-center">
+          <form className="w-[894px] h-[791px] rounded-[33px] bg-primary mt-[25px] flex flex-col items-center" onSubmit={nextPage}>
             <div className="flex mt-[56px] space-x-[36px]">
               <div className="flex flex-col">
                 <label
@@ -142,36 +183,53 @@ export const VolunteerRegistration = () => {
                 Date of Birth
               </label>
               <div className="flex space-x-[11px] mt-[4px]">
-                <select
-                  className="bg-image-card w-[210px] h-[58px] rounded-[16px] text-[20px] font-[600] text-input-color leading-[24.2px] pl-[15px]"
-                  value={selectedMonth}
-                  name="month"
-                  onChange={handleSelectChange}
-                >
-                  <option
-                    value=""
-                    disabled
-                    defaultValue=""
-                    className=" text-[20px] "
+                <div className="flex flex-col">
+                  <select
+                    className="bg-image-card w-[210px] h-[58px] rounded-[16px] text-[20px] font-[600] text-input-color leading-[24.2px] pl-[15px]"
+                    value={selectedMonth}
+                    name="month"
+                    onChange={handleSelectChange}
+                    key={month?.short}
+                    required
                   >
-                    Month
-                  </option>
-                  {months.map((month) => (
-                    <option value={month.name}>{month.name}</option>
-                  ))}
-                </select>
+                    <option
+                      disabled
+                      defaultValue=""
+                      className=" text-[20px] "
+                    >
+                      Month
+                    </option>
+                    {months.map((month) => (
+                      <option value={month.name}>{month.name}</option>
+                    ))}
+                  </select>
+                  {errors.dateOfBirth && (
+                  <span className="text-secondary text-[10px]">
+                    {errors.dateOfBirth}
+                  </span>
+                  )}
+                </div>
                 <select
                   className="bg-image-card w-[135px] h-[58px] rounded-[16px] text-[20px] font-[600] leading-[24.2px] text-input-color pl-[15px]"
-                  value={selectedMonth}
-                  onChange={handleSelectChange}
+                  value={selectedDay}
+                  onChange={(e) => setSelectedDay(e.target.value)}
+                  name="day"
+                  required
                 >
-                  <option value="" selected disabled>
+                  <option value="" disabled>
                     Day
                   </option>
                   {options}
                 </select>
-                <select className="w-[210px] h-[58px] rounded-[16px] text-[20px] font-[600] leading-[24.2px] text-input-color bg-image-card pl-[15px]">
+                <select
+                  className="w-[210px] h-[58px] rounded-[16px] text-[20px] font-[600] leading-[24.2px] text-input-color bg-image-card pl-[15px]"
+                  value={selectedYear}
+                  onChange={handleYearSelectChange}
+                  name="year"
+                  required
+                >
                   <option value="">Year</option>
+                  {yearOptions}
                 </select>
               </div>
             </div>
@@ -284,10 +342,12 @@ export const VolunteerRegistration = () => {
                 </span>
               )}
             </div>
-            <button className="w-[729px] h-[58px] mt-[30px] rounded-[16px] bg-secondary text-primary text-[25px] font-[700] leading-[30.26px] text-center" onClick={() => nextPage()}>
+            <button
+              className="w-[729px] h-[58px] mt-[30px] rounded-[16px] bg-secondary text-primary text-[25px] font-[700] leading-[30.26px] text-center"
+            >
               Next
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ export const VolunteerUploadProfile = () => {
     }
 
     const nextPage = () => {
-        navigate('/volunteer-registration', {state : {profilePicture: uploadedImageRef.current}})
+        navigate('/volunteer-registration', {state : {profilePicture: uploadedImageRef}})
     }
 
     return (

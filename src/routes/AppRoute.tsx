@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { ViewUserDetail } from "../components/volunteers/ViewUserDetail";
+import { ViewUserDetail } from "../components/volunteers/ViewVolunteerDetail";
 import { SuccessfulRegistration } from "../components/volunteers/SuccessRegistration";
 import { AdminLandingPage } from "../components/admin/AdminLandingPage";
 import { AdminSignIn } from "../components/admin/AdminSignIn";
@@ -32,6 +32,7 @@ import { AdminUploadProfile } from "../components/admin/AdminUploadProfile";
 import { VolunteerLandingPage } from "../components/volunteers/VolunteerLandingPage";
 import { VolunteerRegistration } from "../components/volunteers/VolunteerRegistration";
 import { VolunteerUploadProfile } from "../components/volunteers/VolunteerUploadProfile";
+import { VolunteerRegisterOther } from "../components/volunteers/VolunteerRegisterOther";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -44,6 +45,7 @@ export const AppRoutes = () => {
         <Route path="" element={<VolunteerLandingPage />} />
         <Route path="volunteer-upload-avatar" element={<VolunteerUploadProfile/>}/>
         <Route path="volunteer-registration" element={<VolunteerRegistration/>}/>
+        <Route path="volunteer-registration-other-info" element={<VolunteerRegisterOther/>}/>
         <Route path="view-user-details" element={<ViewUserDetail />} />
         <Route
           path="successful-registration"
