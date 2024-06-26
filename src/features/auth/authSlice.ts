@@ -10,7 +10,6 @@ const initialState: LoginInterface = {
     id: "",
     firstName: "",
     lastName: "",
-    otherNames: "",
     email: "",
     telephone: "",
     active: false,

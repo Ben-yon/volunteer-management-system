@@ -9,10 +9,10 @@ export const Messages = () => {
   const [connection, setConnection] = useState<signalR.HubConnection | null>(
     null
   );
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [, setMessages] = useState<ChatMessage[]>([]);
   const [message, setMessage] = useState<string>("");
-  const [userId, setUserId] = useState<string>("");
-  const [recipientId, setRecipientId] = useState<string>("");
+  const [userId] = useState<string>("");
+  const [recipientId] = useState<string>("");
 
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL
 

@@ -41,6 +41,7 @@ export const AdminUploadProfile = () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-expect-error
       values['profilePicture'] = extractBase64(uploadImageRef.current)
+      console.log(values)
       dispatch(adminRegister(values));
     } else {
       alert(error);
@@ -83,6 +84,11 @@ export const AdminUploadProfile = () => {
           <button className="w-[285.46px] h-[79.09px] rounded-[27.72px] bg-admin-secondary text-primary font-[700] text-[24.27px] leading-[29.91px] mt-[73px]" onClick={() => signUp()}>
             {loading ? <Spinner/> : "Sign Up"}
           </button>
+          {
+            error && (
+              <span className="text-secondary text-[12px]">Email already exist.</span>
+            )
+          }
         </div>
       </div>
     </div>
