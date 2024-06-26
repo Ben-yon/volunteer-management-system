@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { styles } from "../../styles";
 import { media } from "../../assets";
 // import { db } from "../../utils/db";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import Modal from "../../widgets/Modal";
@@ -28,7 +28,7 @@ export const VolunteerRegisterOther = () => {
     uploadedImageRef.current = imgSrc;
   };
 
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   const validationRules = {
     streetAddress: { required: true },
@@ -115,7 +115,7 @@ export const VolunteerRegisterOther = () => {
             className="w-[261.84px] h-[32.58px] rounded-[7.1px] border-[0.71px] bg-primary text-secondary font-[700] text-[11.83px] leading-[14.32px]"
             onClick={nextPage}
           >
-            Register as a Volunteer
+            {t("Register as a Volunteer")}
           </button>
         </div>
       ),
@@ -534,10 +534,10 @@ export const VolunteerRegisterOther = () => {
         </div>
         <div className="flex flex-col items-center justify-center relative top-[85px]">
           <h1 className="text-primary font-[700] text-[43.05px] leading-[52.09px]">
-            Register
+            {t("Register")}
           </h1>
           <p className="text-primary font-[500] mt-[5px] text-[25px] leading-[30.26px] text-center">
-            Fill out this form to become a Volunteer
+            {t("Fill out this form to become a Volunteer")}
           </p>
           <form onSubmit={handleSubmit} className="w-[894px] h-[791px] rounded-[33px] bg-primary mt-[25px] flex flex-col items-center">
             <div className="flex flex-col mt-[123px]">
@@ -545,7 +545,7 @@ export const VolunteerRegisterOther = () => {
                 htmlFor="StreetAddress"
                 className="text-[20px] font-[500] leading-[24.2px]"
               >
-                Street Address
+                {t("Street Address")}
               </label>
               <input
                 type="text"
@@ -567,7 +567,7 @@ export const VolunteerRegisterOther = () => {
                   htmlFor="region"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  State/Province/Region
+                  {t("State/Province/Region")}
                 </label>
                 <input
                   type="text"
@@ -588,7 +588,7 @@ export const VolunteerRegisterOther = () => {
                   htmlFor="city"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  ZIP/Postal Code
+                 {t("ZIP/Postal Code")}
                 </label>
                 <input
                   type="text"
@@ -611,7 +611,7 @@ export const VolunteerRegisterOther = () => {
                   htmlFor="occupation"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  Occupation
+                  {t("Occupation")}
                 </label>
                 <input
                   type="text"
@@ -632,7 +632,7 @@ export const VolunteerRegisterOther = () => {
                   htmlFor="skills"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  Skills
+                  {t("Skills")}
                 </label>
                 <input
                   type="text"
@@ -654,7 +654,7 @@ export const VolunteerRegisterOther = () => {
                 htmlFor="interests"
                 className="text-[20px] font-[500] leading-[24.2px]"
               >
-                Interests
+                {t("Interests")}
               </label>
               <input
                 type="text"
@@ -674,7 +674,7 @@ export const VolunteerRegisterOther = () => {
               className="w-[729px] h-[58px] mt-[30px] rounded-[16px] bg-secondary text-primary text-[25px] font-[700] leading-[30.26px] text-center"
               
             >
-              Register
+              {t("Register")}
             </button>
           </form>
         </div>

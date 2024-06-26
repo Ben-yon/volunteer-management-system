@@ -24,10 +24,10 @@ export const LanguageSelect = () => {
       <select
         value={language}
         onChange={handleLanguageChange}
-        className="w-[80px] lg:w-[80px] text-[18px] leading-[24.2px] md:w-[80px] md:text-[18px] md:leading-[24.2px] sm:w-[75px] sm:text-[16px] sm:leading-[24.2px] xsm:w-[65px] xsm:text-[13px] xsm:leading-[16.2px] focus:outline-none bg-transparent"
+        className="w-[90px] lg:w-[90px] text-[18px] leading-[24.2px] md:w-[80px] md:text-[18px] md:leading-[24.2px] sm:w-[75px] sm:text-[16px] sm:leading-[24.2px] xsm:w-[65px] xsm:text-[13px] xsm:leading-[16.2px] focus:outline-none bg-transparent"
       >
         {languageOptions.map((option) => (
-          <option key={option.value} value={option.value} className="custom-option">
+          <option key={option.value} value={option.value} className="w-[50px]">
               {t(option.label)}
           </option>
         ))}

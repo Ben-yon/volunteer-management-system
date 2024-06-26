@@ -39,14 +39,13 @@ export const ViewUserDetail = () => {
 
   const handleSubmit = () => {
     volunteerInfo['profilePicture'] = extractBase64(profilePicture?.current);
-    console.log(volunteerInfo);
     dispatch(registerVolunteer(volunteerInfo));
   };
 
   return (
     <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[130vh] md:w-[100vw] md:h-[120%] sm:w-[100vw] sm:overflow-none ">
       <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[130vh] md:h-[130vh] sm:h-[100vh] sm:relative xsm:h-[100vh]">
-        <div className="absolute top-8 right-16 z-10 text-black flex space-x-1">
+        <div className="absolute top-8 right-16 z-10 text-white flex space-x-1">
           <img
             src={media.lang_white}
             alt="language"

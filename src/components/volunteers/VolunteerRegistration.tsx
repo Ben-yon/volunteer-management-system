@@ -3,6 +3,7 @@ import { media } from "../../assets";
 import { LanguageSelect } from "../LanguageSelect";
 import monthsOfYear from "../../utils/months.json";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { MonthsInterface } from "../../interfaces/MonthsInterface";
 import { useFormValidation } from "../../utils/validate";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -53,6 +54,8 @@ export const VolunteerRegistration = () => {
       </option>
     );
   }
+
+  const { t } = useTranslation();
 
   const getDate = (): string => {
     if (selectedDay && selectedMonth && selectedYear) {
@@ -125,10 +128,10 @@ const formatDate = (date: Date): string => {
         </div>
         <div className="flex flex-col items-center justify-center relative top-[85px]">
           <h1 className="text-primary font-[700] text-[43.05px] leading-[52.09px]">
-            Register
+            {t("Register")}
           </h1>
           <p className="text-primary font-[500] mt-[5px] text-[25px] leading-[30.26px] text-center">
-            Fill out this form to become a Volunteer
+            {t("Fill out this form to become a Volunteer")}
           </p>
           <form className="w-[894px] h-[791px] rounded-[33px] bg-primary mt-[25px] flex flex-col items-center" onSubmit={nextPage}>
             <div className="flex mt-[56px] space-x-[36px]">
@@ -137,7 +140,7 @@ const formatDate = (date: Date): string => {
                   htmlFor="firstName"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  First Name
+                  {t("First Name")}
                 </label>
                 <input
                   type="text"
@@ -158,7 +161,7 @@ const formatDate = (date: Date): string => {
                   htmlFor="lastName"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  Last Name
+                  {t("Last Name")}
                 </label>
                 <input
                   type="text"
@@ -180,7 +183,7 @@ const formatDate = (date: Date): string => {
                 htmlFor="dateOfBirth"
                 className="text-[20px] font-[500] leading-[24.2px]"
               >
-                Date of Birth
+                {t("Date of Birth")}
               </label>
               <div className="flex space-x-[11px] mt-[4px]">
                 <div className="flex flex-col">
@@ -194,7 +197,7 @@ const formatDate = (date: Date): string => {
                   >
                     <option
                       disabled
-                      defaultValue=""
+                      value=""
                       className=" text-[20px] "
                     >
                       Month
@@ -239,7 +242,7 @@ const formatDate = (date: Date): string => {
                   htmlFor="availability"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  Availability
+                  {t("Availability")}
                 </label>
                 <input
                   type="text"
@@ -260,7 +263,7 @@ const formatDate = (date: Date): string => {
                   htmlFor="contact"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  Contact
+                  {t("Contact")}
                 </label>
                 <input
                   type="text"
@@ -283,7 +286,7 @@ const formatDate = (date: Date): string => {
                   htmlFor="email"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  Email
+                  {t("Email")}
                 </label>
                 <input
                   type="text"
@@ -304,7 +307,7 @@ const formatDate = (date: Date): string => {
                   htmlFor="city"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
-                  City
+                  {t("City")}
                 </label>
                 <input
                   type="text"
@@ -326,7 +329,7 @@ const formatDate = (date: Date): string => {
                 htmlFor="address"
                 className="text-[20px] font-[500] leading-[24.2px]"
               >
-                Address
+                {t("Address")}
               </label>
               <input
                 type="text"
@@ -345,7 +348,7 @@ const formatDate = (date: Date): string => {
             <button
               className="w-[729px] h-[58px] mt-[30px] rounded-[16px] bg-secondary text-primary text-[25px] font-[700] leading-[30.26px] text-center"
             >
-              Next
+              {t("Next")}
             </button>
           </form>
         </div>
