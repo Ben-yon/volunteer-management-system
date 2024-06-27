@@ -247,7 +247,7 @@ const formatDate = (date: Date): string => {
                 <input
                   type="text"
                   className="w-[336px] h-[58px] rounded-[16px] mt-[4px] bg-image-card text-[20px] text-input-color font-[600] leading-[24.2px] focus:outline-none pl-[15px]"
-                  placeholder="Number of Days of Available"
+                  placeholder="Number of Days Available"
                   value={values.daysAvailable}
                   name="daysAvailable"
                   onChange={handleChange}
