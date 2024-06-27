@@ -37,15 +37,13 @@ export interface VolunteerRegisterPayload {
   interests: string;
 }
 
-export interface LoginPayload {
+export interface LoginPayload extends BaseUserInterface{
   id: string;
-  firstName: string;
-  lastName: string;
-  otherNames: string;
-  email: string;
   telephone: string;
   active: boolean;
   token: string;
+  createdBy: string;
+  createdDate: string;
   roles: Array<UserRole>;
 }
 

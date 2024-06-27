@@ -10,6 +10,7 @@ export const adminRegister = createAsyncThunk(
     lastName,
     email,
     password,
+    profilePicture
   }:AdminSignUpFormData,
   {rejectWithValue}
 ) => {
@@ -20,7 +21,8 @@ export const adminRegister = createAsyncThunk(
                 firstName,
                 lastName,
                 email,
-                password  
+                password,
+                profilePicture
             }
         );
 

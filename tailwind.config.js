@@ -13,7 +13,7 @@ export default {
       },
       colors: {
         primary: "#FFFFFF",
-        secondary: '#D24836',
+        secondary: '#EA0202',
         tertiary: '#FF1D1D',
         'menu-focus': '#FFFFFF29',
         'admin-secondary': '#790000',
@@ -22,6 +22,7 @@ export default {
         'active-user': '#24FF00',
         'inactive-user': '#FF0000',
         'image-card': '#D9D9D9',
+        'input-color': '#838383CC',
       },
       fontFamily: {
         // sans: ['Lelawadee'],

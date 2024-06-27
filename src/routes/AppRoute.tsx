@@ -1,8 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { UserRegistration } from "../components/UserRegistration";
-import { ViewUserDetail } from "../components/ViewUserDetail";
-import { SuccessfulRegistration } from "../components/SuccessRegistration";
+import { ViewUserDetail } from "../components/volunteers/ViewVolunteerDetail";
+import { SuccessfulRegistration } from "../components/volunteers/SuccessRegistration";
 import { AdminLandingPage } from "../components/admin/AdminLandingPage";
 import { AdminSignIn } from "../components/admin/AdminSignIn";
 import { AdminRegistration } from "../components/admin/AdminRegistration";
@@ -29,6 +28,11 @@ import { CreatePrograms } from "../components/profileManagment/CreatePrograms";
 import { AddProgramImages } from "../components/profileManagment/AddProgramImages";
 import { ProgramDetails } from "../components/profileManagment/ProgramDetails";
 import { ViewProgram } from "../components/profileManagment/ViewProgram";
+import { AdminUploadProfile } from "../components/admin/AdminUploadProfile";
+import { VolunteerLandingPage } from "../components/volunteers/VolunteerLandingPage";
+import { VolunteerRegistration } from "../components/volunteers/VolunteerRegistration";
+import { VolunteerUploadProfile } from "../components/volunteers/VolunteerUploadProfile";
+import { VolunteerRegisterOther } from "../components/volunteers/VolunteerRegisterOther";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -37,15 +41,24 @@ export const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<UserRegistration />} />
-      <Route path="view-user-details" element={<ViewUserDetail />} />
-      <Route
-        path="successful-registration"
-        element={<SuccessfulRegistration />}
-      />
+      <Route path="/">
+        <Route path="" element={<VolunteerLandingPage />} />
+        <Route path="volunteer-upload-avatar" element={<VolunteerUploadProfile/>}/>
+        <Route path="volunteer-registration" element={<VolunteerRegistration/>}/>
+        <Route path="volunteer-registration-other-info" element={<VolunteerRegisterOther/>}/>
+        <Route path="view-user-details" element={<ViewUserDetail />} />
+        <Route
+          path="successful-registration"
+          element={<SuccessfulRegistration />}
+        />
+      </Route>
       <Route path="admin" element={<AdminLandingPage />} />
       <Route path="/admin/sign-in" element={<AdminSignIn />} />
       <Route path="/admin/sign-up" element={<AdminRegistration />} />
+      <Route
+        path="/admin/upload-profile-picture"
+        element={<AdminUploadProfile />}
+      />
       <Route
         path="/admin/register-confirm"
         element={<AdminRegistrationConfirmation />}
@@ -73,10 +86,10 @@ export const AppRoutes = () => {
           <Route path="messages" element={<Messages />} />
           <Route path="training" element={<Training />} />
           <Route path="programs" element={<Programs />} />
-          <Route path="programs/create" element={<CreatePrograms />}/>
-          <Route path="programs/add-images" element={<AddProgramImages />}/>
-          <Route path="programs/details" element={<ProgramDetails/>}/>
-          <Route path="programs/:id" element={<ViewProgram/>}/>
+          <Route path="programs/create" element={<CreatePrograms />} />
+          <Route path="programs/add-images" element={<AddProgramImages />} />
+          <Route path="programs/details" element={<ProgramDetails />} />
+          <Route path="programs/:id" element={<ViewProgram />} />
           <Route path="admins" element={<Admins />} />
           <Route path="profile" element={<Profile />} />
           <Route path="support" element={<Support />} />

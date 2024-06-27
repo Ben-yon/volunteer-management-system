@@ -48,6 +48,7 @@ export const AdminSignIn = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (validate()) {
+      console.log(values)
       dispatch(adminLogin(values));
     } else {  
       console.log("Form validation failed:", errors);

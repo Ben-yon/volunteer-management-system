@@ -34,10 +34,12 @@ const initialState: VolunteerStateInterface = {
                 id: "",
                 firstName: "",
                 lastName: "",
-                otherNames: "",
                 email: "",
+                createdBy: "",
+                createdDate: "",
                 telephone: "",
                 active: false,
+                profilePicture: "",
                 token: "",
                 roles: []
         }

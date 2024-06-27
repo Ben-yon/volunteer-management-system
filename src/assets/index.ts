@@ -43,7 +43,12 @@ import birthday from './icons/birthday.svg';
 import data_upload from './icons/ph_export-bold.svg';
 import polygon from './icons/polygon.svg';
 import chat_red from './icons/chat-red.svg';
-import notify_icon from './icons/notify-icon.svg'
+import notify_icon from './icons/notify-icon.svg';
+import change_profile from './icons/change_profile.svg';
+import change_password from './icons/change_password.svg';
+import user_logout from './icons/user_logout.svg';
+import bin from './icons/bin.svg';
+import mcss_lg from './icons/mcss-lg.svg'
 
 
 import slide1 from './img/slide1.png';
@@ -125,5 +130,10 @@ export const media = {
     add_nobg,
     media_upload,
     voice_note,
-    send_message
+    send_message,
+    change_profile,
+    change_password,
+    user_logout,
+    bin,
+    mcss_lg
 }
