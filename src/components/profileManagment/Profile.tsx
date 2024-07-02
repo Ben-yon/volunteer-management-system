@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 import { media } from "../../assets";
 import { ChangeProfileModal } from "../../widgets/ChangeProfileModal";
 import { DeleteAdminModal } from "../../widgets/DeleteAdminAccountModal";
+import { logout } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { Link, useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import { RootState } from "../../features/store";
 
@@ -9,6 +13,10 @@ export const Profile = () => {
   // const [userInfo, success, error, loading] = useSelector(
   //   (state: RootState) => state.userSlice
   // );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const navigate = useNavigate();
 
   const userDetails = localStorage.getItem("userInfo");
 
@@ -28,6 +36,15 @@ export const Profile = () => {
 
   const deleteAdmin = (id: string | undefined) => {
     console.log(id);
+  };
+
+  const token = localStorage.getItem('token')
+
+  const userLogout = () => {
+    dispatch(logout());
+    if (!token) {
+      navigate("/admin/sigin-in");
+    }
   };
 
   return (
@@ -73,13 +90,13 @@ export const Profile = () => {
                 Change Profile
               </p>
             </div>
-            <div className="flex items-center space-x-[14px] hover:cursor-pointer">
+            <Link to="#" className="flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]">
               <img src={media.change_password} alt="" />
               <p className="font-[600] text-[14px] leading-[16.94px] active:bg-black">
                 Change Password
               </p>
-            </div>
-            <div className="flex items-center space-x-[14px] hover:cursor-pointer">
+            </Link>
+            <div className="flex items-center space-x-[14px] hover:cursor-pointer" onClick={userLogout}>
               <img src={media.user_logout} alt="" className="ml-[3px]" />
               <p className="font-[600] text-[14px] leading-[16.94px]">
                 Log Out
@@ -252,6 +269,23 @@ export const Profile = () => {
               Save
             </button>
           </div>
+        </div>
+        <div className="hidden" id="#change-password">
+            <form action="">
+              <h1>Change Password</h1>
+              <div className="flex flex-col mb-[5px]">
+                <label htmlFor="Old Password" className="font-[600] text-[17px] leading-[20.57px]">Old Password</label>
+                <input type="text" className="w-[360px] h-[40px] border-[1px] rounded-[8px] bg-image-card"/>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="New Password" className="font-[600] text-[17px] leading-[20.57px]">New Password</label>
+                <input type="text" className="w-[360px] h-[40px] border-[1px] rounded-[8px] bg-image-card"/>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="Confirm Password" className="font-[600] text-[17px] leading-[20.57px]">Confirm Password</label>
+                <input type="text" className="w-[360px] h-[40px] border-[1px] rounded-[8px] bg-image-card"/>
+              </div>
+            </form>
         </div>
       </div>
     </>
