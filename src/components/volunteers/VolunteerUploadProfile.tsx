@@ -15,7 +15,12 @@ export const VolunteerUploadProfile = () => {
     }
 
     const nextPage = () => {
-        navigate('/volunteer-registration', {state : {profilePicture: uploadedImageRef}})
+        if (uploadedImageRef.current === media.upload){
+          alert("Please upload a profile picture to continue");
+        }else{
+
+          navigate('/volunteer-registration', {state : {profilePicture: uploadedImageRef}})
+        }
     }
 
     return (

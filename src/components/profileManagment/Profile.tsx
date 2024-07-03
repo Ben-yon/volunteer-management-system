@@ -30,6 +30,14 @@ export const Profile = () => {
     JSON.parse(userDetails)?.profilePicture
   );
 
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(true);
+    document.getElementById('change-password')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+
   const setAvatar = (imgSrc: string | undefined) => {
     uploadedImageRef.current = imgSrc;
   };
@@ -90,7 +98,7 @@ export const Profile = () => {
                 Change Profile
               </p>
             </div>
-            <Link to="#" className="flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]">
+            <Link to="#change-password" onClick={(e) => { e.preventDefault(); handleClick();} } className="flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]">
               <img src={media.change_password} alt="" />
               <p className="font-[600] text-[14px] leading-[16.94px] active:bg-black">
                 Change Password
@@ -270,7 +278,7 @@ export const Profile = () => {
             </button>
           </div>
         </div>
-        <div className="hidden" id="#change-password">
+        <div className={`${isActive ? 'block' : 'hidden'}`} id="#change-password">
             <form action="">
               <h1>Change Password</h1>
               <div className="flex flex-col mb-[5px]">
