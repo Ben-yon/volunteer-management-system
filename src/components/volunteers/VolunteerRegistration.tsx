@@ -111,7 +111,7 @@ const formatDate = (date: Date): string => {
   return (
     <div className="relative filter min-h-screen w-[100vw] lg:h-[950px] md:h-[1285px] sm:h-[100%] xsm:h-[100%] lg:bg-hero md:bg-hero sm:bg-hero xsm:bg-hero-xsm bg-no-repeat bg-cover lg:filter md:filter-none z-0 sm:overflow-none">
       <div className="red-gradient bg-no-repeat bg-cover w-[100vw] h-full">
-        <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
+        <div className="absolute top-8 right-16 z-10 text-primary hidden space-x-1">
           <img
             src={media.lang_white}
             alt="language"
@@ -137,7 +137,7 @@ const formatDate = (date: Date): string => {
             <div className="flex mt-[56px] space-x-[36px]">
               <div className="flex flex-col">
                 <label
-                  htmlFor="firstName"
+                  htmlFor="First Name"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
                   {t("First Name")}
@@ -158,7 +158,7 @@ const formatDate = (date: Date): string => {
               </div>
               <div className="flex flex-col">
                 <label
-                  htmlFor="lastName"
+                  htmlFor="Last Name"
                   className="text-[20px] font-[500] leading-[24.2px]"
                 >
                   {t("Last Name")}
@@ -180,7 +180,7 @@ const formatDate = (date: Date): string => {
             </div>
             <div className="flex flex-col mt-[37px] relative -left-[70px]">
               <label
-                htmlFor="dateOfBirth"
+                htmlFor="date Of Birth"
                 className="text-[20px] font-[500] leading-[24.2px]"
               >
                 {t("Date of Birth")}
@@ -188,11 +188,10 @@ const formatDate = (date: Date): string => {
               <div className="flex space-x-[11px] mt-[4px]">
                 <div className="flex flex-col">
                   <select
-                    className="bg-image-card w-[210px] h-[58px] rounded-[16px] text-[20px] font-[600] text-input-color leading-[24.2px] pl-[15px]"
+                    className="custom-select w-[210px] h-[58px]"
                     value={selectedMonth}
                     name="month"
                     onChange={handleSelectChange}
-                    key={month?.short}
                     required
                   >
                     <option
@@ -203,7 +202,7 @@ const formatDate = (date: Date): string => {
                       Month
                     </option>
                     {months.map((month) => (
-                      <option value={month.name}>{month.name}</option>
+                      <option value={month.name} key={month.name}>{month.name}</option>
                     ))}
                   </select>
                   {errors.dateOfBirth && (
@@ -213,8 +212,7 @@ const formatDate = (date: Date): string => {
                   )}
                 </div>
                 <select
-                  className="bg-image-card w-[135px] h-[58px] rounded-[16px] text-[20px] font-[600] leading-[24.2px] text-input-color pl-[15px]"
-                  value={selectedDay}
+                  className="custom-select w-[135px] h-[58px]"
                   onChange={(e) => setSelectedDay(e.target.value)}
                   name="day"
                   required
@@ -225,7 +223,7 @@ const formatDate = (date: Date): string => {
                   {options}
                 </select>
                 <select
-                  className="w-[210px] h-[58px] rounded-[16px] text-[20px] font-[600] leading-[24.2px] text-input-color bg-image-card pl-[15px]"
+                  className="w-[210px] h-[58px] custom-select"
                   value={selectedYear}
                   onChange={handleYearSelectChange}
                   name="year"

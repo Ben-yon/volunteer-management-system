@@ -9,7 +9,7 @@ export const SuccessfulRegistration = () => {
   return (
     <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[100vh] md:w-[100vw] md:h-[100vh] sm:w-[100vw] sm:[100vh] sm:overflow-none ">
       <div className="red-gradient bg-no-repeat bg-cover w-[100%] h-[100vh] sm:relative xsm:h-[100vh]">
-        <div className="absolute top-8 right-16 z-10 text-primary flex space-x-1">
+        <div className="absolute top-8 right-16 z-10 text-primary hidden space-x-1">
           <img
             src={media.lang_white}
             alt="language"

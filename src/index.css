@@ -248,3 +248,19 @@ progress {
     }
   }
   
+.custom-select {
+  appearance: none;
+  border-radius: 16px;
+  background: url('assets/icons/select-icon.svg') no-repeat right 1rem center/1.5em 1.5em;
+  font-size: 20px;
+  font-weight: 600;
+  color: theme('colors.input-color'); /* You need to define --input-color somewhere in your CSS */
+  line-height: 24.2px;
+  padding-left: 15px;
+  background-color: theme('colors.image-card');
+}
+
+.custom-select:focus {
+  outline: none;
+}
+
