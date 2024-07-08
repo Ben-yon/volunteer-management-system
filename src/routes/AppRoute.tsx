@@ -33,6 +33,8 @@ import { VolunteerLandingPage } from "../components/volunteers/VolunteerLandingP
 import { VolunteerRegistration } from "../components/volunteers/VolunteerRegistration";
 import { VolunteerUploadProfile } from "../components/volunteers/VolunteerUploadProfile";
 import { VolunteerRegisterOther } from "../components/volunteers/VolunteerRegisterOther";
+import { ChangePassword } from "../components/profileManagment/ChangePassword";
+import { PersonalInfo } from "../components/profileManagment/PersonalInfo";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -91,7 +93,10 @@ export const AppRoutes = () => {
           <Route path="programs/details" element={<ProgramDetails />} />
           <Route path="programs/:id" element={<ViewProgram />} />
           <Route path="admins" element={<Admins />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile/*" element={<Profile />}>
+            <Route path="" element={<PersonalInfo/>}/>
+            <Route path="change-password" element={<ChangePassword/>}/>
+          </Route>
           <Route path="support" element={<Support />} />
           <Route path="settings" element={<Settings />} />
           <Route path="integrations" element={<Integrations />} />
