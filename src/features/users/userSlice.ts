@@ -1,13 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchUserById } from "./userActions";
+import { fetchUserById, updateUser } from "./userActions";
+import { UpdateAdminPayload } from "../../interfaces/AuthInterface";
 
 
-const initialState = {
+const initialState: UpdateAdminPayload = {
     loading: false,
     error: null,
     success: false,
-    userInfo: {}
+    userInfo: {
+        id: "",
+        telephone: "",
+        active: false,
+        token: "",
+        createdBy: "",
+        createdDate: "",
+        roles: [],
+        email: "",
+        firstName: "",
+        lastName: "",
+        profilePicture: ""
+    }
 }
 
 
@@ -31,6 +44,21 @@ const userSlice = createSlice({
             state.error = action.payload;
             state.loading = false;
             state.success = false;
+        })
+        .addCase(updateUser.pending, (state) => {
+            state.error = null;
+            state.loading = true;
+            state.success = false;
+        })
+        .addCase(updateUser.fulfilled, (state, action: PayloadAction<any>) => {
+            state.error = null;
+            state.loading = false;
+            state.success = action.payload
+        })
+        .addCase(updateUser.rejected, (state) => {
+            state.error = null;
+            state.loading = false;
+            state.success = false
         })
     }
 })

@@ -38,9 +38,8 @@ export const ProgramDetails: React.FC = () => {
         },
       ],
     };
+    console.log(programDetails)
     dispatch(createProgram(programDetails));
-    // console.log(formData)
-    console.log(typeof extractBase64(thumbnail));
   };
 
   useEffect(() => {

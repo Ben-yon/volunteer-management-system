@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { media } from "../../assets";
 import { ChangeProfileModal } from "../../widgets/ChangeProfileModal";
 import { DeleteAdminModal } from "../../widgets/DeleteAdminAccountModal";
@@ -6,19 +6,19 @@ import { logout } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { Outlet, useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../features/store";
+
 
 export const Profile = () => {
-  // const [userInfo, success, error, loading] = useSelector(
-  //   (state: RootState) => state.userSlice
-  // );
+  
+
+  
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
 
   const userDetails = localStorage.getItem("userInfo");
+
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -29,6 +29,7 @@ export const Profile = () => {
   //@ts-ignore
     JSON.parse(userDetails)?.profilePicture
   );
+
 
   const [isActive, setIsActive] = useState(false);
 
@@ -98,7 +99,7 @@ export const Profile = () => {
                 Change Profile
               </p>
             </div>
-            <div onClick={() => handleClick() } className={`${isActive ? "flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]": "flex items-center space-x-[14px] hover:cursor-pointer bg-slate-300 active:bg-slate-100 w-[179px] h-[3opx] rounded-[7px]"}`}>
+            <div onClick={() => handleClick() } className={!isActive ? "flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]": "flex items-center space-x-[14px] hover:cursor-pointer bg-slate-300  w-[179px] h-[3opx] rounded-[7px]"}>
               <img src={media.change_password} alt="" />
               <p className="font-[600] text-[14px] leading-[16.94px] active:bg-black">
                 Change Password

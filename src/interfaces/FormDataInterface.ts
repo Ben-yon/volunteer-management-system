@@ -22,12 +22,14 @@ export interface AdminSignInFormData {
     password: string;
 }
 
-export interface AdminSignUpFormData{
-    firstName: string;
-    lastName: string;
-    email: string;
+export interface AdminSignUpFormData extends BaseFormFields{
     password: string;
     profilePicture: string | null;
+}
+
+export interface CreateAdmin extends BaseFormFields{
+    contact: string;
+    designation: string;
 }
 
 export interface AdminResetPasswordFormData{
@@ -37,4 +39,11 @@ export interface AdminResetPasswordFormData{
 export interface AdminNewPasswordFormData{
     password: string;
     confirmPassword: string;
+}
+
+
+interface BaseFormFields{
+    firstName: string;
+    lastName: string;
+    email: string;
 }

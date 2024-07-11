@@ -46,7 +46,7 @@ export const updateUser = createAsyncThunk(
     async({id , userInfo}: UpdateUserInfo) => {
         try{
             const response = api.put(
-                `Users/${id}`,
+                `Users/:id?id=${id}`,
                 {
                     userInfo
                 }
