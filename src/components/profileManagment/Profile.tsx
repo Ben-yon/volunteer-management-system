@@ -60,7 +60,7 @@ export const Profile = () => {
     <>
       <div className="flex  flex-col justify-center">
         <p className="text-[#D9D9D9] text-[15px] font-extrabold leading-[18.15px]">
-          MCSS Volunteers
+          Admin Profile
         </p>
         <h2 className="text-black font-extrabold text-[27px] leading-[32.68px] pb-6">
           Profile
