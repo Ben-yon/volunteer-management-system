@@ -1,10 +1,9 @@
 export interface UpdateUserInfo {
-    id: string;
+    id: string | undefined;
     userInfo:{
-        "email": string,
-        "firstName": string,
-        "lastName": string,
-        "password": string,
-        "profilePicture": string
+        "email": string | undefined,
+        "firstName": string | undefined,
+        "lastName": string | undefined,
+        "profilePicture": string | undefined
       }
 }

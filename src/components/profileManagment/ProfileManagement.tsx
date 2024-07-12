@@ -56,7 +56,7 @@ export const ProfileManagement = () => {
             <img
               src={userInfo?.profilePicture}
               alt=""
-              className="w-[50px] h-[50px] mr-[12px] relative -top-1"
+              className="w-[50px] h-[50px] mr-[12px] rounded-full relative -top-1"
             />
           ) : (
             <img
@@ -210,16 +210,6 @@ export const ProfileManagement = () => {
               Profile
             </NavLink>
             <NavLink
-              to="support"
-              className={`flex space-x-[13px] focus:filter ${
-                activeLink === "support" ? "bg-menu-focus" : ""
-              } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600]`}
-              onClick={() => handleClick("support")}
-            >
-              <img src={media.support} alt="" className="pl-[46px] pr-3" />
-              Support
-            </NavLink>
-            <NavLink
               to="settings"
               className={`flex space-x-[13px] focus:filter ${
                 activeLink === "settings" ? "bg-menu-focus" : ""
@@ -229,22 +219,21 @@ export const ProfileManagement = () => {
               <img src={media.settings} alt="" className="pl-[46px] pr-3" />
               Settings
             </NavLink>
-            <NavLink
-              to="integrations"
-              className={`flex space-x-[13px] focus:filter ${
-                activeLink === "integrations" ? "bg-menu-focus" : ""
-              } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600]`}
-              onClick={() => handleClick("integrations")}
-            >
-              <img src={media.integrations} alt="" className="pl-[46px] pr-3" />
-              Integrations
-            </NavLink>
+            
             <div className="w-[308px] h-[97px] bg-menu-focus flex items-center space-x-3 item top-margin">
-              <img
-                src={media.upload}
-                alt=""
-                className="w-[60px] h-[60px] mt-[5px] ml-[40px]"
-              />
+              {userInfo?.profilePicture ? (
+                <img
+                  src={userInfo?.profilePicture}
+                  alt=""
+                  className="w-[72.75px] h-[72.75px] mt-[14.2px] ml-[40px] rounded-full relative -top-1"
+                />
+              ) : (
+                <img
+                  src={media.upload}
+                  alt=""
+                  className="w-[72.75px] h-[72.75px] mt-[14.2px] ml-[40px] relative -top-1"
+                />
+              )}
               <div className="flex flex-col">
                 <p className="font-[600] text-[15px] leading-[18.15px]">
                   {userInfo?.firstName} {userInfo?.lastName}

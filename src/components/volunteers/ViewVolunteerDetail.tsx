@@ -45,7 +45,7 @@ export const ViewUserDetail = () => {
   return (
     <div className="lg:relative bg-details bg-no-repeat bg-cover lg:filter md:filter-none z-0 lg:w-[100%] lg:h-[130vh] md:w-[100vw] md:h-[120%] sm:w-[100vw] sm:overflow-none ">
       <div className="red-gradient bg-no-repeat bg-cover lg:w-[100vw] lg:h-[130vh] md:h-[130vh] sm:h-[100vh] sm:relative xsm:h-[100vh]">
-        <div className="absolute top-8 right-16 z-10 text-white flex space-x-1">
+        <div className="absolute top-8 right-16 z-10 text-white space-x-1 hidden">
           <img
             src={media.lang_white}
             alt="language"
@@ -96,19 +96,25 @@ export const ViewUserDetail = () => {
                   {volunteerInfo?.address}
                 </p>
                 <p className="text-black text-left text-[23px] leading-[27.84px] font-[400] lg:text-[23px] lg:leading-[27.84px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+                  {volunteerInfo?.email}
+                </p>
+                <p className="text-black text-left text-[23px] leading-[27.84px] font-[400] lg:text-[23px] lg:leading-[27.84px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
                   {volunteerInfo?.streetAddress} {volunteerInfo?.city}
                 </p>
                 <p className="text-black text-left text-[23px] leading-[27.84px] font-[400] lg:text-[23px] lg:leading-[27.84px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
                   {volunteerInfo?.region}
                 </p>
                 <p className="text-black text-left text-[23px] leading-[27.84px] font-[400] lg:text-[23px] lg:leading-[27.84px]  md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
-                  {volunteerInfo?.country}
+                  {volunteerInfo?.contact}
                 </p>
                 <p className="text-black text-left text-[23px] leading-[27.84px] font-[600] lg:text-[23px] lg:leading-[27.84px] md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
                   {volunteerInfo?.skills}
                 </p>
                 <p className="text-black text-left text-[23px] leading-[27.84px] font-[600] lg:text-[23px] lg:leading-[27.84px] md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
                   {volunteerInfo?.interests}
+                </p>
+                <p className="text-black text-left text-[23px] leading-[27.84px] font-[600] lg:text-[23px] lg:leading-[27.84px] md:text-[12.17px] md:leading-[14.73px] sm:text-[12.17px] sm:leading-[14.73px] xsm:text-[7.95px] xsm:leading-[9.63px]">
+                  {volunteerInfo?.occupation}
                 </p>
               </div>
             </div>

@@ -47,6 +47,10 @@ export interface LoginPayload extends BaseUserInterface{
   roles: Array<UserRole>;
 }
 
+export interface UpdateAdminPayload extends BaseInitialStateInterface{
+  userInfo: LoginPayload
+}
+
 export interface UserRole {
   id: string;
   name: string;
