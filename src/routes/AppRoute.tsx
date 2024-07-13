@@ -35,6 +35,7 @@ import { VolunteerUploadProfile } from "../components/volunteers/VolunteerUpload
 import { VolunteerRegisterOther } from "../components/volunteers/VolunteerRegisterOther";
 import { ChangePassword } from "../components/profileManagment/ChangePassword";
 import { PersonalInfo } from "../components/profileManagment/PersonalInfo";
+import { AddAdmin } from "../components/admin/CreateAdmin";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -74,6 +75,7 @@ export const AppRoutes = () => {
         path="/admin/password-reset/new-password"
         element={<AdminCreateNewPassword />}
       />
+      <Route path="admins/add" element={<AddAdmin />} />
       <Route
         path="/admin/password-reset/confirm-password-change"
         element={<AdminConfirmPasswordChange />}

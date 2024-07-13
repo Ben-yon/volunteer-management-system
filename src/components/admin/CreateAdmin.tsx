@@ -6,7 +6,7 @@ import { CreateAdmin } from "../../interfaces/FormDataInterface";
 import { FormEvent } from "react";
 
 
-export const AdminRegistration = () => {
+export const AddAdmin = () => {
   const validationRules = {
     firstName: { required: true, minLength: 5 },
     lastName: { required: true, minLength: 2 },

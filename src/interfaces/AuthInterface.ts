@@ -8,6 +8,10 @@ export interface VolunteerStateInterface extends BaseInitialStateInterface{
    userInfo: Array<VolunteersPayload>;
 }
 
+export interface FetchAdminsInterface extends BaseInitialStateInterface{
+  adminsInfo: Array<AdminRegisterPayload>
+}
+
 export interface AdminRegisterInterface extends BaseInitialStateInterface{
   adminInfo: AdminRegisterPayload;
 }
@@ -56,10 +60,10 @@ export interface UserRole {
   name: string;
   description: string;
   active: boolean;
-  createdDate: Date;
+  createdDate: string;
   createdBy: string;
-  modifiedDate: Date;
-  modifiedBy: Date;
+  modifiedDate: string;
+  modifiedBy: string;
 }
 
 export interface VolunteersPayload extends BaseUserInterface{
@@ -88,13 +92,14 @@ export interface VolunteersPayload extends BaseUserInterface{
 export interface UserPayload extends VolunteersPayload{}
 
 export interface AdminRegisterPayload extends BaseUserInterface{
+  contact: string;
   id: string;
   createdBy: string;
   active: boolean;
   modifiedDate: string;
   modifiedBy: string;
   volunteer: any;
-  roles: UserRole[]
+  roles: Array<UserRole>;
 }
 
 
