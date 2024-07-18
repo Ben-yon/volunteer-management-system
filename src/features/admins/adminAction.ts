@@ -3,7 +3,7 @@ import { CreateAdmin } from "../../interfaces/FormDataInterface";
 import api from "../../utils/axios";
 import axios from "axios";
 
-export const createAdmins = createAsyncThunk(
+export const createAdmin = createAsyncThunk(
     'admins/create',
     async (adminDetails: CreateAdmin, {rejectWithValue}) => {
         try{

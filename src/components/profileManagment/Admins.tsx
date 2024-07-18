@@ -81,11 +81,11 @@ export const Admins = () => {
               className="w-[227px] h-[264px] rounded-[22.62px] bg-image-card bg-opacity-[29%] message-box-shadow mr-[22px]"
               key={admin.email}
             >
-              <div className="flex items-end">
+              <div className="flex items-end hover:cursor-pointer">
                 <img
                   src={media.chat_black}
                   alt=""
-                  className="relative top-[15px] left-[29px] "
+                  className="relative top-[15px] left-[29px] hover:cursor-pointer"
                 />
                 <img
                   src={media.options}

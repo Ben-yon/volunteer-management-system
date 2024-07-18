@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AdminRegisterInterface } from "../../interfaces/AuthInterface";
-import { createAdmins } from "./adminAction";
+import { createAdmin } from "./adminAction";
 
 
 const initialState: AdminRegisterInterface = {
@@ -39,18 +39,18 @@ const adminSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(createAdmins.pending, (state) => {
+        builder.addCase(createAdmin.pending, (state) => {
             state.error = null;
             state.loading = true;
             state.success = false;
         })
-        .addCase(createAdmins.fulfilled, (state, action: PayloadAction<any>) => {
+        .addCase(createAdmin.fulfilled, (state, action: PayloadAction<any>) => {
             state.success = true;
             state.error = null;
             state.adminInfo = action.payload;
             state.loading = false;
         })
-        .addCase(createAdmins.rejected, (state, action: PayloadAction<any>) => {
+        .addCase(createAdmin.rejected, (state, action: PayloadAction<any>) => {
             state.error = action.payload;
             state.loading = false;
             state.success = false;
