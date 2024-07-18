@@ -36,6 +36,9 @@ export const Messages = () => {
       //@ts-expect-error
       setMessageUsers(userInfo);
     }
+    if (loading){
+      toast.loading("Message Users Loading")
+    }
     if (error) {
       toast.error("User fetch was not successful");
     }
