@@ -1,5 +1,6 @@
 import { MessageTypes } from "../enums/messageTypes";
 import { TargetTypes } from "../enums/targetTypes";
+import { BaseInitialStateInterface } from "./AuthInterface";
 
 export interface PostMessagesPayload{
     body: string;
@@ -21,4 +22,12 @@ export interface PostMessagesDetails{
     modifiedDate: string;
     modifiedBy: string;
     target: string
+}
+
+export interface GetMessagesInitialStateInterface extends BaseInitialStateInterface{
+    messageDetails: Array<PostMessagesDetails>;
+}
+
+export interface PostMessagesInitialState extends BaseInitialStateInterface{
+    messageDetails: PostMessagesDetails;
 }

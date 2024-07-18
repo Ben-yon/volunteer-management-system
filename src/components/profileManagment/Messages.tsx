@@ -1,61 +1,108 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { media } from "../../assets";
-import { useEffect, useState, KeyboardEvent } from "react";
+import { useEffect, useState, KeyboardEvent, useCallback } from "react";
 
 import * as signalR from "@microsoft/signalr";
 import { ChatMessage } from "../../interfaces/ChatMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { users } from "../../features/users/userActions";
+import { UserDetails } from "../../interfaces/AuthInterface";
+import { toast } from "react-toastify";
 
 export const Messages = () => {
   const [connection, setConnection] = useState<signalR.HubConnection | null>(
     null
   );
+
+  const { loading, success, userInfo, error } = useSelector(
+    (state: RootState) => state.usersSlice
+  );
+  const [messageUsers, setMessageUsers] = useState<Array<UserDetails>>();
+
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  const fetchUsers = useCallback(() => {
+    dispatch(users());
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
+
+  useEffect(() => {
+    if (success) {
+      //@ts-expect-error
+      setMessageUsers(userInfo);
+    }
+    if (error) {
+      toast.error("User fetch was not successful");
+    }
+  }, [userInfo, success, error]);
+
   const [, setMessages] = useState<ChatMessage[]>([]);
   const [message, setMessage] = useState<string>("");
   const [userId] = useState<string>("");
   const [recipientId] = useState<string>("");
 
-  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL
+  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${connectionURL}/HubMessages`)
       .withAutomaticReconnect()
       .build();
-      setConnection(newConnection);
+    setConnection(newConnection);
   }, [connectionURL]);
 
+  useEffect(() => {
+    if (connection) {
+      connection
+        .start()
+        .then(() => {
+          console.log("connected!");
 
-  useEffect(()=> {
-    if(connection){
-      connection.start().then(() => {
-        console.log("connected!")
-
-        connection.on('ReceiveMessage', (userId: string, message: string) => {
-          setMessages(messages => [ ...messages, { userId, recipientId: " ", message, timestamp: new Date().toISOString() }]);
-        });
-      }).catch(e => console.log("Connection failed: ", e))
-
+          connection.on("ReceiveMessage", (userId: string, message: string) => {
+            setMessages((messages) => [
+              ...messages,
+              {
+                userId,
+                recipientId: " ",
+                message,
+                timestamp: new Date().toISOString(),
+              },
+            ]);
+          });
+        })
+        .catch((e) => console.log("Connection failed: ", e));
     }
   }, [connection]);
 
   const sendMessage = async () => {
-    if (connection && connection.state === signalR.HubConnectionState.Connected){
-      try{
-        await connection.send('SendMessage', userId, recipientId, message);
-        setMessages( messages => [...messages, { userId, recipientId, message, timestamp: new Date().toISOString()} ]);
-        setMessage(" ")
-      }catch(e){
+    if (
+      connection &&
+      connection.state === signalR.HubConnectionState.Connected
+    ) {
+      try {
+        await connection.send("SendMessage", userId, recipientId, message);
+        setMessages((messages) => [
+          ...messages,
+          { userId, recipientId, message, timestamp: new Date().toISOString() },
+        ]);
+        setMessage(" ");
+      } catch (e) {
         console.error(e);
       }
-     }else{
-      alert("No connection to server!")
-     }
+    } else {
+      alert("No connection to server!");
     }
+  };
 
-    const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Enter') {
-          sendMessage();
-      }
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
   };
 
   return (
@@ -67,8 +114,8 @@ export const Messages = () => {
         Messaging
       </h2>
       <div className="flex items-center space-x-[22px]">
-        <div className="flex flex-col w-[409px] h-[840px] rounded-[13px] border-[0.5px] shadow-[0px_0px_7.599999904632568px_0px_#00000012]">
-          <div className="relative flex">
+        <div className="flex flex-col space-y-[33px] w-[409px] h-[840px] rounded-[13px] border-[0.5px] shadow-[0px_0px_7.599999904632568px_0px_#00000012]">
+          <div className="relative flex mb-[33px]">
             <img
               src={media.msg_search}
               alt=""
@@ -76,14 +123,33 @@ export const Messages = () => {
             />
             <input
               type="search"
-              className="w-[261px] h-[45px] rounded-[13px] bg-[#79000017] font-[600] text-[15px] leading-[18.15px] pl-[54px] relative top-[32px] ml-[33px] text-[#78000080] placeholder-[#78000080]"
+              className="w-[261px] h-[45px] rounded-[13px] bg-message-hover font-[600] text-[15px] leading-[18.15px] pl-[54px] relative top-[32px] ml-[33px] text-[#78000080] placeholder-[#78000080]"
               placeholder="Search"
             />
             <img
               src={media.compose}
               className="w-[38px] h-[38px] relative top-[37px] ml-[34px]"
-              alt=""
             />
+          </div>
+          <div className="flex flex-col items-start space-y-[16px] ml-[33px] overflow-auto">
+            {messageUsers?.map((user) => (
+              <div className="flex items-center justify-center space-x-[15px] hover:cursor-pointer hover:bg-message-hover">
+                {user?.profilePicture ? (
+                  <img
+                    src={user?.profilePicture}
+                    alt="profile"
+                    className="w-[38px] h-[38px] rounded-full"
+                  />
+                ) : (
+                  <img
+                    src={media.upload}
+                    alt="profile"
+                    className="w-[38px] h-[38px] rounded-full"
+                  />
+                )}
+                <span className="text-[13px] font-[600] text-admin-secondary leading-[15.73px]">{user?.firstName} {user?.lastName}</span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="flex flex-col w-[828px] h-[840px] rounded-[13px] border-[0.5px] shadow-[0px_0px_7.599999904632568px_0px_#00000012]">
@@ -109,7 +175,7 @@ export const Messages = () => {
               placeholder="Type a message"
               onKeyDown={handleKeyPress}
               value={message}
-              onChange={e => setMessage(e.target.value)}
+              onChange={(e) => setMessage(e.target.value)}
             />
             <div className="flex items-center justify-center space-x-1 mt-3 ml-[6.1px]">
               <img
@@ -122,7 +188,10 @@ export const Messages = () => {
                 alt="voice_note"
                 className="hover:cursor-pointer"
               />
-              <div className=" bg-admin-secondary w-[40px] h-[40px] rounded-full flex items-center justify-center hover:cursor-pointer" onClick={sendMessage}>
+              <div
+                className=" bg-admin-secondary w-[40px] h-[40px] rounded-full flex items-center justify-center hover:cursor-pointer"
+                onClick={sendMessage}
+              >
                 <img
                   src={media.send_message}
                   alt="send message"

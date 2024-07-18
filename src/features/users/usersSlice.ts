@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { users } from "./userActions";
-import { UserPayload } from "../../interfaces/AuthInterface";
+import { UserDetails } from "../../interfaces/AuthInterface";
 
 
 const initialState = {
     loading: false,
     error: null,
     success: false,
-    userInfo: Array<UserPayload>
+    userInfo: Array<UserDetails>
 }
 
 

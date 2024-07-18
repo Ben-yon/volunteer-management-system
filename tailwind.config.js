@@ -23,6 +23,7 @@ export default {
         'inactive-user': '#FF0000',
         'image-card': '#D9D9D9',
         'input-color': '#838383CC',
+        'message-hover': '#79000017',
       },
       fontFamily: {
         // sans: ['Lelawadee'],

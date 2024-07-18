@@ -89,7 +89,7 @@ export interface VolunteersPayload extends BaseUserInterface{
   user: LoginPayload | undefined;
 }
 
-export interface UserPayload extends VolunteersPayload{}
+export interface UserDetails extends VolunteersPayload{}
 
 export interface AdminRegisterPayload extends BaseUserInterface{
   contact: string;
@@ -111,7 +111,7 @@ interface BaseUserInterface{
   profilePicture: string;
 }
 
-interface BaseInitialStateInterface{
+export interface BaseInitialStateInterface{
   loading: boolean;
   success: boolean;
   error: string | null;
