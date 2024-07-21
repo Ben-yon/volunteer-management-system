@@ -10,15 +10,11 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   
-
-  
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
 
   const userDetails = localStorage.getItem("userInfo");
-
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);

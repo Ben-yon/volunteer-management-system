@@ -7,6 +7,10 @@ import createProgramSlice from "./programs/createProgramSlice";
 import programsSlice from "./programs/programsSlice";
 import usersSlice from "./users/usersSlice";
 import userSlice from "./users/userSlice";
+import adminSlice from "./admins/adminSlice";
+import fetchAdminsSlice from "./admins/fetchAdminsSlice";
+import getMessagesSlice from "./messaging/getMessagesSlice";
+import postMessagesSlice from "./messaging/postMessagesSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,7 +21,11 @@ export const store = configureStore({
     createProgramSlice: createProgramSlice,
     programsSlice: programsSlice,
     usersSlice: usersSlice,
-    userSlice: userSlice
+    userSlice: userSlice,
+    adminSlice: adminSlice,
+    fetchAdminsSlice: fetchAdminsSlice,
+    getMessagesSlice: getMessagesSlice,
+    postMessageSlice: postMessagesSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

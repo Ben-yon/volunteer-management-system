@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUserById, updateUser } from "./userActions";
-import { UpdateAdminPayload } from "../../interfaces/AuthInterface";
+import { UpdateAdmin } from "../../interfaces/AuthInterface";
 
 
-const initialState: UpdateAdminPayload = {
+const initialState: UpdateAdmin = {
     loading: false,
     error: null,
     success: false,
     userInfo: {
-        id: "",
-        telephone: "",
-        active: false,
-        token: "",
-        createdBy: "",
-        createdDate: "",
-        roles: [],
+        contact: "",
+        designation: "",
         email: "",
         firstName: "",
         lastName: "",

@@ -20,7 +20,13 @@ import add from './icons/add_icon.svg';
 import add_nobg from './icons/add_nobg.svg';
 import media_upload from './icons/media_upload.svg';
 import voice_note from './icons/voice_note.svg';
-import send_message from './icons/send_msg.svg'
+import send_message from './icons/send_msg.svg';
+import options from './icons/options_vertical.svg';
+import chat_black from './icons/chat_black.svg';
+import role_bind from './icons/role_bind.svg';
+import phone_black from './icons/phone_black.svg';
+import email_black from './icons/email_black.svg';
+import add_admin from './icons/add_admin.svg'
 
 
 import notification from './icons/notification.svg';
@@ -135,5 +141,11 @@ export const media = {
     change_password,
     user_logout,
     bin,
-    mcss_lg
+    mcss_lg,
+    options,
+    chat_black,
+    role_bind,
+    phone_black,
+    email_black,
+    add_admin
 }

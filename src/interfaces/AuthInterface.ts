@@ -8,6 +8,10 @@ export interface VolunteerStateInterface extends BaseInitialStateInterface{
    userInfo: Array<VolunteersPayload>;
 }
 
+export interface FetchAdminsInterface extends BaseInitialStateInterface{
+  adminsInfo: Array<AdminRegisterPayload>
+}
+
 export interface AdminRegisterInterface extends BaseInitialStateInterface{
   adminInfo: AdminRegisterPayload;
 }
@@ -47,8 +51,15 @@ export interface LoginPayload extends BaseUserInterface{
   roles: Array<UserRole>;
 }
 
-export interface UpdateAdminPayload extends BaseInitialStateInterface{
-  userInfo: LoginPayload
+export interface UpdateAdmin extends BaseInitialStateInterface{
+  userInfo: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    profilePicture: string | undefined;
+    contact: string;
+    designation: string;
+  }
 }
 
 export interface UserRole {
@@ -56,10 +67,10 @@ export interface UserRole {
   name: string;
   description: string;
   active: boolean;
-  createdDate: Date;
+  createdDate: string;
   createdBy: string;
-  modifiedDate: Date;
-  modifiedBy: Date;
+  modifiedDate: string;
+  modifiedBy: string;
 }
 
 export interface VolunteersPayload extends BaseUserInterface{
@@ -85,16 +96,17 @@ export interface VolunteersPayload extends BaseUserInterface{
   user: LoginPayload | undefined;
 }
 
-export interface UserPayload extends VolunteersPayload{}
+export interface UserDetails extends VolunteersPayload{}
 
 export interface AdminRegisterPayload extends BaseUserInterface{
+  contact: string;
   id: string;
   createdBy: string;
   active: boolean;
   modifiedDate: string;
   modifiedBy: string;
   volunteer: any;
-  roles: UserRole[]
+  roles: Array<UserRole>;
 }
 
 
@@ -106,7 +118,7 @@ interface BaseUserInterface{
   profilePicture: string;
 }
 
-interface BaseInitialStateInterface{
+export interface BaseInitialStateInterface{
   loading: boolean;
   success: boolean;
   error: string | null;

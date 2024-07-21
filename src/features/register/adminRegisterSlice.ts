@@ -16,7 +16,8 @@ const initialState: AdminRegisterInterface = {
         modifiedBy: "",
         modifiedDate: "",
         volunteer: null,
-        roles: []
+        roles: [],
+        contact: ""
     },
     success: false,
     error: null

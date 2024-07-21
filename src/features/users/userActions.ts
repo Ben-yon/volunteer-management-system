@@ -55,7 +55,6 @@ export const updateUser = createAsyncThunk(
             if(!response){
                 throw new Error("Update was not suucessful")
             }
-
             return response;
         }catch(error){
             if(axios.isAxiosError(error) && error.response && error.response.data.message){

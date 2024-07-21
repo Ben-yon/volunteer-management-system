@@ -1,20 +1,38 @@
 import { media } from "../../assets";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LanguageSelect } from "../LanguageSelect";
 import { useFormValidation } from "../../utils/validate";
 import { CreateAdmin } from "../../interfaces/FormDataInterface";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { createAdmin } from "../../features/admins/adminAction";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
+import { Spinner } from "../../widgets/Spinner";
 
-
-export const AdminRegistration = () => {
+export const AddAdmin = () => {
   const validationRules = {
     firstName: { required: true, minLength: 5 },
     lastName: { required: true, minLength: 2 },
     email: { required: true, email: true },
-    password: { required: true, password: true, minLength: 8 },
+    designation: { required: true},
+    contact: {required: true, minLength: 13}, 
   };
 
-  
+  const { success, error, loading, adminInfo } = useSelector(
+    (state: RootState) => state.adminSlice
+  );
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+  useEffect(() => {
+    if (success && adminInfo !== null && error == null) {
+      navigate("/admin/register-confirm");
+    } if (error) {
+      toast.error("Admin creation failed");
+    }
+  });
 
   //eslint-disable-next-line @typescript-eslint/no-explicit-any
 
@@ -26,18 +44,18 @@ export const AdminRegistration = () => {
         email: "",
         contact: "",
         designation: "",
+        // password: ""
       },
       validationRules
     );
 
   const navigate = useNavigate();
 
-  
-
-  const nextPage = (e: FormEvent<HTMLFormElement>) => {
+  const addNewAdmin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validate()) {
-      navigate("/admin/upload-profile-picture", { state: { values: values } });
+        // values['password'] = ""
+      dispatch(createAdmin(values));
     } else {
       throw new DOMException("Validation failed");
     }
@@ -61,7 +79,7 @@ export const AdminRegistration = () => {
         />
         <div className="flex flex-col justify-center items-center min-h-screen">
           <form
-            onSubmit={nextPage}
+            onSubmit={addNewAdmin}
             className=" flex flex-col justify-center items-start"
           >
             <h2 className="text-[48.16px] leading-[58.29px] font-bold lg:text-[48.16px] lg:leading-[58.29px] md:text-[38.58px] md:leading-[46.7px] sm:text-[38.58px] sm:leading-[46.7px] sm:font-bold xsm:text-[21.51px] xsm:leading-[26.03px]">
@@ -113,7 +131,7 @@ export const AdminRegistration = () => {
             <div className="flex flex-col">
               <input
                 type="text"
-                name="role"
+                name="designation"
                 value={values.designation}
                 onChange={handleChange}
                 className="rounded-[21.41px] bg-gray-100 leading-[28.5px] text-black text-[23.55px] pl-[29.97px] border focus:outline-none w-[545.86px] h-[68.5px] lg:w-[545.86px] lg:h-[68.5px] lg:rounded-[21.41px] lg:text-[23.55px] lg:leading-[28.5px] lg:pl-[29.97px] lg:mt-[10.7px] md:w-[437.39px] md:h-[54.88px] md:rounded-[17.15px] md:text-[18.86px] md:leading-[22.83px] md:pl-[24.01px] md:mt-[8.57px] sm:w-[437.39px] sm:h-[54.88px] sm:rounded-[17.15px] sm:text-[18.86px] sm:leading-[22.83px] sm:pl-[24.01px] sm:mt-[8.57px] xsm:w-[243.77px] xsm:h-[30.59px] xsm:rounded-[9.5px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[4.78px] xsm:pl-[13.38px]"
@@ -132,7 +150,7 @@ export const AdminRegistration = () => {
                 className=" bg-gray-100 leading-[28.5px] text-black text-[23.55px] border focus:outline-none rounded-[21.41px] w-[303.97px] h-[68.5px] lg:w-[303.97px] lg:h-[68.5px] lg:rounded-[21.41px] lg:text-[23.55px] lg:leading-[28.5px] lg:pl-[29.97px] md:w-[243.51px] md:h-[54.88px] md:rounded-[17.15px] md:text-[18.86px] md:leading-[22.83px] md:pl-[24.01px] md:mt-[8.57px] sm:w-[243.51px] sm:h-[54.88px] sm:rounded-[17.15px] sm:text-[18.86px] sm:leading-[22.83px] sm:pl-[24.01px] sm:mt-[8.57px] xsm:w-[135.75px] xsm:h-[30.59px] xsm:rounded-[9.5px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[4.78px] xsm:pl-[13.38px]"
                 placeholder="Contact"
               />
-              {errors.password && (
+              {errors.contact && (
                 <span className="text-red-500 text-[10px]">
                   {errors.contact}
                 </span>
@@ -140,9 +158,10 @@ export const AdminRegistration = () => {
             </div>
             <div></div>
             <button className="bg-admin-secondary text-white rounded-[21.41px] w-[181.95px] h-[68.5px] mt-[21.67px] lg:rounded-[21.41px] lg:w-[181.95px] lg:h-[68.5px] lg:mt-[21.67px] lg:text-[23.55px] lg:leading-[28.5px] md:w-[145.76px] md:h-[54.88px] md:rounded-[17.15px] md:mt-[16.58px] md:text-[18.86px] md:leading-[22.83px] sm:w-[145.76px] sm:h-[54.88px] sm:rounded-[17.15px] sm:mt-[16.58px] sm:text-[18.86px] sm:leading-[22.83px] xsm:w-[81.26px] xsm:h-[30.59px] xsm:rounded-[9.56px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[18.24px] font-bold text-[23.55px]">
-               Next
+              {loading ? <Spinner /> : "Next"}
             </button>
           </form>
+          <ToastContainer/>
         </div>
       </div>
     </div>

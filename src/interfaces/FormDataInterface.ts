@@ -30,6 +30,7 @@ export interface AdminSignUpFormData extends BaseFormFields{
 export interface CreateAdmin extends BaseFormFields{
     contact: string;
     designation: string;
+    // password: string;
 }
 
 export interface AdminResetPasswordFormData{

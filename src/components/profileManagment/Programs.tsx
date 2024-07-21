@@ -52,22 +52,22 @@ export const Programs = () => {
       <div>
         <div className="w-[1244px] h-[840px] border-[0.5px] rounded-[39px] programs-gradient grid grid-cols-3 gap-x-2">
           {programs.map((program) => (
-            <div className="w-[310px] h-[310px] rounded-[53px] relative top-[89px] left-[45px]" key={program.id}>
+            <div className="rounded-[53px] relative top-[89px] left-[45px]" key={program.id}>
               <img
                 src={`${program.programmeImages[0]?.image}`}
                 alt=""
-                className="object-fit opacity-[70%] rounded-[53px]"
+                className="object-fit opacity-[70%] rounded-[53px] w-[310px] h-[310px]"
               />
-              <p
-                className="w-[210px] h-[59px] rounded-[20px] bg-primary text-[15px] font-[700] leading-[18.15px] relative -top-[90px] left-12 flex items-center justify-center hover:cursor-pointer"
+              <div
+                className="w-[210px] h-[59px] rounded-[20px] bg-primary relative -top-[90px] left-12 flex items-center justify-center hover:cursor-pointer"
                 onClick={() => viewProgramDetails(program?.id)}
               >
-                {program.name}
-              </p>
+                <p className="text-[15px] font-[700] leading-[18.15px] text-center w-[126px]">{program.name}</p> 
+              </div>
             </div>
           ))}
           <div
-            className="flex flex-col items-center justify-center w-[199px] h-[199px] rounded-full bg-black hover:cursor-pointer relative top-[129px] left-[100px]"
+            className="flex flex-col items-center justify-center w-[199px] h-[199px] rounded-full bg-black hover:cursor-pointer relative top-[39px] left-[100px]"
             onClick={() => navigate("create")}
           >
             <img
