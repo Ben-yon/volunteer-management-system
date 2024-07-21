@@ -51,8 +51,15 @@ export interface LoginPayload extends BaseUserInterface{
   roles: Array<UserRole>;
 }
 
-export interface UpdateAdminPayload extends BaseInitialStateInterface{
-  userInfo: LoginPayload
+export interface UpdateAdmin extends BaseInitialStateInterface{
+  userInfo: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    profilePicture: string | undefined;
+    contact: string;
+    designation: string;
+  }
 }
 
 export interface UserRole {

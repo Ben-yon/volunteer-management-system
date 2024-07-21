@@ -5,8 +5,10 @@ import { updateUser } from "../../features/users/userActions";
 import { RootState } from "../../features/store";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Spinner } from "../../widgets/Spinner";
+import 'react-toastify/ReactToastify.css'
+
 
 export const PersonalInfo = () => {
   const [adminDetails, setAdminDetails] = useState<LoginPayload>();
@@ -25,6 +27,8 @@ export const PersonalInfo = () => {
 
   useEffect(() => {
     if (success){
+
+      //@ts-ignore
       setAdminDetails(userInfo)
       toast.success("Admin Profile updated successfully")
     }
@@ -40,8 +44,10 @@ export const PersonalInfo = () => {
         userInfo: {
           firstName: adminDetails?.firstName,
           lastName: adminDetails?.lastName,
-          profilePicture: adminDetails?.profilePicture,
+          profilePicture: userInfo?.profilePicture,
           email: adminDetails?.email,
+          designation: adminDetails?.roles[0]?.name,
+          contact: adminDetails?.telephone
         },
       })
     );
@@ -204,6 +210,7 @@ export const PersonalInfo = () => {
         >
           { loading ? <Spinner/> : "Save"}
         </button>
+        <ToastContainer/>
       </div>
     </>
   );

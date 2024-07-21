@@ -99,7 +99,7 @@ export const ProfileManagement = () => {
             />
             <p className="text-admin-secondary p-1">Admin Panel</p>
           </div>
-          <nav className="primary-gradient w-[308px] h-[378px] rounded-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
+          <nav className="primary-gradient w-[308px] h-[448px] rounded-t-[23px] mt-[17.5px] flex flex-col space-y-2 text-primary">
             <NavLink
               to=""
               className={`flex ${
@@ -188,7 +188,7 @@ export const ProfileManagement = () => {
               Programs
             </NavLink>
           </nav>
-          <nav className="secondary-gradient w-[308px] h-[448px] rounded-[23px] flex flex-col space-y-2 text-primary">
+          <nav className="secondary-gradient w-[308px] h-[368px] rounded-b-[23px] flex flex-col space-y-2 text-primary">
             <NavLink
               to="admins"
               className={`flex space-x-[13px] focus:filter ${
@@ -203,14 +203,14 @@ export const ProfileManagement = () => {
               to="profile"
               className={`flex space-x-[13px] focus:filter ${
                 activeLink === "profile" ? "bg-menu-focus" : ""
-              } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600]`}
+              } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600] hidden`}
               onClick={() => handleClick("profile")}
             >
               <img src={media.profile} alt="" className="pl-[46px] pr-3" />
               Profile
             </NavLink>
             <NavLink
-              to="settings"
+              to="profile"
               className={`flex space-x-[13px] focus:filter ${
                 activeLink === "settings" ? "bg-menu-focus" : ""
               } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600]`}

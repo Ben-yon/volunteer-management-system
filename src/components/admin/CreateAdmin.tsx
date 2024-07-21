@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { createAdmin } from "../../features/admins/adminAction";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
 import { Spinner } from "../../widgets/Spinner";
 
 export const AddAdmin = () => {
@@ -43,7 +44,7 @@ export const AddAdmin = () => {
         email: "",
         contact: "",
         designation: "",
-        password: ""
+        // password: ""
       },
       validationRules
     );
@@ -53,7 +54,7 @@ export const AddAdmin = () => {
   const addNewAdmin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validate()) {
-        values['password'] = ""
+        // values['password'] = ""
       dispatch(createAdmin(values));
     } else {
       throw new DOMException("Validation failed");
@@ -149,7 +150,7 @@ export const AddAdmin = () => {
                 className=" bg-gray-100 leading-[28.5px] text-black text-[23.55px] border focus:outline-none rounded-[21.41px] w-[303.97px] h-[68.5px] lg:w-[303.97px] lg:h-[68.5px] lg:rounded-[21.41px] lg:text-[23.55px] lg:leading-[28.5px] lg:pl-[29.97px] md:w-[243.51px] md:h-[54.88px] md:rounded-[17.15px] md:text-[18.86px] md:leading-[22.83px] md:pl-[24.01px] md:mt-[8.57px] sm:w-[243.51px] sm:h-[54.88px] sm:rounded-[17.15px] sm:text-[18.86px] sm:leading-[22.83px] sm:pl-[24.01px] sm:mt-[8.57px] xsm:w-[135.75px] xsm:h-[30.59px] xsm:rounded-[9.5px] xsm:text-[10.52px] xsm:leading-[12.73px] xsm:mt-[4.78px] xsm:pl-[13.38px]"
                 placeholder="Contact"
               />
-              {errors.password && (
+              {errors.contact && (
                 <span className="text-red-500 text-[10px]">
                   {errors.contact}
                 </span>
@@ -160,6 +161,7 @@ export const AddAdmin = () => {
               {loading ? <Spinner /> : "Next"}
             </button>
           </form>
+          <ToastContainer/>
         </div>
       </div>
     </div>
