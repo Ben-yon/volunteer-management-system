@@ -11,7 +11,7 @@ export interface PostMessagesPayload{
 }
 
 
-export interface PostMessagesDetails{
+export interface MessagesDetails{
     id: string;
     body: string;
     senderUserId: string;
@@ -25,9 +25,9 @@ export interface PostMessagesDetails{
 }
 
 export interface GetMessagesInitialStateInterface extends BaseInitialStateInterface{
-    messageDetails: Array<PostMessagesDetails>;
+    messageDetails: Array<MessagesDetails>;
 }
 
 export interface PostMessagesInitialState extends BaseInitialStateInterface{
-    messageDetails: PostMessagesDetails;
+    messageDetails: MessagesDetails;
 }
