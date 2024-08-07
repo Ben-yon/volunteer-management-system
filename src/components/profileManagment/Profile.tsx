@@ -21,7 +21,6 @@ export const Profile = () => {
 
   
   const uploadedImageRef = useRef<string | undefined>(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-ignore
     JSON.parse(userDetails)?.profilePicture
   );
