@@ -5,7 +5,7 @@ import { BaseInitialStateInterface } from "./AuthInterface";
 export interface PostMessagesPayload{
     body: string;
     messageType: MessageTypes;
-    sendUserId: string;
+    senderUserId: string;
     targetId: string;
     targetType: TargetTypes
 }
