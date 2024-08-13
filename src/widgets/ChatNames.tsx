@@ -1,12 +1,20 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import { media } from "../assets";
 import { UserDetails } from "../interfaces/AuthInterface";
 import { debounce } from "lodash";
-import { SearchUserModal } from "../interfaces/SearchUserModal";
+import { DisplayChatUsers } from "../interfaces/ModalProps";
 
-export const ChatNames: React.FC <SearchUserModal> = ({users}) => {
+export const ChatNames: React.FC<DisplayChatUsers> = ({
+  getSelectedUserId,
+  users,
+}) => {
   const [query, setQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState<UserDetails[] | undefined>();
+
+  const [filteredUsers, setFilteredUsers] = useState<
+    UserDetails[] | undefined
+  >();
+
+  const userRef = useRef<HTMLSpanElement | null>(null);
 
   const userSearch = useCallback(
     debounce((searchTerm: string) => {
@@ -35,6 +43,12 @@ export const ChatNames: React.FC <SearchUserModal> = ({users}) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
+
+  const getUserId = () =>{
+    if (userRef.current){
+        getSelectedUserId(userRef?.current?.innerText)
+    }
+  }
 
   return (
     <div
@@ -83,7 +97,11 @@ export const ChatNames: React.FC <SearchUserModal> = ({users}) => {
                     className="w-[38px] h-[38px] rounded-full"
                   />
                 )}
-                <span className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px]">
+                <span
+                  ref={userRef}
+                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px]"
+                  onClick={() => getUserId()}
+                >
                   {user?.firstName} {user?.lastName}
                 </span>
               </div>

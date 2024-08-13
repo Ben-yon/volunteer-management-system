@@ -76,6 +76,7 @@ export const Messages = () => {
   const [userId, setUserId] = useState<string>("");
   const [recipientId] = useState<string>("");
   const userRef = useRef<HTMLSpanElement>(null);
+  // const [openModal, setOpenModal] = useState(false)
 
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
 
@@ -92,7 +93,7 @@ export const Messages = () => {
     setMessages(messageDetails);
   }, [messageDetails]);
 
-  const getUser = (userId: string): UserDetails | undefined => {
+  const getUser = (userId: string | undefined): UserDetails | undefined => {
     const user = messageUsers?.find((user) => user.id === userId);
     return user;
   };
@@ -137,15 +138,7 @@ export const Messages = () => {
               ...messages,
               {
                 senderUserId: userId,
-                targetId: " ",
                 body: message,
-                createdBy: userId,
-                targetType: TargetTypes.USER,
-                createdDate: new Date().toISOString(),
-                modifiedBy: "",
-                modifiedDate: "",
-                id: "",
-                target: "",
               },
             ]);
           });
@@ -165,22 +158,18 @@ export const Messages = () => {
       connection.state === signalR.HubConnectionState.Connected
     ) {
       try {
-        await connection.send("SendMessage", userId, recipientId, message);
-        setMessages((messages) => [
-          ...messages,
-          {
-            senderUserId: userId,
-            targetId: recipientId,
-            body: message,
-            createdBy: userId,
-            targetType: TargetTypes.USER,
-            createdDate: new Date().toISOString(),
-            modifiedBy: "",
-            modifiedDate: "",
-            id: "",
-            target: "",
-          },
-        ]);
+        // await connection.send("SendMessage", userId, recipientId, message);
+        // setMessages((messages) => [
+        //   ...messages,
+        //   {
+        //     senderUserId: userId,
+        //     targetId: recipientId,
+        //     body: message,
+        //     createdBy: userId,
+        //     targetType: TargetTypes.USER,
+        //     createdDate: new Date().toISOString(),
+        //   },
+        // ]);
         dispatch(
           postMessages({
             senderUserId: userId,
@@ -232,7 +221,6 @@ export const Messages = () => {
               src={media.compose}
               className="w-[38px] h-[38px] relative top-[37px] ml-[34px] hover:cursor-pointer"
               onClick={() => console.log("users")}
-
             />
           </div>
           <div className="flex flex-col items-start space-y-[16px] ml-[33px] overflow-auto">

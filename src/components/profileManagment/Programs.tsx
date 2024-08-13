@@ -32,9 +32,7 @@ export const Programs = () => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-expect-error
       setPrograms(programInfo);
-    } else {
-      console.log(error);
-    }
+    } 
   }, [success, programInfo, error]);
 
   const viewProgramDetails = (id: string) => {
