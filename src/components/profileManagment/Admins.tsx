@@ -28,8 +28,7 @@ export const Admins = () => {
   useEffect(() => {
     if (success) {
       setAdmins(adminsInfo);
-    } else {
-      console.log(error);
+    } else if (error){
       toast.error("Error fetching Admins");
     }
     if (loading) {

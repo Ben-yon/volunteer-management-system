@@ -1,3 +1,4 @@
+import { UserDetails } from './AuthInterface';
 export interface ModalProps extends BasicModalProps{
     updateAvatar: (imgSrc: string | undefined ) => void,
 }
@@ -12,4 +13,9 @@ export interface ChangeProfileModalProps extends BasicModalProps{
 
 export interface DeleteAdminModalProps extends BasicModalProps{
     getAdminId: (id: string | undefined) => void
+}
+
+export interface DisplayChatUsers{
+    getSelectedUserId: (id: string ) => void;
+    users: UserDetails[];
 }

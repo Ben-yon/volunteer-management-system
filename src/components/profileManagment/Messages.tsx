@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { media } from "../../assets";
-import { useEffect, useState, KeyboardEvent, useCallback, ChangeEvent } from "react";
+import {
+  useEffect,
+  useState,
+  KeyboardEvent,
+  useCallback,
+  ChangeEvent,
+  useRef,
+} from "react";
 
 import * as signalR from "@microsoft/signalr";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,11 +16,15 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { users } from "../../features/users/userActions";
 import { UserDetails } from "../../interfaces/AuthInterface";
 import { toast } from "react-toastify";
-import { getMessages } from "../../features/messaging/messagingActions";
+import {
+  getMessages,
+  postMessages,
+} from "../../features/messaging/messagingActions";
 import { MessagesDetails } from "../../interfaces/MessagingInterface";
 import { TargetTypes } from "../../enums/targetTypes";
 
-import debounce from 'lodash/debounce';
+import debounce from "lodash/debounce";
+import { MessageTypes } from "../../enums/messageTypes";
 
 export const Messages = () => {
   const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -28,6 +39,10 @@ export const Messages = () => {
     (state: RootState) => state.getMessagesSlice
   );
   const [messageUsers, setMessageUsers] = useState<Array<UserDetails>>();
+  const [query, setQuery] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState<UserDetails[] | undefined>(
+    messageUsers
+  );
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
@@ -51,15 +66,17 @@ export const Messages = () => {
       toast.success("Users fetch successful");
     } else if (loading) {
       toast.info("Message Users Loading", { isLoading: false });
-    } else if (error) {
+    } else {
       toast.error("User fetch was not successful");
     }
   }, [userInfo, success, error]);
 
   const [messages, setMessages] = useState<MessagesDetails[]>([]);
   const [message, setMessage] = useState<string>("");
-  const [userId] = useState<string>("");
+  const [userId, setUserId] = useState<string>("");
   const [recipientId] = useState<string>("");
+  const userRef = useRef<HTMLSpanElement>(null);
+  // const [openModal, setOpenModal] = useState(false)
 
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
 
@@ -76,36 +93,38 @@ export const Messages = () => {
     setMessages(messageDetails);
   }, [messageDetails]);
 
-  const getUser = (userId: string): UserDetails | undefined => {
+  const getUser = (userId: string | undefined): UserDetails | undefined => {
     const user = messageUsers?.find((user) => user.id === userId);
     return user;
   };
 
-  const [query, setQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState<UserDetails[]| undefined>(messageUsers);
-
-  const userSearch = useCallback(debounce((searchTerm: string) => {
-    if(searchTerm){
-      const filtered = messageUsers?.filter(user => {
-        console.log(searchTerm)
-        user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) || user.lastName.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-      setFilteredUsers(filtered)
-    }else{
-     setFilteredUsers([])
-    }
-  }, 300), []);
+  const userSearch = useCallback(
+    debounce((searchTerm: string) => {
+      if (searchTerm) {
+        const filtered = messageUsers?.filter((user) => {
+          return (
+            user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            user.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        });
+        setFilteredUsers(filtered);
+      } else {
+        setFilteredUsers([]);
+      }
+    }, 200),
+    [messageUsers]
+  );
 
   useEffect(() => {
     userSearch(query);
     return () => {
       userSearch.cancel();
-    }
-  }, [query, userSearch])
+    };
+  }, [query, userSearch]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuery(event.target.value)
-  }
+    setQuery(event.target.value);
+  };
 
   useEffect(() => {
     if (connection) {
@@ -119,15 +138,7 @@ export const Messages = () => {
               ...messages,
               {
                 senderUserId: userId,
-                targetId: " ",
                 body: message,
-                createdBy: userId,
-                targetType: TargetTypes.USER,
-                createdDate: new Date().toISOString(),
-                modifiedBy: "",
-                modifiedDate: "",
-                id: "",
-                target: "",
               },
             ]);
           });
@@ -136,28 +147,38 @@ export const Messages = () => {
     }
   }, [connection]);
 
+  const selectUserOrGroup = () => {
+    const user = getUser(userRef.current?.textContent as string);
+    setUserId(user?.id as string);
+  };
+
   const sendMessage = async () => {
     if (
       connection &&
       connection.state === signalR.HubConnectionState.Connected
     ) {
       try {
-        await connection.send("SendMessage", userId, recipientId, message);
-        setMessages((messages) => [
-          ...messages,
-          {
+        // await connection.send("SendMessage", userId, recipientId, message);
+        // setMessages((messages) => [
+        //   ...messages,
+        //   {
+        //     senderUserId: userId,
+        //     targetId: recipientId,
+        //     body: message,
+        //     createdBy: userId,
+        //     targetType: TargetTypes.USER,
+        //     createdDate: new Date().toISOString(),
+        //   },
+        // ]);
+        dispatch(
+          postMessages({
             senderUserId: userId,
-                targetId: recipientId,
-                body: message,
-                createdBy: userId,
-                targetType: TargetTypes.USER,
-                createdDate: new Date().toISOString(),
-                modifiedBy: "",
-                modifiedDate: "",
-                id: "",
-                target: "",
-          },
-        ]);
+            targetId: recipientId,
+            body: message,
+            targetType: TargetTypes.USER,
+            messageType: MessageTypes.TEXT,
+          })
+        );
         setMessage(" ");
       } catch (e) {
         console.error(e);
@@ -193,18 +214,19 @@ export const Messages = () => {
               type="text"
               value={query}
               onChange={handleChange}
-              className="w-[261px] h-[45px] rounded-[13px] bg-message-hover font-[600] text-[15px] leading-[18.15px] pl-[54px] relative top-[32px] ml-[33px] text-[#78000080] placeholder-[#78000080]"
+              className="w-[261px] h-[45px] rounded-[13px] bg-message-hover font-[600] text-[15px] leading-[18.15px] pl-[54px] relative top-[32px] ml-[33px] text-[#78000080] placeholder-[#78000080] focus:outline-none"
               placeholder="Search"
             />
             <img
               src={media.compose}
-              className="w-[38px] h-[38px] relative top-[37px] ml-[34px]"
+              className="w-[38px] h-[38px] relative top-[37px] ml-[34px] hover:cursor-pointer"
+              onClick={() => console.log("users")}
             />
           </div>
           <div className="flex flex-col items-start space-y-[16px] ml-[33px] overflow-auto">
             {filteredUsers?.map((user) => (
               <div
-                className="flex items-center justify-center space-x-[15px] hover:cursor-pointer hover:bg-message-hover"
+                className="flex items-center justify-center space-x-[15px] hover:cursor-pointer"
                 key={user.id}
               >
                 {user?.profilePicture ? (
@@ -220,7 +242,11 @@ export const Messages = () => {
                     className="w-[38px] h-[38px] rounded-full"
                   />
                 )}
-                <span className="text-[13px] font-[600] text-admin-secondary leading-[15.73px]">
+                <span
+                  ref={userRef}
+                  onClick={() => selectUserOrGroup()}
+                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px]"
+                >
                   {user?.firstName} {user?.lastName}
                 </span>
               </div>
@@ -236,7 +262,7 @@ export const Messages = () => {
             />
             <div className="relative top-[31px] left-[28.2px] flex flex-col">
               <p className="font-[600] text-[22.51px] leading-[27.24px] text-admin-secondary">
-                User or Group Name
+                {getUser(userId)?.firstName}
               </p>
               <span className="italic text-[13px] font-[400] leading-[15.73px]">
                 Typing
@@ -245,14 +271,20 @@ export const Messages = () => {
           </div>
           <div className="flex w-[806px] h-[659px] bg-messages rounded-[17px] mt-[41px] ml-[11px]">
             {messages.map((message) => (
-              <div key={message.id} className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]">
+              <div
+                key={message.id}
+                className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
+              >
                 <img
                   src={getUser(message?.senderUserId)?.profilePicture}
                   alt=""
                   className="w-[38px] h-[38px] rounded-full "
                 />
                 <div className=" flex flex-col">
-                  <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">{getUser(message?.targetId)?.firstName} {getUser(message?.targetId)?.lastName} </span>
+                  <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
+                    {getUser(message?.targetId)?.firstName}{" "}
+                    {getUser(message?.targetId)?.lastName}{" "}
+                  </span>
                   <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
                     {message.body}
                   </p>
