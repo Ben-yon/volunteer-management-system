@@ -25,6 +25,7 @@ import { TargetTypes } from "../../enums/targetTypes";
 
 import debounce from "lodash/debounce";
 import { MessageTypes } from "../../enums/messageTypes";
+import { ChatNames } from "../../widgets/ChatNames";
 
 export const Messages = () => {
   const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -76,7 +77,8 @@ export const Messages = () => {
   const [userId, setUserId] = useState<string>("");
   const [recipientId] = useState<string>("");
   const userRef = useRef<HTMLSpanElement>(null);
-  // const [openModal, setOpenModal] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
 
@@ -87,6 +89,23 @@ export const Messages = () => {
       .build();
     setConnection(newConnection);
   }, [connectionURL]);
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     //@ts-ignore
@@ -150,6 +169,7 @@ export const Messages = () => {
   const selectUserOrGroup = () => {
     const user = getUser(userRef.current?.textContent as string);
     setUserId(user?.id as string);
+    return userId;
   };
 
   const sendMessage = async () => {
@@ -158,18 +178,6 @@ export const Messages = () => {
       connection.state === signalR.HubConnectionState.Connected
     ) {
       try {
-        // await connection.send("SendMessage", userId, recipientId, message);
-        // setMessages((messages) => [
-        //   ...messages,
-        //   {
-        //     senderUserId: userId,
-        //     targetId: recipientId,
-        //     body: message,
-        //     createdBy: userId,
-        //     targetType: TargetTypes.USER,
-        //     createdDate: new Date().toISOString(),
-        //   },
-        // ]);
         dispatch(
           postMessages({
             senderUserId: userId,
@@ -220,9 +228,17 @@ export const Messages = () => {
             <img
               src={media.compose}
               className="w-[38px] h-[38px] relative top-[37px] ml-[34px] hover:cursor-pointer"
-              onClick={() => console.log("users")}
+              onClick={() => setModalOpen(true)}
             />
           </div>
+          {modalOpen && (
+            <ChatNames
+              users={messageUsers}
+              closeModal={() => closeModal()}
+              getSelectedUserId={selectUserOrGroup}
+              ref={modalRef}
+            />
+          )}
           <div className="flex flex-col items-start space-y-[16px] ml-[33px] overflow-auto">
             {filteredUsers?.map((user) => (
               <div
@@ -245,7 +261,7 @@ export const Messages = () => {
                 <span
                   ref={userRef}
                   onClick={() => selectUserOrGroup()}
-                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px]"
+                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px] hover:flex hover:items-center hover:pl-[8px]"
                 >
                   {user?.firstName} {user?.lastName}
                 </span>
