@@ -36,6 +36,7 @@ import { VolunteerRegisterOther } from "../components/volunteers/VolunteerRegist
 import { ChangePassword } from "../components/profileManagment/ChangePassword";
 import { PersonalInfo } from "../components/profileManagment/PersonalInfo";
 import { AddAdmin } from "../components/admin/CreateAdmin";
+import { AddSchedule } from "../components/profileManagment/AddSchedule";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -87,6 +88,7 @@ export const AppRoutes = () => {
           <Route path="volunteers/details/:id" element={<VolunteerDetails />} />
           <Route path="notification" element={<Notification />} />
           <Route path="scheduling" element={<Scheduling />} />
+          <Route path="add-schedule" element={<AddSchedule/>}/>
           <Route path="messages" element={<Messages />} />
           <Route path="training" element={<Training />} />
           <Route path="programs" element={<Programs />} />

@@ -29,7 +29,7 @@ export const ChatNames = forwardRef<HTMLDivElement, DisplayChatUsers>(
         });
         setFilteredUsers(filtered);
       } else {
-        setFilteredUsers([]);
+        setFilteredUsers(users);
       }
     }, 200),
     [users]
@@ -46,15 +46,15 @@ export const ChatNames = forwardRef<HTMLDivElement, DisplayChatUsers>(
     setQuery(event.target.value);
   };
 
-
   return (
     <div
       className="relative z-10"
       aria-labelledby="message-user"
       role="dialog"
       aria-modal="true"
+      ref={ref}
     >
-      <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 modal-content" ref={ref}>
+      <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 modal-content">
         <div className="w-[90%] max-w-[409px] h-[90%] max-h-[840px] bg-white rounded-lg border shadow-lg flex flex-col p-6">
             <h1 className="text-[23px] leading-[27.84px] font-[600] text-admin-secondary mb-[19.52px] mt-[39.37px]">
               New Chat
