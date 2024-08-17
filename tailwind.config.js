@@ -31,7 +31,8 @@ export default {
       }
     }, 
     boxShadow: {
-
+      'light': '0px 0.86px 9.25px 0px #0000001A',
+      'mid': '0px 1px 4px 0px #00000040'
     },
     backgroundImage: {
       "hero":"url('/src/assets/img/slide3.jpg')",
