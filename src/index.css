@@ -158,8 +158,8 @@ progress {
 }
 
 .react-calendar {
-    width: 433px;
-    height: 431px;
+    /* width: 433px;
+    height: 431px; */
     background-color: #790000; /* Set background color to reddish */
     border: 1px solid #ccc;
     padding-top: 30px;

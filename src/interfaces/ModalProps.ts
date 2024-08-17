@@ -15,7 +15,7 @@ export interface DeleteAdminModalProps extends BasicModalProps{
     getAdminId: (id: string | undefined) => void
 }
 
-export interface DisplayChatUsers{
-    getSelectedUserId: (id: string ) => void;
-    users: UserDetails[];
+export interface DisplayChatUsers extends BasicModalProps{
+    getSelectedUserId: (id: string | undefined) => void;
+    users: UserDetails[] | undefined;
 }

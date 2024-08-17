@@ -25,6 +25,7 @@ import { TargetTypes } from "../../enums/targetTypes";
 
 import debounce from "lodash/debounce";
 import { MessageTypes } from "../../enums/messageTypes";
+import { ChatNames } from "../../widgets/ChatNames";
 
 export const Messages = () => {
   const [connection, setConnection] = useState<signalR.HubConnection | null>(
@@ -43,6 +44,8 @@ export const Messages = () => {
   const [filteredUsers, setFilteredUsers] = useState<UserDetails[] | undefined>(
     messageUsers
   );
+
+  const [activeUser, setActivUser] = useState<UserDetails>();
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
@@ -73,10 +76,12 @@ export const Messages = () => {
 
   const [messages, setMessages] = useState<MessagesDetails[]>([]);
   const [message, setMessage] = useState<string>("");
-  const [userId, setUserId] = useState<string>("");
+  const [userId, setUserId] = useState<string | undefined>();
   const [recipientId] = useState<string>("");
   const userRef = useRef<HTMLSpanElement>(null);
-  // const [openModal, setOpenModal] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
 
@@ -88,15 +93,43 @@ export const Messages = () => {
     setConnection(newConnection);
   }, [connectionURL]);
 
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     //@ts-ignore
     setMessages(messageDetails);
   }, [messageDetails]);
 
-  const getUser = (userId: string | undefined): UserDetails | undefined => {
+  const getUserById = (userId: string | undefined): UserDetails | undefined => {
     const user = messageUsers?.find((user) => user.id === userId);
     return user;
   };
+  const getUserByName = useCallback(
+    (name: string | undefined): UserDetails | undefined => {
+      const selectedUser = messageUsers?.find(
+        (user) =>
+          user?.firstName === name?.split(" ")[0] &&
+          user?.lastName === name.split(" ")[1]
+      );
+      return selectedUser;
+    },
+    [messageUsers]
+  );
 
   const userSearch = useCallback(
     debounce((searchTerm: string) => {
@@ -109,7 +142,7 @@ export const Messages = () => {
         });
         setFilteredUsers(filtered);
       } else {
-        setFilteredUsers([]);
+        setFilteredUsers(messageUsers);
       }
     }, 200),
     [messageUsers]
@@ -125,6 +158,22 @@ export const Messages = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
+
+  const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setMessage(event.target.value);
+    setIsTyping(true);
+  };
+
+  useEffect(() => {
+    if (isTyping) {
+      const typingTimeout = setTimeout(() => {
+        setIsTyping(false); // Set typing state to false after 500ms of no input
+      }, 500);
+
+      // Cleanup timeout if user types before the timeout ends
+      return () => clearTimeout(typingTimeout);
+    }
+  }, [message]);
 
   useEffect(() => {
     if (connection) {
@@ -147,9 +196,10 @@ export const Messages = () => {
     }
   }, [connection]);
 
-  const selectUserOrGroup = () => {
-    const user = getUser(userRef.current?.textContent as string);
-    setUserId(user?.id as string);
+  const selectUserOrGroup = (event: React.MouseEvent<HTMLSpanElement>) => {
+    const user = getUserByName(event.currentTarget.innerText);
+    setActivUser(user);
+    setUserId(user?.id);
   };
 
   const sendMessage = async () => {
@@ -158,18 +208,6 @@ export const Messages = () => {
       connection.state === signalR.HubConnectionState.Connected
     ) {
       try {
-        // await connection.send("SendMessage", userId, recipientId, message);
-        // setMessages((messages) => [
-        //   ...messages,
-        //   {
-        //     senderUserId: userId,
-        //     targetId: recipientId,
-        //     body: message,
-        //     createdBy: userId,
-        //     targetType: TargetTypes.USER,
-        //     createdDate: new Date().toISOString(),
-        //   },
-        // ]);
         dispatch(
           postMessages({
             senderUserId: userId,
@@ -179,6 +217,7 @@ export const Messages = () => {
             messageType: MessageTypes.TEXT,
           })
         );
+        console.log("MEssage sent");
         setMessage(" ");
       } catch (e) {
         console.error(e);
@@ -220,9 +259,17 @@ export const Messages = () => {
             <img
               src={media.compose}
               className="w-[38px] h-[38px] relative top-[37px] ml-[34px] hover:cursor-pointer"
-              onClick={() => console.log("users")}
+              onClick={() => setModalOpen(true)}
             />
           </div>
+          {modalOpen && (
+            <ChatNames
+              users={messageUsers}
+              closeModal={() => closeModal()}
+              getSelectedUserId={getUserById}
+              ref={modalRef}
+            />
+          )}
           <div className="flex flex-col items-start space-y-[16px] ml-[33px] overflow-auto">
             {filteredUsers?.map((user) => (
               <div
@@ -244,8 +291,8 @@ export const Messages = () => {
                 )}
                 <span
                   ref={userRef}
-                  onClick={() => selectUserOrGroup()}
-                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px]"
+                  onClick={selectUserOrGroup}
+                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px] hover:flex hover:items-center hover:pl-[8px]"
                 >
                   {user?.firstName} {user?.lastName}
                 </span>
@@ -255,18 +302,28 @@ export const Messages = () => {
         </div>
         <div className="flex flex-col w-[828px] h-[840px] rounded-[13px] border-[0.5px] shadow-[0px_0px_7.599999904632568px_0px_#00000012]">
           <div className="flex items-center space-x-7">
-            <img
-              src=""
-              alt="user-image"
-              className="w-[65.8px] h-[65.8px] rounded-full relative top-[24px] left-[39px]"
-            />
+            {activeUser?.profilePicture ? (
+              <img
+                src={activeUser?.profilePicture}
+                alt="profile"
+                className="w-[65.8px] h-[65.8px] rounded-full relative top-[24px] left-[39px]"
+              />
+            ) : (
+              <img
+                src={media.upload}
+                alt="profile"
+                className="w-[65.8px] h-[65.8px] rounded-full relative top-[24px] left-[39px]"
+              />
+            )}
             <div className="relative top-[31px] left-[28.2px] flex flex-col">
               <p className="font-[600] text-[22.51px] leading-[27.24px] text-admin-secondary">
-                {getUser(userId)?.firstName}
+                {activeUser?.firstName} {activeUser?.lastName}
               </p>
-              <span className="italic text-[13px] font-[400] leading-[15.73px]">
-                Typing
-              </span>
+              {isTyping && (
+                <p className="italic text-[13px] font-[400] leading-[15.73px]">
+                  Typing
+                </p>
+              )}
             </div>
           </div>
           <div className="flex w-[806px] h-[659px] bg-messages rounded-[17px] mt-[41px] ml-[11px]">
@@ -276,14 +333,14 @@ export const Messages = () => {
                 className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
               >
                 <img
-                  src={getUser(message?.senderUserId)?.profilePicture}
+                  src={getUserById(message?.senderUserId)?.profilePicture}
                   alt=""
                   className="w-[38px] h-[38px] rounded-full "
                 />
                 <div className=" flex flex-col">
                   <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
-                    {getUser(message?.targetId)?.firstName}{" "}
-                    {getUser(message?.targetId)?.lastName}{" "}
+                    {getUserById(message?.targetId)?.firstName}{" "}
+                    {getUserById(message?.targetId)?.lastName}{" "}
                   </span>
                   <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
                     {message.body}
@@ -298,7 +355,7 @@ export const Messages = () => {
               placeholder="Type a message"
               onKeyDown={handleKeyPress}
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={handleMessageChange}
             />
             <div className="flex items-center justify-center space-x-1 mt-3 ml-[6.1px]">
               <img

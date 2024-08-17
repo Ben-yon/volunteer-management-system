@@ -26,7 +26,10 @@ import chat_black from './icons/chat_black.svg';
 import role_bind from './icons/role_bind.svg';
 import phone_black from './icons/phone_black.svg';
 import email_black from './icons/email_black.svg';
-import add_admin from './icons/add_admin.svg'
+import add_admin from './icons/add_admin.svg';
+import calendar from './icons/calendar.svg';
+import add_task from './icons/add_task.svg';
+import completed_task from './icons/completed_task.svg';
 
 
 import notification from './icons/notification.svg';
@@ -147,5 +150,8 @@ export const media = {
     role_bind,
     phone_black,
     email_black,
-    add_admin
+    add_admin,
+    calendar,
+    add_task,
+    completed_task
 }

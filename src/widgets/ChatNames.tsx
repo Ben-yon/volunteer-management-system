@@ -1,20 +1,22 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { media } from "../assets";
 import { UserDetails } from "../interfaces/AuthInterface";
 import { debounce } from "lodash";
 import { DisplayChatUsers } from "../interfaces/ModalProps";
+import { forwardRef } from "react";
 
-export const ChatNames: React.FC<DisplayChatUsers> = ({
+export const ChatNames = forwardRef<HTMLDivElement, DisplayChatUsers>(
+  ({
   getSelectedUserId,
+  closeModal,
   users,
-}) => {
+}, ref) => {
   const [query, setQuery] = useState("");
 
   const [filteredUsers, setFilteredUsers] = useState<
     UserDetails[] | undefined
   >();
 
-  const userRef = useRef<HTMLSpanElement | null>(null);
 
   const userSearch = useCallback(
     debounce((searchTerm: string) => {
@@ -27,7 +29,7 @@ export const ChatNames: React.FC<DisplayChatUsers> = ({
         });
         setFilteredUsers(filtered);
       } else {
-        setFilteredUsers([]);
+        setFilteredUsers(users);
       }
     }, 200),
     [users]
@@ -44,64 +46,49 @@ export const ChatNames: React.FC<DisplayChatUsers> = ({
     setQuery(event.target.value);
   };
 
-  const getUserId = () =>{
-    if (userRef.current){
-        getSelectedUserId(userRef?.current?.innerText)
-    }
-  }
-
   return (
     <div
       className="relative z-10"
       aria-labelledby="message-user"
       role="dialog"
-      aria-moda="true"
+      aria-modal="true"
+      ref={ref}
     >
-      <div>
-        <div className="flex flex-col space-y-[33px] w-[409px] h-[840px] rounded-[13px] border-[0.5px] shadow-[0px_0px_7.599999904632568px_0px_#00000012]">
-          <div className="relative flex mb-[33px]">
+      <div className="fixed inset-0 flex items-center justify-center bg-opacity-50 modal-content">
+        <div className="w-[90%] max-w-[409px] h-[90%] max-h-[840px] bg-white rounded-lg border shadow-lg flex flex-col p-6">
+            <h1 className="text-[23px] leading-[27.84px] font-[600] text-admin-secondary mb-[19.52px] mt-[39.37px]">
+              New Chat
+            </h1>
+          <div className="relative flex items-center mb-6">
             <img
               src={media.msg_search}
-              alt=""
-              className="w-[24px] h-[24px] absolute left-[58px] top-[46px]"
+              alt="Search Icon"
+              className="absolute left-4 w-6 h-6"
             />
             <input
               type="text"
               value={query}
               onChange={handleChange}
-              className="w-[261px] h-[45px] rounded-[13px] bg-message-hover font-[600] text-[15px] leading-[18.15px] pl-[54px] relative top-[32px] ml-[33px] text-[#78000080] placeholder-[#78000080] focus:outline-none"
+              className="w-full pl-12 py-2 rounded-lg bg-message-hover text-sm font-semibold text-[#78000080] placeholder-[#78000080] focus:outline-none"
               placeholder="Search"
             />
-            <img
-              src={media.compose}
-              className="w-[38px] h-[38px] relative top-[37px] ml-[34px] hover:cursor-pointer"
-              onClick={() => console.log("users")}
-            />
           </div>
-          <div className="flex flex-col items-start space-y-[16px] ml-[33px] overflow-auto">
+          <div className="flex flex-col items-start space-y-4 overflow-y-auto">
             {filteredUsers?.map((user) => (
               <div
-                className="flex items-center justify-center space-x-[15px] hover:cursor-pointer"
+                className="flex items-center space-x-4 cursor-pointer p-2 rounded-lg"
                 key={user.id}
+                onClick={() => {
+                  getSelectedUserId(user.id)
+                  closeModal()
+                } }
               >
-                {user?.profilePicture ? (
-                  <img
-                    src={user?.profilePicture}
-                    alt="profile"
-                    className="w-[38px] h-[38px] rounded-full"
-                  />
-                ) : (
-                  <img
-                    src={media.upload}
-                    alt="profile"
-                    className="w-[38px] h-[38px] rounded-full"
-                  />
-                )}
-                <span
-                  ref={userRef}
-                  className="text-[13px] font-[600] text-admin-secondary leading-[15.73px] hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px]"
-                  onClick={() => getUserId()}
-                >
+                <img
+                  src={user?.profilePicture || media.upload}
+                  alt={`${user?.firstName} ${user?.lastName} profile`}
+                  className="w-10 h-10 rounded-full"
+                />
+                <span className="text-sm font-semibold text-admin-secondary hover:bg-message-hover hover:w-[302px] hover:h-[45px] hover:rounded-[13px] hover:flex hover:items-center hover:pl-[8px]">
                   {user?.firstName} {user?.lastName}
                 </span>
               </div>
@@ -111,4 +98,6 @@ export const ChatNames: React.FC<DisplayChatUsers> = ({
       </div>
     </div>
   );
-};
+}
+);
+

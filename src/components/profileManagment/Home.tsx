@@ -201,11 +201,11 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex mt-[24px]">
+      <div className="flex mt-[24px] space-x-[24px]">
         <div className="">
-          <AdminCalendar />
+          <AdminCalendar width={459} height={431}/>
         </div>
-        <div className="w-[813px] h-[431px] bg-admin-secondary dashboard-shadow ml-[24px] rounded-[20px] flex flex-col">
+        <div className="w-[813px] h-[431px] bg-admin-secondary dashboard-shadow  rounded-[20px] flex flex-col">
           <h2 className="capitalize text-primary text-center font-[700] text-[20px] leading-[24.2px] mt-[20px]">
             Available on site
           </h2>
