@@ -57,7 +57,11 @@ import change_profile from './icons/change_profile.svg';
 import change_password from './icons/change_password.svg';
 import user_logout from './icons/user_logout.svg';
 import bin from './icons/bin.svg';
-import mcss_lg from './icons/mcss-lg.svg'
+import mcss_lg from './icons/mcss-lg.svg';
+import multi_select from './icons/multi_select.svg';
+import datepicker_icon from './icons/datepicker.svg';
+import clock from './icons/clock.svg';
+import repeat from './icons/repeat.svg';
 
 
 import slide1 from './img/slide1.png';
@@ -153,5 +157,9 @@ export const media = {
     add_admin,
     calendar,
     add_task,
-    completed_task
+    completed_task,
+    multi_select,
+    datepicker_icon,
+    clock,
+    repeat
 }
