@@ -54,10 +54,9 @@ export const AddSchedule = () => {
             alt=""
             className="relative w-[46px] h-[36px] top-[48px] left-[19px]"
           />
-          <input
-            type="text"
-            className="w-[416.04px] h-[60px] border rounded-[21.2px] shadow-light"
-          />
+          <select
+            className="w-[416.04px] h-[60px] border rounded-[21.2px] shadow-light "
+          ><option value=""></option></select>
           <div className="w-[416px] h-[563px] rounded-[33.39px] border mt-[20px] flex flex-col pl-[38.71px] shadow-light">
             <h2 className="w-[156.68px] font-[600] text-[21.4px] leading-[25.9px] mt-[33.39px]">
               Date &amp; Time
@@ -149,7 +148,7 @@ export const AddSchedule = () => {
           </div>
           <div className="flex justify-end space-x-[16px] mt-[51px]">
             <div>
-              <button className="w-[145px] h-[37.59px] rounded-[10.73px] border pl-[25px] text-[15.32px] font-[600] leading-[18.55px]">
+              <button className="w-[145px] h-[41.95px] rounded-[10.73px] border pl-[25px] text-[15.32px] font-[600] leading-[18.55px]">
                 Reschedule
               </button>
               <img src={media.repeat} alt="" className="relative -top-[28px] left-[16.11px]" />

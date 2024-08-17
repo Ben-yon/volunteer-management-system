@@ -56,11 +56,9 @@ export const VolunteerDetails = () => {
 
   useEffect(() => {
     const user = userDetailsSet.find((user) => user.id == id);
-    console.log(user);
     setUserDetails(user);
   }, [userDetailsSet, id]);
 
-  console.log(id);
   return (
     <div className="block center">
       <p className="text-[#D9D9D9] text-[15px] font-extrabold leading-[18.15px]">
