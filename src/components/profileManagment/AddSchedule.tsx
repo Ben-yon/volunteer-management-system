@@ -1,6 +1,5 @@
 import { media } from "../../assets";
 import DatePicker from "react-datepicker";
-import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 
