@@ -60,6 +60,12 @@ export const Scheduling = () => {
               Completed Tasks
             </p>
           </div>
+          <div className="flex mt-[29px]">
+            <div className="w-[239px] h-[161px] rounded-[21.2px] shadow-mid bg-primary pt-[21px] pl-[21px]">
+              <h2 className="font-[400] text-[12px] leading-[14.52px] mb-[6px]">Admin Cordination </h2>
+              <p className="w-[183px] h-[49px] font-[400] text-[9px] leading-[10.89px] text-justify">All necessary permissions are secured, and resources are confirmed available for the workshop.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
