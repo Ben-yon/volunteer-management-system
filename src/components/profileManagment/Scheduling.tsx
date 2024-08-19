@@ -17,8 +17,8 @@ export const Scheduling = () => {
         Scheduling
       </h2>
       <div className="flex space-x-[26px] mb-[22px]">
-        <div className="w-[776px] h-[490px] rounded-[21.2px] bg-image-card bg-opacity-[30%] flex flex-col">
-          <div className="mt-[28px] ml-[32px] flex items-stretch justify-between">
+        <div className="w-[776px] h-[490px] rounded-[21.2px] bg-image-card bg-opacity-[30%] flex flex-col pl-[32px]">
+          <div className="mt-[28px] flex items-stretch justify-between">
             <div className="flex items-stretch space-x-[12px]">
               <div className="w-[35px] h-[35px] bg-image-card rounded-full flex items-center justify-center">
                 <img
@@ -43,6 +43,24 @@ export const Scheduling = () => {
               </button>
             </div>
           </div>
+          <div className="flex mt-[29px]">
+            <div className="w-[239px] h-[161px] rounded-[21.2px] shadow-mid bg-primary pt-[21px] pl-[21px]">
+              <h2 className="font-[400] text-[12px] leading-[14.52px] mb-[6px]">
+                Admin Cordination{" "}
+              </h2>
+              <p className="w-[183px] h-[49px] font-[400] text-[9px] leading-[10.89px] text-justify">
+                All necessary permissions are secured, and resources are
+                confirmed available for the workshop.
+              </p>
+              <label htmlFor="">
+              <progress
+                value={60}
+                max={100}
+                className="w-[193px] h-[14.43px] rounded-[6px] rounded-b-[6px] bg-brown"
+              ></progress>
+              </label>
+            </div>
+          </div>
         </div>
         <div className="">
           <AdminCalendar width={459} height={450} />
@@ -59,6 +77,24 @@ export const Scheduling = () => {
             <p className="text-[18px] font-[600] leading-[21.78px] flex items-center justify-center ">
               Completed Tasks
             </p>
+          </div>
+          <div className="flex mt-[29px]">
+            <div className="w-[239px] h-[161px] rounded-[21.2px] shadow-mid bg-primary pt-[21px] pl-[21px]">
+              <h2 className="font-[400] text-[12px] leading-[14.52px] mb-[6px]">
+                Admin Cordination{" "}
+              </h2>
+              <p className="w-[183px] h-[49px] font-[400] text-[9px] leading-[10.89px] text-justify">
+                All necessary permissions are secured, and resources are
+                confirmed available for the workshop.
+              </p>
+              <label htmlFor="">
+              <progress
+                value={60}
+                max={100}
+                className="w-[193px] h-[14.43px] rounded-[6px] rounded-b-[6px] bg-brown"
+              ></progress>
+              </label>
+            </div>
           </div>
         </div>
       </div>

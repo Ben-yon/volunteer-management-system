@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
-// import data from "./../../utils/MOCK_DATA.json";
 import { useEffect, useState } from "react";
-// import { TableData } from "../../interfaces/TablePropsInterface";
 import { media } from "../../assets";
 import { useNavigate } from "react-router-dom";
 
@@ -58,11 +56,9 @@ export const VolunteerDetails = () => {
 
   useEffect(() => {
     const user = userDetailsSet.find((user) => user.id == id);
-    console.log(user);
     setUserDetails(user);
   }, [userDetailsSet, id]);
 
-  console.log(id);
   return (
     <div className="block center">
       <p className="text-[#D9D9D9] text-[15px] font-extrabold leading-[18.15px]">
