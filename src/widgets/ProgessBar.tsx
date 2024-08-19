@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface ProgressBarProps {
   progress: number; // Current progress value
@@ -12,10 +12,10 @@ interface ProgressBarProps {
 const ProgressBar: React.FC<ProgressBarProps> = ({
   progress,
   maxValue,
-  color = 'bg-blue-600',
-  width = 'w-full',
-  height = 'h-4',
-  label = '',
+  color = "bg-blue-600",
+  width = "w-full",
+  height = "h-4",
+  label = "",
 }) => {
   // Calculate the percentage based on progress and maxValue
   const percentage = maxValue > 0 ? (progress / maxValue) * 100 : 0;
@@ -23,12 +23,17 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const clampedPercentage = Math.max(0, Math.min(percentage, 100));
 
   return (
-    <div className={`relative ${width} max-w-smmx-auto`}><div className={`bg-gray-200 rounded-full ${height}`}><div
+    <div className={`relative ${width} max-w-smmx-auto`}>
+      <p className="mb-[2px] text-right font-[400] text-[9px] leading-[10.89px]">
+        {label} {clampedPercentage.toFixed(1)}% Complete
+      </p>
+      <div className={`bg-gray-200 rounded-full ${height}`}>
+        <div
           className={`${color} h-full rounded-full transition-all duration-300`}
           style={{ width: `${clampedPercentage}%` }}
-        /></div><p className="mt-2 text-center text-gray-700 font-semibold">
-        {progress}/{maxValue} {label} ({clampedPercentage.toFixed(1)}%)
-      </p></div>
+        />
+      </div>
+    </div>
   );
 };
 
