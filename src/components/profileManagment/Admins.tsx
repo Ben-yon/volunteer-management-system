@@ -9,13 +9,13 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 export const Admins = () => {
-  const [admins, setAdmins] = useState<AdminRegisterPayload[]>();
+  const [admins, setAdmins] = useState<Array<AdminRegisterPayload>>([]);
   const { success, loading, adminsInfo, error } = useSelector(
     (state: RootState) => state.fetchAdminsSlice
   );
 
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const fetchAdminsDetails = useCallback(() => {
     dispatch(fetchAdmins());
@@ -28,7 +28,7 @@ export const Admins = () => {
   useEffect(() => {
     if (success) {
       setAdmins(adminsInfo);
-    } else if (error){
+    } else if (error) {
       toast.error("Error fetching Admins");
     }
     if (loading) {
@@ -36,9 +36,27 @@ export const Admins = () => {
     }
   });
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 9; // Display 9 items, so the 10th spot is for the "Add New" button
+
+  const handleNext = () => {
+    if ((currentPage + 1) * itemsPerPage < admins?.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const currentAdmins = admins?.slice(startIndex, startIndex + itemsPerPage);
+
   const addAdmin = () => {
-    navigate('/admins/add')
-  }
+    navigate("/admins/add");
+  };
 
   return (
     <>
@@ -75,7 +93,7 @@ export const Admins = () => {
           </select>
         </div>
         <div className="flex flex-wrap flex-1">
-          {admins?.map((admin) => (
+          {currentAdmins?.map((admin) => (
             <div
               className="w-[227px] h-[264px] rounded-[22.62px] bg-image-card bg-opacity-[29%] message-box-shadow mr-[22px]"
               key={admin.email}
@@ -134,9 +152,32 @@ export const Admins = () => {
               </div>
             </div>
           ))}
-          <div className="flex items-center justify-center ml-[65.71px] hover:cursor-pointer" onClick={() => addAdmin()}>
+          <div
+            className="flex items-center justify-center ml-[65.71px] hover:cursor-pointer"
+            onClick={() => addAdmin()}
+          >
             <img src={media.add_admin} alt="" />
           </div>
+        </div>
+        <div className="absolute bottom-0 right-0 flex space-x-[5px]">
+          <button onClick={handlePrevious} className="" disabled={currentPage === 0}>
+            {
+              currentPage === 0 ? (
+                <img src={media.previous_gray} alt="" />
+              ): (
+                <img src={media.previous_black} alt="" />
+              )
+            }
+          </button>
+          <button onClick={handleNext}>
+            {
+              startIndex + itemsPerPage >= admins?.length ? (
+                <img src={media.next_gray} alt="" className="w-[25px] h-[25px]"/>
+              ) : (
+                <img src={media.next_black} alt="" className="w-[25px] h-[25px]"/>
+              )
+            }
+          </button>
         </div>
       </div>
     </>

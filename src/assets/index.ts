@@ -30,6 +30,9 @@ import add_admin from './icons/add_admin.svg';
 import calendar from './icons/calendar.svg';
 import add_task from './icons/add_task.svg';
 import completed_task from './icons/completed_task.svg';
+import previous_gray from './icons/previous_gray.svg';
+import previous_black from './icons/previous_black.svg';
+import next_gray from './icons/next_gray.svg';
 
 
 import notification from './icons/notification.svg';
@@ -62,6 +65,7 @@ import multi_select from './icons/multi_select.svg';
 import datepicker_icon from './icons/datepicker.svg';
 import clock from './icons/clock.svg';
 import repeat from './icons/repeat.svg';
+import next_black from './icons/next_black.svg'
 
 
 import slide1 from './img/slide1.png';
@@ -161,5 +165,9 @@ export const media = {
     multi_select,
     datepicker_icon,
     clock,
-    repeat
+    repeat,
+    next_black,
+    previous_gray,
+    previous_black,
+    next_gray
 }
