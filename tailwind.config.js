@@ -24,6 +24,7 @@ export default {
         'image-card': '#D9D9D9',
         'input-color': '#838383CC',
         'message-hover': '#79000017',
+        'progressbar-complete': '#04B700',
       },
       fontFamily: {
         // sans: ['Lelawadee'],

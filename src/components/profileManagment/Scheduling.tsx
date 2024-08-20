@@ -1,6 +1,7 @@
 import { media } from "../../assets";
 import { AdminCalendar } from "../../widgets/Calendar";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "../../widgets/ProgessBar";
 
 export const Scheduling = () => {
   const navigate = useNavigate();
@@ -53,11 +54,9 @@ export const Scheduling = () => {
                 confirmed available for the workshop.
               </p>
               <label htmlFor="">
-              <progress
-                value={60}
-                max={100}
-                className="w-[193px] h-[14.43px] rounded-[6px] rounded-b-[6px] bg-brown"
-              ></progress>
+              <label htmlFor="">
+              <ProgressBar progress={70} maxValue={100} color="bg-admin-secondary" width="w-[193px]" height="h-[14px]"/>
+              </label>
               </label>
             </div>
           </div>
@@ -88,11 +87,7 @@ export const Scheduling = () => {
                 confirmed available for the workshop.
               </p>
               <label htmlFor="">
-              <progress
-                value={60}
-                max={100}
-                className="w-[193px] h-[14.43px] rounded-[6px] rounded-b-[6px] bg-brown"
-              ></progress>
+              <ProgressBar progress={100} maxValue={100} color="bg-progressbar-complete" width="w-[193px]" height="h-[14px]"/>
               </label>
             </div>
           </div>
