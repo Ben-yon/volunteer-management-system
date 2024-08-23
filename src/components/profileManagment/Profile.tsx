@@ -42,13 +42,10 @@ export const Profile = () => {
     console.log(id);
   };
 
-  const token = localStorage.getItem('token')
 
   const userLogout = () => {
     dispatch(logout());
-    if (!token) {
-      navigate("/admin/sigin-in");
-    }
+    navigate("/admin/sigin-in");
   };
 
   return (

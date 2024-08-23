@@ -43,12 +43,18 @@ export const fetchUserById = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
     'user/update',
-    async({id , userInfo}: UpdateUserInfo) => {
+    async( {id, firstName, lastName, email, contact, profilePicture, designation }: UpdateUserInfo) => {
         try{
-            const response = api.put(
-                `Users/:id/user-information?=${id}`,
+            const response = api.patch(
+                `Users/${id}/user-information`,
                 {
-                    userInfo
+                    id,
+                    firstName,
+                    lastName,
+                    email,
+                    profilePicture,
+                    contact,
+                    designation
                 }
             );
 

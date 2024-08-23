@@ -22,7 +22,6 @@ export const ProfileManagement = () => {
     localStorage.setItem("activeLink", path);
   };
 
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const storedUserInfo = localStorage.getItem("userInfo");
@@ -40,9 +39,8 @@ export const ProfileManagement = () => {
 
   const userLogout = () => {
     dispatch(logout());
-    if (!token) {
-      navigate("/admin/sigin-in");
-    }
+    navigate("/admin/sigin-in");
+    
   };
 
   return (
