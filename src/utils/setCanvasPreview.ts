@@ -31,7 +31,8 @@ const setCanvasPreview = (
     // Move the crop origin to the canvas origin (0,0)
     ctx.translate(-cropX, -cropY);
     ctx.drawImage(
-      //@ts-ignore
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-expect-error
       image,
       0,
       0,

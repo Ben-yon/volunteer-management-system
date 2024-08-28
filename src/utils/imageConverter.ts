@@ -17,3 +17,18 @@ export function extractBase64(imageDataUrl: string): string {
 export function base64ToBinary(base64String: string): Buffer {
     return Buffer.from(base64String, 'base64');
 }
+
+export const getBase64FromUrl = async (imageUrl: string): Promise<string> => {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+  
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64data = reader.result as string;
+        resolve(base64data);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  };

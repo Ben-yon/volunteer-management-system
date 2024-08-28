@@ -11,6 +11,7 @@ import adminSlice from "./admins/adminSlice";
 import fetchAdminsSlice from "./admins/fetchAdminsSlice";
 import getMessagesSlice from "./messaging/getMessagesSlice";
 import postMessagesSlice from "./messaging/postMessagesSlice";
+import dashboardSlice from "./dashboard/dashboardSlice";
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +26,8 @@ export const store = configureStore({
     adminSlice: adminSlice,
     fetchAdminsSlice: fetchAdminsSlice,
     getMessagesSlice: getMessagesSlice,
-    postMessageSlice: postMessagesSlice
+    postMessageSlice: postMessagesSlice,
+    dashboardSlice: dashboardSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

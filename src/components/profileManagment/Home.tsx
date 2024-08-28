@@ -1,8 +1,58 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useDispatch, useSelector } from "react-redux";
 import { media } from "../../assets";
 import { AdminCalendar } from "../../widgets/Calendar";
 import { CustomPieChart } from "../../widgets/CustomPieChart";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { RootState } from "../../features/store";
+import { useCallback, useEffect, useState } from "react";
+import { VolunteerRegisterPayload } from "../../interfaces/AuthInterface";
+import {
+  newVolunteerSincePreviousMonth,
+  numberOfAdminsSincePreviousMonth,
+  totalNumberOfVolunteers,
+  volunteersNotMoreThanAWeek,
+} from "../../features/dashboard/dashboardAction";
+import { getCurrentMonthName, getPreviousMonthName } from "../../utils/specificMonth";
 
 export const Home = () => {
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const {
+    success,
+    volunteersAWeekOld,
+    totalNumberVolunteers,
+    numberOfAdminsPreviousMonth,
+    newVolunteersPreviousMonth
+  } = useSelector((state: RootState) => state.dashboardSlice);
+  // const [volunteersWithinAWeek, setVolunteersWithinAWeek] =
+  //   useState<VolunteerRegisterPayload[]>();
+  const [totalVolunteers, setTotalVolunteers] = useState(null);
+  const [adminsSincePreviousMonth, setAdminsSincePreviousMonth] = useState(null);
+  const [newVolunteers, setNewVolunteers] = useState<VolunteerRegisterPayload[]>();
+
+  const previousMonth = getPreviousMonthName();
+  const currentMonth = getCurrentMonthName()
+
+  const dashboardDetails = useCallback(() => {
+    dispatch(volunteersNotMoreThanAWeek());
+    dispatch(totalNumberOfVolunteers());
+    dispatch(numberOfAdminsSincePreviousMonth());
+    dispatch(newVolunteerSincePreviousMonth())
+  }, [dispatch]);
+
+  useEffect(() => {
+    dashboardDetails();
+  }, [dashboardDetails]);
+
+  useEffect(() => {
+    if (success) {
+      // setVolunteersWithinAWeek(volunteersAWeekOld);
+      setTotalVolunteers(totalNumberVolunteers);
+      setAdminsSincePreviousMonth(numberOfAdminsPreviousMonth)
+      setNewVolunteers(newVolunteersPreviousMonth)
+    }
+  }, [newVolunteersPreviousMonth, numberOfAdminsPreviousMonth, success, totalNumberVolunteers, volunteersAWeekOld]);
+
   return (
     <div className="flex flex-col">
       <p className="text-[#D9D9D9] text-[15px] font-[700] leading-[18.15px]">
@@ -16,42 +66,42 @@ export const Home = () => {
           <div className="flex justify-normal items-center w-[757px] h-[106px] rounded-[20px] bg-admin-secondary dashboard-shadow">
             <div className="flex items-center justify-center space-x-1 ml-[34px] mr-[13px]">
               <p className="text-primary w-auto h-[36px] font-[700] text-[35px] leading-[42.36px]">
-                25
+                {adminsSincePreviousMonth}
               </p>
               <div className="flex flex-col text-primary">
                 <p className="font-[700] text-[12px] leading-[14.52px] w-[57px] h-[20px]">
                   Admins
                 </p>
                 <p className="font-[500] text-[10px] leading-[12.1px] w-auto">
-                  Since March
+                  Since {previousMonth}
                 </p>
               </div>
             </div>
             <div className="divider"></div>
             <div className="flex items-center justify-center w-[171px] h-[41px] space-x-1 ml-[26px] mr-[23px]">
               <p className="text-primary w-auto h-[36px] font-[700] text-[35px] leading-[42.36px]">
-                100
+                {totalVolunteers}
               </p>
               <div className="flex flex-col text-primary">
                 <p className="font-[700] text-[12px] leading-[14.52px] w-[101px] h-[20px]">
                   Total Voluteers
                 </p>
                 <p className="font-[500] text-[10px] leading-[12.1px] w-auto">
-                  Since March
+                  Since {previousMonth}
                 </p>
               </div>
             </div>
             <div className="divider"></div>
             <div className="flex items-center justify-center space-x-1 ml-[23px] mr-[9px]">
               <p className="text-primary w-auto h-[36px] font-[700] text-[35px] leading-[42.36px]">
-                4
+                {newVolunteers?.length}
               </p>
               <div className="flex flex-col text-primary">
                 <p className="font-[700] text-[12px] leading-[14.52px] w-auto h-[20px]">
                   New Volunteers
                 </p>
                 <p className="font-[500] text-[10px] leading-[12.1px] w-auto">
-                  Since April
+                  Since {previousMonth}
                 </p>
               </div>
             </div>
@@ -65,7 +115,7 @@ export const Home = () => {
                   Upcoming events
                 </p>
                 <p className="font-[500] text-[10px] leading-[12.1px] w-auto mt-0">
-                  in April
+                  in {currentMonth}
                 </p>
               </div>
             </div>
@@ -203,7 +253,7 @@ export const Home = () => {
       </div>
       <div className="flex mt-[24px] space-x-[24px]">
         <div className="">
-          <AdminCalendar width={459} height={431}/>
+          <AdminCalendar width={459} height={431} />
         </div>
         <div className="w-[813px] h-[431px] bg-admin-secondary dashboard-shadow  rounded-[20px] flex flex-col">
           <h2 className="capitalize text-primary text-center font-[700] text-[20px] leading-[24.2px] mt-[20px]">

@@ -10,6 +10,7 @@ import { LoginPayload } from "../../interfaces/AuthInterface";
 export const ProfileManagement = () => {
   const [activeLink, setActiveLink] = useState<string | null>("");
   const [userInfo, setUserInfo] = useState<LoginPayload>();
+  const [role, setRole ] = useState<string| null>(null)
 
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -22,13 +23,15 @@ export const ProfileManagement = () => {
     localStorage.setItem("activeLink", path);
   };
 
+  const storedUserInfo = localStorage.getItem("userInfo");
+  const userRole = localStorage.getItem("userRole");
 
   useEffect(() => {
-    const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
       setUserInfo(JSON.parse(storedUserInfo));
+      setRole(userRole)
     }
-  }, [state]);
+  }, [state, storedUserInfo, userRole]);
 
   useEffect(() => {
     const storedActiveLink = localStorage.getItem("activeLink");
@@ -67,7 +70,7 @@ export const ProfileManagement = () => {
           <p className="text-[15px] leading-[18.5px] flex flex-col font-[600]">
             {userInfo?.firstName} {userInfo?.lastName}
             <span className="text-[10px] leading-[12.1px] font-bold">
-              {userInfo?.roles[0]?.name}
+              {role}
             </span>
           </p>
         </div>
@@ -240,7 +243,7 @@ export const ProfileManagement = () => {
                   {userInfo?.email}
                 </span>
                 <span className="text-[10px] leading-[12.1px]">
-                  {userInfo?.roles[0]?.name}
+                  {role}
                 </span>
               </div>
             </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { LoginPayload } from "../../interfaces/AuthInterface";
@@ -8,6 +9,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { toast, ToastContainer } from "react-toastify";
 import { Spinner } from "../../widgets/Spinner";
 import "react-toastify/ReactToastify.css";
+import { extractBase64, getBase64FromUrl } from "../../utils/imageConverter";
 
 export const PersonalInfo = () => {
   const [adminDetails, setAdminDetails] = useState<LoginPayload>({
@@ -62,13 +64,16 @@ export const PersonalInfo = () => {
       //@ts-ignore
       setAdminDetails(userInfo);
       toast.success("Admin Profile updated successfully");
-      localStorage.setItem("userInfo", JSON.stringify(adminDetails));
+      localStorage.setItem("userInfo", JSON.stringify(userInfo));
     }
     if (error) {
       toast.error("Error, Try again!!");
     }
-  }, [success, error, userInfo]);
-
+  }, [success, error, userInfo, adminDetails]);
+  
+  //@ts-expect-error
+  const profilePicture = extractBase64(JSON.parse(localStorage.getItem("profilePicture"))?.current)
+  
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newFormData = {
       ...adminDetails,
@@ -77,13 +82,14 @@ export const PersonalInfo = () => {
     setAdminDetails(newFormData);
     if (initialValues) {
       const hasChanged = Object.keys(newFormData).some(
-        (key) =>
+        async (key) =>
           newFormData[key as keyof typeof adminDetails] !==
-          initialValues[key as keyof typeof adminDetails]
+          initialValues[key as keyof typeof adminDetails] || await getBase64FromUrl(initialValues.profilePicture) !== profilePicture
       );
       setIsButtonDisabled(!hasChanged);
     }
   };
+
 
   const updateAdminDetails = (event: FormEvent) => {
     event.preventDefault();
@@ -93,9 +99,12 @@ export const PersonalInfo = () => {
           firstName: adminDetails?.firstName,
           lastName: adminDetails?.lastName,
           email: adminDetails?.email,
-          profilePicture: userInfo?.profilePicture,
+          //@ts-ignore
+          profilePicture: profilePicture,
           contact: adminDetails?.telephone,
-          designation: adminDetails?.roles[0]?.name,
+          //@ts-ignore
+          designation: localStorage.getItem('userRole'),
+          roles: adminDetails.roles
       })
     );
   };
@@ -175,6 +184,8 @@ export const PersonalInfo = () => {
             <select
               name="role"
               className="bg-image-card h-[40px] w-[362px] rounded-[8px] focus:outline-none text-[17px] leading-[20.57px] pl-[15px]"
+              // value={adminDetails.roles[0]?.name}
+              // onChange={}
             >
               <option value="admin">Administrator</option>
             </select>

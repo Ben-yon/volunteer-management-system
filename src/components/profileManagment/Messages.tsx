@@ -333,14 +333,14 @@ export const Messages = () => {
                 className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
               >
                 <img
-                  src={getUserById(message?.senderUserId)?.profilePicture}
+                  src={activeUser?.profilePicture}
                   alt=""
                   className="w-[38px] h-[38px] rounded-full "
                 />
                 <div className=" flex flex-col">
                   <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
-                    {getUserById(message?.targetId)?.firstName}{" "}
-                    {getUserById(message?.targetId)?.lastName}{" "}
+                    {activeUser?.firstName}{" "}
+                    {activeUser?.lastName}{" "}
                   </span>
                   <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
                     {message.body}
