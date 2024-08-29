@@ -86,7 +86,7 @@ export const newVolunteerSincePreviousMonth = createAsyncThunk(
     }
 )
 
-export const upcomingPrograms = createAsyncThunk(
+export const getUpcomingPrograms = createAsyncThunk(
     'dashboard/upcoming-programs',
     async() => {
         try{

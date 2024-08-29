@@ -8,12 +8,17 @@ import { RootState } from "../../features/store";
 import { useCallback, useEffect, useState } from "react";
 import { VolunteerRegisterPayload } from "../../interfaces/AuthInterface";
 import {
+  getUpcomingPrograms,
   newVolunteerSincePreviousMonth,
   numberOfAdminsSincePreviousMonth,
   totalNumberOfVolunteers,
   volunteersNotMoreThanAWeek,
 } from "../../features/dashboard/dashboardAction";
-import { getCurrentMonthName, getPreviousMonthName } from "../../utils/specificMonth";
+import {
+  getCurrentMonthName,
+  getPreviousMonthName,
+} from "../../utils/specificMonth";
+import { ProgramInterface } from "../../interfaces/ProgramsInterface";
 
 export const Home = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -22,22 +27,28 @@ export const Home = () => {
     volunteersAWeekOld,
     totalNumberVolunteers,
     numberOfAdminsPreviousMonth,
-    newVolunteersPreviousMonth
+    newVolunteersPreviousMonth,
+    upcomingPrograms,
   } = useSelector((state: RootState) => state.dashboardSlice);
   // const [volunteersWithinAWeek, setVolunteersWithinAWeek] =
   //   useState<VolunteerRegisterPayload[]>();
   const [totalVolunteers, setTotalVolunteers] = useState(null);
-  const [adminsSincePreviousMonth, setAdminsSincePreviousMonth] = useState(null);
-  const [newVolunteers, setNewVolunteers] = useState<VolunteerRegisterPayload[]>();
+  const [adminsSincePreviousMonth, setAdminsSincePreviousMonth] =
+    useState(null);
+  const [newVolunteers, setNewVolunteers] =
+    useState<VolunteerRegisterPayload[]>();
+  const [upcomingProgramList, setUpcomingProgramList] =
+    useState<ProgramInterface[]>();
 
   const previousMonth = getPreviousMonthName();
-  const currentMonth = getCurrentMonthName()
+  const currentMonth = getCurrentMonthName();
 
   const dashboardDetails = useCallback(() => {
     dispatch(volunteersNotMoreThanAWeek());
     dispatch(totalNumberOfVolunteers());
     dispatch(numberOfAdminsSincePreviousMonth());
-    dispatch(newVolunteerSincePreviousMonth())
+    dispatch(newVolunteerSincePreviousMonth());
+    dispatch(getUpcomingPrograms());
   }, [dispatch]);
 
   useEffect(() => {
@@ -48,10 +59,18 @@ export const Home = () => {
     if (success) {
       // setVolunteersWithinAWeek(volunteersAWeekOld);
       setTotalVolunteers(totalNumberVolunteers);
-      setAdminsSincePreviousMonth(numberOfAdminsPreviousMonth)
-      setNewVolunteers(newVolunteersPreviousMonth)
+      setAdminsSincePreviousMonth(numberOfAdminsPreviousMonth);
+      setNewVolunteers(newVolunteersPreviousMonth);
+      setUpcomingProgramList(upcomingPrograms);
     }
-  }, [newVolunteersPreviousMonth, numberOfAdminsPreviousMonth, success, totalNumberVolunteers, volunteersAWeekOld]);
+  }, [
+    newVolunteersPreviousMonth,
+    numberOfAdminsPreviousMonth,
+    success,
+    totalNumberVolunteers,
+    upcomingPrograms,
+    volunteersAWeekOld,
+  ]);
 
   return (
     <div className="flex flex-col">
@@ -108,7 +127,7 @@ export const Home = () => {
             <div className="divider"></div>
             <div className="flex items-center justify-center space-x-1 ml-[26px] mr-[37px]">
               <p className="text-primary w-auto h-[36px] font-[700] text-[35px] leading-[42.36px]">
-                5
+                {upcomingProgramList?.length}
               </p>
               <div className="flex flex-col text-primary">
                 <p className="font-[700] text-[12px] leading-[14.52px] w-auto h-[20px]">

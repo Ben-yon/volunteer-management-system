@@ -5,7 +5,7 @@ import {
   newVolunteerSincePreviousMonth,
   numberOfAdminsSincePreviousMonth,
   totalNumberOfVolunteers,
-  upcomingPrograms,
+  getUpcomingPrograms,
   usersAvailableOnline,
   volunteersNotMoreThanAWeek,
   volunteersNotMorethanTwoWeeks,
@@ -100,17 +100,17 @@ const dashboardSlice = createSlice({
         state.error = action.payload;
         state.success = false;
     })
-    .addCase(upcomingPrograms.pending, (state) => {
+    .addCase(getUpcomingPrograms.pending, (state) => {
         state.loading = true;
         state.success = false;
         state.error = null
     })
-    .addCase( upcomingPrograms.fulfilled, (state, action: PayloadAction<any>) => {
+    .addCase( getUpcomingPrograms.fulfilled, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.success = true;
         state.upcomingPrograms = action.payload;
     })
-    .addCase(upcomingPrograms.rejected, ( state, action: PayloadAction<any>) => {
+    .addCase(getUpcomingPrograms.rejected, ( state, action: PayloadAction<any>) => {
         state.loading = false;
         state.error = action.payload;
         state.success = false;
