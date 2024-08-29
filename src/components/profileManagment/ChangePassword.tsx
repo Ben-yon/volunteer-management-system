@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { media } from "../../assets";
 
 export const ChangePassword = () => {
   const [password, setPassword] = useState("");
   const [ confirmPassword, setConfirmPassword ] = useState("");
+  const [ showOldPassword, setShowOldPassword ] = useState(false);
+  const [ showNewPassword, setShowNewPassword ] = useState(false);
+  const [ showConfirmPassword, setShowConfirmPassword ] = useState(false);
   const [checks, setChecks] = useState({
     minLength: false,
     hasUpperCase: false,
@@ -10,6 +14,16 @@ export const ChangePassword = () => {
     hasSpecialChar: false,
     hasNumber: false,
   });
+
+  const onShowOldPassword = () =>{
+    setShowOldPassword(!showOldPassword);
+  }
+  const onShowNewPassword = () =>{
+    setShowNewPassword(!showNewPassword);
+  }
+  const onShowConfirmPassword = () =>{
+    setShowConfirmPassword(!showConfirmPassword);
+  }
 
   const specialCharacters = /[!@#$%^&*(),.?":{}|<>]/;
 
@@ -55,9 +69,17 @@ export const ChangePassword = () => {
               Old Password
             </label>
             <input
-              type="text"
+              type={showOldPassword ? "text" : "password" }
               className="w-[360px] h-[40px] border-[1px] rounded-[8px] bg-image-card text-[15px] font-[500] leading-[18.15px] pl-[9px]"
             />
+          </div>
+          <div className="absolute right-[270px] top-[80px]" onClick={() => onShowOldPassword()}>
+            {
+              showOldPassword ?
+              <img src={media.open_eye} alt="" />
+              :
+              <img src={media.closed_eye} alt="" />
+            }
           </div>
           <div className="flex flex-col mt-[33px]">
             <label
@@ -67,11 +89,19 @@ export const ChangePassword = () => {
               New Password
             </label>
             <input
-              type="text"
+              type={showNewPassword ? "text" : "password" }
               value={password}
               onChange={handlePasswordChange}
               className="w-[360px] h-[40px] border-[1px] rounded-[8px] bg-image-card text-[15px] font-[500] leading-[18.15px] pl-[9px]"
             />
+          </div>
+          <div className="relative -right-[330px] -top-[25px]" onClick={() => onShowNewPassword()}>
+            {
+              showNewPassword ?
+              <img src={media.open_eye} alt="" />
+              :
+              <img src={media.closed_eye} alt="" />
+            }
           </div>
           <span className="text-gray-300 font-[500] text-[11.76px] leading-[14.23px] tracking-[-3%]">
             Please add all necessary characters to create safe password.
@@ -101,11 +131,19 @@ export const ChangePassword = () => {
               Confirm Password
             </label>
             <input
-              type="text"
+              type={showConfirmPassword ? "text" : "password"}
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
               className="w-[360px] h-[40px] border-[1px] rounded-[8px] bg-image-card text-[15px] font-[500] leading-[18.15px] pl-[9px]"
             />
+          </div>
+          <div className="relative -right-[330px] -top-[25px]" onClick={() => onShowConfirmPassword()}>
+            {
+              showConfirmPassword ?
+              <img src={media.open_eye} alt="" />
+              :
+              <img src={media.closed_eye} alt="" />
+            }
           </div>
         </form>
         <button className="w-[360px] h-[40px] bg-admin-secondary text-primary rounded-[8px] mt-[58px] font-[600] text-[15px] leading-[18.15px]">
