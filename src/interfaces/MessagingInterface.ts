@@ -6,7 +6,7 @@ export interface PostMessagesPayload{
     body: string;
     messageType: MessageTypes;
     senderUserId: string | undefined;
-    targetId: string;
+    targetId: string | undefined;
     targetType: TargetTypes
 }
 

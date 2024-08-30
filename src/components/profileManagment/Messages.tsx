@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { media } from "../../assets";
 import {
@@ -44,6 +47,13 @@ export const Messages = () => {
   const [filteredUsers, setFilteredUsers] = useState<UserDetails[] | undefined>(
     messageUsers
   );
+  const [messages, setMessages] = useState<MessagesDetails[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const [userId, setUserId] = useState<string | undefined>();
+  const userRef = useRef<HTMLSpanElement>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const [activeUser, setActivUser] = useState<UserDetails>();
 
@@ -72,18 +82,12 @@ export const Messages = () => {
     } else {
       toast.error("User fetch was not successful");
     }
-  }, [userInfo, success, error]);
+  }, [userInfo, success, error, loading]);
 
-  const [messages, setMessages] = useState<MessagesDetails[]>([]);
-  const [message, setMessage] = useState<string>("");
-  const [userId, setUserId] = useState<string | undefined>();
-  const [recipientId] = useState<string>("");
-  const userRef = useRef<HTMLSpanElement>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
+  //@ts-ignore
+  const currentUserId = JSON.parse(localStorage.getItem("userInfo"))?.id
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
@@ -108,13 +112,9 @@ export const Messages = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
-  useEffect(() => {
-    //@ts-ignore
-    setMessages(messageDetails);
-  }, [messageDetails]);
-
+  
   const getUserById = (userId: string | undefined): UserDetails | undefined => {
     const user = messageUsers?.find((user) => user.id === userId);
     return user;
@@ -124,13 +124,13 @@ export const Messages = () => {
       const selectedUser = messageUsers?.find(
         (user) =>
           user?.firstName === name?.split(" ")[0] &&
-          user?.lastName === name.split(" ")[1]
+        user?.lastName === name.split(" ")[1]
       );
       return selectedUser;
     },
     [messageUsers]
   );
-
+  
   const userSearch = useCallback(
     debounce((searchTerm: string) => {
       if (searchTerm) {
@@ -147,61 +147,61 @@ export const Messages = () => {
     }, 200),
     [messageUsers]
   );
-
+  
   useEffect(() => {
     userSearch(query);
     return () => {
       userSearch.cancel();
     };
   }, [query, userSearch]);
-
+  
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
-
+  
   const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
     setIsTyping(true);
   };
-
+  
   useEffect(() => {
     if (isTyping) {
       const typingTimeout = setTimeout(() => {
         setIsTyping(false); // Set typing state to false after 500ms of no input
       }, 500);
-
+      
       // Cleanup timeout if user types before the timeout ends
       return () => clearTimeout(typingTimeout);
     }
   }, [message]);
-
+  
   useEffect(() => {
     if (connection) {
       connection
-        .start()
-        .then(() => {
-          console.log("connected!");
-
-          connection.on("ReceiveMessage", (userId: string, message: string) => {
-            setMessages((messages) => [
-              ...messages,
-              {
-                senderUserId: userId,
-                body: message,
-              },
-            ]);
-          });
-        })
-        .catch((e) => console.log("Connection failed: ", e));
+      .start()
+      .then(() => {
+        console.log("connected!");
+        
+        connection.on("ReceiveMessage", (userId: string, message: string) => {
+          setMessages((messages) => [
+            ...messages,
+            {
+              senderUserId: userId,
+              body: message,
+            },
+          ]);
+        });
+      })
+      .catch((e) => console.log("Connection failed: ", e));
     }
   }, [connection]);
-
+  
   const selectUserOrGroup = (event: React.MouseEvent<HTMLSpanElement>) => {
     const user = getUserByName(event.currentTarget.innerText);
     setActivUser(user);
-    setUserId(user?.id);
+    setUserId(currentUserId);
   };
-
+  
   const sendMessage = async () => {
     if (
       connection &&
@@ -211,14 +211,14 @@ export const Messages = () => {
         dispatch(
           postMessages({
             senderUserId: userId,
-            targetId: recipientId,
+            targetId: activeUser?.id,
             body: message,
             targetType: TargetTypes.USER,
-            messageType: MessageTypes.TEXT,
+            messageType: MessageTypes.TEXT
           })
         );
-        console.log("MEssage sent");
-        setMessage(" ");
+        console.log("Message sent");
+        setMessage(message);
       } catch (e) {
         console.error(e);
       }
@@ -226,7 +226,11 @@ export const Messages = () => {
       alert("No connection to server!");
     }
   };
-
+  useEffect(() => {
+    //@ts-ignore
+    setMessages(messageDetails);
+  }, [messageDetails]);
+  
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       sendMessage();
@@ -339,8 +343,7 @@ export const Messages = () => {
                 />
                 <div className=" flex flex-col">
                   <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
-                    {activeUser?.firstName}{" "}
-                    {activeUser?.lastName}{" "}
+                    {activeUser?.firstName} {activeUser?.lastName}{" "}
                   </span>
                   <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
                     {message.body}

@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from "react-redux";
 import { media } from "../../assets";
-import { AdminCalendar } from "../../widgets/Calendar";
 import { CustomPieChart } from "../../widgets/CustomPieChart";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { RootState } from "../../features/store";
 import { useCallback, useEffect, useState } from "react";
 import { VolunteerRegisterPayload } from "../../interfaces/AuthInterface";
+import { Value } from "../../interfaces/CalendarTypes";
+
 import {
   getUpcomingPrograms,
   newVolunteerSincePreviousMonth,
@@ -19,6 +20,7 @@ import {
   getPreviousMonthName,
 } from "../../utils/specificMonth";
 import { ProgramInterface } from "../../interfaces/ProgramsInterface";
+import Calendar from "react-calendar";
 
 export const Home = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -71,6 +73,9 @@ export const Home = () => {
     upcomingPrograms,
     volunteersAWeekOld,
   ]);
+
+
+  const [value, onChange] = useState<Value>(new Date());
 
   return (
     <div className="flex flex-col">
@@ -272,7 +277,12 @@ export const Home = () => {
       </div>
       <div className="flex mt-[24px] space-x-[24px]">
         <div className="">
-          <AdminCalendar width={459} height={431} />
+          <Calendar
+            onChange={onChange}
+            value={value}
+            className="w-[433px] h-[431px]"
+          />
+          <button className="w-[311px] h-[45px] bg-[#C8A379] rounded-[12px] relative -top-[72px] left-[55px]"></button>
         </div>
         <div className="w-[813px] h-[431px] bg-admin-secondary dashboard-shadow  rounded-[20px] flex flex-col">
           <h2 className="capitalize text-primary text-center font-[700] text-[20px] leading-[24.2px] mt-[20px]">

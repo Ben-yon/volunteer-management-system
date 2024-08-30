@@ -1,13 +1,17 @@
 import { media } from "../../assets";
-import { AdminCalendar } from "../../widgets/Calendar";
 import { useNavigate } from "react-router-dom";
 import ProgressBar from "../../widgets/ProgessBar";
+import Calendar from "react-calendar";
+import { Value } from "../../interfaces/CalendarTypes";
+import { useState } from "react";
 
 export const Scheduling = () => {
   const navigate = useNavigate();
   const addSchedule = () => {
     navigate("/profile-management/add-schedule");
   };
+
+  const [value, onChange] = useState<Value>(new Date());
 
   return (
     <div className="flex flex-col">
@@ -62,7 +66,7 @@ export const Scheduling = () => {
           </div>
         </div>
         <div className="">
-          <AdminCalendar width={459} height={450} />
+        <Calendar onChange={onChange} value={value} className="w-[459px] h-[486px] align-center"/>
         </div>
       </div>
       <div className="w-[1268px] h-[308px] bg-image-card bg-opacity-40 rounded-[21.1px]">

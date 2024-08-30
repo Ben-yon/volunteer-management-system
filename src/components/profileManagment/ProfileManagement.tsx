@@ -145,16 +145,6 @@ export const ProfileManagement = () => {
               </div>
             </NavLink>
             <NavLink
-              to="training"
-              className={`flex space-x-[13px] focus:filter ${
-                activeLink === "training" ? "bg-menu-focus" : ""
-              } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600]`}
-              onClick={() => handleClick("training")}
-            >
-              <img src={media.giving} alt="" className="pl-[46px] pr-3" />
-              Training
-            </NavLink>
-            <NavLink
               to="scheduling"
               className={`flex space-x-[13px] focus:filter ${
                 activeLink === "scheduling" ? "bg-menu-focus" : ""

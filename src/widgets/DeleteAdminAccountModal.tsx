@@ -9,14 +9,15 @@ export const DeleteAdminModal: React.FC<DeleteAdminModalProps> = ({
 }) => {
   const [confiirmDeleteModal, setConfirmDeleteModal] = useState(false);
   const [deleteValue, setDeleteValue] = useState("");
+  const [isEmptyValue, setIsEmptyValue] = useState(false);
 
   const deleteAdmin = () => {
     if (deleteValue === "DELETE") {
       getAdminId("");
       setConfirmDeleteModal(true);
-      
     } else {
-      alert("type DELETE");
+      setIsEmptyValue(true);
+      return;
     }
   };
   return (
@@ -43,7 +44,11 @@ export const DeleteAdminModal: React.FC<DeleteAdminModalProps> = ({
                 <input
                   type="text"
                   value={deleteValue}
-                  className="bg-image-card w-[303.1px] h-[46.25px] rounded-[14.56px] text-[14.56px] font-[700] leading-[17.62px] pl-[17.34px]"
+                  className={
+                    !isEmptyValue
+                      ? "bg-image-card w-[303.1px] h-[46.25px] rounded-[14.56px] text-[14.56px] font-[700] leading-[17.62px] pl-[17.34px] focus:outline-none"
+                      : "bg-image-card w-[303.1px] h-[46.25px] rounded-[14.56px] text-[14.56px] font-[700] leading-[17.62px] pl-[17.34px] focus:border-red-500"
+                  }
                   placeholder='To confirm this, type "DELETE"'
                   onChange={(e) => setDeleteValue(e.target.value)}
                 />

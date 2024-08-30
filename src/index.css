@@ -158,8 +158,6 @@ progress {
 }
 
 .react-calendar {
-    /* width: 433px;
-    height: 431px; */
     background-color: #790000; /* Set background color to reddish */
     border: 1px solid #ccc;
     padding-top: 30px;
@@ -183,7 +181,7 @@ progress {
 
   .react-calendar__tile--active, .react-calendar__tile--hovered{
     background-color: #C8A379;
-    border-radius: full;
+    border-radius: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -220,6 +218,10 @@ progress {
     justify-items: center;
     border-radius: 80%;
   }
+  .react-calendar__tile--active {
+    background: #C8A379;
+    color: white;
+}
   
   .react-calendar__month-view__days__day abbr {
     color: white;
