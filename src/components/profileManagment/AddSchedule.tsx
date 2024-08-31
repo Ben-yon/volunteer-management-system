@@ -1,13 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { media } from "../../assets";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { CreateTaskInterface } from "../../interfaces/TaskScheduleInterface";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
+import { Spinner } from "../../widgets/Spinner";
 
 export const AddSchedule = () => {
   const [selectedOnDate, setSelectedOnDate] = useState<Date | null>(null);
   const [selectedFromDate, setSelectedFromDate] = useState<Date | null>(null);
   const [selectedToDate, setSelectedToDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<Date | null>(null);
+
+  const [scheduleTask, setScheduleTask] = useState<CreateTaskInterface>({
+    name: "",
+    description: "",
+    notes: "",
+  });
+
+  const { success, task, loading, error } = useSelector((state: RootState) => state.createTaskSlice);
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const navigate = useNavigate();
 
   const handleOnDateChange = (date: Date | null) => {
     setSelectedOnDate(date);
@@ -25,6 +42,26 @@ export const AddSchedule = () => {
     setSelectedTime(time);
   };
 
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setScheduleTask({ ...scheduleTask, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = () => {
+    dispatch(scheduleTask);
+  }
+
+  useEffect(() => {
+    if(success){
+      navigate('profile-management/scheduling');
+      console.log(task)
+    }else{
+      return;
+    }
+  }, [error, navigate, success, task])
+
+
   return (
     <div className="flex flex-col">
       <p className="text-[#D9D9D9] text-[15px] font-[700] leading-[18.15px]">
@@ -33,19 +70,28 @@ export const AddSchedule = () => {
       <h2 className="text-black font-[700] text-[27px] leading-[32.68px] pb-6">
         Scheduling
       </h2>
-      <div className="flex items-center justify-center space-x-[51px] mt-[50px]">
+      <form className="flex items-center justify-center space-x-[51px] mt-[50px]" onSubmit={handleSubmit}>
         <div className="flex flex-col">
           <input
             className="w-[790px] h-[60px] text-[20px] leading-[24.2px] pl-[40.91px] font-[600] text-black text-opacity-[60%] border border-gray-200 focus:outline-none rounded-[15px] shadow-light"
             placeholder="Add Title"
+            value={scheduleTask.name}
+            name="name"
+            onChange={handleChange}
           />
           <textarea
             className="w-[790px] h-[436px] rounded-[26px] pl-[34px] pt-[21px] mt-[22px] resize-none text-[20px] leading-[24.2px] font-[600] text-black text-opacity-[60%] border border-gray-200 focus:outline-none shadow-mid"
             placeholder="Description"
+            value={scheduleTask.description}
+            name="description"
+            onChange={handleChange}
           ></textarea>
           <textarea
             className="w-[790px] h-[177px] rounded-[26px] pl-[34px] pt-[21px] mt-[27px] resize-none text-[20px] leading-[24.2px] font-[600] text-black text-opacity-[60%] border border-gray-200 focus:outline-none shadow-mid"
             placeholder="Add notes..."
+            value={scheduleTask.notes}
+            name="notes"
+            onChange={handleChange}
           ></textarea>
         </div>
         <div className="flex flex-col">
@@ -54,9 +100,9 @@ export const AddSchedule = () => {
             alt=""
             className="relative w-[46px] h-[36px] top-[48px] left-[19px]"
           />
-          <select
-            className="w-[416.04px] h-[60px] border rounded-[21.2px] shadow-light "
-          ><option value=""></option></select>
+          <select className="w-[416.04px] h-[60px] border rounded-[21.2px] shadow-light ">
+            <option value=""></option>
+          </select>
           <div className="w-[416px] h-[563px] rounded-[33.39px] border mt-[20px] flex flex-col pl-[38.71px] shadow-light">
             <h2 className="w-[156.68px] font-[600] text-[21.4px] leading-[25.9px] mt-[33.39px]">
               Date &amp; Time
@@ -151,14 +197,18 @@ export const AddSchedule = () => {
               <button className="w-[145px] h-[41.95px] rounded-[10.73px] border pl-[25px] text-[15.32px] font-[600] leading-[18.55px]">
                 Reschedule
               </button>
-              <img src={media.repeat} alt="" className="relative -top-[28px] left-[16.11px]" />
+              <img
+                src={media.repeat}
+                alt=""
+                className="relative -top-[28px] left-[16.11px]"
+              />
             </div>
             <button className="w-[125.84px] h-[41.95px] bg-admin-secondary text-primary rounded-[11.98px] text-[17.12px] font-[600] leading-[20.72px]">
-              Schedule
+              { loading ? <Spinner/> :"Schedule"}
             </button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

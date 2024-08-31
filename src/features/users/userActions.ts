@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../utils/axios";
 import axios from "axios";
-import { UpdateUserInfo } from "../../interfaces/updateUser";
+import { UpdateUserInfo } from "../../interfaces/UpdateUser";
 
 export const users = createAsyncThunk("users", async () => {
   try {
