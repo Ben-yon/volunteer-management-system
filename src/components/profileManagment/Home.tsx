@@ -14,6 +14,7 @@ import {
   numberOfAdminsSincePreviousMonth,
   totalNumberOfVolunteers,
   volunteersNotMoreThanAWeek,
+  usersAvailableOnline,
 } from "../../features/dashboard/dashboardAction";
 import {
   getCurrentMonthName,
@@ -21,6 +22,7 @@ import {
 } from "../../utils/specificMonth";
 import { ProgramInterface } from "../../interfaces/ProgramsInterface";
 import Calendar from "react-calendar";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
@@ -31,6 +33,7 @@ export const Home = () => {
     numberOfAdminsPreviousMonth,
     newVolunteersPreviousMonth,
     upcomingPrograms,
+    usersOnline,
   } = useSelector((state: RootState) => state.dashboardSlice);
   // const [volunteersWithinAWeek, setVolunteersWithinAWeek] =
   //   useState<VolunteerRegisterPayload[]>();
@@ -42,6 +45,35 @@ export const Home = () => {
   const [upcomingProgramList, setUpcomingProgramList] =
     useState<ProgramInterface[]>();
 
+  const [onlineUsers, setOnlineUsers] = useState<VolunteerRegisterPayload[]>(
+    []
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+
+  // Calculate total pages
+  const totalPages = Math.ceil(onlineUsers.length / itemsPerPage);
+
+  // Get the users to be displayed on the current page
+  const paginatedUsers = onlineUsers.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const sendVolunteerMessage = () => {
+    navigate("messages", { state: { userId: onlineUsers } });
+  };
+
   const previousMonth = getPreviousMonthName();
   const currentMonth = getCurrentMonthName();
 
@@ -51,6 +83,7 @@ export const Home = () => {
     dispatch(numberOfAdminsSincePreviousMonth());
     dispatch(newVolunteerSincePreviousMonth());
     dispatch(getUpcomingPrograms());
+    dispatch(usersAvailableOnline());
   }, [dispatch]);
 
   useEffect(() => {
@@ -64,6 +97,7 @@ export const Home = () => {
       setAdminsSincePreviousMonth(numberOfAdminsPreviousMonth);
       setNewVolunteers(newVolunteersPreviousMonth);
       setUpcomingProgramList(upcomingPrograms);
+      setOnlineUsers(usersOnline);
     }
   }, [
     newVolunteersPreviousMonth,
@@ -71,9 +105,16 @@ export const Home = () => {
     success,
     totalNumberVolunteers,
     upcomingPrograms,
+    usersOnline,
     volunteersAWeekOld,
   ]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNextPage();
+    }, 5000);
 
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, [currentPage, goToNextPage]);
 
   const [value, onChange] = useState<Value>(new Date());
 
@@ -282,7 +323,11 @@ export const Home = () => {
             value={value}
             className="w-[433px] h-[431px]"
           />
-          <button className="w-[311px] h-[45px] bg-[#C8A379] rounded-[12px] relative -top-[72px] left-[55px]"></button>
+          <button className="w-[311px] h-[45px] bg-[#C8A379] rounded-[12px] relative -top-[72px] left-[55px]">
+            {
+              upcomingProgramList?.length === 0 && <p className="text-primary font-[500] text-[15px] leading-[32.4px]">There are no upcoming events</p>
+            }
+          </button>
         </div>
         <div className="w-[813px] h-[431px] bg-admin-secondary dashboard-shadow  rounded-[20px] flex flex-col">
           <h2 className="capitalize text-primary text-center font-[700] text-[20px] leading-[24.2px] mt-[20px]">
@@ -290,283 +335,53 @@ export const Home = () => {
           </h2>
           <div className="columns-2 mt-[15px] ">
             <div className="flex flex-col justify-center items-center  space-y-1">
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
+              {paginatedUsers.map((onlineUser) => (
+                <div className="flex w-[348px] h-[49px] rounded-[5px] bg-primary bg-opacity-[70%]">
+                  {onlineUser?.profilePicture ? (
+                    <img
+                      src={onlineUser?.profilePicture}
+                      alt=""
+                      className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
+                    />
+                  ) : (
+                    <img
+                      src={media.sample01}
+                      alt=""
+                      className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
+                    />
+                  )}
+                  <div className="flex flex-col justify-center">
+                    <h2 className="text-[13px]font-[700] leading-[15.73px]">
+                      {onlineUser.firstName} {onlineUser.lastName}
+                    </h2>
+                    <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
+                      {onlineUser.skills}
+                    </p>
+                  </div>
+                  <div
+                    className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-primary p-[10px] rounded-full"
+                    onClick={sendVolunteerMessage}
+                  >
+                    <img
+                      src={`${media.chat_red}`}
+                      alt="chat_icon"
+                      className="absolute top-[7px] w-[9.17px] h-[9.2px]"
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
+              ))}
             </div>
-            <div className="flex flex-col justify-center items-center  space-y-1">
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-              <div className="flex w-[348px] h-[49px] rounded-[5px] opacity-[70%] bg-[#D9D9D9B2]">
-                <img
-                  src={`${media.sample01}`}
-                  alt=""
-                  className="w-[28.09px] h-[29.43px] rounded-full ml-[13.44px] mr-[18.45px] mt-[10.14px]"
-                />
-                <img src="" alt="" />
-                <div className="flex flex-col justify-center">
-                  <h2 className="text-[13px]font-[700] leading-[15.73px]">
-                    Peter Smith
-                  </h2>
-                  <p className="w-[141px] h-[10px] font-[400] text-[8px] leading-[9.68px]">
-                    UX/UI Design . Adobe XD, Figma
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center w-[19px] h-[19px] relative -right-[100px] top-[12px] bg-white p-[10px] rounded-full">
-                  <img
-                    src={`${media.chat_red}`}
-                    alt="chat_icon"
-                    className="absolute top-[7px] w-[9.17px] h-[9.2px]"
-                  />
-                </div>
-              </div>
-            </div>
+          </div>
+          <div className="flex justify-center items-center mt-[10px] space-x-[5px] absolute top-[48] right-[390px] bottom-[85px]">
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <div
+                key={index}
+                className={`w-[8px] h-[8px] rounded-full ${
+                  currentPage === index + 1 ? "bg-primary" : "bg-gray-100 bg-opacity-15"
+                }`}
+                onClick={() => setCurrentPage(index + 1)}
+              ></div>
+            ))}
           </div>
         </div>
       </div>

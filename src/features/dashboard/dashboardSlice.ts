@@ -18,7 +18,7 @@ const initialState = {
   volunteersAWeekOld: [],
   volunteersTwoWeeksOld: [],
   activeVolunteers: [],
-  usersAvailableOnline: [],
+  usersOnline: [],
   numberOfAdminsPreviousMonth: null,
   newVolunteersPreviousMonth: [],
   totalNumberVolunteers: null,
@@ -93,7 +93,7 @@ const dashboardSlice = createSlice({
     .addCase( usersAvailableOnline.fulfilled, (state, action: PayloadAction<any>) => {
         state.loading = false;
         state.success = true;
-        state.usersAvailableOnline = action.payload;
+        state.usersOnline = action.payload;
     })
     .addCase(usersAvailableOnline.rejected, ( state, action: PayloadAction<any>) => {
         state.loading = false;
