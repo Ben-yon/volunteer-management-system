@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {  useRef, useState } from "react";
 import { media } from "../../assets";
 import { ChangeProfileModal } from "../../widgets/ChangeProfileModal";
@@ -14,17 +15,18 @@ export const Profile = () => {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
 
-  const userDetails = localStorage.getItem("userInfo");
+  const userDetails =  localStorage.getItem("userInfo");
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
+
   
   const uploadedImageRef = useRef<string | undefined>(
-  //@ts-ignore
+  //@ts-expect-error
     JSON.parse(userDetails)?.profilePicture
   );
-
+ 
 
   const [isActive, setIsActive] = useState(false);
 
@@ -38,17 +40,15 @@ export const Profile = () => {
     uploadedImageRef.current = imgSrc;
   };
 
+
   const deleteAdmin = (id: string | undefined) => {
     console.log(id);
   };
 
-  const token = localStorage.getItem('token')
 
   const userLogout = () => {
     dispatch(logout());
-    if (!token) {
-      navigate("/admin/sigin-in");
-    }
+    navigate("/admin/sigin-in");
   };
 
   return (
@@ -64,6 +64,9 @@ export const Profile = () => {
       <div className="flex justify-center space-x-[9px]">
         <div className="w-[336px]">
           <div className="hover:cursor-pointer">
+            {
+              
+            }
             <img
               src={uploadedImageRef.current}
               alt=""

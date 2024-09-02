@@ -11,6 +11,9 @@ import adminSlice from "./admins/adminSlice";
 import fetchAdminsSlice from "./admins/fetchAdminsSlice";
 import getMessagesSlice from "./messaging/getMessagesSlice";
 import postMessagesSlice from "./messaging/postMessagesSlice";
+import dashboardSlice from "./dashboard/dashboardSlice";
+import createTaskSlice from "./schedule/createTaskSlice";
+import getTasksSlice from "./schedule/getTasksSlice";
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +28,10 @@ export const store = configureStore({
     adminSlice: adminSlice,
     fetchAdminsSlice: fetchAdminsSlice,
     getMessagesSlice: getMessagesSlice,
-    postMessageSlice: postMessagesSlice
+    postMessageSlice: postMessagesSlice,
+    dashboardSlice: dashboardSlice,
+    createTaskSlice: createTaskSlice,
+    getTasksSlice: getTasksSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -35,3 +41,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+

@@ -3,6 +3,11 @@ import { CloseIcon } from "./CloseIcon";
 import { ChangeProfileModalProps } from "../interfaces/ModalProps";
 import { media } from "../assets";
 import Modal from "./Modal";
+// import { useDispatch, useSelector } from "react-redux";
+// import { RootState } from "../features/store";
+// import { ThunkDispatch } from "@reduxjs/toolkit";
+// import { updateUser } from "../features/users/userActions";
+// import { extractBase64 } from "../utils/imageConverter";
 
 export const ChangeProfileModal: React.FC<ChangeProfileModalProps> = ({
   setAvatar,
@@ -13,11 +18,22 @@ export const ChangeProfileModal: React.FC<ChangeProfileModalProps> = ({
 
   const updateAvatar = (imgSrc: string | undefined): void => {
     uploadedImageRef.current = imgSrc;
-    closeModal
   };
 
+  // const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+
+
+  // const { userInfo } = useSelector(
+  //   (state: RootState) => state.userSlice
+  // );
+  // const userDetails = localStorage.getItem("userInfo");
+
+  
+
   const uploadProfile = () => {
-    setAvatar(uploadedImageRef.current);
+    setAvatar(uploadedImageRef.current); 
+    //@ts-ignore
+    localStorage.setItem("profilePicture", JSON.stringify(uploadedImageRef))
     closeModal()
   };
 

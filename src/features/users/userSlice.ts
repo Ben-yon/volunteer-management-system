@@ -14,7 +14,9 @@ const initialState: UpdateAdmin = {
         email: "",
         firstName: "",
         lastName: "",
-        profilePicture: ""
+        profilePicture: "",
+        active: false,
+        telephone: ""
     }
 }
 
@@ -48,7 +50,8 @@ const userSlice = createSlice({
         .addCase(updateUser.fulfilled, (state, action: PayloadAction<any>) => {
             state.error = null;
             state.loading = false;
-            state.success = action.payload
+            state.userInfo = action.payload;
+            state.success = true;
         })
         .addCase(updateUser.rejected, (state) => {
             state.error = null;

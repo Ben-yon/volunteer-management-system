@@ -59,6 +59,8 @@ export interface UpdateAdmin extends BaseInitialStateInterface{
     profilePicture: string | undefined;
     contact: string;
     designation: string;
+    active: boolean;
+    telephone: string
   }
 }
 

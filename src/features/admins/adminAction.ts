@@ -35,3 +35,14 @@ export const fetchAdmins = createAsyncThunk(
         }
     }
 );
+
+// export const deleteAdmin = createAsyncThunk(
+//     'admin/delete',
+//     async(id : string) => {
+//         try{
+//             const { data } = await api.delete("")
+//         }catch(error){
+//             return error
+//         }
+//     }
+// )

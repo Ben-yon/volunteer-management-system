@@ -33,6 +33,8 @@ import completed_task from './icons/completed_task.svg';
 import previous_gray from './icons/previous_gray.svg';
 import previous_black from './icons/previous_black.svg';
 import next_gray from './icons/next_gray.svg';
+import open_eye from './icons/open_eye.svg';
+import closed_eye from './icons/closed_eye.svg'
 
 
 import notification from './icons/notification.svg';
@@ -169,5 +171,7 @@ export const media = {
     next_black,
     previous_gray,
     previous_black,
-    next_gray
+    next_gray,
+    open_eye,
+    closed_eye
 }

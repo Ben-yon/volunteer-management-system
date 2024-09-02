@@ -10,6 +10,7 @@ import { LoginPayload } from "../../interfaces/AuthInterface";
 export const ProfileManagement = () => {
   const [activeLink, setActiveLink] = useState<string | null>("");
   const [userInfo, setUserInfo] = useState<LoginPayload>();
+  const [role, setRole ] = useState<string| null>(null)
 
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -22,14 +23,15 @@ export const ProfileManagement = () => {
     localStorage.setItem("activeLink", path);
   };
 
-  const token = localStorage.getItem("token");
+  const storedUserInfo = localStorage.getItem("userInfo");
+  const userRole = localStorage.getItem("userRole");
 
   useEffect(() => {
-    const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
       setUserInfo(JSON.parse(storedUserInfo));
+      setRole(userRole)
     }
-  }, [state]);
+  }, [state, storedUserInfo, userRole]);
 
   useEffect(() => {
     const storedActiveLink = localStorage.getItem("activeLink");
@@ -40,9 +42,8 @@ export const ProfileManagement = () => {
 
   const userLogout = () => {
     dispatch(logout());
-    if (!token) {
-      navigate("/admin/sigin-in");
-    }
+    navigate("/admin/sigin-in");
+    
   };
 
   return (
@@ -69,7 +70,7 @@ export const ProfileManagement = () => {
           <p className="text-[15px] leading-[18.5px] flex flex-col font-[600]">
             {userInfo?.firstName} {userInfo?.lastName}
             <span className="text-[10px] leading-[12.1px] font-bold">
-              {userInfo?.roles[0]?.name}
+              {role}
             </span>
           </p>
         </div>
@@ -142,16 +143,6 @@ export const ProfileManagement = () => {
                   4
                 </p>
               </div>
-            </NavLink>
-            <NavLink
-              to="training"
-              className={`flex space-x-[13px] focus:filter ${
-                activeLink === "training" ? "bg-menu-focus" : ""
-              } pt-[12px] pb-[3.14px] text-[13px] leading-[15.73px] font-[600]`}
-              onClick={() => handleClick("training")}
-            >
-              <img src={media.giving} alt="" className="pl-[46px] pr-3" />
-              Training
             </NavLink>
             <NavLink
               to="scheduling"
@@ -242,7 +233,7 @@ export const ProfileManagement = () => {
                   {userInfo?.email}
                 </span>
                 <span className="text-[10px] leading-[12.1px]">
-                  {userInfo?.roles[0]?.name}
+                  {role}
                 </span>
               </div>
             </div>

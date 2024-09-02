@@ -23,6 +23,7 @@ export const AdminSignIn = () => {
   useEffect(() => {
     if(success){
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
+      localStorage.setItem("userRole", userInfo?.roles[0]?.name)
       navigate('/profile-management', { state: { isAuthenticated }});
     }
   }, [userInfo, isAuthenticated, success, navigate])
