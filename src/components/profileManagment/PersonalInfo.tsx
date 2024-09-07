@@ -71,8 +71,7 @@ export const PersonalInfo = () => {
     }
   }, [success, error, userInfo, adminDetails]);
   
-  //@ts-expect-error
-  const profilePicture = extractBase64(JSON.parse(localStorage.getItem("profilePicture"))?.current)
+  const profilePicture = localStorage.getItem("profilePicture")
   
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newFormData = {
@@ -100,7 +99,7 @@ export const PersonalInfo = () => {
           lastName: adminDetails?.lastName,
           email: adminDetails?.email,
           //@ts-ignore
-          profilePicture: profilePicture,
+          profilePicture: extractBase64(JSON.parse(profilePicture)?.current),
           contact: adminDetails?.telephone,
           //@ts-ignore
           designation: localStorage.getItem('userRole'),
