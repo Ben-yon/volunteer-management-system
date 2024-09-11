@@ -214,7 +214,7 @@ export const Messages = () => {
             targetId: activeUser?.id,
             body: message,
             targetType: TargetTypes.USER,
-            messageType: MessageTypes.TEXT
+            messsageType: MessageTypes.TEXT
           })
         );
         console.log("Message sent");
