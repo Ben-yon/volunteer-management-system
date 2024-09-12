@@ -12,8 +12,8 @@ import fetchAdminsSlice from "./admins/fetchAdminsSlice";
 import getMessagesSlice from "./messaging/getMessagesSlice";
 import postMessagesSlice from "./messaging/postMessagesSlice";
 import dashboardSlice from "./dashboard/dashboardSlice";
-import createTaskSlice from "./schedule/createTaskSlice";
-import getTasksSlice from "./schedule/getTasksSlice";
+import createTaskSlice from "./task/createTaskSlice";
+import getTasksSlice from "./task/getTasksSlice";
 
 export const store = configureStore({
   reducer: {
