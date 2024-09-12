@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { createTask } from "./schehuleActions";
+import { createTask } from "./taskActions";
 import { CreateTaskIntialStateInterface } from "../../interfaces/TaskScheduleInterface";
 
 const initialState: CreateTaskIntialStateInterface = {

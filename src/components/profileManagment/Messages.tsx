@@ -84,10 +84,9 @@ export const Messages = () => {
     }
   }, [userInfo, success, error, loading]);
 
-
   const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
   //@ts-ignore
-  const currentUserId = JSON.parse(localStorage.getItem("userInfo"))?.id
+  const currentUserId = JSON.parse(localStorage.getItem("userInfo"))?.id;
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
@@ -114,7 +113,6 @@ export const Messages = () => {
     };
   }, [handleClickOutside]);
 
-  
   const getUserById = (userId: string | undefined): UserDetails | undefined => {
     const user = messageUsers?.find((user) => user.id === userId);
     return user;
@@ -124,13 +122,13 @@ export const Messages = () => {
       const selectedUser = messageUsers?.find(
         (user) =>
           user?.firstName === name?.split(" ")[0] &&
-        user?.lastName === name.split(" ")[1]
+          user?.lastName === name.split(" ")[1]
       );
       return selectedUser;
     },
     [messageUsers]
   );
-  
+
   const userSearch = useCallback(
     debounce((searchTerm: string) => {
       if (searchTerm) {
@@ -147,61 +145,61 @@ export const Messages = () => {
     }, 200),
     [messageUsers]
   );
-  
+
   useEffect(() => {
     userSearch(query);
     return () => {
       userSearch.cancel();
     };
   }, [query, userSearch]);
-  
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
   };
-  
+
   const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
     setIsTyping(true);
   };
-  
+
   useEffect(() => {
     if (isTyping) {
       const typingTimeout = setTimeout(() => {
         setIsTyping(false); // Set typing state to false after 500ms of no input
       }, 500);
-      
+
       // Cleanup timeout if user types before the timeout ends
       return () => clearTimeout(typingTimeout);
     }
   }, [message]);
-  
+
   useEffect(() => {
     if (connection) {
       connection
-      .start()
-      .then(() => {
-        console.log("connected!");
-        
-        connection.on("ReceiveMessage", (userId: string, message: string) => {
-          setMessages((messages) => [
-            ...messages,
-            {
-              senderUserId: userId,
-              body: message,
-            },
-          ]);
-        });
-      })
-      .catch((e) => console.log("Connection failed: ", e));
+        .start()
+        .then(() => {
+          console.log("connected!");
+
+          connection.on("ReceiveMessage", (userId: string, message: string) => {
+            setMessages((messages) => [
+              ...messages,
+              {
+                senderUserId: userId,
+                body: message,
+              },
+            ]);
+          });
+        })
+        .catch((e) => console.log("Connection failed: ", e));
     }
   }, [connection]);
-  
+
   const selectUserOrGroup = (event: React.MouseEvent<HTMLSpanElement>) => {
     const user = getUserByName(event.currentTarget.innerText);
     setActivUser(user);
     setUserId(currentUserId);
   };
-  
+
   const sendMessage = async () => {
     if (
       connection &&
@@ -214,7 +212,7 @@ export const Messages = () => {
             targetId: activeUser?.id,
             body: message,
             targetType: TargetTypes.USER,
-            messageType: MessageTypes.TEXT
+            messsageType: MessageTypes.TEXT,
           })
         );
         console.log("Message sent");
@@ -230,7 +228,7 @@ export const Messages = () => {
     //@ts-ignore
     setMessages(messageDetails);
   }, [messageDetails]);
-  
+
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       sendMessage();
@@ -336,11 +334,21 @@ export const Messages = () => {
                 key={message.id}
                 className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
               >
-                <img
-                  src={activeUser?.profilePicture}
-                  alt=""
-                  className="w-[38px] h-[38px] rounded-full "
-                />
+                <div>
+                  {activeUser?.profilePicture ? (
+                    <img
+                      src={activeUser?.profilePicture}
+                      alt="profile"
+                      className="w-[38px] h-[38px] rounded-full "
+                    />
+                  ) : (
+                    <img
+                      src={media.upload}
+                      alt="profile"
+                      className="w-[38px] h-[38px] rounded-full "
+                    />
+                  )}
+                </div>
                 <div className=" flex flex-col">
                   <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
                     {activeUser?.firstName} {activeUser?.lastName}{" "}

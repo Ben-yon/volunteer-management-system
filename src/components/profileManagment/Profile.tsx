@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { media } from "../../assets";
 import { ChangeProfileModal } from "../../widgets/ChangeProfileModal";
 import { DeleteAdminModal } from "../../widgets/DeleteAdminAccountModal";
@@ -8,43 +8,35 @@ import { useDispatch } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { Outlet, useNavigate } from "react-router-dom";
 
-
 export const Profile = () => {
-  
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
 
-  const userDetails =  localStorage.getItem("userInfo");
+  const userDetails = localStorage.getItem("userInfo");
 
   const [modalOpen, setModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
-
-  
   const uploadedImageRef = useRef<string | undefined>(
-  //@ts-expect-error
+    //@ts-expect-error
     JSON.parse(userDetails)?.profilePicture
   );
- 
 
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
-    navigate("change-password")
+    navigate("change-password");
     setIsActive(true);
   };
-
 
   const setAvatar = (imgSrc: string | undefined) => {
     uploadedImageRef.current = imgSrc;
   };
 
-
   const deleteAdmin = (id: string | undefined) => {
     console.log(id);
   };
-
 
   const userLogout = () => {
     dispatch(logout());
@@ -64,14 +56,19 @@ export const Profile = () => {
       <div className="flex justify-center space-x-[9px]">
         <div className="w-[336px]">
           <div className="hover:cursor-pointer">
-            {
-              
-            }
-            <img
-              src={uploadedImageRef.current}
-              alt=""
-              className="w-[109px] h-[109px] rounded-full"
-            />
+            {uploadedImageRef.current ? (
+              <img
+                src={uploadedImageRef.current}
+                alt=""
+                className="w-[109px] h-[109px] rounded-full"
+              />
+            ) : (
+              <img
+                src={media.upload}
+                alt=""
+                className="w-[109px] h-[109px] rounded-full"
+              />
+            )}
           </div>
           {modalOpen && (
             <ChangeProfileModal
@@ -97,13 +94,23 @@ export const Profile = () => {
                 Change Profile
               </p>
             </div>
-            <div onClick={() => handleClick() } className={!isActive ? "flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]": "flex items-center space-x-[14px] hover:cursor-pointer bg-slate-300  w-[179px] h-[3opx] rounded-[7px]"}>
+            <div
+              onClick={() => handleClick()}
+              className={
+                !isActive
+                  ? "flex items-center space-x-[14px] hover:cursor-pointer hover:bg-slate-300 active:bg-slate-100 hover:w-[179px] hover:h-[3opx] hover:rounded-[7px]"
+                  : "flex items-center space-x-[14px] hover:cursor-pointer bg-slate-300  w-[179px] h-[3opx] rounded-[7px]"
+              }
+            >
               <img src={media.change_password} alt="" />
               <p className="font-[600] text-[14px] leading-[16.94px] active:bg-black">
                 Change Password
               </p>
             </div>
-            <div className="flex items-center space-x-[14px] hover:cursor-pointer" onClick={userLogout}>
+            <div
+              className="flex items-center space-x-[14px] hover:cursor-pointer"
+              onClick={userLogout}
+            >
               <img src={media.user_logout} alt="" className="ml-[3px]" />
               <p className="font-[600] text-[14px] leading-[16.94px]">
                 Log Out
@@ -127,7 +134,7 @@ export const Profile = () => {
           </div>
         </div>
         <div className="w-[873px] h-[797px] rounded-[21px] border-[2px] flex flex-col">
-          <Outlet/>
+          <Outlet />
         </div>
       </div>
     </>
