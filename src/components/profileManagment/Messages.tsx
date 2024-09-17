@@ -57,6 +57,10 @@ export const Messages = () => {
 
   const [activeUser, setActivUser] = useState<UserDetails>();
 
+  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
+  //@ts-ignore
+  const currentUser = JSON.parse(localStorage.getItem("userInfo"));
+
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const fetchUsers = useCallback(() => {
@@ -75,7 +79,8 @@ export const Messages = () => {
   useEffect(() => {
     if (success) {
       //@ts-expect-error
-      setMessageUsers(userInfo);
+      const displayUsers = userInfo?.filter((user) => user.id !== currentUser.id)
+      setMessageUsers(displayUsers);
       toast.success("Users fetch successful");
     } else if (loading) {
       toast.info("Message Users Loading", { isLoading: false });
@@ -84,9 +89,6 @@ export const Messages = () => {
     }
   }, [userInfo, success, error, loading]);
 
-  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
-  //@ts-ignore
-  const currentUserId = JSON.parse(localStorage.getItem("userInfo"))?.id;
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
@@ -197,7 +199,7 @@ export const Messages = () => {
   const selectUserOrGroup = (event: React.MouseEvent<HTMLSpanElement>) => {
     const user = getUserByName(event.currentTarget.innerText);
     setActivUser(user);
-    setUserId(currentUserId);
+    setUserId(currentUser?.id);
   };
 
   const sendMessage = async () => {
@@ -328,37 +330,75 @@ export const Messages = () => {
               )}
             </div>
           </div>
-          <div className="flex w-[806px] h-[659px] bg-messages rounded-[17px] mt-[41px] ml-[11px]">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
-              >
-                <div>
-                  {activeUser?.profilePicture ? (
-                    <img
-                      src={activeUser?.profilePicture}
-                      alt="profile"
-                      className="w-[38px] h-[38px] rounded-full "
-                    />
-                  ) : (
-                    <img
-                      src={media.upload}
-                      alt="profile"
-                      className="w-[38px] h-[38px] rounded-full "
-                    />
-                  )}
-                </div>
-                <div className=" flex flex-col">
-                  <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
-                    {activeUser?.firstName} {activeUser?.lastName}{" "}
-                  </span>
-                  <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
-                    {message.body}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col w-[806px] h-[659px] bg-messages rounded-[17px] mt-[41px] ml-[11px]">
+            <div>
+              {messages
+                ?.filter((rec) => rec.senderUserId === activeUser?.id)
+                ?.map((message) => (
+                  <div
+                    key={message.id}
+                    className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
+                  >
+                    <div>
+                      {activeUser?.profilePicture ? (
+                        <img
+                          src={activeUser?.profilePicture}
+                          alt="profile"
+                          className="w-[38px] h-[38px] rounded-full"
+                        />
+                      ) : (
+                        <img
+                          src={media.upload}
+                          alt="profile"
+                          className="w-[38px] h-[38px] rounded-full "
+                        />
+                      )}
+                    </div>
+                    <div className=" flex flex-col">
+                      <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
+                        {activeUser?.firstName} {activeUser?.lastName}{" "}
+                      </span>
+                      <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
+                        {message.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            <div className="absolute right-[37px] mt-[38px]">
+              {messages
+                ?.filter((rec) => rec.senderUserId === currentUser.id && rec.targetId === activeUser?.id)
+                ?.map((message) => (
+                  <div
+                    key={message.id}
+                    className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
+                  >
+                    <div className=" flex flex-col">
+                      <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
+                        {activeUser?.firstName} {activeUser?.lastName}{" "}
+                      </span>
+                      <p className="text-primary p-3 bg-admin-secondary w-auto rounded-l-[15px] rounded-br-[15px] font-[500] text-[11px] leading-[13.31px]">
+                        {message.body}
+                      </p>
+                    </div>
+                    <div>
+                      {activeUser?.profilePicture ? (
+                        <img
+                          src={activeUser?.profilePicture}
+                          alt="profile"
+                          className="w-[38px] h-[38px] rounded-full"
+                        />
+                      ) : (
+                        <img
+                          src={media.upload}
+                          alt="profile"
+                          className="w-[38px] h-[38px] rounded-full "
+                        />
+                      )}
+                    </div>
+                  </div>
+                ))}
+            </div>
           </div>
           <div className="flex items-center space-x-1">
             <input
