@@ -229,7 +229,11 @@ export const Messages = () => {
   };
   useEffect(() => {
     //@ts-ignore
-    setMessages(messageDetails);
+    setMessages([...messageDetails].sort((a, b) => {
+      const dateA = a.createdDate ? new Date(a.createdDate).getTime() : 0;
+      const dateB = b.createdDate ? new Date(b.createdDate).getTime() : 0;
+      return dateA - dateB;
+    }));
   }, [messageDetails]);
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -366,7 +370,7 @@ export const Messages = () => {
                   </div>
                 ))}
             </div>
-            <div className="flex flex-col items-center justify-center relative left-[290px] mt-[38px]">
+            <div className="flex flex-col items-center relative left-[290px] mt-[38px]">
               {messages
                 ?.filter((rec) => rec.senderUserId === currentUser.id && rec.targetId === activeUser?.id)
                 ?.map((message) => (
