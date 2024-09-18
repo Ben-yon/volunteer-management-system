@@ -370,7 +370,7 @@ export const Messages = () => {
                   </div>
                 ))}
             </div>
-            <div className="flex flex-col items-center relative left-[290px] mt-[38px]">
+            <div className="flex flex-col items-center justify-center relative left-[290px] mt-[38px]">
               {messages
                 ?.filter((rec) => rec.senderUserId === currentUser.id && rec.targetId === activeUser?.id)
                 ?.map((message) => (
@@ -380,16 +380,16 @@ export const Messages = () => {
                   >
                     <div className=" flex flex-col">
                       <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
-                        {activeUser?.firstName} {activeUser?.lastName}{" "}
+                        {currentUser?.firstName} {currentUser?.lastName}{" "}
                       </span>
                       <p className="text-primary p-3 bg-admin-secondary w-auto rounded-l-[15px] rounded-br-[15px] font-[500] text-[11px] leading-[13.31px]">
                         {message.body}
                       </p>
                     </div>
                     <div>
-                      {activeUser?.profilePicture ? (
+                      {currentUser?.profilePicture ? (
                         <img
-                          src={activeUser?.profilePicture}
+                          src={currentUser?.profilePicture}
                           alt="profile"
                           className="w-[38px] h-[38px] rounded-full"
                         />
