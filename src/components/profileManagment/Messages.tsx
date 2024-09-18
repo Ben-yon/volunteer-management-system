@@ -219,6 +219,7 @@ export const Messages = () => {
         );
         console.log("Message sent");
         setMessage(message);
+        setMessage("");
       } catch (e) {
         console.error(e);
       }
@@ -365,13 +366,13 @@ export const Messages = () => {
                   </div>
                 ))}
             </div>
-            <div className="absolute right-[37px] mt-[38px]">
+            <div className="flex flex-col items-center justify-center relative left-[290px] mt-[38px]">
               {messages
                 ?.filter((rec) => rec.senderUserId === currentUser.id && rec.targetId === activeUser?.id)
                 ?.map((message) => (
                   <div
                     key={message.id}
-                    className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
+                    className="flex mt-[40px] space-x-[4px]"
                   >
                     <div className=" flex flex-col">
                       <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
