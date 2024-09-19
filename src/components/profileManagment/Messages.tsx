@@ -12,6 +12,9 @@ import {
   useRef,
 } from "react";
 
+import { format, isSameDay } from "date-fns";
+import { formatTime } from "../../utils/extractTimeFrom";
+
 import * as signalR from "@microsoft/signalr";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
@@ -57,6 +60,10 @@ export const Messages = () => {
 
   const [activeUser, setActivUser] = useState<UserDetails>();
 
+  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
+  //@ts-ignore
+  const currentUser = JSON.parse(localStorage.getItem("userInfo"));
+
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
   const fetchUsers = useCallback(() => {
@@ -75,7 +82,11 @@ export const Messages = () => {
   useEffect(() => {
     if (success) {
       //@ts-expect-error
-      setMessageUsers(userInfo);
+      const displayUsers = userInfo?.filter(
+        //@ts-ignore
+        (user) => user.id !== currentUser.id
+      );
+      setMessageUsers(displayUsers);
       toast.success("Users fetch successful");
     } else if (loading) {
       toast.info("Message Users Loading", { isLoading: false });
@@ -83,10 +94,6 @@ export const Messages = () => {
       toast.error("User fetch was not successful");
     }
   }, [userInfo, success, error, loading]);
-
-  const connectionURL = import.meta.env.VITE_BACKEND_SERVER_BASE_URL;
-  //@ts-ignore
-  const currentUserId = JSON.parse(localStorage.getItem("userInfo"))?.id;
 
   useEffect(() => {
     const newConnection = new signalR.HubConnectionBuilder()
@@ -197,7 +204,7 @@ export const Messages = () => {
   const selectUserOrGroup = (event: React.MouseEvent<HTMLSpanElement>) => {
     const user = getUserByName(event.currentTarget.innerText);
     setActivUser(user);
-    setUserId(currentUserId);
+    setUserId(currentUser?.id);
   };
 
   const sendMessage = async () => {
@@ -217,6 +224,7 @@ export const Messages = () => {
         );
         console.log("Message sent");
         setMessage(message);
+        setMessage("");
       } catch (e) {
         console.error(e);
       }
@@ -226,7 +234,13 @@ export const Messages = () => {
   };
   useEffect(() => {
     //@ts-ignore
-    setMessages(messageDetails);
+    setMessages(
+      [...messageDetails].sort((a, b) => {
+        const dateA = a.createdDate ? new Date(a.createdDate).getTime() : 0;
+        const dateB = b.createdDate ? new Date(b.createdDate).getTime() : 0;
+        return dateA - dateB;
+      })
+    );
   }, [messageDetails]);
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -234,6 +248,19 @@ export const Messages = () => {
       sendMessage();
     }
   };
+
+  const formatDateHeader = (dateString: string) => {
+    const date = new Date(dateString);
+    const today = new Date();
+
+    if (isSameDay(date, today)) {
+      return `Today, ${format(date, "MMMM dd")}`;
+    } else {
+      return format(date, "MMMM dd");
+    }
+  };
+
+  let lastMessageDate: string | null = null;
 
   return (
     <div className="flex  flex-col justify-center">
@@ -328,37 +355,112 @@ export const Messages = () => {
               )}
             </div>
           </div>
-          <div className="flex w-[806px] h-[659px] bg-messages rounded-[17px] mt-[41px] ml-[11px]">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className="flex flex-row ml-[37px] mt-[40px] space-x-[4px]"
-              >
-                <div>
-                  {activeUser?.profilePicture ? (
-                    <img
-                      src={activeUser?.profilePicture}
-                      alt="profile"
-                      className="w-[38px] h-[38px] rounded-full "
-                    />
-                  ) : (
-                    <img
-                      src={media.upload}
-                      alt="profile"
-                      className="w-[38px] h-[38px] rounded-full "
-                    />
-                  )}
-                </div>
-                <div className=" flex flex-col">
-                  <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
-                    {activeUser?.firstName} {activeUser?.lastName}{" "}
-                  </span>
-                  <p className="text-primary p-3 bg-admin-secondary w-auto rounded-r-[15px] rounded-bl-[15px] font-[500] text-[11px] leading-[13.31px]">
-                    {message.body}
-                  </p>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col w-[806px] h-[659px] bg-messages rounded-[17px] mt-[41px] ml-[11px] overflow-auto">
+            {messages
+              ?.filter(
+                (rec) =>
+                  (rec.targetId === currentUser?.id &&
+                    rec.senderUserId === activeUser?.id) ||
+                  (rec.senderUserId === currentUser?.id &&
+                    rec.targetId === activeUser?.id)
+              )
+              ?.map((message) => {
+                const isSentByCurrentUser =
+                  message.senderUserId === currentUser?.id;
+                const messageDate = message.createdDate || ""; // Make sure createdDate is provided
+
+                const showDateHeader =
+                  !lastMessageDate ||
+                  !isSameDay(new Date(lastMessageDate), new Date(messageDate));
+
+                lastMessageDate = messageDate; // Update the lastMessageDate
+
+                return (
+                  <div key={message.id}>
+                    {showDateHeader && (
+                      <div className="flex items-center justify-center my-4 text-admin-secondary text-[8px] leading-[9.68px] font-[500]  rounded-[9px]">
+                        {formatDateHeader(messageDate)}
+                      </div>
+                    )}
+                    <div
+                      className={`flex mt-[40px] space-x-[4px] ${
+                        isSentByCurrentUser
+                          ? "justify-end mr-[37px]"
+                          : "justify-start ml-[37px]"
+                      }`}
+                    >
+                      {!isSentByCurrentUser && (
+                        <div>
+                          {activeUser?.profilePicture ? (
+                            <img
+                              src={activeUser?.profilePicture}
+                              alt="profile"
+                              className="w-[38px] h-[38px] rounded-full"
+                            />
+                          ) : (
+                            <img
+                              src={media.upload}
+                              alt="profile"
+                              className="w-[38px] h-[38px] rounded-full "
+                            />
+                          )}
+                        </div>
+                      )}
+                      <div className="flex flex-col">
+                        <div>
+                          {isSentByCurrentUser ? (
+                            <div className="flex space-x-[15px]">
+                              <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
+                                {currentUser?.firstName} {currentUser?.lastName}
+                              </span>
+                              <span className="text-admin-secondary font-[400] text-[9px] leading-[10.89px]">
+                                {/**@ts-ignore */}
+                                {formatTime(message.createdDate)}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="flex space-x-[15px]">
+                              <span className="text-admin-secondary font-[600] leading-[15.73px] text-[13px] mb-[4px]">
+                                {currentUser?.firstName} {currentUser?.lastName}
+                              </span>
+                              <span className="text-admin-secondary font-[400] text-[9px] leading-[10.89px]">
+                                {/**@ts-ignore */}
+                                {formatTime(message.createdDate)}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                        <p
+                          className={`text-primary p-3 w-auto ${
+                            isSentByCurrentUser
+                              ? "bg-admin-secondary rounded-l-[15px] rounded-br-[15px]"
+                              : "bg-admin-secondary rounded-r-[15px] rounded-bl-[15px]"
+                          } font-[500] text-[11px] leading-[13.31px]`}
+                        >
+                          {message.body}
+                        </p>
+                      </div>
+                      {isSentByCurrentUser && (
+                        <div>
+                          {currentUser?.profilePicture ? (
+                            <img
+                              src={currentUser?.profilePicture}
+                              alt="profile"
+                              className="w-[38px] h-[38px] rounded-full"
+                            />
+                          ) : (
+                            <img
+                              src={media.upload}
+                              alt="profile"
+                              className="w-[38px] h-[38px] rounded-full "
+                            />
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
           <div className="flex items-center space-x-1">
             <input
