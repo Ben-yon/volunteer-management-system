@@ -108,7 +108,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .emails-card {
-  background: #6D0000;
+  background: white;
   box-shadow: 0px 0px 7.6px 0px #00000012;
 
 }

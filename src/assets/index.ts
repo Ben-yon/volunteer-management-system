@@ -80,7 +80,7 @@ import lang_white from './icons/lang-white.svg';
 import lang_black from './icons/lang-black.svg';
 import compose from './icons/compose.svg';
 import red_dot from './icons/red_dot.svg';
-import white_envelope from './icons/envelope_white.svg'
+import black_envelope from './icons/envelope_black.svg'
 import attachment from './icons/atttachment.svg';
 // Here I want to push some sample images of people
 
@@ -100,7 +100,7 @@ export const media = {
     notification,
     addPassword,
     networks,
-    white_envelope,
+    black_envelope,
     admin_icon,
     passwordChanged,
     giving,
