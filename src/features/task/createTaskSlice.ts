@@ -5,7 +5,7 @@ import { CreateTaskIntialStateInterface } from "../../interfaces/TaskScheduleInt
 
 const initialState: CreateTaskIntialStateInterface = {
     loading: false,
-    success: false,
+    isTaskCreated: false,
     error: null,
     task : {
         id: "",
@@ -26,17 +26,17 @@ const createTasksSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(createTask.pending, (state) => {
             state.loading = true;
-            state.success = false;
+            state.isTaskCreated = false;
             state.error = null;
         })
         .addCase(createTask.fulfilled, (state, action: PayloadAction<any>) => {
             state.loading = false;
-            state.success = true;
+            state.isTaskCreated = true;
             state.task = action.payload;
         })
         .addCase(createTask.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;
-            state.success = false;
+            state.isTaskCreated = false;
             state.error = action.payload;
         })
     }

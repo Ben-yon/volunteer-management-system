@@ -6,8 +6,8 @@ export interface CreateTaskInterface {
 }
 
 export interface ScheduleTaskInterface {
-  endDateTime: Date;
-  startDateTime: Date;
+  endDateTime: Date | null;
+  startDateTime: Date | null;
   status: string;
   taskId: string;
   notes?: string;
@@ -20,8 +20,10 @@ export interface VolunteerScheduleTask {
   supervisorsNote: string;
 }
 
-export interface CreateTaskIntialStateInterface
-  extends BaseInitialStateInterface {
+export interface CreateTaskIntialStateInterface {
+  loading: boolean;
+  error: string | null;
+  isTaskCreated: boolean;
   task: Task;
 }
 
