@@ -8,7 +8,7 @@ export interface CreateTaskInterface {
 export interface ScheduleTaskInterface {
   endDateTime: Date | null;
   startDateTime: Date | null;
-  status: string;
+  Status: string;
   taskId: string;
   notes?: string;
 }
@@ -32,7 +32,10 @@ export interface GetTasksInitialStateInterface
   tasks: Array<Task>;
 }
 
-export interface CreateScheduleTaskInitialStateInterface extends BaseInitialStateInterface{
+export interface CreateScheduleTaskInitialStateInterface{
+  loading: boolean;
+  error: string | null;
+  isScheduled: boolean;
   scheduledTask: ScheduledTask;
 }
 

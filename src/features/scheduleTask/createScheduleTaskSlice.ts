@@ -7,7 +7,7 @@ import { scheduleTask } from "./scheduleTaskActions";
 const initialState: CreateScheduleTaskInitialStateInterface = {
     loading: false,
     error: null,
-    success: false,
+    isScheduled: false,
     scheduledTask: {
         id: "",
         taskId: "",
@@ -30,18 +30,18 @@ const createScheduleTaskSlice = createSlice({
         builder.addCase(scheduleTask.pending, (state) => {
             state.error = null;
             state.loading = true;
-            state. success = false
+            state. isScheduled = false
         })
         .addCase(scheduleTask.fulfilled, (state, action: PayloadAction<any>) => {
             state.error = null; 
             state.scheduledTask = action.payload;
-            state.success = true;
+            state.isScheduled = true;
             state.loading = false;
         })
         .addCase(scheduleTask.rejected, (state, action: PayloadAction<any>) => {
             state.error = action.payload;
             state.loading = false;
-            state.success = false;
+            state.isScheduled = false;
         })
     }
 

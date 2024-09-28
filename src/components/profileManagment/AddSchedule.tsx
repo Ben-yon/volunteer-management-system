@@ -2,7 +2,7 @@
 import { media } from "../../assets";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from "react";
 import { CreateTaskInterface } from "../../interfaces/TaskScheduleInterface";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
@@ -12,22 +12,17 @@ import { Spinner } from "../../widgets/Spinner";
 import { getVolunteers } from "../../features/volunteer/volunteerAction";
 import { createTask } from "../../features/task/taskActions";
 import { scheduleTask } from "../../features/scheduleTask/scheduleTaskActions";
+import { createVolunteerScheduleTask } from "../../features/volunteerScheduleTask/volunteerScheduleTaskAction";
 
 export const AddSchedule = () => {
   const [selectedOnDate, setSelectedOnDate] = useState<Date | null>(null);
   const [selectedFromDate, setSelectedFromDate] = useState<Date | null>(null);
   const [selectedToDate, setSelectedToDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<Date | null>(null);
-  const [selectedVolunteers, setSelectedVolunteers] = useState<Array<string>>(
-    []
-  );
+  const [selectedVolunteer, setSelectedVolunteers] = useState<string>("");
 
-  const handleSelectedVolunteers = (event: ChangeEvent<HTMLSelectElement>) => {
-    const selectedOptions = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value
-    );
-    setSelectedVolunteers(selectedOptions);
+  const handleSelectedVolunteer = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedVolunteers(event.target.value);
   };
 
   const [scheduleTaskDetails, setScheduleTaskDetails] = useState<CreateTaskInterface>({
@@ -39,6 +34,9 @@ export const AddSchedule = () => {
   const { isTaskCreated, task, loading, error } = useSelector(
     (state: RootState) => state.createTaskSlice
   );
+
+  const { isScheduled, scheduledTask } = useSelector((state: RootState) => state.createScheduleTaskSlice);
+  const { isVolunteerScheduledTask } = useSelector((state: RootState) => state.createVolunteerScheduleTaskSlice);
   const { userInfo } = useSelector((state: RootState) => state.volunteerSlice);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
@@ -76,15 +74,24 @@ export const AddSchedule = () => {
   //   );
   // };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
     createATask();
+    console.log("nay!")
     if (isTaskCreated){
       dispatch(scheduleTask({
         taskId: task.id,
         startDateTime: selectedFromDate,
         endDateTime: selectedToDate,
-        status: ""
+        Status: "pending"
       }));
+    }
+    if(isScheduled){
+      dispatch(createVolunteerScheduleTask({
+        scheduleTaskId: scheduledTask.id,
+        volunteerId: selectedVolunteer,
+        supervisorsNote: ""
+      }))
     }
   };
 
@@ -102,12 +109,12 @@ export const AddSchedule = () => {
   
 
   useEffect(() => {
-    if (isTaskCreated) {
-      navigate("profile-management/scheduling");
+    if (isVolunteerScheduledTask) {
+      navigate("/profile-management/scheduling");
     } else {
       return;
     }
-  }, [error, navigate, isTaskCreated]);
+  }, [error, navigate, isVolunteerScheduledTask]);
 
   return (
     <div className="flex flex-col">
@@ -152,8 +159,8 @@ export const AddSchedule = () => {
           />
           <select
             className="w-[416.04px] h-[60px] border rounded-[21.2px] shadow-light pl-[84px] flex flex-row item-center justify-center appearance-none"
-            value={selectedVolunteers}
-            onChange={handleSelectedVolunteers}
+            value={selectedVolunteer}
+            onChange={handleSelectedVolunteer}
           >
             {userInfo.map((volunteer, index) => (
               <option
