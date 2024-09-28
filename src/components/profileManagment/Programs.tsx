@@ -36,7 +36,7 @@ export const Programs = () => {
   }, [success, programInfo, error]);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 5; // Display 5 items, so the 6th spot is for the "Add New" button
+  const itemsPerPage = 5;
 
   const handleNext = () => {
     if ((currentPage + 1) * itemsPerPage < programs.length) {
@@ -101,24 +101,32 @@ export const Programs = () => {
             </p>
           </div>
           <div className="absolute bottom-[41px] right-[36px]">
-          <button onClick={handlePrevious} className="" disabled={currentPage === 0}>
-            {
-              currentPage === 0 ? (
+            <button
+              onClick={handlePrevious}
+              className=""
+              disabled={currentPage === 0}
+            >
+              {currentPage === 0 ? (
                 <img src={media.previous_gray} alt="" />
-              ): (
-                <img src={media.previous_black} alt="" />
-              )
-            }
-          </button>
-          <button onClick={handleNext}>
-            {
-              startIndex + itemsPerPage >= programs?.length ? (
-                <img src={media.next_gray} alt="" className="w-[25px] h-[25px]"/>
               ) : (
-                <img src={media.next_black} alt="" className="w-[25px] h-[25px]"/>
-              )
-            }
-          </button>
+                <img src={media.previous_black} alt="" />
+              )}
+            </button>
+            <button onClick={handleNext}>
+              {startIndex + itemsPerPage >= programs?.length ? (
+                <img
+                  src={media.next_gray}
+                  alt=""
+                  className="w-[25px] h-[25px]"
+                />
+              ) : (
+                <img
+                  src={media.next_black}
+                  alt=""
+                  className="w-[25px] h-[25px]"
+                />
+              )}
+            </button>
           </div>
         </div>
       </div>

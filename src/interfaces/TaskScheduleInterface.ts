@@ -44,7 +44,7 @@ export interface GetScheduledTasksInitialStateInterface
   scheduledTasks: Array<ScheduledTask>;
 }
 
-interface Task {
+export interface Task {
   id: string;
   name: string;
   description: string;
