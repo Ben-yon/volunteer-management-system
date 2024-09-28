@@ -2,7 +2,13 @@
 import { media } from "../../assets";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { CreateTaskInterface } from "../../interfaces/TaskScheduleInterface";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
@@ -25,18 +31,23 @@ export const AddSchedule = () => {
     setSelectedVolunteers(event.target.value);
   };
 
-  const [scheduleTaskDetails, setScheduleTaskDetails] = useState<CreateTaskInterface>({
-    name: "",
-    description: "",
-    notes: "",
-  });
+  const [scheduleTaskDetails, setScheduleTaskDetails] =
+    useState<CreateTaskInterface>({
+      name: "",
+      description: "",
+      notes: "",
+    });
 
-  const { isTaskCreated, task, loading, error } = useSelector(
+  const { isTaskCreated, task, error, loading } = useSelector(
     (state: RootState) => state.createTaskSlice
   );
 
-  const { isScheduled, scheduledTask } = useSelector((state: RootState) => state.createScheduleTaskSlice);
-  const { isVolunteerScheduledTask } = useSelector((state: RootState) => state.createVolunteerScheduleTaskSlice);
+  const { isScheduled, scheduledTask } = useSelector(
+    (state: RootState) => state.createScheduleTaskSlice
+  );
+  const { isVolunteerScheduledTask } = useSelector(
+    (state: RootState) => state.createVolunteerScheduleTaskSlice
+  );
   const { userInfo } = useSelector((state: RootState) => state.volunteerSlice);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
@@ -77,22 +88,7 @@ export const AddSchedule = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     createATask();
-    console.log("nay!")
-    if (isTaskCreated){
-      dispatch(scheduleTask({
-        taskId: task.id,
-        startDateTime: selectedFromDate,
-        endDateTime: selectedToDate,
-        Status: "pending"
-      }));
-    }
-    if(isScheduled){
-      dispatch(createVolunteerScheduleTask({
-        scheduleTaskId: scheduledTask.id,
-        volunteerId: selectedVolunteer,
-        supervisorsNote: ""
-      }))
-    }
+    console.log("nay!");
   };
 
   const getVolunteersDetails = useCallback(() => {
@@ -104,9 +100,41 @@ export const AddSchedule = () => {
   }, [getVolunteersDetails]);
 
   const createATask = () => {
-    dispatch(createTask(scheduleTaskDetails))
-  }
-  
+    dispatch(createTask(scheduleTaskDetails));
+  };
+
+  const scheduleATask = useCallback(() => {
+    dispatch(
+      scheduleTask({
+        taskId: task.id,
+        startDateTime: selectedFromDate,
+        endDateTime: selectedToDate,
+        Status: "pending",
+      })
+    );
+  }, [dispatch, selectedFromDate, selectedToDate, task.id]);
+
+  const assignTaskToVolunteer = useCallback(() => {
+    dispatch(
+      createVolunteerScheduleTask({
+        scheduleTaskId: scheduledTask.id,
+        volunteerId: selectedVolunteer,
+        supervisorsNote: "",
+      })
+    );
+  }, [dispatch, scheduledTask.id, selectedVolunteer])
+
+  useEffect(() => {
+    if (isTaskCreated) {
+      scheduleATask();
+    }
+  }, [isTaskCreated, scheduleATask]);
+
+  useEffect(() => {
+    if (isScheduled) {
+      assignTaskToVolunteer()
+    }
+  }, [assignTaskToVolunteer, isScheduled])
 
   useEffect(() => {
     if (isVolunteerScheduledTask) {
