@@ -1,15 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useDispatch, useSelector } from "react-redux";
 import { media } from "../../assets";
 import { RootState } from "../../features/store";
-import { useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { fetchAdmins } from "../../features/admins/adminAction";
 import { AdminRegisterPayload } from "../../interfaces/AuthInterface";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 
 export const Admins = () => {
   const [admins, setAdmins] = useState<Array<AdminRegisterPayload>>([]);
+  const [ filteredAdmins, setFilteredAdmins ] = useState<Array<AdminRegisterPayload>>([]);
+  const [query, setQuery] = useState("");
+
+
   const { success, loading, adminsInfo, error } = useSelector(
     (state: RootState) => state.fetchAdminsSlice
   );
@@ -28,13 +34,20 @@ export const Admins = () => {
   useEffect(() => {
     if (success) {
       setAdmins(adminsInfo);
-    } else if (error) {
-      toast.error("Error fetching Admins");
     }
+  }, [adminsInfo, success]);
+
+  useEffect(() => {
     if (loading) {
-      toast.loading("Admins are loading");
+      toast.success("Admins loading successfully");
     }
-  });
+  }, [loading]);
+
+  useEffect(() => {
+    if(error){
+      toast.error(error);
+    }
+  }, [error])
 
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 9; // Display 9 items, so the 10th spot is for the "Add New" button
@@ -52,10 +65,39 @@ export const Admins = () => {
   };
 
   const startIndex = currentPage * itemsPerPage;
-  const currentAdmins = admins?.slice(startIndex, startIndex + itemsPerPage);
+  const currentAdmins = filteredAdmins?.slice(startIndex, startIndex + itemsPerPage);
 
   const addAdmin = () => {
     navigate("/admins/add");
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const userSearch = useCallback(
+    debounce((searchTerm: string) => {
+      if (searchTerm) {
+        const filtered = admins?.filter((admin) => {
+          return (
+            admin.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            admin.lastName.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+        });
+        setFilteredAdmins(filtered);
+      } else {
+        setFilteredAdmins(admins);
+      }
+    }, 200),
+    [admins]
+  );
+
+  useEffect(() => {
+    userSearch(query);
+    return () => {
+      userSearch.cancel();
+    };
+  }, [query, userSearch]);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
   };
 
   return (
@@ -80,6 +122,8 @@ export const Admins = () => {
               type="text"
               className="w-[329px] h-[43px] rounded-[13px] border-[0.5px] leading-[14.52px] text-[12px]  pl-[48px] focus:outline-none admins-shadow"
               placeholder="Search by name, email, team, etc"
+              value={query}
+              onChange={handleChange}
             />
           </div>
           <select
@@ -180,6 +224,7 @@ export const Admins = () => {
           </button>
         </div>
       </div>
+      <ToastContainer/>
     </>
   );
 };

@@ -32,6 +32,7 @@ import add_task from './icons/add_task.svg';
 import completed_task from './icons/completed_task.svg';
 import previous_gray from './icons/previous_gray.svg';
 import previous_black from './icons/previous_black.svg';
+import previous_red from './icons/previous_red.svg';
 import next_gray from './icons/next_gray.svg';
 import open_eye from './icons/open_eye.svg';
 import closed_eye from './icons/closed_eye.svg'
@@ -67,7 +68,8 @@ import multi_select from './icons/multi_select.svg';
 import datepicker_icon from './icons/datepicker.svg';
 import clock from './icons/clock.svg';
 import repeat from './icons/repeat.svg';
-import next_black from './icons/next_black.svg'
+import next_black from './icons/next_black.svg';
+import next_red from './icons/next_red.svg';
 
 
 import slide1 from './img/slide1.png';
@@ -171,7 +173,9 @@ export const media = {
     next_black,
     previous_gray,
     previous_black,
+    previous_red,
     next_gray,
+    next_red,
     open_eye,
     closed_eye
 }
