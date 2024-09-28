@@ -138,7 +138,11 @@ export const Scheduling = () => {
               className=""
               disabled={currentPage === 0}
             >
+              {currentPage === 0 ? (
+                <img src={media.previous_gray} alt="" />
+              ) : (
                 <img src={media.previous_red} alt="" />
+              )}
             </button>
             <button onClick={handleNext}>
               {startIndex + itemsPerPage >= allTasks?.length ? (
