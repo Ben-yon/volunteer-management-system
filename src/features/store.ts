@@ -14,6 +14,8 @@ import postMessagesSlice from "./messaging/postMessagesSlice";
 import dashboardSlice from "./dashboard/dashboardSlice";
 import createTaskSlice from "./task/createTaskSlice";
 import getTasksSlice from "./task/getTasksSlice";
+import createScheduleTaskSlice from "./scheduleTask/createScheduleTaskSlice";
+import createVolunteerScheduleTaskSlice from './volunteerScheduleTask/createVolunteerScheduleTaskSlice';
 
 export const store = configureStore({
   reducer: {
@@ -31,7 +33,9 @@ export const store = configureStore({
     postMessageSlice: postMessagesSlice,
     dashboardSlice: dashboardSlice,
     createTaskSlice: createTaskSlice,
-    getTasksSlice: getTasksSlice
+    getTasksSlice: getTasksSlice,
+    createScheduleTaskSlice: createScheduleTaskSlice,
+    createVolunteerScheduleTaskSlice: createVolunteerScheduleTaskSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
