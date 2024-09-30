@@ -41,7 +41,6 @@ export const Scheduling = () => {
   const currentTasks = allTasks.slice(startIndex, startIndex + itemsPerPage);
 
 
-
   const getAllTasks = useCallback(() => {
     dispatch(getTasks())
   }, [dispatch])
@@ -147,7 +146,7 @@ export const Scheduling = () => {
             <button onClick={handleNext}>
               {startIndex + itemsPerPage >= allTasks?.length ? (
                 <img
-                  src={media.next_red}
+                  src={media.next_gray}
                   alt=""
                   className="w-[25px] h-[25px]"
                 />

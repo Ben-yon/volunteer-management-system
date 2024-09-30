@@ -117,7 +117,7 @@ export const AddSchedule = () => {
   const assignTaskToVolunteer = useCallback(() => {
     dispatch(
       createVolunteerScheduleTask({
-        scheduleTaskId: scheduledTask.id,
+        scheduledTaskId: scheduledTask.id,
         volunteerId: selectedVolunteer,
         supervisorsNote: "",
       })
