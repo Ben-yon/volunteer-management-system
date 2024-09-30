@@ -14,7 +14,7 @@ export interface ScheduleTaskInterface {
 }
 
 export interface VolunteerScheduleTask {
-  scheduleTaskId: string;
+  scheduledTaskId: string;
   volunteerId: string;
   volunteersNote?: string;
   supervisorsNote: string;
