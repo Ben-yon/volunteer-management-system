@@ -25,6 +25,7 @@ export default {
         'input-color': '#838383CC',
         'message-hover': '#79000017',
         'progressbar-complete': '#04B700',
+        'schedule-details': '#F4F4F4'
       },
       fontFamily: {
         // sans: ['Lelawadee'],

@@ -22,7 +22,7 @@ export const Scheduling = () => {
 
   const [ allTasks, setAllTasks ] = useState<Array<Task>>([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 5;
+  const itemsPerPage = 6;
 
 
   const handleNext = () => {
@@ -71,6 +71,10 @@ export const Scheduling = () => {
     navigate("/profile-management/add-schedule");
   };
 
+  const viewSchedulingDetails = (id: string) => {
+    navigate(`${id}`);
+  }
+
   const [value, onChange] = useState<Value>(new Date());
 
   return (
@@ -109,8 +113,8 @@ export const Scheduling = () => {
             </div>
           </div>
           <div className="flex flex-wrap space-x-2 space-y-2 mt-[29px]">
-            {currentTasks.map((task) => (
-              <div className="w-[239px] h-[161px] rounded-[21.2px] shadow-mid bg-primary pt-[21px] pl-[21px]">
+            {currentTasks.map((task, index) => (
+              <div className="w-[239px] h-[161px] rounded-[21.2px] shadow-mid bg-primary pt-[21px] pl-[21px] hover:cursor-pointer" key={index} onClick={() => viewSchedulingDetails(task?.id)}>
                 <h2 className="font-[400] text-[12px] leading-[14.52px] mb-[6px]">
                   {task.name}
                 </h2>

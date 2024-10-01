@@ -37,19 +37,28 @@ import { ChangePassword } from "../components/profileManagment/ChangePassword";
 import { PersonalInfo } from "../components/profileManagment/PersonalInfo";
 import { AddAdmin } from "../components/admin/CreateAdmin";
 import { AddSchedule } from "../components/profileManagment/AddSchedule";
+import { SchedulingDetails } from "../components/profileManagment/SchedulingDetails";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
-
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
   return (
     <Routes>
       <Route path="/">
         <Route path="" element={<VolunteerLandingPage />} />
-        <Route path="volunteer-upload-avatar" element={<VolunteerUploadProfile/>}/>
-        <Route path="volunteer-registration" element={<VolunteerRegistration/>}/>
-        <Route path="volunteer-registration-other-info" element={<VolunteerRegisterOther/>}/>
+        <Route
+          path="volunteer-upload-avatar"
+          element={<VolunteerUploadProfile />}
+        />
+        <Route
+          path="volunteer-registration"
+          element={<VolunteerRegistration />}
+        />
+        <Route
+          path="volunteer-registration-other-info"
+          element={<VolunteerRegisterOther />}
+        />
         <Route path="view-user-details" element={<ViewUserDetail />} />
         <Route
           path="successful-registration"
@@ -88,7 +97,8 @@ export const AppRoutes = () => {
           <Route path="volunteers/details/:id" element={<VolunteerDetails />} />
           <Route path="notification" element={<Notification />} />
           <Route path="scheduling" element={<Scheduling />} />
-          <Route path="add-schedule" element={<AddSchedule/>}/>
+          <Route path="add-schedule" element={<AddSchedule />} />
+          <Route path="scheduling/:id" element={<SchedulingDetails /> } />
           <Route path="messages" element={<Messages />} />
           <Route path="training" element={<Training />} />
           <Route path="programs" element={<Programs />} />
@@ -98,8 +108,8 @@ export const AppRoutes = () => {
           <Route path="programs/:id" element={<ViewProgram />} />
           <Route path="admins" element={<Admins />} />
           <Route path="profile/*" element={<Profile />}>
-            <Route path="" element={<PersonalInfo/>}/>
-            <Route path="change-password" element={<ChangePassword/>}/>
+            <Route path="" element={<PersonalInfo />} />
+            <Route path="change-password" element={<ChangePassword />} />
           </Route>
           <Route path="support" element={<Support />} />
           <Route path="settings" element={<Settings />} />
@@ -112,5 +122,3 @@ export const AppRoutes = () => {
     </Routes>
   );
 };
-
-
