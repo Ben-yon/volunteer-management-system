@@ -9,6 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { FaTimes } from "react-icons/fa";
 import { CreateTaskInterface } from "../../interfaces/TaskScheduleInterface";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
@@ -19,16 +20,36 @@ import { getVolunteers } from "../../features/volunteer/volunteerAction";
 import { createTask } from "../../features/task/taskActions";
 import { scheduleTask } from "../../features/scheduleTask/scheduleTaskActions";
 import { createVolunteerScheduleTask } from "../../features/volunteerScheduleTask/volunteerScheduleTaskAction";
+import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
 export const AddSchedule = () => {
   const [selectedOnDate, setSelectedOnDate] = useState<Date | null>(null);
   const [selectedFromDate, setSelectedFromDate] = useState<Date | null>(null);
   const [selectedToDate, setSelectedToDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<Date | null>(null);
-  const [selectedVolunteer, setSelectedVolunteers] = useState<string>("");
+  const [selectedVolunteers, setSelectedVolunteers] = useState<
+    VolunteersPayload[]
+  >([]);
 
-  const handleSelectedVolunteer = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedVolunteers(event.target.value);
+  const [ selectedVolunteerIds, setSelectedVolunteerIds ] = useState<string[]>([])
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleVolunteerSelect = (user: VolunteersPayload) => {
+    if (!selectedVolunteers.find((u) => u.id === user.id)) {
+      setSelectedVolunteers((prev) => [...prev, user]);
+      setSelectedVolunteerIds((prevIds) => [
+        ...prevIds,
+         user.id
+      ]);
+    }
+    setIsOpen(false);
+  };
+
+  const handleRemoveUser = (userId: string) => {
+    setSelectedVolunteers((prev) => prev.filter((user) => user.id !== userId));
   };
 
   const [scheduleTaskDetails, setScheduleTaskDetails] =
@@ -76,14 +97,6 @@ export const AddSchedule = () => {
       [event.target.name]: event.target.value,
     });
   };
-  /**
-   * TODO: write function to remove selected items
-   */
-  // const removeVolunteer = (volunteer: string) => {
-  //   setSelectedVolunteers(
-  //     selectedVolunteers.filter((v) => v !== volunteer)
-  //   );
-  // };
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -118,11 +131,11 @@ export const AddSchedule = () => {
     dispatch(
       createVolunteerScheduleTask({
         scheduledTaskId: scheduledTask.id,
-        volunteerId: selectedVolunteer,
+        volunteerIds: selectedVolunteerIds,
         supervisorsNote: "",
       })
     );
-  }, [dispatch, scheduledTask.id, selectedVolunteer])
+  }, [dispatch, scheduledTask.id, selectedVolunteerIds]);
 
   useEffect(() => {
     if (isTaskCreated) {
@@ -132,9 +145,9 @@ export const AddSchedule = () => {
 
   useEffect(() => {
     if (isScheduled) {
-      assignTaskToVolunteer()
+      assignTaskToVolunteer();
     }
-  }, [assignTaskToVolunteer, isScheduled])
+  }, [assignTaskToVolunteer, isScheduled]);
 
   useEffect(() => {
     if (isVolunteerScheduledTask) {
@@ -143,6 +156,7 @@ export const AddSchedule = () => {
       return;
     }
   }, [error, navigate, isVolunteerScheduledTask]);
+
 
   return (
     <div className="flex flex-col">
@@ -185,21 +199,70 @@ export const AddSchedule = () => {
             alt=""
             className="relative w-[46px] h-[36px] top-[48px] left-[19px] fill-current"
           />
-          <select
-            className="w-[416.04px] h-[60px] border rounded-[21.2px] shadow-light pl-[84px] flex flex-row item-center justify-center appearance-none"
-            value={selectedVolunteer}
-            onChange={handleSelectedVolunteer}
-          >
-            {userInfo.map((volunteer, index) => (
-              <option
-                value={volunteer?.id}
-                key={index}
-                className="border p-[5px] rounded-[18px] w-[101px] h-[30px] flex items-center justify-center"
-              >
-                {volunteer.firstName}
-              </option>
-            ))}
-          </select>
+          <div className="relative w-80">
+            <div
+              className="w-[416.04px] h-[60px] min-h-auto border rounded-[21.2px] shadow-light pl-[50px] flex flex-wrap gap-2 items-center justify-center"
+              onClick={toggleDropdown}
+            >
+              {selectedVolunteers.length === 0 ? (
+                <span className="text-gray-400">Select volunteers...</span>
+              ) : (
+                selectedVolunteers.map((user) => (
+                  <div
+                    key={user.id}
+                    className="bg-gray-100 flex items-center rounded-full px-2 py-1"
+                  >
+                    {user.profilePicture ? (
+                      <img
+                        src={user.profilePicture}
+                        alt={user.firstName}
+                        className="w-6 h-6 rounded-full mr-3"
+                      />
+                    ) : (
+                      <img
+                        src={media.upload}
+                        alt={user.firstName}
+                        className="w-6 h-6 rounded-full mr-3"
+                      />
+                    )}
+                    <span className="text-sm mr-2">{user.firstName}</span>
+                    <FaTimes
+                      className="text-gray-400 cursor-pointer"
+                      onClick={() => handleRemoveUser(user.id)}
+                    />
+                  </div>
+                ))
+              )}
+            </div>
+            {isOpen && (
+              <ul className="absolute mt-2 w-full bg-white border border-gray-300 rounded-md shadow-lg z-10">
+                {userInfo.map((user) => (
+                  <li
+                    key={user.id}
+                    className="flex items-center p-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleVolunteerSelect(user)}
+                  >
+                    {user.profilePicture ? (
+                      <img
+                        src={user.profilePicture}
+                        alt={user.firstName}
+                        className="w-6 h-6 rounded-full mr-3"
+                      />
+                    ) : (
+                      <img
+                        src={media.upload}
+                        alt={user.firstName}
+                        className="w-6 h-6 rounded-full mr-3"
+                      />
+                    )}
+                    <span>
+                      {user.firstName} {user.lastName}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           <div className="w-[416px] h-[563px] rounded-[33.39px] border mt-[20px] flex flex-col pl-[38.71px] shadow-light">
             <h2 className="w-[156.68px] font-[600] text-[21.4px] leading-[25.9px] mt-[33.39px]">
               Date &amp; Time
