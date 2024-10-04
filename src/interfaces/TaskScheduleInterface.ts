@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseInitialStateInterface } from "./AuthInterface";
 export interface CreateTaskInterface {
   name: string;
@@ -15,7 +16,7 @@ export interface ScheduleTaskInterface {
 
 export interface VolunteerScheduleTask {
   scheduledTaskId: string;
-  volunteerId: string;
+  volunteerIds: Array<any>;
   volunteersNote?: string;
   supervisorsNote: string;
 }
