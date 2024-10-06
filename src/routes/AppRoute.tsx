@@ -38,6 +38,7 @@ import { PersonalInfo } from "../components/profileManagment/PersonalInfo";
 import { AddAdmin } from "../components/admin/CreateAdmin";
 import { AddSchedule } from "../components/profileManagment/AddSchedule";
 import { SchedulingDetails } from "../components/profileManagment/SchedulingDetails";
+import { ConfirmSchedulingDetails } from "../components/profileManagment/ConfirmSchedulingDetails";
 //import { LanguageSelect } from "../components/LanguageSelect";
 
 export const AppRoutes = () => {
@@ -98,7 +99,11 @@ export const AppRoutes = () => {
           <Route path="notification" element={<Notification />} />
           <Route path="scheduling" element={<Scheduling />} />
           <Route path="add-schedule" element={<AddSchedule />} />
-          <Route path="scheduling/:id" element={<SchedulingDetails /> } />
+          <Route path="scheduling/:id" element={<SchedulingDetails />} />
+          <Route
+            path="scheduling/confirm-details"
+            element={<ConfirmSchedulingDetails />}
+          />
           <Route path="messages" element={<Messages />} />
           <Route path="training" element={<Training />} />
           <Route path="programs" element={<Programs />} />

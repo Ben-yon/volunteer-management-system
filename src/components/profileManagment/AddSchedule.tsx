@@ -15,11 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "../../widgets/Spinner";
+// import { Spinner } from "../../widgets/Spinner";
 import { getVolunteers } from "../../features/volunteer/volunteerAction";
-import { createTask } from "../../features/task/taskActions";
-import { scheduleTask } from "../../features/scheduleTask/scheduleTaskActions";
-import { createVolunteerScheduleTask } from "../../features/volunteerScheduleTask/volunteerScheduleTaskAction";
+// import { createTask } from "../../features/task/taskActions";
+// import { scheduleTask } from "../../features/scheduleTask/scheduleTaskActions";
+// import { createVolunteerScheduleTask } from "../../features/volunteerScheduleTask/volunteerScheduleTaskAction";
 import { VolunteersPayload } from "../../interfaces/AuthInterface";
 
 export const AddSchedule = () => {
@@ -59,16 +59,16 @@ export const AddSchedule = () => {
       notes: "",
     });
 
-  const { isTaskCreated, task, error, loading } = useSelector(
-    (state: RootState) => state.createTaskSlice
-  );
+  // const { isTaskCreated, task, error, loading } = useSelector(
+  //   (state: RootState) => state.createTaskSlice
+  // );
 
-  const { isScheduled, scheduledTask } = useSelector(
-    (state: RootState) => state.createScheduleTaskSlice
-  );
-  const { isVolunteerScheduledTask } = useSelector(
-    (state: RootState) => state.createVolunteerScheduleTaskSlice
-  );
+  // const { isScheduled, scheduledTask } = useSelector(
+  //   (state: RootState) => state.createScheduleTaskSlice
+  // );
+  // const { isVolunteerScheduledTask } = useSelector(
+  //   (state: RootState) => state.createVolunteerScheduleTaskSlice
+  // );
   const { userInfo } = useSelector((state: RootState) => state.volunteerSlice);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const navigate = useNavigate();
@@ -101,7 +101,6 @@ export const AddSchedule = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     createATask();
-    console.log("nay!");
   };
 
   const getVolunteersDetails = useCallback(() => {
@@ -113,49 +112,58 @@ export const AddSchedule = () => {
   }, [getVolunteersDetails]);
 
   const createATask = () => {
-    dispatch(createTask(scheduleTaskDetails));
+    // dispatch(createTask(scheduleTaskDetails));
+    navigate("/profile-management/scheduling/confirm-details", {
+      state: {
+        taskName: scheduleTaskDetails.name,
+        description: scheduleTaskDetails.description,
+        notes: scheduleTaskDetails.notes,
+        scheduleVolunteerIds: selectedVolunteerIds,
+        volunteers: userInfo
+      }
+    });
   };
 
-  const scheduleATask = useCallback(() => {
-    dispatch(
-      scheduleTask({
-        taskId: task.id,
-        startDateTime: selectedFromDate,
-        endDateTime: selectedToDate,
-        Status: "pending",
-      })
-    );
-  }, [dispatch, selectedFromDate, selectedToDate, task.id]);
+  // const scheduleATask = useCallback(() => {
+  //   dispatch(
+  //     scheduleTask({
+  //       taskId: task.id,
+  //       startDateTime: selectedFromDate,
+  //       endDateTime: selectedToDate,
+  //       Status: "pending",
+  //     })
+  //   );
+  // }, [dispatch, selectedFromDate, selectedToDate, task.id]);
 
-  const assignTaskToVolunteer = useCallback(() => {
-    dispatch(
-      createVolunteerScheduleTask({
-        scheduledTaskId: scheduledTask.id,
-        volunteerIds: selectedVolunteerIds,
-        supervisorsNote: "",
-      })
-    );
-  }, [dispatch, scheduledTask.id, selectedVolunteerIds]);
+  // const assignTaskToVolunteer = useCallback(() => {
+  //   dispatch(
+  //     createVolunteerScheduleTask({
+  //       scheduledTaskId: scheduledTask.id,
+  //       volunteerIds: selectedVolunteerIds,
+  //       supervisorsNote: "",
+  //     })
+  //   );
+  // }, [dispatch, scheduledTask.id, selectedVolunteerIds]);
 
-  useEffect(() => {
-    if (isTaskCreated) {
-      scheduleATask();
-    }
-  }, [isTaskCreated, scheduleATask]);
+  // useEffect(() => {
+  //   if (isTaskCreated) {
+  //     scheduleATask();
+  //   }
+  // }, [isTaskCreated, scheduleATask]);
 
-  useEffect(() => {
-    if (isScheduled) {
-      assignTaskToVolunteer();
-    }
-  }, [assignTaskToVolunteer, isScheduled]);
+  // useEffect(() => {
+  //   if (isScheduled) {
+  //     assignTaskToVolunteer();
+  //   }
+  // }, [assignTaskToVolunteer, isScheduled]);
 
-  useEffect(() => {
-    if (isVolunteerScheduledTask) {
-      navigate("/profile-management/scheduling");
-    } else {
-      return;
-    }
-  }, [error, navigate, isVolunteerScheduledTask]);
+  // useEffect(() => {
+  //   if (isVolunteerScheduledTask) {
+  //     navigate("/profile-management/scheduling");
+  //   } else {
+  //     return;
+  //   }
+  // }, [error, navigate, isVolunteerScheduledTask]);
 
 
   return (
@@ -364,7 +372,7 @@ export const AddSchedule = () => {
               />
             </div>
             <button className="w-[125.84px] h-[41.95px] bg-admin-secondary text-primary rounded-[11.98px] text-[17.12px] font-[600] leading-[20.72px]">
-              {loading ? <Spinner /> : "Schedule"}
+               Schedule
             </button>
           </div>
         </div>
